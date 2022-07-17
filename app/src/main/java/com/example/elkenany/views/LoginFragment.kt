@@ -7,21 +7,30 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentLoginBinding
+import com.example.elkenany.viewmodels.LoginViewModel
+import com.example.elkenany.viewmodels.ViewModelFactory
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var viewModel: LoginViewModel
     private lateinit var email: String
     private lateinit var password: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        //showing app logo inside ImageView
+        viewModelFactory = ViewModelFactory()
+        viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+        binding.lifecycleOwner = viewLifecycleOwner
+        // showing app logo inside ImageView
         binding.appImage.setImageResource(R.drawable.logo)
         binding.signInBtn.setOnClickListener {
             email = binding.emailInput.text.toString().trim()
@@ -36,6 +45,7 @@ class LoginFragment : Fragment() {
                 binding.passwordInput.requestFocus()
             } else {
                 //ToDo --> implement viewModel.SigninWithEmailAndPassword function here
+                viewModel.signInWithEmailAndPassword(email, password)
             }
 
         }
@@ -50,9 +60,26 @@ class LoginFragment : Fragment() {
         }
         binding.skipBtn.setOnClickListener {
             //ToDo --> implement navigation to HomeFragment here
+            viewModel.signInWithGuestAccount()
         }
         binding.createAccountBtn.setOnClickListener {
             //ToDo --> implement navigation to SignUpFragment here
+        }
+
+
+        // ViewModel Observers
+
+        viewModel.login.observe(viewLifecycleOwner) {
+            if (it) {
+                // ToDo--> implement navigation to Home screen
+            }
+        }
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                // ToDo --> implement progressBar to load and remove the signin btn from the fragment
+            } else {
+                // ToDo --> implement signin btn  to load and remove progressBar from the fragment
+            }
         }
 
         return binding.root
