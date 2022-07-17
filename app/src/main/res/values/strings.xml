@@ -17,4 +17,5 @@
     <string name="password_title">كلمة المرور</string>
     <string name="did_you_forgot_password_title">هل نسيت كلمة المرور؟</string>
     <string name="sign_in_with_title">أو سجل عبر</string>
+    <string name="dont_have_account_title">ليس لديك حساب؟ سجل الأن</string>
 </resources>
