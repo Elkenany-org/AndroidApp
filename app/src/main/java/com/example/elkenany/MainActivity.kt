@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.elkenany
 
 import android.os.Bundle
