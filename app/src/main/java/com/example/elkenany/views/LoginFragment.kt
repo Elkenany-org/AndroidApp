@@ -77,8 +77,12 @@ class LoginFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 // ToDo --> implement progressBar to load and remove the signin btn from the fragment
+                binding.loadingProgressbar.visibility = View.VISIBLE
+                binding.signInBtn.visibility = View.GONE
             } else {
                 // ToDo --> implement signin btn  to load and remove progressBar from the fragment
+                binding.loadingProgressbar.visibility = View.GONE
+                binding.signInBtn.visibility = View.VISIBLE
             }
         }
 
