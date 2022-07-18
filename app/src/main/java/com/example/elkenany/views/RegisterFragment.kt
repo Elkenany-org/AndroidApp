@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentRegisterBinding
 import com.example.elkenany.viewmodels.RegisterViewModel
@@ -47,14 +48,20 @@ class RegisterFragment : Fragment() {
                 binding.nameInput.requestFocus()
             } else if (email.isEmpty()) {
                 binding.emailInput.requestFocus()
+                binding.emailInput.error = "يرجي ادخال الايميل"
             } else if (phone.isEmpty()) {
                 binding.phoneInput.requestFocus()
+                binding.phoneInput.error = "يرجي ادخال رقم الهاتف"
             } else if (password.isEmpty()) {
                 binding.passwordInput.requestFocus()
-            } else if (confirmPassword.isEmpty()) {
+                binding.phoneInput.error = "يرجي ادخال الرقم السري"
+            } else if (confirmPassword != password) {
                 binding.confirmPasswordInput.requestFocus()
+                binding.confirmPasswordInput.error = "غير متطابق"
             } else {
-                // ToDo --> implement register function here
+                // register function here
+                // ToDo --> implement to receive device token here
+                viewModel.registerAccount(name, email, phone, password, "")
             }
 
         }
@@ -66,6 +73,27 @@ class RegisterFragment : Fragment() {
         }
         binding.haveAccountBtn.setOnClickListener {
             // ToDo --> implement navigation to login fragment here
+            view!!.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
+        //observers
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.loadingProgressbar.visibility = View.VISIBLE
+                binding.signUpBtn.visibility = View.GONE
+            } else {
+                binding.loadingProgressbar.visibility = View.GONE
+                binding.signUpBtn.visibility = View.VISIBLE
+            }
+        }
+        viewModel.register.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it) {
+                    // ToDo --> implement navigation to home screen here
+                } else {
+                    Toast.makeText(context, "تعذر انشاء حساب", Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
         return binding.root

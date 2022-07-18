@@ -10,6 +10,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel() as T
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> RegisterViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }
