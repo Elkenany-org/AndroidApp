@@ -17,12 +17,15 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/service_btn_unchecked.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/font/font.xml" value="0.3848958333333333" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/big_recycler_item.xml" value="0.2911500641299701" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/big_recycler_item_with_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/content_main.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home_sector.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home_service.xml" value="0.2804617357845233" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_login.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_register.xml" value="0.29200513039760584" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/small_recycler_item.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/menu_main.xml" value="0.35572916666666665" />
       </map>
