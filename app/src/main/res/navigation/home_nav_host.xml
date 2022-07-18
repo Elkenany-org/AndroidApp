@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_host"
+    app:startDestination="@id/homeSectorFragment2">
+
+    <fragment
+        android:id="@+id/homeSectorFragment2"
+        android:name="com.example.elkenany.views.home.home_sector.HomeSectorFragment"
+        android:label="fragment_home_sector"
+        tools:layout="@layout/fragment_home_sector" />
+    <fragment
+        android:id="@+id/homeServiceFragment2"
+        android:name="com.example.elkenany.views.home.home_service.HomeServiceFragment"
+        android:label="fragment_home_service"
+        tools:layout="@layout/fragment_home_service" />
+</navigation>

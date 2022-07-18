@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".views.home.home_sector.HomeSectorFragment">
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:layoutDirection="rtl"
+            tools:ignore="UselessParent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sectors_btn"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/sector_btn_checked"
+                android:fontFamily="@font/cairo_black"
+                android:text="@string/sectors_title"
+                android:textColor="@color/orange"
+                android:textSize="18sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/service_btn"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/service_btn_unchecked"
+                android:fontFamily="@font/cairo_black"
+                android:text="@string/services_title"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/line1"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/sector_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/sectors_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sectors_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sector_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/recommendation_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/recommendation_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_recommendation_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommendation_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recommendation_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/partners_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/partner_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_partners_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/partners_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/partners_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/stock_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/stock_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_stocks_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stocks_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stock_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/guide_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/guide_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_guide_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/guides_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/guide_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/news_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/news_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_news_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/news_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/news_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layoutDirection="rtl"
+                tools:ignore="UselessLeaf">
+
+                <TextView
+                    android:id="@+id/store_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_black"
+                    android:text="@string/store_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/all_stores_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/show_all_title"
+                    android:textColor="@color/green"
+                    android:textSize="16sp"
+                    tools:ignore="RelativeOverlap" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stores_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/store_textView"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

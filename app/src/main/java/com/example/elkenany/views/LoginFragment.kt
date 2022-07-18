@@ -73,7 +73,8 @@ class LoginFragment : Fragment() {
         viewModel.login.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it) {
-                    // ToDo--> implement navigation to Home screen
+                    // navigation to Home screen
+                    view!!.findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
                     Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
                 }
