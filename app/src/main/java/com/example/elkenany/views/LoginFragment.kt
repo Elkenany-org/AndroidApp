@@ -31,7 +31,6 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
         // showing app logo inside ImageView
-        binding.appImage.setImageResource(R.drawable.logo)
         binding.signInBtn.setOnClickListener {
             email = binding.emailInput.text.toString().trim()
             password = binding.passwordInput.text.toString().trim()
