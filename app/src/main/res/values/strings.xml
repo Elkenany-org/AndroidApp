@@ -24,4 +24,18 @@
     <string name="phone_title">رقم الهاتف 0123456789</string>
     <string name="confirm_password_title">تأكيد كلمة المرور</string>
     <string name="have_account_title">لديك حساب؟ سجل دخول</string>
+    <string name="homeBtn">الرئيسية</string>
+    <string name="homeSearch">البحث</string>
+    <string name="homeNotification">الإشعارات</string>
+    <string name="homeProfile">الملف الشخصي</string>
+    <string name="homeMore">المزيد</string>
+    <string name="sectors_title">القطاعات</string>
+    <string name="services_title">الخدمات</string>
+    <string name="recommendation_title">مقترح لك</string>
+    <string name="show_all_title">عرض الكل</string>
+    <string name="partner_title">شركاء النجاح</string>
+    <string name="stock_title">البورصات</string>
+    <string name="guide_title">دليل الكناني</string>
+    <string name="news_title">الأخبار</string>
+    <string name="store_title">سوق الكناني</string>
 </resources>
