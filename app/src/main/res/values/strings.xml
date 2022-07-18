@@ -18,4 +18,10 @@
     <string name="did_you_forgot_password_title">هل نسيت كلمة المرور؟</string>
     <string name="sign_in_with_title">أو سجل عبر</string>
     <string name="dont_have_account_title">ليس لديك حساب؟ سجل الأن</string>
+    <string name="create_account_title">انشاء حساب جديد</string>
+    <string name="name_title">الأسم</string>
+    <string name="email_title">الأيميل</string>
+    <string name="phone_title">رقم الهاتف 0123456789</string>
+    <string name="confirm_password_title">تأكيد كلمة المرور</string>
+    <string name="have_account_title">لديك حساب؟ سجل دخول</string>
 </resources>
