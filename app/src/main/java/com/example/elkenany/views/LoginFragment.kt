@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentLoginBinding
 import com.example.elkenany.viewmodels.LoginViewModel
@@ -58,21 +59,24 @@ class LoginFragment : Fragment() {
             //ToDo --> implement viewModel.SignInWithFacebook function here
         }
         binding.skipBtn.setOnClickListener {
-            //ToDo --> implement navigation to HomeFragment here
+            //navigation to HomeFragment here
             viewModel.signInWithGuestAccount()
         }
         binding.createAccountBtn.setOnClickListener {
-            //ToDo --> implement navigation to SignUpFragment here
+            //navigation to SignUpFragment here
+            view!!.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
 
         // ViewModel Observers
 
         viewModel.login.observe(viewLifecycleOwner) {
-            if (it) {
-                // ToDo--> implement navigation to Home screen
-            } else {
-                Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
+            if (it != null) {
+                if (it) {
+                    // ToDo--> implement navigation to Home screen
+                } else {
+                    Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
+                }
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

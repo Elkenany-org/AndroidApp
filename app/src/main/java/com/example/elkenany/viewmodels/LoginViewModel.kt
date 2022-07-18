@@ -12,29 +12,26 @@ import kotlinx.coroutines.launch
 class LoginViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
-    private val _login = MutableLiveData(false)
+    private val _login = MutableLiveData<Boolean?>(null)
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
 
     val loading: LiveData<Boolean> get() = _loading
-    val login: LiveData<Boolean> get() = _login
+    val login: LiveData<Boolean?> get() = _login
 
     fun signInWithEmailAndPassword(email: String, password: String) {
         uiScope.launch {
             _loading.value = true
-            val success = api.loginWithEmailAndPassword(email, password)
-            if (success) {
-                _login.value = true
-            }
+            _login.value = api.loginWithEmailAndPassword(email, password)
             _loading.value = false
         }
     }
 
-    fun signInWithGoogle(){
+    fun signInWithGoogle() {
         // ToDo --> implement signin with google provider
     }
 
-    fun signInWithFacebook(){
+    fun signInWithFacebook() {
         // ToDo --> implement signin with facebook provider
     }
 
@@ -43,7 +40,7 @@ class LoginViewModel : ViewModel() {
         api.loginWithNoCredentials()
     }
 
-    fun didForgetPassword(){
+    fun didForgetPassword() {
         // ToDo --> implement password recovery function
     }
 
