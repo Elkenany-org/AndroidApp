@@ -62,6 +62,7 @@
                 android:fontFamily="@font/cairo_black"
                 android:maxLines="1"
                 android:textColor="@color/green"
+                android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
