@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_search_logo"
         android:title="@string/homeSearch" />
     <item
-        android:id="@+id/notificationPage"
+        android:id="@+id/stockPage"
         android:icon="@drawable/ic_stock_logo"
-        android:title="@string/homeNotification" />
+        android:title="@string/stockBtn" />
     <item
         android:id="@+id/homePage"
         android:icon="@drawable/ic_home_logo"
