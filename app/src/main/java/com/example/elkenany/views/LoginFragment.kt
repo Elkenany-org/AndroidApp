@@ -64,7 +64,8 @@ class LoginFragment : Fragment() {
         }
         binding.createAccountBtn.setOnClickListener {
             //navigation to SignUpFragment here
-            view!!.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            view!!.findNavController()
+                .navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
 
 

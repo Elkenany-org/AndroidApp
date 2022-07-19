@@ -12,6 +12,7 @@ import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeBinding
 import com.example.elkenany.viewmodels.HomeViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.example.elkenany.views.home.home_sector.HomeSectorFragment
 import com.example.elkenany.views.profile.ProfileFragment
 
 class HomeFragment : Fragment() {
