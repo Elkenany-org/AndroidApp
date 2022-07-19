@@ -18,6 +18,7 @@ import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.home_sector.adapter.*
 
 
+
 class HomeSectorFragment : Fragment() {
     private lateinit var binding: FragmentHomeSectorBinding
     private lateinit var viewModelFactory: ViewModelFactory
@@ -66,7 +67,7 @@ class HomeSectorFragment : Fragment() {
         //navigate to homeServices fragment
         binding.serviceBtn.setOnClickListener {
             view!!.findNavController()
-                .navigate(R.id.action_homeSectorFragment2_to_homeServiceFragment2)
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragment2ToHomeServiceFragment2())
         }
         // Loading progressbar
         viewModel.loading.observe(viewLifecycleOwner) {

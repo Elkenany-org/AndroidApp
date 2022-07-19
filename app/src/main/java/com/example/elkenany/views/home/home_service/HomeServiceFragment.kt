@@ -53,7 +53,7 @@ class HomeServiceFragment : Fragment() {
         //navigate to sectorsFragment
         binding.sectorsBtn.setOnClickListener {
             view!!.findNavController()
-                .navigate(R.id.action_homeServiceFragment2_to_homeSectorFragment2)
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
         }
 
         // Loading progressbar
