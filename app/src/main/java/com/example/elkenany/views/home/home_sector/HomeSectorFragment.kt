@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeSectorBinding
@@ -62,6 +63,11 @@ class HomeSectorFragment : Fragment() {
         binding.newsRecyclerView.adapter = newsAdapter
         binding.storesRecyclerView.adapter = storeAdapter
 
+        //navigate to homeServices fragment
+        binding.serviceBtn.setOnClickListener {
+            view!!.findNavController()
+                .navigate(R.id.action_homeSectorFragment2_to_homeServiceFragment2)
+        }
         // Loading progressbar
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
