@@ -7,12 +7,15 @@ import retrofit2.await
 @Suppress("unused")
 class AuthImplementation {
     // variable to hold user data in
-    private var _auth: AuthData? = null
-    var auth = _auth
+    companion object{
+        var auth: AuthData? = null
+    }
+
+
 
     //Login with no credentials
     fun loginWithNoCredentials() {
-        _auth = null
+        auth = null
     }
 
     //Login function using only email and password to deliver them to Api
@@ -22,7 +25,7 @@ class AuthImplementation {
     ): Boolean {
         return try {
             val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
-            _auth = response.data
+            auth = response.data
             Log.i("login response", "Login response is : $response")
             true
         } catch (e: Throwable) {
@@ -46,7 +49,7 @@ class AuthImplementation {
                 phone,
                 deviceToken)
                 .await()
-            _auth = response.data
+            auth = response.data
             true
         } catch (e: Throwable) {
             Log.i("register", "register failed : ${e.message}")
