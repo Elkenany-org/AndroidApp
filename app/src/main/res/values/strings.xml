@@ -38,4 +38,6 @@
     <string name="guide_title">دليل الكناني</string>
     <string name="news_title">الأخبار</string>
     <string name="store_title">سوق الكناني</string>
+    <string name="shows_title">المعارض</string>
+    <string name="guide_and_magazine_title">الدلائل والمجلات</string>
 </resources>
