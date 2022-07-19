@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav_host"
-    app:startDestination="@id/homeSectorFragment2">
+    app:startDestination="@id/homeSectorFragment">
 
     <fragment
-        android:id="@+id/homeSectorFragment2"
+        android:id="@+id/homeSectorFragment"
         android:name="com.example.elkenany.views.home.home_sector.HomeSectorFragment"
         android:label="fragment_home_sector"
         tools:layout="@layout/fragment_home_sector" >
         <action
             android:id="@+id/action_homeSectorFragment2_to_homeServiceFragment2"
-            app:destination="@id/homeServiceFragment2"
+            app:destination="@id/homeServiceFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@id/homeSectorFragment2"
+            app:popUpTo="@id/homeSectorFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/homeServiceFragment2"
+        android:id="@+id/homeServiceFragment"
         android:name="com.example.elkenany.views.home.home_service.HomeServiceFragment"
         android:label="fragment_home_service"
         tools:layout="@layout/fragment_home_service" >
         <action
             android:id="@+id/action_homeServiceFragment2_to_homeSectorFragment2"
-            app:destination="@id/homeSectorFragment2"
-            app:popUpTo="@id/homeServiceFragment2"
+            app:destination="@id/homeSectorFragment"
+            app:popUpTo="@id/homeServiceFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

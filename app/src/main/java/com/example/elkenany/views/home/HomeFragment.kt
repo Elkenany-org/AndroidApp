@@ -12,7 +12,7 @@ import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeBinding
 import com.example.elkenany.viewmodels.HomeViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.example.elkenany.views.home.home_sector.HomeSectorFragment
+import com.example.elkenany.views.profile.ProfileFragment
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         viewModel.homePage.observe(viewLifecycleOwner) {
             if (it) {
                 // ToDo --> Fixing layout inflation cause it's crashing
-//                loadFragment(this.requireParentFragment())
+//                loadFragment(HomeSectorFragment())
                 binding.bottomNavigation.selectedItemId = R.id.homePage
                 viewModel.onDoneNavigating()
             }
@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         }
         viewModel.profilePage.observe(viewLifecycleOwner) {
             if (it) {
-//                loadFragment(ProfileFragment())
+                loadFragment(ProfileFragment())
                 binding.bottomNavigation.selectedItemId = R.id.profilePage
                 viewModel.onDoneNavigating()
             }
