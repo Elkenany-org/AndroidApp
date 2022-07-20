@@ -10,11 +10,11 @@
         android:icon="@drawable/ic_stock_logo"
         android:title="@string/stockBtn" />
     <item
-        android:id="@+id/homePage"
+        android:id="@+id/homeSectorFragment"
         android:icon="@drawable/ic_home_logo"
         android:title="@string/homeBtn" />
     <item
-        android:id="@+id/profilePage"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile_logo"
         android:title="@string/homeProfile" />
     <item
