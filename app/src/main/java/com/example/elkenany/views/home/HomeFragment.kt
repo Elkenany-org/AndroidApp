@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeBinding
 import com.example.elkenany.viewmodels.HomeViewModel
@@ -29,49 +31,8 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            viewModel.onItemClicked(item)
-        }
-
-        viewModel.homePage.observe(viewLifecycleOwner) {
-            if (it) {
-                // ToDo --> Fixing layout inflation cause it's crashing
-//                loadFragment(HomeSectorFragment())
-                binding.bottomNavigation.selectedItemId = R.id.homePage
-                viewModel.onDoneNavigating()
-            }
-        }
-        viewModel.searchPage.observe(viewLifecycleOwner) {
-            if (it) {
-//                loadFragment(SearchFragment())
-                binding.bottomNavigation.selectedItemId = R.id.searchPage
-                viewModel.onDoneNavigating()
-            }
-        }
-        viewModel.stockPage.observe(viewLifecycleOwner) {
-            if (it) {
-//                loadFragment(StockPage())
-                binding.bottomNavigation.selectedItemId = R.id.stockPage
-                viewModel.onDoneNavigating()
-            }
-        }
-        viewModel.profilePage.observe(viewLifecycleOwner) {
-            if (it) {
-                loadFragment(ProfileFragment())
-                binding.bottomNavigation.selectedItemId = R.id.profilePage
-                viewModel.onDoneNavigating()
-            }
-        }
+        binding.bottomNavigation.setupWithNavController(childFragmentManager.findFragmentById(R.id.container)!!.findNavController())
         return binding.root
     }
 
-    // function to switch between fragments
-    private fun loadFragment(fragment: Fragment) {
-        transaction = this.childFragmentManager.beginTransaction()
-        transaction.apply {
-            replace(R.id.container, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
 }
