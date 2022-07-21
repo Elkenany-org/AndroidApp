@@ -22,6 +22,7 @@ class SectorsChoicesFragment : Fragment() {
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sectors_choices, container, false)
+        binding.titleBar.text = args.sectorName
         Toast.makeText(context, args.sectorName.toString(), Toast.LENGTH_SHORT).show()
         return binding.root
     }
