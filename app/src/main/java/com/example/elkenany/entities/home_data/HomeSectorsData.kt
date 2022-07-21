@@ -1,5 +1,6 @@
 package com.example.elkenany.entities.home_data
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
 
 data class HomeSectorsData(
@@ -21,6 +22,7 @@ data class HomeSectorsData(
     @Json(name = "store")
     val sectorsStore: List<SectorsStore>?,
 )
+
 
 data class Sector(
     val id: Long?,

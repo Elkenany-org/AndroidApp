@@ -18,7 +18,6 @@ import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.home_sector.adapter.*
 
 
-
 class HomeSectorFragment : Fragment() {
     private lateinit var binding: FragmentHomeSectorBinding
     private lateinit var viewModelFactory: ViewModelFactory
@@ -44,7 +43,11 @@ class HomeSectorFragment : Fragment() {
 
         //adapters initialization
         sectorsAdapter = SectorsAdapter(ClickListener {
-            Toast.makeText(context, it.name.toString(), Toast.LENGTH_LONG).show()
+            view!!.findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToSectorsChoicesFragment(
+                    it.id!!,
+                    it.name,
+                    it.type))
         })
         recommendationAdapter = SectorRecommendationAdapter(ClickListener {
             Toast.makeText(context, it.name.toString(), Toast.LENGTH_LONG).show()
