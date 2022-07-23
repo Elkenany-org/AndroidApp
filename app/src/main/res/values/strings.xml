@@ -44,4 +44,5 @@
     <string name="logout_title">تسجيل الخروج</string>
     <string name="my_ads_title">اعلاناتي</string>
     <string name="daily_stock_title">البورصة اليومية</string>
+    <string name="failed_to_receive_data_msg">تعذر الحصول علي اي معلومات</string>
 </resources>

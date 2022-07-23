@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun ImageView.loadImage(url: String?) {
-    if (url!!.isEmpty()) {
+    if (url.isNullOrEmpty()) {
         this.visibility = View.GONE
     } else {
         Glide.with(this)

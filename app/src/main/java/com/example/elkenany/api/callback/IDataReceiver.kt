@@ -4,8 +4,10 @@ import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.home_data.HomeSectorsData
 import com.example.elkenany.entities.home_data.HomeServiceData
+import com.example.elkenany.entities.stock_data.LocalStockData
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface IDataReceiver {
 
@@ -18,6 +20,9 @@ interface IDataReceiver {
     //Retrofit homeServices data callback
     @GET("home-services")
     fun getServicesData(): Call<GenericEntity<HomeServiceData?>>
+
+    @GET("localstock/local-stock-sections")
+    fun getLocalStockSectionsData(@Query("type") type: String): Call<GenericEntity<LocalStockData?>>
 }
 
 object DataReceiverHandler {
