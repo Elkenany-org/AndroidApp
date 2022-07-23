@@ -3,6 +3,7 @@ package com.example.elkenany.api.callback
 import android.util.Log
 import com.example.elkenany.entities.home_data.HomeSectorsData
 import com.example.elkenany.entities.home_data.HomeServiceData
+import com.example.elkenany.entities.stock_data.LocalStockData
 import retrofit2.await
 
 class DataReceiverImplementation {
@@ -22,6 +23,18 @@ class DataReceiverImplementation {
     suspend fun getHomeServiceData(): HomeServiceData? {
         return try {
             val response = DataReceiverHandler.singleton.getServicesData().await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+
+    suspend fun getLocalStockSectionsData(sectorType: String): LocalStockData? {
+        return try {
+            val response =
+                DataReceiverHandler.singleton.getLocalStockSectionsData(sectorType).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())
