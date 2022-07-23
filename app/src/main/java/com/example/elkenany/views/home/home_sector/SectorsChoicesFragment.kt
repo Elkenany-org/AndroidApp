@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentSectorsChoicesBinding
@@ -23,7 +23,15 @@ class SectorsChoicesFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sectors_choices, container, false)
         binding.titleBar.text = args.sectorName
-        Toast.makeText(context, args.sectorName.toString(), Toast.LENGTH_SHORT).show()
+        binding.stockBtn.setOnClickListener {
+            view!!.findNavController().navigate(
+                SectorsChoicesFragmentDirections.actionSectorsChoicesFragmentToLocalStockFragment(
+                    args.sectorId,
+                    args.sectorName,
+                    args.sectorType
+                )
+            )
+        }
         return binding.root
     }
 
