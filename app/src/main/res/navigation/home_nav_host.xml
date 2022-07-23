@@ -43,7 +43,7 @@
         android:id="@+id/sectorsChoicesFragment"
         android:name="com.example.elkenany.views.home.home_sector.SectorsChoicesFragment"
         android:label="SectorsChoicesFragment"
-        tools:layout="@layout/fragment_sectors_choices" >
+        tools:layout="@layout/fragment_sectors_choices">
         <argument
             android:name="sector_id"
             app:argType="long" />
@@ -55,5 +55,27 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_sectorsChoicesFragment_to_localStockFragment"
+            app:destination="@id/localStockFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/localStockFragment"
+        android:name="com.example.elkenany.views.home.local_stock.LocalStockFragment"
+        android:label="LocalStockFragment"
+        tools:layout="@layout/fragment_local_stock">
+        <argument
+            android:name="sector_id"
+            app:argType="long" />
+        <argument
+            android:name="sector_name"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="sector_type"
+            app:argType="string"
+            app:nullable="true" />
+
     </fragment>
 </navigation>

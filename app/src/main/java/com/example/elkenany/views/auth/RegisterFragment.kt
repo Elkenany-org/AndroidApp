@@ -1,4 +1,4 @@
-package com.example.elkenany.views
+package com.example.elkenany.views.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
