@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentStoreBinding
 import com.example.elkenany.viewmodels.StoreViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.example.elkenany.views.home.local_stock.adapter.LocalStockSectorsAdapter
+import com.example.elkenany.views.store.adapter.AdsStoreAdapter
 
 
 class StoreFragment : Fragment() {
@@ -18,7 +23,11 @@ class StoreFragment : Fragment() {
     private lateinit var binding: FragmentStoreBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: StoreViewModel
+    private lateinit var sectorsAdapter: LocalStockSectorsAdapter
+    private lateinit var adsStoreAdapter: AdsStoreAdapter
 
+    private val args: StoreFragmentArgs by navArgs()
+    private var search: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -27,6 +36,51 @@ class StoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[StoreViewModel::class.java]
+
+        viewModel.getAllAdsStoreData(args.sectorType.toString(), search)
+
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getAllAdsStoreData(args.sectorType.toString(), search)
+        }
+
+        sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
+            viewModel.getAllAdsStoreData(it.type.toString(), search)
+        })
+        binding.sectorsRecyclerView.adapter = sectorsAdapter
+
+        adsStoreAdapter = AdsStoreAdapter(ClickListener {})
+        binding.storeRecyclerView.adapter = adsStoreAdapter
+
+        viewModel.adsStoreData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.data.isNotEmpty()) {
+                    binding.storeRecyclerView.visibility = View.VISIBLE
+                    binding.errorMessage.visibility = View.GONE
+                    //submitting lists to its own adapters
+                    adsStoreAdapter.submitList(it.data)
+                    sectorsAdapter.submitList(it.sectors)
+
+                } else {
+                    binding.storeRecyclerView.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.errorMessage.text = "لا توجد نتائج في محرك البحث"
+                }
+            } else {
+                binding.storeRecyclerView.visibility = View.GONE
+                binding.errorMessage.visibility = View.VISIBLE
+            }
+
+        }
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.loadingProgressbar.visibility = View.VISIBLE
+                binding.storeRecyclerView.visibility = View.GONE
+                binding.errorMessage.visibility = View.GONE
+            } else {
+                binding.loadingProgressbar.visibility = View.GONE
+            }
+        }
         return binding.root
     }
 

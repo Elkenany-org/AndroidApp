@@ -43,6 +43,14 @@ class SectorsChoicesFragment : Fragment() {
                     args.sectorName,
                     args.sectorType))
         }
+
+        binding.storeBtn.setOnClickListener {
+            view!!.findNavController()
+                .navigate(SectorsChoicesFragmentDirections.actionSectorsChoicesFragmentToStoreFragment(
+                    args.sectorId,
+                    args.sectorName,
+                    args.sectorType))
+        }
         return binding.root
     }
 
