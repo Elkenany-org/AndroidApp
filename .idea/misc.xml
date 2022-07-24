@@ -8,6 +8,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/g_logo.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/google_btn_shape.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.307" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.269" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_more_logo.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/primary_btn_shape.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/primary_edit_text_shape.xml" value="0.307" />
@@ -28,7 +29,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_news.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_profile.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_register.xml" value="0.29200513039760584" />
-        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/news_card_view_item.xml" value="0.2911500641299701" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/news_card_view_item.xml" value="0.2" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/small_recycler_item.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/menu_main.xml" value="0.35572916666666665" />
