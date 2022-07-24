@@ -25,7 +25,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_margin="5dp"
         android:layoutDirection="rtl"

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
-import com.example.elkenany.databinding.SmallRecyclerItemBinding
+import com.example.elkenany.databinding.BigRecyclerItemWithDetailsBinding
 import com.example.elkenany.entities.stock_data.LocalStockSubSection
 
 class LocalStockSubSectionsAdapter(private val sectorClickListener: ClickListener<LocalStockSubSection>) :
@@ -15,7 +15,7 @@ class LocalStockSubSectionsAdapter(private val sectorClickListener: ClickListene
     ) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int
+        viewType: Int,
     ): LocalStockSubSectionsViewHolder {
         return LocalStockSubSectionsViewHolder.from(parent)
     }
@@ -26,16 +26,16 @@ class LocalStockSubSectionsAdapter(private val sectorClickListener: ClickListene
 
 }
 
-class LocalStockSubSectionsViewHolder private constructor(private val binding: SmallRecyclerItemBinding) :
+class LocalStockSubSectionsViewHolder private constructor(private val binding: BigRecyclerItemWithDetailsBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
         subsection: LocalStockSubSection,
-        sectorClickListener: ClickListener<LocalStockSubSection>
+        sectorClickListener: ClickListener<LocalStockSubSection>,
     ) {
         binding.data = subsection
-        binding.name = subsection.name
-        binding.image = subsection.image
+        binding.title = subsection.name
+        binding.url = subsection.image
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }
@@ -43,7 +43,7 @@ class LocalStockSubSectionsViewHolder private constructor(private val binding: S
     companion object {
         fun from(parent: ViewGroup): LocalStockSubSectionsViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = SmallRecyclerItemBinding.inflate(layoutInflater, parent, false)
+            val binding = BigRecyclerItemWithDetailsBinding.inflate(layoutInflater, parent, false)
             return LocalStockSubSectionsViewHolder(binding)
         }
     }
@@ -53,14 +53,14 @@ class LocalStockSubSectionsViewHolder private constructor(private val binding: S
 class LocalStockSubSectionAdapterDiffUtil : DiffUtil.ItemCallback<LocalStockSubSection>() {
     override fun areItemsTheSame(
         oldItem: LocalStockSubSection,
-        newItem: LocalStockSubSection
+        newItem: LocalStockSubSection,
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
         oldItem: LocalStockSubSection,
-        newItem: LocalStockSubSection
+        newItem: LocalStockSubSection,
     ): Boolean {
         return oldItem == newItem
     }
