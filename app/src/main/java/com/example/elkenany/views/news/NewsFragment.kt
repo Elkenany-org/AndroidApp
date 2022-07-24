@@ -52,22 +52,29 @@ class NewsFragment : Fragment() {
         binding.sectionsRecyclerView.adapter = newsSectionAdapter
 
         viewModel.newsData.observe(viewLifecycleOwner) {
-            if (it!!.data.isNotEmpty()) {
-                binding.newsLayout.visibility = View.VISIBLE
-                binding.errorMessage.visibility = View.GONE
-                //submitting lists to its own adapters
-                newsDaumAdapter.submitList(it.data)
-                newsSectionAdapter.submitList(it.sections)
+            if (it != null){
+                if (it.data.isNotEmpty()) {
+                    binding.newsRecyclerView.visibility = View.VISIBLE
+                    binding.errorMessage.visibility = View.GONE
+                    //submitting lists to its own adapters
+                    newsDaumAdapter.submitList(it.data)
+                    newsSectionAdapter.submitList(it.sections)
 
-            } else {
-                binding.newsLayout.visibility = View.GONE
+                } else {
+                    binding.newsRecyclerView.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.errorMessage.text = "لا توجد نتائج في محرك البحث"
+                }
+            }else{
+                binding.newsRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
             }
+
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.newsLayout.visibility = View.GONE
+                binding.newsRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
