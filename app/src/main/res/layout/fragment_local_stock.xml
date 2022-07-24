@@ -93,12 +93,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/stock_list_recycler_view"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    tools:listitem="@layout/small_recycler_item" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/big_recycler_item_with_details" />
 
             </LinearLayout>
         </ScrollView>
