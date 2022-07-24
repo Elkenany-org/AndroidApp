@@ -60,6 +60,9 @@
             app:destination="@id/localStockFragment"
             app:popUpTo="@id/sectorsChoicesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_sectorsChoicesFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/localStockFragment"
@@ -79,5 +82,22 @@
             app:argType="string"
             app:nullable="true" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.elkenany.views.news.NewsFragment"
+        android:label="NewsFragment"
+        tools:layout="@layout/fragment_news">
+        <argument
+            android:name="sector_id"
+            app:argType="long" />
+        <argument
+            android:name="sector_name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sector_type"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

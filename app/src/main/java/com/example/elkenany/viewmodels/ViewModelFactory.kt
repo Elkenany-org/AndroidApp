@@ -16,6 +16,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel() as T
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> ProfileViewModel() as T
             modelClass.isAssignableFrom(LocalStockViewModel::class.java) -> LocalStockViewModel() as T
+            modelClass.isAssignableFrom(NewViewModel::class.java) -> NewViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }

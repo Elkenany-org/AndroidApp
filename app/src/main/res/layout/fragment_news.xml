@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="10dp"
+        tools:context=".views.news.NewsFragment">
 
         <TextView
             android:id="@+id/app_bar_title"
@@ -19,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/cairo_bold"
-            android:text="@string/daily_stock_title"
+            android:text="@string/news_title"
             android:textColor="@color/green"
             android:textSize="20sp" />
 
@@ -30,57 +31,39 @@
             android:layout_centerInParent="true"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/cairo_bold"
-            android:text="@string/failed_to_receive_data_msg"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/app_bar_title">
 
             <LinearLayout
-                android:id="@+id/stock_page_layout"
+                android:id="@+id/news_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical"
-                android:padding="5dp"
-                tools:context=".views.home.local_stock.LocalStockFragment"
-                tools:ignore="UselessParent">
+                android:paddingTop="15dp"
+                tools:ignore="UselessLeaf">
 
-                <!-- TODO: Update blank fragment layout -->
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/banners_recycler_view"
+                <EditText
+                    android:id="@+id/search_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/big_recycler_item" />
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/secondary_btn_shape"
+                    android:drawableEnd="@drawable/ic_search_logo"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:hint="@string/homeSearch"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    tools:ignore="Autofill,TextFields" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/logos_recycler_view"
+                    android:id="@+id/sections_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/small_recycler_item" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sectors_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -92,14 +75,13 @@
                     tools:ignore="UselessLeaf" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/stock_list_recycler_view"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/news_recycler_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    tools:listitem="@layout/small_recycler_item" />
-
+                    android:layout_margin="5dp"
+                    android:layoutDirection="rtl"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/news_card_view_item" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
