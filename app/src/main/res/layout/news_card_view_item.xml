@@ -19,7 +19,7 @@
             type="String" />
         <!--this data made for setting date into its text view-->
         <variable
-            name="date"
+            name="createdAt"
             type="String" />
         <!--this clicklistener made to execute the clicklistener function-->
         <variable
@@ -64,7 +64,6 @@
 
                 <TextView
                     android:id="@+id/main_title"
-                    itemText="@{title}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_above="@id/linear"
@@ -76,6 +75,7 @@
                     android:fontFamily="@font/cairo_light"
                     android:gravity="center"
                     android:maxLines="3"
+                    app:itemText ="@{title}"
                     android:textColor="@color/green"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -95,10 +95,12 @@
                         tools:ignore="ContentDescription" />
 
                     <TextView
+                        android:id="@+id/date"
                         android:layout_marginStart="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{date}" />
+                        app:itemText ="@{createdAt}"
+                        />
 
 
                 </LinearLayout>

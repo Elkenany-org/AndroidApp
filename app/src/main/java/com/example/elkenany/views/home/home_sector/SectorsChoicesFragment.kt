@@ -23,6 +23,8 @@ class SectorsChoicesFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sectors_choices, container, false)
         binding.titleBar.text = args.sectorName
+
+        // Navigate to LocalStock Fragment
         binding.stockBtn.setOnClickListener {
             view!!.findNavController().navigate(
                 SectorsChoicesFragmentDirections.actionSectorsChoicesFragmentToLocalStockFragment(
@@ -31,6 +33,15 @@ class SectorsChoicesFragment : Fragment() {
                     args.sectorType
                 )
             )
+        }
+
+        // Navigate to AllNews Fragment
+        binding.newsBtn.setOnClickListener {
+            view!!.findNavController()
+                .navigate(SectorsChoicesFragmentDirections.actionSectorsChoicesFragmentToNewsFragment(
+                    args.sectorId,
+                    args.sectorName,
+                    args.sectorType))
         }
         return binding.root
     }
