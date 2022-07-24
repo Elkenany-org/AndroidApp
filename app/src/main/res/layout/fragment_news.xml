@@ -24,6 +24,23 @@
             android:textColor="@color/green"
             android:textSize="20sp" />
 
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_bar_title"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="@drawable/secondary_btn_shape"
+            android:drawableEnd="@drawable/ic_search_logo"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/cairo_bold"
+            android:hint="@string/homeSearch"
+            android:padding="5dp"
+            android:textSize="20sp"
+            tools:ignore="Autofill,TextFields" />
+
         <ProgressBar
             android:id="@+id/loading_progressbar"
             android:layout_width="wrap_content"
@@ -31,10 +48,21 @@
             android:layout_centerInParent="true"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/failed_to_receive_data_msg"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/app_bar_title">
+            android:layout_below="@id/search_bar">
 
             <LinearLayout
                 android:id="@+id/news_layout"
@@ -44,20 +72,6 @@
                 android:paddingTop="15dp"
                 tools:ignore="UselessLeaf">
 
-                <EditText
-                    android:id="@+id/search_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:background="@drawable/secondary_btn_shape"
-                    android:drawableEnd="@drawable/ic_search_logo"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/cairo_bold"
-                    android:hint="@string/homeSearch"
-                    android:padding="5dp"
-                    android:textSize="20sp"
-                    tools:ignore="Autofill,TextFields" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sections_recycler_view"

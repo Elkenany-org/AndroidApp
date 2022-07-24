@@ -20,7 +20,7 @@ fun ImageView.loadImage(url: String?) {
 
 @BindingAdapter("itemText")
 fun TextView.writeText(text: String?) {
-    if (text!!.isEmpty()) {
+    if (text.isNullOrEmpty()) {
         this.visibility = View.GONE
     } else {
         this.text = text
