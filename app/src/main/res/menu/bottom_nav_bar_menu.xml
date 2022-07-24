@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_stock_logo"
         android:title="@string/stockBtn" />
     <item
-        android:id="@+id/homeSectorFragment"
+        android:id="@+id/home_nav_host"
         android:icon="@drawable/ic_home_logo"
         android:title="@string/homeBtn" />
     <item
