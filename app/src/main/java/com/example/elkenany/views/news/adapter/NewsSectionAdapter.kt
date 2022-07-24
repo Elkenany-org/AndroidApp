@@ -30,9 +30,10 @@ class NewsSectionViewHolder private constructor(private val binding: SmallRecycl
     fun bind(section: NewsSection, sectorClickListener: ClickListener<NewsSection>) {
         binding.data = section
         binding.name = section.name
-        if (section.selected.toString() == "1") {
+        val selected = section.selected.toString()
+        if (selected == "1") {
             binding.itemTitle.setBackgroundColor(Color.YELLOW)
-        } else if (section.selected.toString() == "0") {
+        } else{
             binding.itemTitle.setBackgroundColor(Color.WHITE)
         }
         binding.clickListener = sectorClickListener
