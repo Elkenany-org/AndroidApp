@@ -42,13 +42,13 @@ class ProfileFragment : Fragment() {
         binding.signOutBtn.setOnClickListener {
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
-        viewModel.authData.observe(viewLifecycleOwner) {
+        viewModel.userData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.profileLayout.visibility = View.VISIBLE
                 binding.signInBtn.visibility = View.GONE
                 binding.nameText.text = it.name
                 binding.emailText.text = it.email
-                binding.url = ""
+                binding.url = it.image
             } else {
                 binding.profileLayout.visibility = View.GONE
                 binding.signInBtn.visibility = View.VISIBLE

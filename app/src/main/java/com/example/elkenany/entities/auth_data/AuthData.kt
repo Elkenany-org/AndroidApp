@@ -9,3 +9,12 @@ data class AuthData(
     @Json(name = "api_token")
     val apiToken: String?,
 )
+
+data class UserAuthData(
+    val id: Long?,
+    val name: String?,
+    val phone: String?,
+    val email: String?,
+    val image: String?,
+    val state: String?,
+)

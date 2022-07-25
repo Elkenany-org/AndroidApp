@@ -66,6 +66,7 @@
                     android:id="@+id/profile_image"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    imageUrl="@{url}"
                     android:background="@color/gray"
                     tools:ignore="ContentDescription" />
 

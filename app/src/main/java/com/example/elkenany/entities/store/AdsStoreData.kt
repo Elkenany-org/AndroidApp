@@ -8,7 +8,6 @@ data class AdsStoreData(
     val sectors: List<LocalStockSector?>,
     val banners: List<Any?>,
     val logos: List<Any?>,
-    val sort: List<Any?>,
     val data: List<AdsStoreDaum>,
     @Json(name = "current_page")
     val currentPage: Long?,
@@ -17,7 +16,7 @@ data class AdsStoreData(
     @Json(name = "first_page_url")
     val firstPageUrl: String?,
     @Json(name = "next_page_url")
-    val nextPageUrl: Any?,
+    val nextPageUrl: String?,
     @Json(name = "last_page_url")
     val lastPageUrl: String?,
 )
