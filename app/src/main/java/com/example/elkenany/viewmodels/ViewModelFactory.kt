@@ -19,6 +19,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(NewViewModel::class.java) -> NewViewModel() as T
             modelClass.isAssignableFrom(StoreViewModel::class.java) -> StoreViewModel() as T
             modelClass.isAssignableFrom(GuideViewModel::class.java) -> GuideViewModel() as T
+            modelClass.isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }
