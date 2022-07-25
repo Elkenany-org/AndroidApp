@@ -51,6 +51,14 @@ class SectorsChoicesFragment : Fragment() {
                     args.sectorName,
                     args.sectorType))
         }
+
+        binding.guideBtn.setOnClickListener {
+            view!!.findNavController()
+                .navigate(SectorsChoicesFragmentDirections.actionSectorsChoicesFragmentToGuideFragment(
+                    args.sectorId,
+                    args.sectorName,
+                    args.sectorType))
+        }
         return binding.root
     }
 
