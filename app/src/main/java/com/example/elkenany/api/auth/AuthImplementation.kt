@@ -1,16 +1,15 @@
 package com.example.elkenany.api.auth
 
 import android.util.Log
-import com.example.elkenany.entities.auth_data.AuthData
+import com.example.elkenany.entities.auth_data.UserAuthData
 import retrofit2.await
 
 @Suppress("unused")
 class AuthImplementation {
     // variable to hold user data in
-    companion object{
-        var auth: AuthData? = null
+    companion object {
+        var auth: UserAuthData? = null
     }
-
 
 
     //Login with no credentials
@@ -25,8 +24,8 @@ class AuthImplementation {
     ): Boolean {
         return try {
             val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
-            auth = response.data
             Log.i("login response", "Login response is : $response")
+            getAllUserData(response.data!!.apiToken.toString())
             true
         } catch (e: Throwable) {
             Log.i("login response", "Login failed : ${e.message}")
@@ -49,11 +48,22 @@ class AuthImplementation {
                 phone,
                 deviceToken)
                 .await()
-            auth = response.data
+            getAllUserData(response.data!!.apiToken.toString())
             true
         } catch (e: Throwable) {
             Log.i("register", "register failed : ${e.message}")
             false
+        }
+    }
+
+    private suspend fun getAllUserData(api_token: String?): UserAuthData? {
+        return try {
+            val response = AuthHandler.singleton.getUserProfile("Bearer $api_token").await()
+            auth = response.data
+            auth
+        } catch (e: Throwable) {
+            Log.i("user_data", "${e.message}")
+            auth
         }
     }
 }
