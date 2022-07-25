@@ -1,4 +1,4 @@
-package com.example.elkenany.views.home.local_stock
+package com.example.elkenany.views.local_stock
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,10 +13,10 @@ import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentLocalStockBinding
 import com.example.elkenany.viewmodels.LocalStockViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.example.elkenany.views.home.local_stock.adapter.LocalStockBannersAdapter
-import com.example.elkenany.views.home.local_stock.adapter.LocalStockLogosAdapter
-import com.example.elkenany.views.home.local_stock.adapter.LocalStockSectorsAdapter
-import com.example.elkenany.views.home.local_stock.adapter.LocalStockSubSectionsAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockSubSectionsAdapter
 
 class LocalStockFragment : Fragment() {
     private lateinit var binding: FragmentLocalStockBinding
@@ -26,7 +26,7 @@ class LocalStockFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
-    private val args: LocalStockFragmentArgs by navArgs()
+    private val args: com.example.elkenany.views.local_stock.LocalStockFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

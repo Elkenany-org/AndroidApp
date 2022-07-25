@@ -14,7 +14,7 @@ import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentStoreBinding
 import com.example.elkenany.viewmodels.StoreViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.example.elkenany.views.home.local_stock.adapter.LocalStockSectorsAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.example.elkenany.views.store.adapter.AdsStoreAdapter
 
 

@@ -1,4 +1,4 @@
-package com.example.elkenany.views.home.local_stock.adapter
+package com.example.elkenany.views.local_stock.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
