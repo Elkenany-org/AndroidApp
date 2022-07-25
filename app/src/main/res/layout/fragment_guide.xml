@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/cairo_bold"
-            android:text="@string/daily_stock_title"
+            android:text="@string/guide_title"
             android:textColor="@color/green"
             android:textSize="20sp" />
 
@@ -47,17 +47,13 @@
             android:layout_below="@id/app_bar_title">
 
             <LinearLayout
-                android:id="@+id/stock_page_layout"
+                android:id="@+id/guide_page_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical"
                 android:padding="5dp"
                 tools:context=".views.local_stock.LocalStockFragment"
                 tools:ignore="UselessParent">
-
-                <!-- TODO: Update blank fragment layout -->
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/banners_recycler_view"
@@ -93,7 +89,7 @@
                     tools:ignore="UselessLeaf" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/stock_list_recycler_view"
+                    android:id="@+id/guide_list_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
