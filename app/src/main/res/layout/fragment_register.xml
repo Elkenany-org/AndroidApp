@@ -162,7 +162,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_btn_shape"
                 android:fontFamily="@font/cairo_black"
-                android:text="@string/sing_in_title"
+                android:text="@string/sign_in_title"
                 android:textColor="@color/green" />
 
             <ProgressBar

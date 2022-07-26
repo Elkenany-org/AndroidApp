@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sing_in_title">تسجيل الدخول</string>
+    <string name="sign_in_title">تسجيل الدخول</string>
     <string name="skip_title">تخطي</string>
     <string name="email_phone_title">الايميل أو رقم الهاتف</string>
     <string name="password_title">كلمة المرور</string>
@@ -45,4 +45,11 @@
     <string name="my_ads_title">اعلاناتي</string>
     <string name="daily_stock_title">البورصة اليومية</string>
     <string name="failed_to_receive_data_msg">تعذر الحصول علي اي معلومات</string>
+    <string name="menu_title">القائمة</string>
+    <string name="messages_title">الرسائل</string>
+    <string name="settings_title">الأعدادات</string>
+    <string name="about_title">عن الكناني</string>
+    <string name="share_title">شارك التطبيق</string>
+    <string name="rating_title">قيم التطبيق</string>
+    <string name="short_cuts_title">قائمة الأختصارات</string>
 </resources>

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/cairo_bold"
-                android:text="@string/sing_in_title"
+                android:text="@string/sign_in_title"
                 android:textSize="17sp" />
 
             <ImageView
@@ -111,7 +111,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_btn_shape"
                 android:fontFamily="@font/cairo_black"
-                android:text="@string/sing_in_title"
+                android:text="@string/sign_in_title"
                 android:textColor="@color/green" />
 
             <ProgressBar
