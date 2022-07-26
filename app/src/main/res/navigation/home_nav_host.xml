@@ -146,4 +146,9 @@
         android:name="com.example.elkenany.views.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.elkenany.views.menu.MainMenuFragment"
+        android:label="MainMenuFragment"
+        tools:layout="@layout/fragment_main_menu" />
 </navigation>
