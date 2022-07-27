@@ -32,12 +32,8 @@ class SearchFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
 
         binding.searchBar.addTextChangedListener {
-            if (it.isNullOrEmpty()) {
-            } else {
                 search = it.toString()
                 viewModel.getAllSearchData(search)
-            }
-
         }
 
         resultsAdapter = SearchResultsAdapter(ClickListener { })

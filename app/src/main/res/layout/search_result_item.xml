@@ -33,7 +33,7 @@
         android:onClick="@{()-> clickListener.onClick(data)}"
         android:padding="15dp"
         cardView:cardCornerRadius="7dp"
-        cardView:cardElevation="7dp">
+        cardView:cardElevation="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,17 +44,19 @@
             <TextView
                 android:id="@+id/main_title"
                 itemText="@{title}"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
+                android:drawablePadding="10dp"
                 android:fontFamily="@font/cairo_regular"
                 android:maxLines="2"
-
                 android:textColor="@color/green"
                 android:textDirection="rtl"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                cardView:drawableEndCompat="@drawable/ic_baseline_notifications_24"
+                cardView:drawableStartCompat="@drawable/ic_baseline_navigate_next_24" />
 
 
         </LinearLayout>

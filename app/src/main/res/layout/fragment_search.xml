@@ -58,6 +58,7 @@
             android:fontFamily="@font/cairo_bold"
             android:hint="@string/homeSearch"
             android:padding="5dp"
+            android:maxLines="1"
             android:textAlignment="textEnd"
             android:textDirection="ltr"
             android:textSize="20sp"
@@ -73,9 +74,9 @@
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
             android:layoutDirection="rtl"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/search_result_item"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"/>
+            tools:listitem="@layout/search_result_item" />
     </RelativeLayout>
 </layout>
