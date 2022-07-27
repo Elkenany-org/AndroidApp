@@ -60,10 +60,10 @@ class HomeServiceFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.line2.visibility = View.INVISIBLE
+                binding.line2.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.INVISIBLE
-                binding.line2.visibility = View.VISIBLE
+
             }
         }
 
@@ -75,7 +75,10 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
+                binding.errorMessage.visibility = View.GONE
             } else {
+                binding.errorMessage.visibility = View.VISIBLE
+                binding.line2.visibility = View.GONE
                 Log.i("list", "Have no data to load")
             }
         }

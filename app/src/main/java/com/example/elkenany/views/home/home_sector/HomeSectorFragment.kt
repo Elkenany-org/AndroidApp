@@ -76,16 +76,16 @@ class HomeSectorFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.line2.visibility = View.INVISIBLE
+                binding.line2.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.INVISIBLE
-                binding.line2.visibility = View.VISIBLE
             }
         }
 
         //submitting all the recyclerAdapter lists to it value
         viewModel.homeSectorsData.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.line2.visibility = View.VISIBLE
                 sectorsAdapter.submitList(it.sectors)
                 recommendationAdapter.submitList(it.sectorsRecomandtion)
                 partnerAdapter.submitList(it.sectorsLogos)
@@ -93,7 +93,10 @@ class HomeSectorFragment : Fragment() {
                 guideAdapter.submitList(it.sectorsGuide)
                 newsAdapter.submitList(it.sectorsNews)
                 storeAdapter.submitList(it.sectorsStore)
+                binding.errorMessage.visibility = View.GONE
             } else {
+                binding.errorMessage.visibility = View.VISIBLE
+                binding.line2.visibility = View.GONE
                 Log.i("list", "Have no data to load")
             }
         }
