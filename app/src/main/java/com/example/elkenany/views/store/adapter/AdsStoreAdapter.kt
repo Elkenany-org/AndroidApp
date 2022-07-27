@@ -29,7 +29,7 @@ class AdsStoreDaumViewHolder private constructor(private val binding: StoreCardV
     fun bind(ads: AdsStoreDaum, sectorClickListener: ClickListener<AdsStoreDaum>) {
         binding.data = ads
         binding.title = ads.title
-        binding.data = ads.createdAt
+        binding.createdAt = ads.createdAt
         binding.location = ads.address
         binding.url = ads.image
         binding.price = ads.salary.toString()
