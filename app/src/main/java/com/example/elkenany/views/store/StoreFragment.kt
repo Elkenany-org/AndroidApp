@@ -25,7 +25,7 @@ class StoreFragment : Fragment() {
     private lateinit var viewModel: StoreViewModel
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var adsStoreAdapter: AdsStoreAdapter
-
+    private var sectorType: String = ""
     private val args: StoreFragmentArgs by navArgs()
     private var search: String? = null
     override fun onCreateView(
@@ -36,16 +36,17 @@ class StoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[StoreViewModel::class.java]
-
-        viewModel.getAllAdsStoreData(args.sectorType.toString(), search)
+        sectorType = args.sectorType.toString()
+        viewModel.getAllAdsStoreData(sectorType, search)
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getAllAdsStoreData(args.sectorType.toString(), search)
+            viewModel.getAllAdsStoreData(sectorType, search)
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            viewModel.getAllAdsStoreData(it.type.toString(), search)
+            sectorType = it.type.toString()
+            viewModel.getAllAdsStoreData(sectorType, search)
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
@@ -54,12 +55,12 @@ class StoreFragment : Fragment() {
 
         viewModel.adsStoreData.observe(viewLifecycleOwner) {
             if (it != null) {
+                sectorsAdapter.submitList(it.sectors)
                 if (it.data.isNotEmpty()) {
                     binding.storeRecyclerView.visibility = View.VISIBLE
                     binding.errorMessage.visibility = View.GONE
                     //submitting lists to its own adapters
                     adsStoreAdapter.submitList(it.data)
-                    sectorsAdapter.submitList(it.sectors)
 
                 } else {
                     binding.storeRecyclerView.visibility = View.GONE

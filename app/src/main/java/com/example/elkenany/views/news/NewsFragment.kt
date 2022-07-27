@@ -25,6 +25,7 @@ class NewsFragment : Fragment() {
     private lateinit var newsSectionAdapter: NewsSectionAdapter
     private lateinit var viewModel: NewViewModel
     private var search: String? = null
+    private var sectorType: String = ""
     private val args: NewsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,38 +35,38 @@ class NewsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewViewModel::class.java]
+        sectorType = args.sectorType.toString()
 
-
-        viewModel.getAllNewsData(args.sectorType.toString(), search)
+        viewModel.getAllNewsData(sectorType, search)
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getAllNewsData(args.sectorType.toString(), search)
+            viewModel.getAllNewsData(sectorType, search)
         }
 
         newsDaumAdapter = NewsDaumAdapter(ClickListener { })
         binding.newsRecyclerView.adapter = newsDaumAdapter
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
-            viewModel.getAllNewsData(it.type.toString(), search)
+            sectorType = it.type.toString()
+            viewModel.getAllNewsData(sectorType, search)
         })
         binding.sectionsRecyclerView.adapter = newsSectionAdapter
 
         viewModel.newsData.observe(viewLifecycleOwner) {
-            if (it != null){
+            if (it != null) {
+                newsSectionAdapter.submitList(it.sections)
                 if (it.data.isNotEmpty()) {
                     binding.newsRecyclerView.visibility = View.VISIBLE
                     binding.errorMessage.visibility = View.GONE
                     //submitting lists to its own adapters
                     newsDaumAdapter.submitList(it.data)
-                    newsSectionAdapter.submitList(it.sections)
-
                 } else {
                     binding.newsRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.errorMessage.text = "لا توجد نتائج في محرك البحث"
                 }
-            }else{
+            } else {
                 binding.newsRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
             }
