@@ -57,9 +57,7 @@
             app:nullable="true" />
         <action
             android:id="@+id/action_sectorsChoicesFragment_to_localStockFragment"
-            app:destination="@id/localStockFragment"
-            app:popUpTo="@id/sectorsChoicesFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/localStockFragment" />
         <action
             android:id="@+id/action_sectorsChoicesFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
