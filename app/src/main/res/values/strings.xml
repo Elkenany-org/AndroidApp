@@ -52,4 +52,6 @@
     <string name="share_title">شارك التطبيق</string>
     <string name="rating_title">قيم التطبيق</string>
     <string name="short_cuts_title">قائمة الأختصارات</string>
+    <string name="read_more_title">أقرا ايضا :</string>
+    <string name="no_more_news_title">لا توجد اخبار اخري</string>
 </resources>

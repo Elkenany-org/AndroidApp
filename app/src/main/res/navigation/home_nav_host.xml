@@ -103,6 +103,9 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -149,4 +152,13 @@
         android:name="com.example.elkenany.views.menu.MainMenuFragment"
         android:label="MainMenuFragment"
         tools:layout="@layout/fragment_main_menu" />
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.example.elkenany.views.news.NewsDetailsFragment"
+        android:label="NewsDetailsFragment"
+        tools:layout="@layout/fragment_news_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

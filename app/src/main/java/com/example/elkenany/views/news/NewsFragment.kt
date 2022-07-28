@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -44,7 +45,10 @@ class NewsFragment : Fragment() {
             viewModel.getAllNewsData(sectorType, search)
         }
 
-        newsDaumAdapter = NewsDaumAdapter(ClickListener { })
+        newsDaumAdapter = NewsDaumAdapter(ClickListener {
+            view!!.findNavController()
+                .navigate(NewsFragmentDirections.actionNewsFragmentToNewsDetailsFragment(it.id!!.toInt()))
+        })
         binding.newsRecyclerView.adapter = newsDaumAdapter
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
