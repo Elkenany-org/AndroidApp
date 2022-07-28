@@ -107,8 +107,7 @@
                     android:id="@+id/web_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:ignore="WebViewLayout"
-                    android:autoText="true"/>
+                    tools:ignore="WebViewLayout" />
 
                 <TextView
                     android:layout_width="wrap_content"
