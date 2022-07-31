@@ -4,28 +4,28 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.elkenany.api.local_stock.ILocalStockImplementation
-import com.example.elkenany.entities.stock_data.LocalStockData
+import com.example.elkenany.entities.stock_data.LocalStockDetailsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class LocalStockViewModel : ViewModel() {
+class LocalStockDetailsViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
-    private val _homeStockData = MutableLiveData<LocalStockData?>()
+    private val _localStockDetailsData = MutableLiveData<LocalStockDetailsData?>()
     private val _loading = MutableLiveData(false)
     private val api = ILocalStockImplementation()
 
 
-    val homeStockData: LiveData<LocalStockData?> get() = _homeStockData
+    val localStockDetailsData: LiveData<LocalStockDetailsData?> get() = _localStockDetailsData
+
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getHomeStockData(sectorType: String) {
+    fun getLocalStockDetailsData(id: Long, type: String) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
-            _homeStockData.value = api.getLocalStockSectionsData(sectorType)
+            _localStockDetailsData.value = api.getLocalStockDetailsByIdAndType(id, type)
             _loading.value = false
         }
     }

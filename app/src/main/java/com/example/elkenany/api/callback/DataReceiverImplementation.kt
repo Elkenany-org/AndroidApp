@@ -31,14 +31,5 @@ class DataReceiverImplementation {
     }
 
 
-    suspend fun getLocalStockSectionsData(sectorType: String): LocalStockData? {
-        return try {
-            val response =
-                DataReceiverHandler.singleton.getLocalStockSectionsData(sectorType).await()
-            response.data
-        } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
-            null
-        }
-    }
+
 }

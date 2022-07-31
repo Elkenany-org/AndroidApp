@@ -17,6 +17,7 @@ import com.example.elkenany.viewmodels.NewViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.news.adapter.NewsDaumAdapter
 import com.example.elkenany.views.news.adapter.NewsSectionAdapter
+import java.lang.Exception
 
 
 class NewsFragment : Fragment() {
@@ -36,7 +37,11 @@ class NewsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewViewModel::class.java]
-        sectorType = args.sectorType.toString()
+        sectorType = try {
+            args.sectorType.toString()
+        }catch (e:Exception){
+            "poultry"
+        }
 
         viewModel.getAllNewsData(sectorType, search)
 

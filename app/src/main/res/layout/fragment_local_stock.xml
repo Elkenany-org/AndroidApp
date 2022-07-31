@@ -50,7 +50,6 @@
                 android:id="@+id/stock_page_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical"
                 android:padding="5dp"
                 tools:context=".views.local_stock.LocalStockFragment"
