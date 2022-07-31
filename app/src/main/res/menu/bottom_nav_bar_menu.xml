@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_search_logo"
         android:title="@string/homeSearch" />
     <item
-        android:id="@+id/stockPage"
+        android:id="@+id/localStockFragment"
         android:icon="@drawable/ic_stock_logo"
         android:title="@string/stockBtn" />
     <item
