@@ -85,6 +85,9 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_localStockFragment_to_localStockDetailsFragment"
+            app:destination="@id/localStockDetailsFragment" />
 
     </fragment>
     <fragment
@@ -160,5 +163,22 @@
         <argument
             android:name="id"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/localStockDetailsFragment"
+        android:name="com.example.elkenany.views.local_stock.LocalStockDetailsFragment"
+        android:label="LocalStockDetailsFragment"
+        tools:layout="@layout/fragment_local_stock_details">
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="sector_name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sector_type"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

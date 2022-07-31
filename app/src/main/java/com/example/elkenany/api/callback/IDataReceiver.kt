@@ -21,8 +21,7 @@ interface IDataReceiver {
     @GET("home-services")
     fun getServicesData(): Call<GenericEntity<HomeServiceData?>>
 
-    @GET("localstock/local-stock-sections")
-    fun getLocalStockSectionsData(@Query("type") type: String): Call<GenericEntity<LocalStockData?>>
+
 }
 
 object DataReceiverHandler {

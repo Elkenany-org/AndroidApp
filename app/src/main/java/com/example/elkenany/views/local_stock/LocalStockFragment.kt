@@ -1,12 +1,14 @@
 package com.example.elkenany.views.local_stock
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -53,7 +55,18 @@ class LocalStockFragment : Fragment() {
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
-        subSection = LocalStockSubSectionsAdapter(ClickListener { })
+        subSection = LocalStockSubSectionsAdapter(ClickListener {
+            Log.i("localStockSubSection", it.type.toString())
+            Log.i("localStockSubSection",  it.id.toString())
+            Log.i("localStockSubSection",  it.name!! )
+
+            view!!.findNavController()
+                .navigate(LocalStockFragmentDirections.actionLocalStockFragmentToLocalStockDetailsFragment(
+                    it.id!!,
+                    it.name,
+                    it.type
+                ))
+        })
         binding.stockListRecyclerView.adapter = subSection
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {

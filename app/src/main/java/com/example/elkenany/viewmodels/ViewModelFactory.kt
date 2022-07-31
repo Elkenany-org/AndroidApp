@@ -22,6 +22,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel() as T
             modelClass.isAssignableFrom(MainMenuViewModel::class.java) -> MainMenuViewModel() as T
             modelClass.isAssignableFrom(NewsDetailsViewModel::class.java) -> NewsDetailsViewModel() as T
+            modelClass.isAssignableFrom(LocalStockDetailsViewModel::class.java) -> LocalStockDetailsViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }

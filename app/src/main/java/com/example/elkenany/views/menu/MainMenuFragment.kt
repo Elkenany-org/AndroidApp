@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentMainMenuBinding
@@ -37,7 +38,12 @@ class MainMenuFragment : Fragment() {
         binding.signOutBtn.setOnClickListener {
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
-
+        binding.dailyStockBtn.setOnClickListener {
+            view!!.findNavController().navigate(R.id.localStockFragment)
+        }
+        binding.newsBtn.setOnClickListener {
+            view!!.findNavController().navigate(R.id.newsFragment)
+        }
         viewModel.userAuth.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.image = it.image
