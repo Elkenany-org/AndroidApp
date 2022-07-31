@@ -26,17 +26,22 @@ class LocalStockFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
-    private val args: com.example.elkenany.views.local_stock.LocalStockFragmentArgs by navArgs()
+    private var sectorType: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_local_stock, container, false)
+        sectorType = try {
+            val args: LocalStockFragmentArgs by navArgs()
+            args.sectorType.toString()
+        } catch (e: Exception) {
+            "poultry"
+        }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-        viewModel.getHomeStockData(args.sectorType.toString())
-
+        viewModel.getHomeStockData(sectorType!!)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.adapter = bannersAdapter
 
