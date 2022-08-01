@@ -60,7 +60,7 @@ class NewsFragment : Fragment() {
             sectorType = it.type.toString()
             viewModel.getAllNewsData(sectorType, search)
         })
-        binding.sectionsRecyclerView.adapter = newsSectionAdapter
+        binding.sectorsRecyclerView.adapter = newsSectionAdapter
 
         viewModel.newsData.observe(viewLifecycleOwner) {
             if (it != null) {

@@ -79,12 +79,13 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sectors_recycler_view"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/small_recycler_item" />
+                    tools:listitem="@layout/sector_item" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

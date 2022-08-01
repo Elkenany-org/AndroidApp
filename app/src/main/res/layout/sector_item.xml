@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="Object" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="clickListener"
+            type="com.example.elkenany.ClickListener" />
+    </data>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:onClick="@{()->clickListener.onClick(data)}">
+
+        <TextView
+            android:id="@+id/item_title"
+            itemText="@{name}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/cairo_regular"
+            android:maxLines="1"
+            android:textColor="@color/green"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/indicator"
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="5dp"/>
+
+    </LinearLayout>
+</layout>
