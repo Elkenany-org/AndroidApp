@@ -144,6 +144,9 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_guideFragment_to_guideCompaniesFragment"
+            app:destination="@id/guideCompaniesFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -178,6 +181,23 @@
             app:nullable="true" />
         <argument
             android:name="sector_type"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/guideCompaniesFragment"
+        android:name="com.example.elkenany.views.guide.GuideCompaniesFragment"
+        android:label="GuideCompaniesFragment"
+        tools:layout="@layout/fragment_guide_companies">
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="sector"
             app:argType="string"
             app:nullable="true" />
     </fragment>
