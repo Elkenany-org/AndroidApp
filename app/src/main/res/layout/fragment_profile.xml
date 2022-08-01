@@ -64,11 +64,11 @@
 
                 <ImageView
                     android:id="@+id/profile_image"
+                    imageUrl="@{url}"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    imageUrl="@{url}"
                     android:background="@color/gray"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
 
             </androidx.cardview.widget.CardView>
 
@@ -91,7 +91,7 @@
                     android:textColor="@color/green"
                     android:textDirection="ltr"
                     android:textSize="14sp"
-                    tools:ignore="Autofill,TextFields" />
+                    tools:ignore="Autofill,TextFields,TextContrastCheck" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -113,7 +113,7 @@
                     android:textColor="@color/green"
                     android:textDirection="ltr"
                     android:textSize="14sp"
-                    tools:ignore="Autofill,TextFields" />
+                    tools:ignore="Autofill,TextFields,TextContrastCheck" />
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatButton

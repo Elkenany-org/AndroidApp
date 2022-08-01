@@ -13,7 +13,7 @@ fun ImageView.loadImage(url: String?) {
     } else {
         Glide.with(this)
             .load(url)
-            .centerCrop()
+            .optionalCenterCrop()
             .into(this)
     }
 }

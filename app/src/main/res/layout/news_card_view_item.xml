@@ -53,7 +53,7 @@
                     imageUrl="@{url}"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
@@ -74,11 +74,11 @@
                     android:layout_marginBottom="2dp"
                     android:fontFamily="@font/cairo_light"
                     android:gravity="center"
-                    android:maxLines="3"
-                    app:itemText ="@{title}"
+                    android:maxLines="2"
                     android:textColor="@color/green"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:itemText="@{title}" />
 
                 <LinearLayout
                     android:id="@+id/linear"
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         app:srcCompat="@drawable/ic_baseline_share_24"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                     <TextView
                         android:id="@+id/date"

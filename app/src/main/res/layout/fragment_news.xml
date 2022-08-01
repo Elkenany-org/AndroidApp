@@ -24,25 +24,35 @@
             android:textColor="@color/green"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="250dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_bar_card"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/app_bar_title"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/secondary_btn_shape"
-            android:drawableEnd="@drawable/ic_search_logo"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/cairo_bold"
-            android:hint="@string/homeSearch"
-            android:padding="5dp"
-            android:textSize="20sp"
-            tools:ignore="Autofill,TextFields" />
+            android:layout_margin="10sp"
+            app:cardCornerRadius="10sp"
+            app:cardElevation="7dp">
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/app_bar_title"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:drawableEnd="@drawable/ic_baseline_search_24"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/cairo_bold"
+                android:hint="@string/homeSearch"
+                android:paddingStart="20sp"
+                android:paddingTop="5dp"
+                android:paddingEnd="20sp"
+                android:paddingBottom="5dp"
+                android:textSize="15sp"
+                tools:ignore="Autofill,TextFields" />
+        </androidx.cardview.widget.CardView>
 
         <ProgressBar
             android:id="@+id/loading_progressbar"
@@ -65,7 +75,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/search_bar">
+            android:layout_below="@id/search_bar_card">
 
             <LinearLayout
                 android:id="@+id/news_layout"
@@ -77,17 +87,14 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sections_recycler_view"
-                    android:layout_width="match_parent"
+                    android:id="@+id/sectors_recycler_view"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center_horizontal"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/small_recycler_item" />
+                    tools:listitem="@layout/sector_item" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

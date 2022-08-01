@@ -2,11 +2,13 @@ package com.example.elkenany.views.news.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.databinding.SectorItemBinding
 import com.example.elkenany.databinding.SmallRecyclerItemBinding
 import com.example.elkenany.entities.news_data.NewsSection
 
@@ -24,7 +26,7 @@ class NewsSectionAdapter(private val sectorClickListener: ClickListener<NewsSect
 
 }
 
-class NewsSectionViewHolder private constructor(private val binding: SmallRecyclerItemBinding) :
+class NewsSectionViewHolder private constructor(private val binding: SectorItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(section: NewsSection, sectorClickListener: ClickListener<NewsSection>) {
@@ -32,9 +34,10 @@ class NewsSectionViewHolder private constructor(private val binding: SmallRecycl
         binding.name = section.name
         val selected = section.selected.toString()
         if (selected == "1") {
-            binding.itemTitle.setBackgroundColor(Color.YELLOW)
+            binding.indicator.visibility = View.VISIBLE
+            binding.indicator.setCardBackgroundColor(Color.YELLOW)
         } else{
-            binding.itemTitle.setBackgroundColor(Color.WHITE)
+            binding.indicator.visibility = View.GONE
         }
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
@@ -43,7 +46,7 @@ class NewsSectionViewHolder private constructor(private val binding: SmallRecycl
     companion object {
         fun from(parent: ViewGroup): NewsSectionViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = SmallRecyclerItemBinding.inflate(layoutInflater, parent, false)
+            val binding = SectorItemBinding.inflate(layoutInflater, parent, false)
             return NewsSectionViewHolder(binding)
         }
     }
