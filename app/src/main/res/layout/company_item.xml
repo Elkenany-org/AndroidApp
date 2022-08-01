@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="Object" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="image"
+            type="String" />
+
+        <variable
+            name="location"
+            type="String" />
+
+        <variable
+            name="rate"
+            type="String" />
+
+        <variable
+            name="clickListener"
+            type="com.example.elkenany.ClickListener" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="@{()->clickListener.onClick(data)}">
+
+
+                <ImageView
+                    android:id="@+id/item_img"
+                    imageUrl="@{image}"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="2dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/company_name"
+                    itemText="@{name}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_img"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/green"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/company_location"
+                    itemText="@{location}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/company_name"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawablePadding="1dp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    card_view:drawableEndCompat="@drawable/ic_baseline_location_on_24"
+                    tools:ignore="SmallSp" />
+
+                <TextView
+                    android:id="@+id/company_rate"
+                    itemText="@{rate}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/company_location"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="3sp"
+                    android:textColor="@color/green"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/more_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/company_location"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/primary_btn_shape"
+                    android:fontFamily="@font/cairo_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="3sp"
+                    android:text="@string/know_more_title"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

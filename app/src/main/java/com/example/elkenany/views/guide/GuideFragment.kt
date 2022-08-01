@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -56,7 +57,12 @@ class GuideFragment : Fragment() {
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
-        subSection = GuideSubSectionAdapter(ClickListener { })
+        subSection = GuideSubSectionAdapter(ClickListener {
+            view!!.findNavController()
+                .navigate(GuideFragmentDirections.actionGuideFragmentToGuideCompaniesFragment(it.id!!,
+                    it.name,
+                    args.sectorType))
+        })
         binding.guideListRecyclerView.adapter = subSection
         viewModel.guideData.observe(viewLifecycleOwner) {
             if (it != null) {

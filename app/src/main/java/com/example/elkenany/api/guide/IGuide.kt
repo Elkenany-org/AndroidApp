@@ -2,6 +2,7 @@ package com.example.elkenany.api.guide
 
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
+import com.example.elkenany.entities.guide.CompaniesData
 import com.example.elkenany.entities.guide.GuideData
 import retrofit2.Call
 import retrofit2.http.GET
@@ -13,6 +14,12 @@ interface IGuide {
         @Query("type") sectorType: String?,
         @Query("search") search: String?,
     ): Call<GenericEntity<GuideData?>>
+
+    @GET("guide/sub-section")
+    fun getAllCompaniesData(
+        @Query("sub_id") subId: Long,
+        @Query("search") search: String?,
+    ): Call<GenericEntity<CompaniesData?>>
 }
 
 object IGuideHandler {
