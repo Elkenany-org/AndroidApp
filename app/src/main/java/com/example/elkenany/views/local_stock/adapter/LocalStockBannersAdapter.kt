@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.databinding.BannersCardViewItemBinding
 import com.example.elkenany.databinding.BigRecyclerItemBinding
 import com.example.elkenany.entities.stock_data.LocalStockBanner
 
@@ -23,7 +24,7 @@ class LocalStockBannersAdapter(private val sectorClickListener: ClickListener<Lo
 
 }
 
-class LocalStockBannerViewHolder private constructor(private val binding: BigRecyclerItemBinding) :
+class LocalStockBannerViewHolder private constructor(private val binding: BannersCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(banner: LocalStockBanner, sectorClickListener: ClickListener<LocalStockBanner>) {
@@ -36,7 +37,7 @@ class LocalStockBannerViewHolder private constructor(private val binding: BigRec
     companion object {
         fun from(parent: ViewGroup): LocalStockBannerViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = BigRecyclerItemBinding.inflate(layoutInflater, parent, false)
+            val binding = BannersCardViewItemBinding.inflate(layoutInflater, parent, false)
             return LocalStockBannerViewHolder(binding)
         }
     }

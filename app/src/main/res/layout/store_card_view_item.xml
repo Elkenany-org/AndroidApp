@@ -61,6 +61,7 @@
                     imageUrl="@{url}"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:scaleType="fitXY"
                     tools:ignore="ContentDescription,ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 

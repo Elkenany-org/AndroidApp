@@ -8,6 +8,7 @@ data class CompaniesData(
     val sectors: List<Sector?>,
     val banners: List<LocalStockBanner?>,
     val logos: List<LocalStockLogo?>,
+    val compsort: List<CompaniesDaum?>,
     val data: List<CompaniesDaum?>,
     @Json(name = "current_page")
     val currentPage: Long?,
@@ -35,5 +36,5 @@ data class CompaniesDaum(
     val image: String?,
     val desc: String?,
     val address: String?,
-    val sponsor : Int?
+    val sponser : Int?
 )

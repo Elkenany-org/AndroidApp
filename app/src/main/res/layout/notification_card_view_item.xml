@@ -11,35 +11,33 @@
             type="Object" />
 
         <variable
-            name="title"
+            name="image"
             type="String" />
 
         <variable
-            name="url"
+            name="mainTitle"
             type="String" />
 
         <variable
-            name="logo"
+            name="describe"
             type="String" />
 
         <variable
             name="clickListener"
             type="com.example.elkenany.ClickListener" />
-
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_margin="5dp"
-        android:layoutDirection="rtl"
-        android:onClick="@{()-> clickListener.onClick(data)}"
         cardView:cardCornerRadius="10dp"
         cardView:cardElevation="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -48,42 +46,43 @@
                 app:cardCornerRadius="5dp">
 
                 <ImageView
-                    android:id="@+id/item_image"
-                    imageUrl="@{url}"
-                    android:layout_width="100dp"
+                    android:id="@+id/notification_image"
+                    imageUrl="@{image}"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     tools:ignore="ContentDescription,ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                >
 
                 <TextView
-                    android:id="@+id/main_title"
-                    itemText="@{title}"
+                    android:id="@+id/notification_title"
+                    itemText="@{mainTitle}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/cairo_black"
-                    android:gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cairo_bold"
                     android:maxLines="1"
-                    android:padding="5dp"
                     android:textColor="@color/green"
-                    android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/logo_in_image"
-                    imageUrl="@{logo}"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/main_title"
-                    android:layout_alignParentEnd="true"
-                    android:scaleType="fitXY"
-                    tools:ignore="ContentDescription,ImageContrastCheck" />
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/notification_description"
+                    itemText="@{describe}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cairo_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/green" />
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

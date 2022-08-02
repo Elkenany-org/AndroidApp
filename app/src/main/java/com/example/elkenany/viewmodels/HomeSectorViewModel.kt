@@ -3,7 +3,7 @@ package com.example.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.elkenany.api.callback.DataReceiverImplementation
+import com.example.elkenany.api.callback.IHomeImplementation
 import com.example.elkenany.entities.home_data.HomeSectorsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,7 @@ class HomeSectorViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _homeSectorsData = MutableLiveData<HomeSectorsData>()
     private val _loading = MutableLiveData(false)
-    private val api = DataReceiverImplementation()
+    private val api = IHomeImplementation()
 
 
     val homeSectorsData: LiveData<HomeSectorsData> get() = _homeSectorsData

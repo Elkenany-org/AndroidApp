@@ -1,7 +1,6 @@
 package com.example.elkenany.views.local_stock
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,10 +55,6 @@ class LocalStockFragment : Fragment() {
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
         subSection = LocalStockSubSectionsAdapter(ClickListener {
-            Log.i("localStockSubSection", it.type.toString())
-            Log.i("localStockSubSection",  it.id.toString())
-            Log.i("localStockSubSection",  it.name!! )
-
             view!!.findNavController()
                 .navigate(LocalStockFragmentDirections.actionLocalStockFragmentToLocalStockDetailsFragment(
                     it.id!!,
@@ -70,7 +65,11 @@ class LocalStockFragment : Fragment() {
         binding.stockListRecyclerView.adapter = subSection
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.stockPageLayout.visibility = View.VISIBLE
+                if (it.subSections.isEmpty() && it.fodSections.isEmpty()) {
+                    binding.stockPageLayout.visibility = View.GONE
+                } else {
+                    binding.stockPageLayout.visibility = View.VISIBLE
+                }
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
