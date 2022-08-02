@@ -1,5 +1,6 @@
 package com.example.elkenany.views.local_stock.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -33,9 +34,15 @@ class LocalStockSubSectionsViewHolder private constructor(private val binding: B
         subsection: LocalStockSubSection,
         sectorClickListener: ClickListener<LocalStockSubSection>,
     ) {
+        val logo: String? = try {
+            subsection.logoIn.first()?.image
+        } catch (e: Exception) {
+            null
+        }
         binding.data = subsection
         binding.title = subsection.name
         binding.url = subsection.image
+        binding.logo = logo.toString()
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }

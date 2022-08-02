@@ -9,6 +9,7 @@ class AuthImplementation {
     // variable to hold user data in
     companion object {
         var auth: UserAuthData? = null
+        var userApiToken : String? = null
     }
 
 
@@ -25,7 +26,8 @@ class AuthImplementation {
         return try {
             val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
             Log.i("login response", "Login response is : $response")
-            getAllUserData(response.data!!.apiToken.toString())
+            userApiToken = response.data!!.apiToken
+            getAllUserData(userApiToken)
             true
         } catch (e: Throwable) {
             Log.i("login response", "Login failed : ${e.message}")
@@ -48,7 +50,8 @@ class AuthImplementation {
                 phone,
                 deviceToken)
                 .await()
-            getAllUserData(response.data!!.apiToken.toString())
+            userApiToken = response.data!!.apiToken
+            getAllUserData(userApiToken)
             true
         } catch (e: Throwable) {
             Log.i("register", "register failed : ${e.message}")

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
 import com.example.elkenany.databinding.SectorItemBinding
-import com.example.elkenany.databinding.SmallRecyclerItemBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 
 class LocalStockSectorsAdapter(private val sectorClickListener: ClickListener<LocalStockSector>) :
@@ -33,8 +32,15 @@ class LocalStockSectorViewHolder private constructor(private val binding: Sector
         binding.data = sector
         binding.name = sector.name
         if (sector.selected.toString() == "1") {
-            binding.indicator.visibility = View.VISIBLE
-            binding.indicator.setCardBackgroundColor(Color.YELLOW)
+            binding.indicator.apply {
+                visibility = View.VISIBLE
+                setCardBackgroundColor(Color.YELLOW)
+                animate().apply {
+                    duration = 250
+                    rotationYBy(360f)
+                }
+            }
+
         } else if (sector.selected.toString() == "0") {
             binding.indicator.visibility = View.GONE
         }

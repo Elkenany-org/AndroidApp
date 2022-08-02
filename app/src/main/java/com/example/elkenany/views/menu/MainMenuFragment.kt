@@ -44,6 +44,10 @@ class MainMenuFragment : Fragment() {
         binding.newsBtn.setOnClickListener {
             view!!.findNavController().navigate(R.id.newsFragment)
         }
+        binding.notificationBtn.setOnClickListener {
+            view!!.findNavController()
+                .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToNotificationFragment2())
+        }
         viewModel.userAuth.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.image = it.image

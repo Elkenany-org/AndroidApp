@@ -157,7 +157,11 @@
         android:id="@+id/mainMenuFragment"
         android:name="com.example.elkenany.views.menu.MainMenuFragment"
         android:label="MainMenuFragment"
-        tools:layout="@layout/fragment_main_menu" />
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenuFragment_to_notificationFragment2"
+            app:destination="@id/notificationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
         android:name="com.example.elkenany.views.news.NewsDetailsFragment"
@@ -201,4 +205,9 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.elkenany.views.notification.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

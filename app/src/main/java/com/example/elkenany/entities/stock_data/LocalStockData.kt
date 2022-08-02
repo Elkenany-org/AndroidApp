@@ -41,7 +41,7 @@ data class LocalStockSubSection(
     val members: Long?,
     val type: String?,
     @Json(name = "logo_in")
-    val logoIn: List<LocalStockLogoIn>?,
+    val logoIn: List<LocalStockLogoIn?>,
 )
 
 data class LocalStockLogoIn(

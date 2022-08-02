@@ -47,7 +47,7 @@ class GuideCompaniesFragment : Fragment() {
                 binding.companyListRecyclerView.visibility = View.VISIBLE
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
-                companiesAdapter.submitList(it.data)
+                companiesAdapter.submitList(it.compsort + it.data)
 
             } else {
                 binding.companyListRecyclerView.visibility = View.GONE

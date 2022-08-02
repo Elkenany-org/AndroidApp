@@ -35,8 +35,12 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
         sectorClickListener: ClickListener<CompaniesDaum>,
     ) {
         binding.data = company
-        if (company.sponsor == 1) {
-            binding.cardView.setBackgroundResource(R.drawable.primary_btn_shape)
+        if (company.sponser == 1) {
+            binding.cardView.setBackgroundResource(R.color.green)
+            binding.companyName.setTextColor(R.color.orange)
+            binding.companyLocation.setTextColor(R.color.orange)
+            binding.companyRate.setTextColor(R.color.orange)
+
         }
 
         binding.name = company.name
