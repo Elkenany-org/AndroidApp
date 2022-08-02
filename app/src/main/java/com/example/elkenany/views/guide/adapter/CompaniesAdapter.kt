@@ -1,5 +1,6 @@
 package com.example.elkenany.views.guide.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -37,9 +38,9 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
         binding.data = company
         if (company.sponser == 1) {
             binding.cardView.setBackgroundResource(R.color.green)
-            binding.companyName.setTextColor(R.color.orange)
-            binding.companyLocation.setTextColor(R.color.orange)
-            binding.companyRate.setTextColor(R.color.orange)
+            binding.companyName.setTextColor(Color.YELLOW)
+            binding.companyLocation.setTextColor(Color.YELLOW)
+            binding.companyRate.setTextColor(Color.YELLOW)
 
         }
 
