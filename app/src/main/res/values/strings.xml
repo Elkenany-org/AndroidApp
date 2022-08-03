@@ -56,4 +56,9 @@
     <string name="no_more_news_title">لا توجد اخبار اخري</string>
     <string name="know_more_title">أعرف أكثر</string>
     <string name="login_required_notification_message">برجاء تسجيل الدخول حتي تتمكن من استقبال الأشعارات</string>
+    <string name="ad_details_title">تفاصيل الأعلان</string>
+    <string name="ad_describe_title">وصف الأعلان</string>
+    <string name="contact_information_title">معلومات التواصل :</string>
+    <string name="talk_to_seller_title">كلم البائع</string>
+    <string name="more_ads_title">عروض أخري :</string>
 </resources>

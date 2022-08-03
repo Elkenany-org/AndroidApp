@@ -1,9 +1,10 @@
 package com.example.elkenany.views.local_stock.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,9 @@ class LocalStockSectorsAdapter(private val sectorClickListener: ClickListener<Lo
     }
 
     override fun onBindViewHolder(holder: LocalStockSectorViewHolder, position: Int) {
+        holder.itemView.findViewById<CardView>(R.id.indicator)
+            .startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,
+                com.bumptech.glide.R.anim.abc_popup_enter))
         holder.bind(getItem(position)!!, sectorClickListener)
     }
 

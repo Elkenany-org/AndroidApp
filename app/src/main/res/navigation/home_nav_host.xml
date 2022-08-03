@@ -126,6 +126,9 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_storeFragment_to_adDetailsFragment"
+            app:destination="@id/adDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
@@ -157,7 +160,7 @@
         android:id="@+id/mainMenuFragment"
         android:name="com.example.elkenany.views.menu.MainMenuFragment"
         android:label="MainMenuFragment"
-        tools:layout="@layout/fragment_main_menu" >
+        tools:layout="@layout/fragment_main_menu">
         <action
             android:id="@+id/action_mainMenuFragment_to_notificationFragment2"
             app:destination="@id/notificationFragment" />
@@ -210,4 +213,13 @@
         android:name="com.example.elkenany.views.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/adDetailsFragment"
+        android:name="com.example.elkenany.views.store.AdDetailsFragment"
+        android:label="AdDetailsFragment"
+        tools:layout="@layout/fragment_ad_details">
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 </navigation>
