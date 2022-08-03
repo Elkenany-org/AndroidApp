@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.R
 import com.example.elkenany.databinding.SectorItemBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 
@@ -34,7 +35,7 @@ class LocalStockSectorViewHolder private constructor(private val binding: Sector
         if (sector.selected.toString() == "1") {
             binding.indicator.apply {
                 visibility = View.VISIBLE
-                setCardBackgroundColor(Color.YELLOW)
+                setCardBackgroundColor(binding.root.context.getColor(R.color.orange))
                 animate().apply {
                     duration = 250
                     rotationYBy(360f)

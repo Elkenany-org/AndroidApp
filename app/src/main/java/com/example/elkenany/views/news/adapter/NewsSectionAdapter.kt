@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.R
 import com.example.elkenany.databinding.SectorItemBinding
 import com.example.elkenany.databinding.SmallRecyclerItemBinding
 import com.example.elkenany.entities.news_data.NewsSection
@@ -35,7 +36,7 @@ class NewsSectionViewHolder private constructor(private val binding: SectorItemB
         val selected = section.selected.toString()
         if (selected == "1") {
             binding.indicator.visibility = View.VISIBLE
-            binding.indicator.setCardBackgroundColor(Color.YELLOW)
+            binding.indicator.setCardBackgroundColor(binding.root.context.getColor(R.color.orange))
         } else{
             binding.indicator.visibility = View.GONE
         }

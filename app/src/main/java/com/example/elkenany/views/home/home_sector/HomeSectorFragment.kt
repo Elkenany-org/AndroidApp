@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -59,13 +60,34 @@ class HomeSectorFragment : Fragment() {
         storeAdapter = SectorsStoreAdapter(ClickListener { })
 
         //assign each adapter to it's own recyclerView
-        binding.sectorsRecyclerView.adapter = sectorsAdapter
-        binding.recommendationRecyclerView.adapter = recommendationAdapter
-        binding.partnersRecyclerView.adapter = partnerAdapter
-        binding.stocksRecyclerView.adapter = stockAdapter
-        binding.guidesRecyclerView.adapter = guideAdapter
-        binding.newsRecyclerView.adapter = newsAdapter
-        binding.storesRecyclerView.adapter = storeAdapter
+        binding.sectorsRecyclerView.apply {
+            adapter = sectorsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.recommendationRecyclerView.apply {
+            adapter = recommendationAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.partnersRecyclerView.apply {
+            adapter = partnerAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.stocksRecyclerView.apply {
+            adapter = stockAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.guidesRecyclerView.apply {
+            adapter = guideAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.newsRecyclerView.apply {
+            adapter = newsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        binding.storesRecyclerView.apply {
+            adapter = storeAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         //navigate to homeServices fragment
         binding.serviceBtn.setOnClickListener {

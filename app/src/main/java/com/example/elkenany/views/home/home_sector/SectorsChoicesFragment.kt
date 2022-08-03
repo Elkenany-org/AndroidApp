@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -22,7 +23,11 @@ class SectorsChoicesFragment : Fragment() {
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sectors_choices, container, false)
-        binding.titleBar.text = args.sectorName
+        binding.apply {
+            titleBar.text = args.sectorName
+            layout.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         // Navigate to LocalStock Fragment
         binding.stockBtn.setOnClickListener {

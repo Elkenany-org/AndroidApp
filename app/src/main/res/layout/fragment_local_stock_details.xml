@@ -80,6 +80,7 @@
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="SpeakableTextPresentCheck"
                 tools:listitem="@layout/big_recycler_item" />
         </LinearLayout>
     </RelativeLayout>

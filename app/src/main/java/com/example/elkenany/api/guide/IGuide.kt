@@ -6,6 +6,7 @@ import com.example.elkenany.entities.guide.CompaniesData
 import com.example.elkenany.entities.guide.GuideData
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface IGuide {
@@ -19,6 +20,7 @@ interface IGuide {
     fun getAllCompaniesData(
         @Query("sub_id") subId: Long,
         @Query("search") search: String?,
+        @Header("android") header: String?,
     ): Call<GenericEntity<CompaniesData?>>
 }
 

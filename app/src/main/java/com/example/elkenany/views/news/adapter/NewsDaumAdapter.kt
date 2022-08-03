@@ -53,4 +53,5 @@ class NewsDaumAdapterDiffUtil : DiffUtil.ItemCallback<NewsDaum>() {
     override fun areContentsTheSame(oldItem: NewsDaum, newItem: NewsDaum): Boolean {
         return oldItem == newItem
     }
+
 }

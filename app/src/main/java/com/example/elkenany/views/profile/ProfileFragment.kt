@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentProfileBinding
@@ -33,7 +33,9 @@ class ProfileFragment : Fragment() {
         parentNavController = parentFragment!!.parentFragment!!.findNavController()
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
-
+        binding.profileLayout.apply {
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         binding.signInBtn.setOnClickListener {
             Log.i("nav", parentFragment!!.toString())
             Log.i("nav", parentFragment!!.parentFragment!!.toString())

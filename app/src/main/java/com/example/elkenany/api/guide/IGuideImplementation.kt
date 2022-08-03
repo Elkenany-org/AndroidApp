@@ -18,10 +18,10 @@ class IGuideImplementation {
         }
     }
 
-    suspend fun getAllCompaniesData(sectionId: Long,search: String?): CompaniesData? {
+    suspend fun getAllCompaniesData(sectionId: Long, search: String?): CompaniesData? {
         return try {
             val response =
-                IGuideHandler.singleton.getAllCompaniesData(sectionId,search).await()
+                IGuideHandler.singleton.getAllCompaniesData(sectionId, search, "android").await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

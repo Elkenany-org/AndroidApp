@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -45,7 +46,10 @@ class NewsDetailsFragment : Fragment() {
         moreNewsAdapter = NewsDaumAdapter(ClickListener {
             viewModel.getAllNewsData(it.id!!.toInt())
         })
-        binding.moreNewsRecyclerView.adapter = moreNewsAdapter
+        binding.moreNewsRecyclerView.apply {
+            adapter = moreNewsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.newsLayout.visibility = View.GONE

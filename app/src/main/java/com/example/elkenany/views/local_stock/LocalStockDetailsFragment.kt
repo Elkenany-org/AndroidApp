@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +23,6 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LocalStockDetailsViewModel
     private val args: LocalStockDetailsFragmentArgs by navArgs()
-
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     override fun onCreateView(
@@ -39,10 +39,16 @@ class LocalStockDetailsFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory)[LocalStockDetailsViewModel::class.java]
         binding.appBarTitle.text = args.sectorName
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
-        binding.bannersRecyclerView.adapter = bannersAdapter
+        binding.bannersRecyclerView.apply {
+            adapter = bannersAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
-        binding.logosRecyclerView.adapter = logosAdapter
+        binding.logosRecyclerView.apply {
+            adapter = logosAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         viewModel.getLocalStockDetailsData(args.id, args.sectorType!!)
         viewModel.loading.observe(viewLifecycleOwner) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,15 +48,24 @@ class GuideFragment : Fragment() {
 //        }
 
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
-        binding.bannersRecyclerView.adapter = bannersAdapter
+        binding.bannersRecyclerView.apply {
+            adapter = bannersAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
-        binding.logosRecyclerView.adapter = logosAdapter
+        binding.logosRecyclerView.apply {
+            adapter = logosAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
             viewModel.getGuideData(it.type.toString(), search)
         })
-        binding.sectorsRecyclerView.adapter = sectorsAdapter
+        binding.sectorsRecyclerView.apply {
+            adapter = sectorsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         subSection = GuideSubSectionAdapter(ClickListener {
             view!!.findNavController()
@@ -63,7 +73,10 @@ class GuideFragment : Fragment() {
                     it.name,
                     args.sectorType))
         })
-        binding.guideListRecyclerView.adapter = subSection
+        binding.guideListRecyclerView.apply {
+            adapter = subSection
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         viewModel.guideData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.guidePageLayout.visibility = View.VISIBLE
