@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -42,22 +42,26 @@ class StoreFragment : Fragment() {
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
+            adsStoreAdapter.submitList(listOf())
             viewModel.getAllAdsStoreData(sectorType, search)
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
             sectorType = it.type.toString()
+            adsStoreAdapter.submitList(listOf())
             viewModel.getAllAdsStoreData(sectorType, search)
         })
         binding.sectorsRecyclerView.apply {
             adapter = sectorsAdapter
-            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+//            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        adsStoreAdapter = AdsStoreAdapter(ClickListener {})
+        adsStoreAdapter = AdsStoreAdapter(ClickListener {
+            view!!.findNavController()
+                .navigate(StoreFragmentDirections.actionStoreFragmentToAdDetailsFragment(it.id!!))
+        })
         binding.storeRecyclerView.apply {
             adapter = adsStoreAdapter
-            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
         viewModel.adsStoreData.observe(viewLifecycleOwner) {

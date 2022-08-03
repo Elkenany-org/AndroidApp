@@ -2,10 +2,12 @@ package com.example.elkenany.views.store.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.R
 import com.example.elkenany.databinding.StoreCardViewItemBinding
 import com.example.elkenany.entities.store.AdsStoreDaum
 
@@ -18,6 +20,8 @@ class AdsStoreAdapter(private val sectorClickListener: ClickListener<AdsStoreDau
     }
 
     override fun onBindViewHolder(holder: AdsStoreDaumViewHolder, position: Int) {
+        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,
+            R.anim.anim))
         holder.bind(getItem(position)!!, sectorClickListener)
     }
 

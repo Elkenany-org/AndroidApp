@@ -81,7 +81,7 @@ class LocalStockFragment : Fragment() {
                 if (it.subSections.isEmpty() && it.fodSections.isEmpty()) {
                     binding.stockPageLayout.visibility = View.GONE
                 } else {
-                    binding.stockPageLayout.visibility = View.VISIBLE
+                    binding.stockListRecyclerView.visibility = View.VISIBLE
                 }
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
@@ -91,14 +91,14 @@ class LocalStockFragment : Fragment() {
                 subSection.submitList(it.subSections + it.fodSections)
 
             } else {
-                binding.stockPageLayout.visibility = View.GONE
+                binding.stockListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.stockPageLayout.visibility = View.GONE
+                binding.stockListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
