@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -41,7 +42,10 @@ class GuideCompaniesFragment : Fragment() {
             viewModel.getCompaniesGuideData(args.id, search)
         }
         companiesAdapter = CompaniesAdapter(ClickListener { })
-        binding.companyListRecyclerView.adapter = companiesAdapter
+        binding.companyListRecyclerView.apply {
+            adapter = companiesAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         viewModel.companiesDataData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.companyListRecyclerView.visibility = View.VISIBLE

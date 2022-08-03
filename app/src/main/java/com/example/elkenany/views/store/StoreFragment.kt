@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -48,10 +49,16 @@ class StoreFragment : Fragment() {
             sectorType = it.type.toString()
             viewModel.getAllAdsStoreData(sectorType, search)
         })
-        binding.sectorsRecyclerView.adapter = sectorsAdapter
+        binding.sectorsRecyclerView.apply {
+            adapter = sectorsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         adsStoreAdapter = AdsStoreAdapter(ClickListener {})
-        binding.storeRecyclerView.adapter = adsStoreAdapter
+        binding.storeRecyclerView.apply {
+            adapter = adsStoreAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         viewModel.adsStoreData.observe(viewLifecycleOwner) {
             if (it != null) {

@@ -37,13 +37,12 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
     ) {
         binding.data = company
         if (company.sponser == 1) {
-            binding.cardView.setBackgroundResource(R.color.green)
-            binding.companyName.setTextColor(Color.YELLOW)
-            binding.companyLocation.setTextColor(Color.YELLOW)
-            binding.companyRate.setTextColor(Color.YELLOW)
+            binding.cardView.setCardBackgroundColor(binding.root.context.getColor(R.color.green))
+            binding.companyName.setTextColor(binding.root.context.getColor(R.color.orange))
+            binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.orange))
+            binding.companyRate.setTextColor(binding.root.context.getColor(R.color.orange))
 
         }
-
         binding.name = company.name
         binding.image = company.image
         binding.location = company.address

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,7 +18,6 @@ import com.example.elkenany.viewmodels.NewViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.news.adapter.NewsDaumAdapter
 import com.example.elkenany.views.news.adapter.NewsSectionAdapter
-import java.lang.Exception
 
 
 class NewsFragment : Fragment() {
@@ -39,7 +39,7 @@ class NewsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[NewViewModel::class.java]
         sectorType = try {
             args.sectorType.toString()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             "poultry"
         }
 
@@ -54,13 +54,20 @@ class NewsFragment : Fragment() {
             view!!.findNavController()
                 .navigate(NewsFragmentDirections.actionNewsFragmentToNewsDetailsFragment(it.id!!.toInt()))
         })
-        binding.newsRecyclerView.adapter = newsDaumAdapter
+        binding.newsRecyclerView.apply {
+            adapter = newsDaumAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
             sectorType = it.type.toString()
             viewModel.getAllNewsData(sectorType, search)
+            newsDaumAdapter.submitList(listOf())
         })
-        binding.sectorsRecyclerView.adapter = newsSectionAdapter
+        binding.sectorsRecyclerView.apply {
+            adapter = newsSectionAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         viewModel.newsData.observe(viewLifecycleOwner) {
             if (it != null) {

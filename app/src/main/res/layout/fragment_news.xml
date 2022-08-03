@@ -93,6 +93,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
+
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/sector_item" />
 

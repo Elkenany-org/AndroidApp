@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,7 +34,10 @@ class NotificationFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[NotificationViewModel::class.java]
         viewModel.onGettingNotificationData()
         notificationAdapter = NotificationListAdapter(ClickListener { })
-        binding.notificationRecyclerView.adapter = notificationAdapter
+        binding.notificationRecyclerView.apply {
+            adapter = notificationAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         binding.signInBtn.setOnClickListener {
             parentFragment!!.parentFragment!!.findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())

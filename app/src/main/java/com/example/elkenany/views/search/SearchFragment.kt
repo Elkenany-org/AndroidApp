@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -32,12 +33,15 @@ class SearchFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[SearchViewModel::class.java]
 
         binding.searchBar.addTextChangedListener {
-                search = it.toString()
-                viewModel.getAllSearchData(search)
+            search = it.toString()
+            viewModel.getAllSearchData(search)
         }
 
         resultsAdapter = SearchResultsAdapter(ClickListener { })
-        binding.searchResultsRecyclerView.adapter = resultsAdapter
+        binding.searchResultsRecyclerView.apply {
+            adapter = resultsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         viewModel.searchData.observe(viewLifecycleOwner) {
             if (it != null) {

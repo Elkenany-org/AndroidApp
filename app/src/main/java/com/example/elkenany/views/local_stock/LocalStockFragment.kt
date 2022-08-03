@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -44,15 +45,24 @@ class LocalStockFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
         viewModel.getHomeStockData(sectorType!!)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
-        binding.bannersRecyclerView.adapter = bannersAdapter
+        binding.bannersRecyclerView.apply {
+            adapter = bannersAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
-        binding.logosRecyclerView.adapter = logosAdapter
+        binding.logosRecyclerView.apply {
+            adapter = logosAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
             viewModel.getHomeStockData(it.type.toString())
         })
-        binding.sectorsRecyclerView.adapter = sectorsAdapter
+        binding.sectorsRecyclerView.apply {
+            adapter = sectorsAdapter
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
 
         subSection = LocalStockSubSectionsAdapter(ClickListener {
             view!!.findNavController()
@@ -62,7 +72,10 @@ class LocalStockFragment : Fragment() {
                     it.type
                 ))
         })
-        binding.stockListRecyclerView.adapter = subSection
+        binding.stockListRecyclerView.apply {
+            adapter = subSection
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.subSections.isEmpty() && it.fodSections.isEmpty()) {

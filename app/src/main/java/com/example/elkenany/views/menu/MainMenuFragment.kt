@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,9 @@ class MainMenuFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_menu, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[MainMenuViewModel::class.java]
+        binding.menuFunctions.apply {
+            layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
         parentNavController = parentFragment!!.parentFragment!!.findNavController()
 
         binding.signInBtn.setOnClickListener {
