@@ -51,7 +51,7 @@
                 android:paddingEnd="20sp"
                 android:paddingBottom="5dp"
                 android:textSize="15sp"
-                tools:ignore="Autofill,TextFields" />
+                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
         </androidx.cardview.widget.CardView>
 
         <ProgressBar
@@ -72,10 +72,6 @@
             android:textSize="18sp"
             android:visibility="gone" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/search_bar_card">
 
             <LinearLayout
                 android:id="@+id/news_layout"
@@ -83,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="15dp"
-                tools:ignore="UselessLeaf">
+                tools:ignore="UselessLeaf"
+                android:layout_below="@id/search_bar_card">
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -111,6 +108,5 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/news_card_view_item" />
             </LinearLayout>
-        </ScrollView>
     </RelativeLayout>
 </layout>
