@@ -22,6 +22,15 @@
             app:launchSingleTop="true"
             app:popUpTo="@id/sectorsChoicesFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeSectorFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_homeSectorFragment_to_guideCompaniesFragment"
+            app:destination="@id/guideCompaniesFragment" />
+        <action
+            android:id="@+id/action_homeSectorFragment_to_adDetailsFragment"
+            app:destination="@id/adDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeServiceFragment"
@@ -191,7 +200,7 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
-    <fragment
+     <fragment
         android:id="@+id/guideCompaniesFragment"
         android:name="com.example.elkenany.views.guide.GuideCompaniesFragment"
         android:label="GuideCompaniesFragment"
