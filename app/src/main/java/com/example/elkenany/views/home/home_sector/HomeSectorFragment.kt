@@ -53,11 +53,30 @@ class HomeSectorFragment : Fragment() {
         recommendationAdapter = SectorRecommendationAdapter(ClickListener {
             Toast.makeText(context, it.name.toString(), Toast.LENGTH_LONG).show()
         })
-        partnerAdapter = SectorsPartnerAdapter(ClickListener { })
-        stockAdapter = SectorsStockAdapter(ClickListener { })
-        guideAdapter = SectorsGuideAdapter(ClickListener { })
-        newsAdapter = SectorsNewAdapter(ClickListener { })
-        storeAdapter = SectorsStoreAdapter(ClickListener { })
+        partnerAdapter = SectorsPartnerAdapter(ClickListener {
+            // ToDo --> navigate to specific page based on the selected item type
+        })
+        stockAdapter = SectorsStockAdapter(ClickListener {
+            // ToDo --> navigate to Stock Details page
+        })
+        guideAdapter = SectorsGuideAdapter(ClickListener {
+            view!!.findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToGuideCompaniesFragment(
+                    it.id!!,
+                    it.name,
+                    "",
+                ))
+        })
+        newsAdapter = SectorsNewAdapter(ClickListener {
+            view!!.findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToNewsDetailsFragment(
+                    it.id!!.toInt()))
+        })
+        storeAdapter = SectorsStoreAdapter(ClickListener {
+            view!!.findNavController().navigate(
+                HomeSectorFragmentDirections.actionHomeSectorFragmentToAdDetailsFragment(it.id!!)
+            )
+        })
 
         //assign each adapter to it's own recyclerView
         binding.sectorsRecyclerView.apply {
