@@ -1,8 +1,9 @@
 package com.example.elkenany.views.guide.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.res.colorResource
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -40,13 +41,16 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
             binding.cardView.setCardBackgroundColor(binding.root.context.getColor(R.color.green))
             binding.companyName.setTextColor(binding.root.context.getColor(R.color.orange))
             binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.orange))
-            binding.companyRate.setTextColor(binding.root.context.getColor(R.color.orange))
-
+            binding.companyRate.apply {
+                visibility = View.GONE
+            }
         }
         binding.name = company.name
         binding.image = company.image
         binding.location = company.address
-        binding.rate = " التقييم " + company.rate.toString()
+        binding.companyRate.apply {
+            rating = company.rate!!.toFloat()
+        }
 
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
