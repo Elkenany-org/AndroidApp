@@ -79,7 +79,7 @@ class GuideFragment : Fragment() {
         }
         viewModel.guideData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.guidePageLayout.visibility = View.VISIBLE
+                binding.guideListRecyclerView.visibility = View.VISIBLE
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
@@ -88,14 +88,14 @@ class GuideFragment : Fragment() {
                 subSection.submitList(it.subSections)
 
             } else {
-                binding.guidePageLayout.visibility = View.GONE
+                binding.guideListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.guidePageLayout.visibility = View.GONE
+                binding.guideListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.GONE

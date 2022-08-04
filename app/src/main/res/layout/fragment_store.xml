@@ -41,10 +41,6 @@
             android:textSize="18sp"
             android:visibility="gone" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/app_bar_title">
 
             <LinearLayout
                 android:id="@+id/news_layout"
@@ -52,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="5dp"
-                tools:ignore="UselessLeaf">
+                tools:ignore="UselessLeaf"
+                android:layout_below="@id/app_bar_title">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/search_bar_card"
@@ -110,6 +107,5 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/store_card_view_item" />
             </LinearLayout>
-        </ScrollView>
     </RelativeLayout>
 </layout>
