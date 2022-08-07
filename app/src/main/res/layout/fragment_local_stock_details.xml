@@ -69,19 +69,74 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                tools:ignore="UselessLeaf" />
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                tools:ignore="UselessLeaf">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/statistics_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/statistics_btn_shape"
+                    android:fontFamily="@font/cairo_bold"
+                    android:text="@string/statistics_title"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/search_bar_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    app:cardElevation="2dp">
+
+                    <EditText
+                        android:id="@+id/search_bar"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/app_bar_title"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/white"
+                        android:drawableEnd="@drawable/ic_baseline_search_24"
+                        android:drawablePadding="20dp"
+                        android:fontFamily="@font/cairo_bold"
+                        android:hint="@string/homeSearch"
+                        android:paddingStart="20sp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="20sp"
+                        android:paddingBottom="5dp"
+                        android:textSize="12sp"
+                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/calender_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/calender_btn_selected"
+                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                    android:fontFamily="@font/cairo_bold"
+                    android:padding="5dp"
+                    android:text="@string/today_title"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="3sp"
                 android:id="@+id/stock_data_recycler_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/big_recycler_item" />
+                tools:listitem="@layout/table_row_item" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

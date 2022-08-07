@@ -61,4 +61,6 @@
     <string name="contact_information_title">معلومات التواصل :</string>
     <string name="talk_to_seller_title">كلم البائع</string>
     <string name="more_ads_title">عروض أخري :</string>
+    <string name="statistics_title">الإحصائيات</string>
+    <string name="today_title">تاريخ اليوم</string>
 </resources>
