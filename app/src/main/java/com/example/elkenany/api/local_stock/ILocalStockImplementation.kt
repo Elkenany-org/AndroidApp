@@ -18,10 +18,10 @@ class ILocalStockImplementation {
         }
     }
 
-    suspend fun getLocalStockDetailsByIdAndType(id: Long, type: String): LocalStockDetailsData? {
+    suspend fun getLocalStockDetailsByIdAndType(id: Long, date: String?): LocalStockDetailsData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndType(id, type).await()
+                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndType(id, date).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

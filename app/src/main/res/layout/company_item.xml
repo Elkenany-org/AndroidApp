@@ -116,9 +116,9 @@
                     android:layout_marginBottom="5dp"
                     android:clickable="false"
                     android:layoutDirection="ltr"
-                    android:progressTint="@color/orange"
                     android:numStars="5"
                     android:paddingTop="5dp"
+                    android:progressTint="@color/orange"
                     android:textColor="@color/green" />
 
                 <TextView

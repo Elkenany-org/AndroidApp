@@ -40,9 +40,11 @@ class AdDetailsFragment : Fragment() {
         viewModel.adDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.adsLayout.visibility = View.VISIBLE
+                binding.errorMessage.visibility = View.GONE
                 binding.data = it
-            }else{
-
+            } else {
+                binding.adsLayout.visibility = View.GONE
+                binding.errorMessage.visibility = View.VISIBLE
             }
         }
         return binding.root

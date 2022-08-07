@@ -22,10 +22,10 @@ class LocalStockDetailsViewModel : ViewModel() {
 
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getLocalStockDetailsData(id: Long, type: String) {
+    fun getLocalStockDetailsData(id: Long, date: String?) {
         _loading.value = true
         uiScope.launch {
-            _localStockDetailsData.value = api.getLocalStockDetailsByIdAndType(id, type)
+            _localStockDetailsData.value = api.getLocalStockDetailsByIdAndType(id, date)
             _loading.value = false
         }
     }

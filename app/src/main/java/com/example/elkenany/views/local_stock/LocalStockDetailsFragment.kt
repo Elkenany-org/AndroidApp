@@ -15,6 +15,7 @@ import com.example.elkenany.databinding.FragmentLocalStockDetailsBinding
 import com.example.elkenany.viewmodels.LocalStockDetailsViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 
 
@@ -25,6 +26,7 @@ class LocalStockDetailsFragment : Fragment() {
     private val args: LocalStockDetailsFragmentArgs by navArgs()
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
+    private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -50,9 +52,12 @@ class LocalStockDetailsFragment : Fragment() {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        viewModel.getLocalStockDetailsData(args.id, args.sectorType!!)
+        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener { })
+        binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
+        viewModel.getLocalStockDetailsData(args.id, "")
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
+                binding.stockDataRecyclerView.visibility = View.GONE
                 binding.loadingProgressbar.visibility = View.VISIBLE
                 binding.foundDataLayout.visibility = View.GONE
             } else {
@@ -63,11 +68,15 @@ class LocalStockDetailsFragment : Fragment() {
             if (it != null) {
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE
+                binding.stockDataRecyclerView.visibility = View.VISIBLE
                 logosAdapter.submitList(it.logos)
                 bannersAdapter.submitList(it.banners)
+                localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
+
             } else {
                 binding.foundDataLayout.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
+                binding.stockDataRecyclerView.visibility = View.GONE
             }
         }
 

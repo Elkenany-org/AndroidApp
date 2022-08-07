@@ -3,29 +3,64 @@ package com.example.elkenany.entities.stock_data
 import com.squareup.moshi.Json
 
 data class LocalStockDetailsData(
-    @Json(name = "columns")
-    val columns: List<Column?>,
-    @Json(name = "banners")
+    val message: String?,
+    val status: String?,
+    val columns: ColumnsData?,
     val banners: List<LocalStockBanner?>,
-    @Json(name = "logos")
     val logos: List<LocalStockLogo?>,
-    @Json(name = "members")
-    val members: List<Member?>,
+    val members: List<ColumnsData?>,
 )
-data class Column(
-    val title: String,
-)
-data class Member(
-    val name: String,
-    @Json(name = "mem_id")
-    val memId: Long,
-    val kind: String,
-    val price: String,
-    val change: String,
-    @Json(name = "change_date")
-    val changeDate: String,
-    val statistics: String,
+
+data class ColumnsData(
+    val name: String?,
+    val price: String?,
+    val change: String?,
+    @Json(name = "charging_system")
+    val chargingSystem: String?,
+    @Json(name = "categorize_name")
+    val categorizeName: String?,
+    val weight: String?,
+    @Json(name = "price_status")
+    val priceStatus: String?,
+    val age: String?,
+    @Json(name = "product_type")
+    val productType: String?,
     @Json(name = "chick_type")
-    val chickType: String,
-    val type: Long,
+    val chickType: String?,
+    @Json(name = "weight_container")
+    val weightContainer: String?,
+    val statistics: String?,
+    @Json(name = "mem_id")
+    val memId: String?,
+    val kind: String?,
+    @Json(name = "change_date")
+    val changeDate: String?,
+    val type: String?,
 )
+
+//data class Member(
+//    val name: String?,
+//    val price: String?,
+//    val change: String?,
+//    @Json(name = "change_date")
+//    val changeDate: String?,
+//    @Json(name = "charging_system")
+//    val chargingSystem: String?,
+//    @Json(name = "categorize_name")
+//    val categorizeName: String?,
+//    val weight: String?,
+//    @Json(name = "price_status")
+//    val priceStatus: String?,
+//    val age: String?,
+//    @Json(name = "product_type")
+//    val productType: String?,
+//    @Json(name = "chick_type")
+//    val chickType: String?,
+//    @Json(name = "weight_container")
+//    val weightContainer: String?,
+//    val statistics: String?,
+//    @Json(name = "mem_id")
+//    val memId: Long?,
+//    val kind: String?,
+//    val type: Long?,
+//)
