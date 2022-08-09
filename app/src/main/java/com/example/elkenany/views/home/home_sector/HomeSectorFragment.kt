@@ -44,7 +44,7 @@ class HomeSectorFragment : Fragment() {
 
         //adapters initialization
         sectorsAdapter = SectorsAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToSectorsChoicesFragment(
                     it.id!!,
                     it.name,
@@ -60,7 +60,7 @@ class HomeSectorFragment : Fragment() {
             // ToDo --> navigate to Stock Details page
         })
         guideAdapter = SectorsGuideAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToGuideCompaniesFragment(
                     it.id!!,
                     it.name,
@@ -68,12 +68,12 @@ class HomeSectorFragment : Fragment() {
                 ))
         })
         newsAdapter = SectorsNewAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToNewsDetailsFragment(
                     it.id!!.toInt()))
         })
         storeAdapter = SectorsStoreAdapter(ClickListener {
-            view!!.findNavController().navigate(
+            requireView().findNavController().navigate(
                 HomeSectorFragmentDirections.actionHomeSectorFragmentToAdDetailsFragment(it.id!!)
             )
         })
@@ -110,7 +110,7 @@ class HomeSectorFragment : Fragment() {
 
         //navigate to homeServices fragment
         binding.serviceBtn.setOnClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(HomeSectorFragmentDirections.actionHomeSectorFragment2ToHomeServiceFragment2())
         }
         // Loading progressbar
