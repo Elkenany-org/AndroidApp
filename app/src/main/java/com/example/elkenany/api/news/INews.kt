@@ -13,6 +13,7 @@ interface INews {
     fun getAllNews(
         @Query("type") type: String?,
         @Query("search") search: String?,
+        @Query("sort") sort: String?,
     ): Call<GenericEntity<NewsData?>>
 
     @GET("news/news-detials")

@@ -6,9 +6,9 @@ import com.example.elkenany.entities.news_data.NewsDetailsData
 import retrofit2.await
 
 class INewsImplementation {
-    suspend fun getAllNewsData(type: String?, search: String?): NewsData? {
+    suspend fun getAllNewsData(type: String?, search: String?,sort:String?): NewsData? {
         return try {
-            val response = INewsHandler.singleton.getAllNews(type, search).await()
+            val response = INewsHandler.singleton.getAllNews(type, search,sort).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

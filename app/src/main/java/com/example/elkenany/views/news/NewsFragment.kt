@@ -28,6 +28,7 @@ class NewsFragment : Fragment() {
     private lateinit var viewModel: NewViewModel
     private var search: String? = null
     private var sectorType: String = ""
+    private var sort: String? = null
     private val args: NewsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,28 +44,33 @@ class NewsFragment : Fragment() {
             "poultry"
         }
 
-        viewModel.getAllNewsData(sectorType, search)
+        viewModel.getAllNewsData(sectorType, search, sort)
         binding.filterLayout.layoutAnimation =
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getAllNewsData(sectorType, search)
+            viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.mostReadableBtn.setOnClickListener {
+            sort = "1"
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))
+            viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.latestNewsBtn.setOnClickListener {
+            sort = "2"
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
+            viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.urgentBtn.setOnClickListener {
+            sort = "3"
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))
-
+            viewModel.getAllNewsData(sectorType, search, sort)
         }
         newsDaumAdapter = NewsDaumAdapter(ClickListener {
             requireView().findNavController()
@@ -77,7 +83,7 @@ class NewsFragment : Fragment() {
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
             sectorType = it.type.toString()
-            viewModel.getAllNewsData(sectorType, search)
+            viewModel.getAllNewsData(sectorType, search,sort)
             newsDaumAdapter.submitList(listOf())
         })
         binding.sectorsRecyclerView.apply {
