@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="view_model"
+            type="com.example.elkenany.viewmodels.NewViewModel" />
+
     </data>
 
     <RelativeLayout
@@ -67,8 +71,8 @@
             android:layout_height="match_parent"
             android:layout_below="@id/search_bar_card"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="5dp">
 
             <include layout="@layout/news_shimmer_loading" />
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -102,14 +106,51 @@
                 android:layout_gravity="center_horizontal"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
-
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/sector_item" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/filter_layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                tools:ignore="UselessLeaf" />
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:id="@+id/latest_news_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/latest_news_title"
+                    android:textColor="@color/green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/urgent_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/urgent_title"
+                    android:textColor="@color/orange"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/most_readable_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/cairo_regular"
+                    android:maxLines="1"
+                    android:text="@string/most_readable_title"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/news_recycler_view"
