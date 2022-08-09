@@ -44,14 +44,30 @@ class NewsFragment : Fragment() {
         }
 
         viewModel.getAllNewsData(sectorType, search)
-
+        binding.filterLayout.layoutAnimation =
+            AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getAllNewsData(sectorType, search)
         }
+        binding.mostReadableBtn.setOnClickListener {
+            binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))
+        }
+        binding.latestNewsBtn.setOnClickListener {
+            binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
+        }
+        binding.urgentBtn.setOnClickListener {
+            binding.urgentBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))
 
+        }
         newsDaumAdapter = NewsDaumAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(NewsFragmentDirections.actionNewsFragmentToNewsDetailsFragment(it.id!!.toInt()))
         })
         binding.newsRecyclerView.apply {
@@ -71,6 +87,7 @@ class NewsFragment : Fragment() {
 
         viewModel.newsData.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.filterLayout.visibility = View.VISIBLE
                 newsSectionAdapter.submitList(it.sections)
                 if (it.data.isNotEmpty()) {
                     binding.newsRecyclerView.visibility = View.VISIBLE
@@ -85,6 +102,7 @@ class NewsFragment : Fragment() {
             } else {
                 binding.newsRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
+                binding.filterLayout.visibility = View.GONE
             }
 
         }
@@ -93,10 +111,13 @@ class NewsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.VISIBLE
                 binding.newsRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
+                binding.filterLayout.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
+
             }
         }
         return binding.root
     }
+
 }

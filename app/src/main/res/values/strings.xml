@@ -63,4 +63,7 @@
     <string name="more_ads_title">عروض أخري :</string>
     <string name="statistics_title">الإحصائيات</string>
     <string name="today_title">تاريخ اليوم</string>
+    <string name="latest_news_title">أخر الأخبار</string>
+    <string name="urgent_title">عاجل</string>
+    <string name="most_readable_title">الأكثر قراءة</string>
 </resources>

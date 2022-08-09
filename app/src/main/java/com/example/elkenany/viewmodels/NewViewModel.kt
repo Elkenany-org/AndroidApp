@@ -1,8 +1,10 @@
 package com.example.elkenany.viewmodels
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.elkenany.R
 import com.example.elkenany.api.news.INewsImplementation
 import com.example.elkenany.entities.news_data.NewsData
 import kotlinx.coroutines.CoroutineScope
