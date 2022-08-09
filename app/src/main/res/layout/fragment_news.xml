@@ -54,12 +54,24 @@
                 tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
         </androidx.cardview.widget.CardView>
 
-        <ProgressBar
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/loading_progressbar"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:visibility="gone" />-->
+
+        <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_bar_card"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="100dp">
+
+            <include layout="@layout/news_shimmer_loading" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/error_message"
@@ -73,40 +85,40 @@
             android:visibility="gone" />
 
 
+        <LinearLayout
+            android:id="@+id/news_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_bar_card"
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            tools:ignore="UselessLeaf">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sectors_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/sector_item" />
+
             <LinearLayout
-                android:id="@+id/news_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                tools:ignore="UselessLeaf" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="15dp"
-                tools:ignore="UselessLeaf"
-                android:layout_below="@id/search_bar_card">
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sectors_recycler_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/sector_item" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    tools:ignore="UselessLeaf" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/news_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:layoutDirection="rtl"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/news_card_view_item" />
-            </LinearLayout>
+                android:layout_margin="5dp"
+                android:layoutDirection="rtl"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/news_card_view_item" />
+        </LinearLayout>
     </RelativeLayout>
 </layout>

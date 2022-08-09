@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layoutDirection="rtl"
+            app:cardBackgroundColor="#D7D7D7"
+            cardView:cardCornerRadius="10dp"
+            cardView:cardElevation="7dp"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layoutDirection="rtl"
+            app:cardBackgroundColor="#D7D7D7"
+            cardView:cardCornerRadius="10dp"
+            cardView:cardElevation="7dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layoutDirection="rtl"
+            app:cardBackgroundColor="#D7D7D7"
+            cardView:cardCornerRadius="10dp"
+            cardView:cardElevation="7dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layoutDirection="rtl"
+            app:cardBackgroundColor="#D7D7D7"
+            cardView:cardCornerRadius="10dp"
+            cardView:cardElevation="7dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="5dp"
+            android:layoutDirection="rtl"
+            app:cardBackgroundColor="#D7D7D7"
+            cardView:cardCornerRadius="10dp"
+            cardView:cardElevation="7dp"/>
+    </LinearLayout>
+</layout>
