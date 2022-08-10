@@ -30,6 +30,16 @@ interface IAuth {
 
     @GET("profile")
     fun getUserProfile(@Header("Authorization") api_token: String?): Call<GenericEntity<UserAuthData?>>
+
+    @FormUrlEncoded
+    @POST("reg-log-social")
+    fun reLogSocialWithGoogleOrFaceBook(
+        @Field("name") name: String?,
+        @Field("email") email: String?,
+        @Field("device_token") device_token: String?,
+        @Field("google_id") google_id: String?,
+    ): Call<GenericEntity<AuthData?>>
+
 }
 
 object AuthHandler {

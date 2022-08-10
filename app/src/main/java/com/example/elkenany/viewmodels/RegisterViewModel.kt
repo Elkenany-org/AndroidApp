@@ -1,9 +1,13 @@
 package com.example.elkenany.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.elkenany.api.auth.AuthImplementation
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -33,6 +37,30 @@ class RegisterViewModel : ViewModel() {
             _register.value =
                 api.registerWithEmailAndPassword(name, email, password, phone, deviceToken)
             _loading.value = false
+        }
+    }
+
+    fun signUpWithGoogle(
+        name: String?,
+        email: String?,
+        device_token: String?,
+        google_id: String?,
+    ) {
+        uiScope.launch {
+            _loading.value = true
+            api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+            _loading.value = false
+        }
+    }
+
+    fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            signUpWithGoogle(account.givenName+account.familyName, account.email, "1", account.id)
+            _register.value = true
+        } catch (e: ApiException) {
+            Log.i("googleFailed", e.message.toString())
+            _register.value = false
         }
     }
 }

@@ -1,5 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.elkenany.views.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.elkenany.R
+import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config.Companion.gso
 import com.example.elkenany.databinding.FragmentLoginBinding
 import com.example.elkenany.viewmodels.LoginViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.tasks.Task
+
 
 class LoginFragment : Fragment() {
 
@@ -30,6 +38,7 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+        viewModel.initViewModel(requireContext())
         binding.lifecycleOwner = viewLifecycleOwner
         // showing app logo inside ImageView
         binding.signInBtn.setOnClickListener {
@@ -54,6 +63,7 @@ class LoginFragment : Fragment() {
         }
         binding.googleSigninBtn.setOnClickListener {
             //ToDo --> implement viewModel.SignInWithGoogle function here
+            signInWithGoogle()
         }
         binding.facebookSigninBtn.setOnClickListener {
             //ToDo --> implement viewModel.SignInWithFacebook function here
@@ -64,7 +74,7 @@ class LoginFragment : Fragment() {
         }
         binding.createAccountBtn.setOnClickListener {
             //navigation to SignUpFragment here
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
 
@@ -75,7 +85,8 @@ class LoginFragment : Fragment() {
             if (it != null) {
                 if (it) {
                     // navigation to Home screen
-                    view!!.findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    requireView().findNavController()
+                        .navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
                     Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
                 }
@@ -96,5 +107,18 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    private fun signInWithGoogle() {
+        val mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, 1000)
+    }
 
+    @Suppress("OVERRIDE_DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            viewModel.handleSignInResult(task)
+        }
+    }
 }

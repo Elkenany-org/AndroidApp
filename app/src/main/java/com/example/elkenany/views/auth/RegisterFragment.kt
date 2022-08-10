@@ -1,5 +1,6 @@
 package com.example.elkenany.views.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.elkenany.R
+import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.example.elkenany.databinding.FragmentRegisterBinding
 import com.example.elkenany.viewmodels.RegisterViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.tasks.Task
 
 
 class RegisterFragment : Fragment() {
@@ -67,13 +72,15 @@ class RegisterFragment : Fragment() {
         }
         binding.googleSignupBtn.setOnClickListener {
             // ToDo --> implement signUpWithGoogle function here
+            signUpWithGoogle()
         }
         binding.facebookSignupBtn.setOnClickListener {
             // ToDo --> implement signUpWithFacebook function here
         }
         binding.haveAccountBtn.setOnClickListener {
             // ToDo --> implement navigation to login fragment here
-            view!!.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            requireView().findNavController()
+                .navigate(R.id.action_registerFragment_to_loginFragment)
         }
 
         //observers
@@ -97,6 +104,21 @@ class RegisterFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun signUpWithGoogle() {
+        val mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), GoogleAuth_Config.gso)
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, 1000)
+    }
+
+    @Suppress("OVERRIDE_DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1000) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            viewModel.handleSignInResult(task)
+        }
     }
 
 }

@@ -12,10 +12,12 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.R
+import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config.Companion.gso
 import com.example.elkenany.databinding.FragmentMainMenuBinding
 import com.example.elkenany.viewmodels.MainMenuViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.HomeFragmentDirections
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 
 class MainMenuFragment : Fragment() {
@@ -34,22 +36,27 @@ class MainMenuFragment : Fragment() {
         binding.menuFunctions.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
-        parentNavController = parentFragment!!.parentFragment!!.findNavController()
+        parentNavController = requireParentFragment().requireParentFragment().findNavController()
 
         binding.signInBtn.setOnClickListener {
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         binding.signOutBtn.setOnClickListener {
+            val account = GoogleSignIn.getLastSignedInAccount(requireContext())
+            if (account != null) {
+                val gsc = GoogleSignIn.getClient(requireContext(), gso)
+                gsc.signOut()
+            }
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         binding.dailyStockBtn.setOnClickListener {
-            view!!.findNavController().navigate(R.id.localStockFragment)
+            requireView().findNavController().navigate(R.id.localStockFragment)
         }
         binding.newsBtn.setOnClickListener {
-            view!!.findNavController().navigate(R.id.newsFragment)
+            requireView().findNavController().navigate(R.id.newsFragment)
         }
         binding.notificationBtn.setOnClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToNotificationFragment2())
         }
         viewModel.userAuth.observe(viewLifecycleOwner) {

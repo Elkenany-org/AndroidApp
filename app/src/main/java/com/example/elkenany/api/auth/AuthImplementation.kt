@@ -1,6 +1,7 @@
 package com.example.elkenany.api.auth
 
 import android.util.Log
+import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import retrofit2.await
 
@@ -9,13 +10,31 @@ class AuthImplementation {
     // variable to hold user data in
     companion object {
         var auth: UserAuthData? = null
-        var userApiToken : String? = null
+        var userApiToken: String? = null
     }
 
 
     //Login with no credentials
     fun loginWithNoCredentials() {
         auth = null
+    }
+
+    suspend fun reLogSocialWithGoogleOrFaceBook(
+        name: String?,
+        email: String?,
+        device_token: String?,
+        google_id: String?,
+    ): AuthData? {
+        return try {
+            val response = AuthHandler.singleton.reLogSocialWithGoogleOrFaceBook(name,
+                email,
+                device_token, google_id).await()
+            getAllUserData(response.data!!.apiToken)
+            response.data
+        } catch (e: Throwable) {
+            Log.i("login response", "Login failed : ${e.message}")
+            null
+        }
     }
 
     //Login function using only email and password to deliver them to Api
