@@ -7,5 +7,6 @@ data class GenericEntity<T>(
     val message: String?,
     @Json(name = "error")
     val error: String?,
+    @Json(name = "data")
     val data: T?,
 )

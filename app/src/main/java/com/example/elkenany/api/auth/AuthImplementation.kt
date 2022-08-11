@@ -29,10 +29,12 @@ class AuthImplementation {
             val response = AuthHandler.singleton.reLogSocialWithGoogleOrFaceBook(name,
                 email,
                 device_token, google_id).await()
-            getAllUserData(response.data!!.apiToken)
+            Log.i("login response", "Login ${response.data}")
+            userApiToken = response.data!!.apiToken
+            getAllUserData(response.data.apiToken)
             response.data
         } catch (e: Throwable) {
-            Log.i("login response", "Login failed : ${e.message}")
+            Log.i("login response", "Login with google failed : ${e.message}")
             null
         }
     }
@@ -81,6 +83,7 @@ class AuthImplementation {
     private suspend fun getAllUserData(api_token: String?): UserAuthData? {
         return try {
             val response = AuthHandler.singleton.getUserProfile("Bearer $api_token").await()
+            Log.i("user_data", response.data.toString())
             auth = response.data
             auth
         } catch (e: Throwable) {
