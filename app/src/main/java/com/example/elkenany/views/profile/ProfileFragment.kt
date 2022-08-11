@@ -1,7 +1,6 @@
 package com.example.elkenany.views.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,19 +29,17 @@ class ProfileFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
-        parentNavController = parentFragment!!.parentFragment!!.findNavController()
+        parentNavController = requireParentFragment().requireParentFragment().findNavController()
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         binding.profileLayout.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
         binding.signInBtn.setOnClickListener {
-            Log.i("nav", parentFragment!!.toString())
-            Log.i("nav", parentFragment!!.parentFragment!!.toString())
-            parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            viewModel.signIn()
         }
         binding.signOutBtn.setOnClickListener {
-            parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            viewModel.signOutFromGoogle(requireContext())
         }
         viewModel.userData.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -55,6 +52,11 @@ class ProfileFragment : Fragment() {
                 binding.profileLayout.visibility = View.GONE
                 binding.signInBtn.visibility = View.VISIBLE
 
+            }
+        }
+        viewModel.loggedOut.observe(viewLifecycleOwner) {
+            if (it) {
+                parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
         }
 

@@ -28,20 +28,12 @@ class LoginViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val login: LiveData<Boolean?> get() = _login
 
+    //this function fires to check if there is login instance already from google account
     fun initViewModel(context: Context) {
         uiScope.launch {
-            _loading.value = true
             val account = GoogleSignIn.getLastSignedInAccount(context)
             if (account != null) {
-                try {
-                    signInWithGoogle(null, account.email, "1", account.id)
-                    Log.i("googleData",
-                        account.givenName + account.familyName + " " + account.email + " " + " " + account.id)
-                    Log.i("valve", "success")
-                } catch (e: Exception) {
-                    Log.i("valve", "failed")
-                }
-                _loading.value = false
+                signInWithGoogle(null, account.email, "1", account.id)
             }
         }
     }
@@ -54,20 +46,16 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun signInWithGoogle(
-        name: String?,
-        email: String?,
-        device_token: String?,
-        google_id: String?,
-    ) {
+    //this function fires when the user wants to sign in with google account
+    fun signInWithGoogle(name: String?, email: String?, device_token: String?, google_id: String?) {
         uiScope.launch {
+            _loading.value = true
             try {
                 api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
                 _login.value = true
             } catch (e: Exception) {
                 _login.value = false
             }
-
             Log.i("valve", _login.value.toString())
             _loading.value = false
         }
@@ -93,6 +81,7 @@ class LoginViewModel : ViewModel() {
 
     }
 
+    //this function handles the signin with google results
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
@@ -101,10 +90,8 @@ class LoginViewModel : ViewModel() {
                 "1",
                 "${account.id}")
             Log.i("account", account.toString())
-            _login.value = true
         } catch (e: ApiException) {
             Log.i("googleFailed", e.message.toString())
-            _login.value = false
         }
     }
 }
