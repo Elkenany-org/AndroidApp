@@ -12,12 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.R
-import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config.Companion.gso
 import com.example.elkenany.databinding.FragmentMainMenuBinding
 import com.example.elkenany.viewmodels.MainMenuViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.HomeFragmentDirections
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 
 class MainMenuFragment : Fragment() {
@@ -42,12 +40,8 @@ class MainMenuFragment : Fragment() {
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         binding.signOutBtn.setOnClickListener {
-            val account = GoogleSignIn.getLastSignedInAccount(requireContext())
-            if (account != null) {
-                val gsc = GoogleSignIn.getClient(requireContext(), gso)
-                gsc.signOut()
-            }
-            parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+            viewModel.signOutFromGoogle(requireContext())
+
         }
         binding.dailyStockBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.localStockFragment)
@@ -69,6 +63,11 @@ class MainMenuFragment : Fragment() {
             } else {
                 binding.signInBtn.visibility = View.VISIBLE
                 binding.signOutBtn.visibility = View.GONE
+            }
+        }
+        viewModel.loggedOut.observe(viewLifecycleOwner) {
+            if (it) {
+                parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
             }
         }
 

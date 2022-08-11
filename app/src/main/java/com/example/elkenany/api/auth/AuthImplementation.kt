@@ -1,8 +1,11 @@
 package com.example.elkenany.api.auth
 
+import android.content.Context
 import android.util.Log
+import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.UserAuthData
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import retrofit2.await
 
 @Suppress("unused")
@@ -89,6 +92,14 @@ class AuthImplementation {
         } catch (e: Throwable) {
             Log.i("user_data", "${e.message}")
             auth
+        }
+    }
+
+    fun signOutFromGoogle(context: Context) {
+        val account = GoogleSignIn.getLastSignedInAccount(context)
+        if (account != null) {
+            val gsc = GoogleSignIn.getClient(context, GoogleAuth_Config.gso)
+            gsc.signOut()
         }
     }
 }
