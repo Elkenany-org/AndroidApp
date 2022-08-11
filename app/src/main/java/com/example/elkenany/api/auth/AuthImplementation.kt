@@ -19,6 +19,7 @@ class AuthImplementation {
 
     //Login with no credentials
     fun loginWithNoCredentials() {
+        userApiToken = null
         auth = null
     }
 
