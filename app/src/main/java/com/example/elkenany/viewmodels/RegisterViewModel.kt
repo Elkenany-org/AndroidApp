@@ -17,12 +17,9 @@ class RegisterViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _register = MutableLiveData<Boolean?>(null)
-    private val _signupViaGoogle = MutableLiveData(false)
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
-
     val loading: LiveData<Boolean> get() = _loading
-    val loginViewGoogle: LiveData<Boolean> get() = _signupViaGoogle
     val register: LiveData<Boolean?> get() = _register
 
     fun registerAccount(
@@ -56,7 +53,8 @@ class RegisterViewModel : ViewModel() {
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            signUpWithGoogle(account.givenName+account.familyName, account.email, "1", account.id)
+            signUpWithGoogle(account.givenName + account.familyName, account.email, "1", account.id)
+            Log.i("account", account.id + account.givenName + account.familyName + account.email)
             _register.value = true
         } catch (e: ApiException) {
             Log.i("googleFailed", e.message.toString())

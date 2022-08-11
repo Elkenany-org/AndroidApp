@@ -29,11 +29,20 @@ class LoginViewModel : ViewModel() {
     val login: LiveData<Boolean?> get() = _login
 
     fun initViewModel(context: Context) {
-        val account = GoogleSignIn.getLastSignedInAccount(context)
-        _login.value = if (account != null) {
-            true
-        } else {
-            null
+        uiScope.launch {
+            _loading.value = true
+            val account = GoogleSignIn.getLastSignedInAccount(context)
+            if (account != null) {
+                try {
+                    signInWithGoogle(null, account.email, "1", account.id)
+                    Log.i("googleData",
+                        account.givenName + account.familyName + " " + account.email + " " + " " + account.id)
+                    Log.i("valve", "success")
+                } catch (e: Exception) {
+                    Log.i("valve", "failed")
+                }
+                _loading.value = false
+            }
         }
     }
 
@@ -49,11 +58,17 @@ class LoginViewModel : ViewModel() {
         name: String?,
         email: String?,
         device_token: String?,
-        google_id: String?
+        google_id: String?,
     ) {
         uiScope.launch {
-            _loading.value = true
-            api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+            try {
+                api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+                _login.value = true
+            } catch (e: Exception) {
+                _login.value = false
+            }
+
+            Log.i("valve", _login.value.toString())
             _loading.value = false
         }
     }
@@ -81,10 +96,11 @@ class LoginViewModel : ViewModel() {
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            signInWithGoogle(null,
-                account.email,
+            signInWithGoogle("${account.givenName} + ${account.familyName}",
+                "${account.email}",
                 "1",
-                account.id)
+                "${account.id}")
+            Log.i("account", account.toString())
             _login.value = true
         } catch (e: ApiException) {
             Log.i("googleFailed", e.message.toString())
