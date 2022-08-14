@@ -39,7 +39,7 @@ class NotificationFragment : Fragment() {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
         binding.signInBtn.setOnClickListener {
-            parentFragment!!.parentFragment!!.findNavController()
+            requireParentFragment().requireParentFragment().findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         viewModel.notificationList.observe(viewLifecycleOwner) {

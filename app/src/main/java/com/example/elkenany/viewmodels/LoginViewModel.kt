@@ -48,16 +48,15 @@ class LoginViewModel : ViewModel() {
 
     //this function fires when the user wants to sign in with google account
     fun signInWithGoogle(name: String?, email: String?, device_token: String?, google_id: String?) {
+        _loading.value = true
         uiScope.launch {
-            _loading.value = true
             try {
                 api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
                 _login.value = true
             } catch (e: Exception) {
                 _login.value = false
+                _loading.value = false
             }
-            Log.i("valve", _login.value.toString())
-            _loading.value = false
         }
     }
 
