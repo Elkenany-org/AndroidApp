@@ -95,12 +95,27 @@ class LoginFragment : Fragment() {
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 // ToDo --> implement progressBar to load and remove the signin btn from the fragment
-                binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.signInBtn.visibility = View.GONE
+                binding.apply {
+                    loadingProgressbar.visibility = View.VISIBLE
+                    signInBtn.visibility = View.GONE
+                    emailInput.isEnabled = false
+                    skipBtn.visibility = View.INVISIBLE
+                    googleSigninBtn.isEnabled = false
+                    facebookSigninBtn.isEnabled = false
+                    passwordInput.isEnabled = false
+                }
+
             } else {
                 // ToDo --> implement signin btn  to load and remove progressBar from the fragment
-                binding.loadingProgressbar.visibility = View.GONE
-                binding.signInBtn.visibility = View.VISIBLE
+                binding.apply {
+                    loadingProgressbar.visibility = View.GONE
+                    signInBtn.visibility = View.VISIBLE
+                    skipBtn.visibility = View.VISIBLE
+                    googleSigninBtn.isEnabled = true
+                    facebookSigninBtn.isEnabled = true
+                    emailInput.isEnabled = true
+                    passwordInput.isEnabled = true
+                }
             }
         }
 
