@@ -51,8 +51,14 @@ class LoginViewModel : ViewModel() {
         _loading.value = true
         uiScope.launch {
             try {
-                api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
-                _login.value = true
+                val response =
+                    api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+                if (response != null) {
+                    _login.value = true
+                } else {
+                    _login.value = false
+                    _loading.value = false
+                }
             } catch (e: Exception) {
                 _login.value = false
                 _loading.value = false
