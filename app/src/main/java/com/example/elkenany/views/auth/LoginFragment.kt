@@ -4,6 +4,7 @@ package com.example.elkenany.views.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +18,18 @@ import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config.Companion.gso
 import com.example.elkenany.databinding.FragmentLoginBinding
 import com.example.elkenany.viewmodels.LoginViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 
 
 class LoginFragment : Fragment() {
-
+    private lateinit var facebookCallbackManager: CallbackManager
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LoginViewModel
@@ -39,6 +45,7 @@ class LoginFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         viewModel.initViewModel(requireContext())
+        facebookCallbackManager = CallbackManager.Factory.create()
         binding.lifecycleOwner = viewLifecycleOwner
         // showing app logo inside ImageView
         binding.signInBtn.setOnClickListener {
@@ -67,6 +74,7 @@ class LoginFragment : Fragment() {
         }
         binding.facebookSigninBtn.setOnClickListener {
             //ToDo --> implement viewModel.SignInWithFacebook function here
+            signInWithFaceBook()
         }
         binding.skipBtn.setOnClickListener {
             //navigation to HomeFragment here
@@ -128,9 +136,34 @@ class LoginFragment : Fragment() {
         startActivityForResult(signInIntent, 1000)
     }
 
-    @Suppress("OVERRIDE_DEPRECATION")
+    private fun signInWithFaceBook() {
+        val loginManager = LoginManager.getInstance()
+        loginManager.logInWithReadPermissions(this.requireActivity(), listOf("public_profile"))
+        loginManager.registerCallback(
+            facebookCallbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    Log.i("LoginInformation", "success ${result.accessToken.token}")
+                }
+
+                override fun onCancel() {
+                    Log.i("LoginInformation", "cancel")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.i("LoginInformation", "failure")
+                }
+            })
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+       try {
+           facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
+       }catch (e:Exception){
+           Log.i("LoginInformation", "cancel")
+       }
         if (requestCode == 1000) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             viewModel.handleSignInResult(task)
