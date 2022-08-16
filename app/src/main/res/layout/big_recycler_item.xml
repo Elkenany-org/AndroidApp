@@ -21,11 +21,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_margin="10dp"
+        android:layout_height="140dp"
         android:onClick="@{()-> clickListener.onClick(data)}"
         cardView:cardCornerRadius="10dp"
-        cardView:cardElevation="7dp">
+        cardView:cardElevation="7dp"
+        cardView:cardUseCompatPadding="true">
 
         <ImageView
             android:id="@+id/item_image"

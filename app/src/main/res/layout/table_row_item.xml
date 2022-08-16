@@ -35,176 +35,176 @@
             <TextView
                 android:id="@+id/comp_name"
                 itemText="@{data.name.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/prod_name"
                 itemText="@{data.categorizeName.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/prod_type"
                 itemText="@{data.productType.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/prod_price"
                 itemText="@{data.price.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/change"
                 itemText="@{data.change.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/weight"
                 itemText="@{data.weight.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/status"
                 itemText="@{data.priceStatus.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/age"
                 itemText="@{data.age.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/type"
                 itemText="@{data.productType.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/little_chicken"
                 itemText="@{data.chickType.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/box_weight"
                 itemText="@{data.weightContainer.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center_vertical"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
             <TextView
                 android:id="@+id/prod_change_date"
                 itemText="@{data.changeDate.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
 
             <ImageView
                 android:id="@+id/statistics"
                 imageUrl="@{data.statistics.toString()}"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/statistics_title"
                 itemText="@{data.statistics.toString()}"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:textColor="@color/green"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
         </LinearLayout>

@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".views.home.home_sector.SectorsChoicesFragment"
-        android:padding="10sp">
+        android:padding="10sp"
+        tools:context=".views.home.home_sector.SectorsChoicesFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <TextView
@@ -28,6 +28,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/title_bar"
             android:layout_centerInParent="true">
 
             <LinearLayout

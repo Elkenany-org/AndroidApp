@@ -3,11 +3,19 @@
 package com.example.elkenany.viewmodels
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.elkenany.api.auth.AuthImplementation
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.GraphRequest
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
@@ -16,6 +24,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import org.json.JSONException
 
 
 class LoginViewModel : ViewModel() {
@@ -33,7 +42,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             val account = GoogleSignIn.getLastSignedInAccount(context)
             if (account != null) {
-                signInWithGoogle(null, account.email, "1", account.id)
+                signInSocial(null, account.email, "1", account.id)
             }
         }
     }
@@ -47,7 +56,7 @@ class LoginViewModel : ViewModel() {
     }
 
     //this function fires when the user wants to sign in with google account
-    fun signInWithGoogle(name: String?, email: String?, device_token: String?, google_id: String?) {
+    fun signInSocial(name: String?, email: String?, device_token: String?, google_id: String?) {
         _loading.value = true
         uiScope.launch {
             try {
@@ -86,11 +95,51 @@ class LoginViewModel : ViewModel() {
 
     }
 
+    fun signInWithFaceBook(fragment: Fragment, facebookCallbackManager: CallbackManager) {
+        val loginManager = LoginManager.getInstance()
+        loginManager.logInWithReadPermissions(fragment,
+            listOf("public_profile"))
+        LoginManager.getInstance().registerCallback(
+            facebookCallbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    val accessToken = result.accessToken
+                    Log.i("LoginInformation", "success $accessToken")
+                    val request = GraphRequest.newMeRequest(
+                        accessToken
+                    ) { obj, response ->
+                        try {
+                            signInSocial(obj!!.getString("name"),
+                                obj.getString("name")+obj.getString("id"),
+                                "1",
+                                obj.getString("id"))
+                        } catch (e: JSONException) {
+                            Log.i("LoginInformation", "failed : ${e.message.toString()}")
+                        }
+
+                    }
+                    val parameters = Bundle()
+                    parameters.putString("fields", "id,birthday,first_name,gender,last_name,name");
+                    request.parameters = parameters
+                    request.executeAsync()
+                }
+
+                override fun onCancel() {
+                    Log.i("LoginInformation", "cancel")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.i("LoginInformation", "failure")
+                }
+            })
+
+    }
+
     //this function handles the signin with google results
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            signInWithGoogle("${account.givenName} + ${account.familyName}",
+            signInSocial("${account.givenName} + ${account.familyName}",
                 "${account.email}",
                 "1",
                 "${account.id}")

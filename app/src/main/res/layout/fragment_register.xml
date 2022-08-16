@@ -31,7 +31,7 @@
 
             <ImageView
                 android:layout_width="248dp"
-                android:layout_height="141dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 android:src="@drawable/register_logo"
@@ -42,14 +42,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="47dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 app:cardCornerRadius="7dp">
 
                 <EditText
                     android:id="@+id/name_input"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/primary_edit_text_shape"
                     android:fontFamily="@font/cairo_bold"
                     android:hint="@string/name_title"
@@ -72,7 +72,7 @@
                 <EditText
                     android:id="@+id/email_input"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/primary_edit_text_shape"
                     android:fontFamily="@font/cairo_bold"
                     android:hint="@string/email_title"
@@ -95,7 +95,7 @@
                 <EditText
                     android:id="@+id/phone_input"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/primary_edit_text_shape"
                     android:fontFamily="@font/cairo_bold"
                     android:hint="@string/phone_title"
@@ -118,7 +118,7 @@
                 <EditText
                     android:id="@+id/password_input"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/primary_edit_text_shape"
                     android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
                     android:fontFamily="@font/cairo_bold"
@@ -142,7 +142,7 @@
                 <EditText
                     android:id="@+id/confirm_password_input"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/primary_edit_text_shape"
                     android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
                     android:fontFamily="@font/cairo_bold"
@@ -157,13 +157,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/sign_up_btn"
                 android:layout_width="195dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_btn_shape"
                 android:fontFamily="@font/cairo_black"
                 android:text="@string/sign_in_title"
-                android:textColor="@color/green" />
+                android:textColor="@color/green"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <ProgressBar
                 android:id="@+id/loading_progressbar"
@@ -216,7 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/cairo_bold"
                 android:text="@string/have_account_title"
                 android:textColor="@color/green"

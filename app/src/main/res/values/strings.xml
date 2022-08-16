@@ -2,6 +2,12 @@
     <string name="app_name">ElKenany</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
+
+    <string name="facebook_app_id">1504415433364556</string>
+    <string name="fb_login_protocol_scheme">fb1504415433364556</string>
+    <string name="facebook_client_token">cc276f411e34741ad80d2fe6ebaf9433</string>
+
+
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>

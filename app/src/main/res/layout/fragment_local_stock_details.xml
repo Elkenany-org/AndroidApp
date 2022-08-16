@@ -94,7 +94,7 @@
 
                     <EditText
                         android:id="@+id/search_bar"
-                        android:layout_width="150dp"
+                        android:layout_width="115dp"
                         android:layout_height="match_parent"
                         android:layout_below="@id/app_bar_title"
                         android:layout_centerHorizontal="true"
@@ -127,15 +127,14 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="3sp"
                 android:id="@+id/stock_data_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3sp"
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:ignore="SpeakableTextPresentCheck"
                 tools:listitem="@layout/table_row_item" />
         </LinearLayout>
     </RelativeLayout>
