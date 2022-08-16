@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.elkenany.databinding.ActivityMainBinding
 import com.facebook.FacebookSdk
+import com.facebook.LoggingBehavior
 import com.facebook.appevents.AppEventsLogger
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        FacebookSdk.sdkInitialize(binding.root.context)
+        FacebookSdk.fullyInitialize()
+        FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
         AppEventsLogger.activateApp(this.application)
 
 

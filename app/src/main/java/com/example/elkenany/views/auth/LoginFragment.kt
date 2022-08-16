@@ -19,10 +19,6 @@ import com.example.elkenany.databinding.FragmentLoginBinding
 import com.example.elkenany.viewmodels.LoginViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
@@ -74,7 +70,7 @@ class LoginFragment : Fragment() {
         }
         binding.facebookSigninBtn.setOnClickListener {
             //ToDo --> implement viewModel.SignInWithFacebook function here
-            signInWithFaceBook()
+            viewModel.signInWithFaceBook(this, facebookCallbackManager)
         }
         binding.skipBtn.setOnClickListener {
             //navigation to HomeFragment here
@@ -136,34 +132,15 @@ class LoginFragment : Fragment() {
         startActivityForResult(signInIntent, 1000)
     }
 
-    private fun signInWithFaceBook() {
-        val loginManager = LoginManager.getInstance()
-        loginManager.logInWithReadPermissions(this.requireActivity(), listOf("public_profile"))
-        loginManager.registerCallback(
-            facebookCallbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(result: LoginResult) {
-                    Log.i("LoginInformation", "success ${result.accessToken.token}")
-                }
 
-                override fun onCancel() {
-                    Log.i("LoginInformation", "cancel")
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.i("LoginInformation", "failure")
-                }
-            })
-
-    }
-
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-       try {
-           facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
-       }catch (e:Exception){
-           Log.i("LoginInformation", "cancel")
-       }
+        try {
+            facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
+        } catch (e: Exception) {
+            Log.i("LoginInformation", "cancel")
+        }
         if (requestCode == 1000) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             viewModel.handleSignInResult(task)

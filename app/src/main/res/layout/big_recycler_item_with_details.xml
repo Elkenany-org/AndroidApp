@@ -30,10 +30,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_margin="5dp"
+        android:layout_height="140dp"
         android:layoutDirection="rtl"
         android:onClick="@{()-> clickListener.onClick(data)}"
+        app:cardUseCompatPadding="true"
         cardView:cardCornerRadius="10dp"
         cardView:cardElevation="7dp">
 
