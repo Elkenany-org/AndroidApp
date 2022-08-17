@@ -1,7 +1,9 @@
 package com.example.elkenany.api.guide
 
 import android.util.Log
+import com.example.elkenany.api.auth.AuthImplementation.Companion.userApiToken
 import com.example.elkenany.entities.guide.CompaniesData
+import com.example.elkenany.entities.guide.CompanyDetailsData
 import com.example.elkenany.entities.guide.GuideData
 import retrofit2.await
 
@@ -27,6 +29,17 @@ class IGuideImplementation {
             Log.i("throwable", e.message.toString())
             null
 
+        }
+    }
+
+    suspend fun getCompanyData(id: Long): CompanyDetailsData? {
+        return try {
+            val response =
+                IGuideHandler.singleton.getCompanyData(id, "Bearer $userApiToken").await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
         }
     }
 }

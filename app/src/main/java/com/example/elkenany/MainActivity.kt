@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         FacebookSdk.fullyInitialize()
         FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
         AppEventsLogger.activateApp(this.application)
-
-
     }
 
 }
