@@ -54,7 +54,7 @@ class LocalStockDetailsFragment : Fragment() {
 
         localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener { })
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
-        viewModel.getLocalStockDetailsData(args.id, "")
+        viewModel.getLocalStockDetailsData(args.id, "",args.sectorType.toString())
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.stockDataRecyclerView.visibility = View.GONE

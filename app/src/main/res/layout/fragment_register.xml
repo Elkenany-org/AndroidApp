@@ -26,6 +26,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/cairo_regular"
                 android:text="@string/create_account_title"
+                android:gravity="center_horizontal"
                 android:textColor="@color/green"
                 android:textSize="22sp" />
 

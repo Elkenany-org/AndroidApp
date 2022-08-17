@@ -32,12 +32,21 @@ interface IAuth {
     fun getUserProfile(@Header("Authorization") api_token: String?): Call<GenericEntity<UserAuthData?>>
 
     @FormUrlEncoded
-    @POST("reg-log-social")
-    fun reLogSocialWithGoogleOrFaceBook(
+    @POST("reg-log-google")
+    fun reLogSocialWithGoogle(
         @Field("name") name: String?,
         @Field("email") email: String?,
         @Field("device_token") device_token: String?,
         @Field("google_id") google_id: String?,
+    ): Call<GenericEntity<AuthData?>>
+
+    @FormUrlEncoded
+    @POST("reg-log-facebook")
+    fun reLogSocialWithFacebook(
+        @Field("name") name: String?,
+        @Field("email") email: String?,
+        @Field("device_token") device_token: String?,
+        @Field("facebook_id") facebookId: String?,
     ): Call<GenericEntity<AuthData?>>
 
 }

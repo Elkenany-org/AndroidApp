@@ -34,6 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/cairo_bold"
+            android:gravity="center_horizontal"
             android:text="@string/news_title"
             android:textColor="@color/green"
             android:textSize="20sp" />

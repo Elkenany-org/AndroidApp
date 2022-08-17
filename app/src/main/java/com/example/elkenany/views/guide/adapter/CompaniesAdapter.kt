@@ -3,7 +3,6 @@ package com.example.elkenany.views.guide.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.res.colorResource
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +42,13 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
             binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.orange))
             binding.companyRate.apply {
                 visibility = View.GONE
+            }
+        } else {
+            binding.cardView.setCardBackgroundColor(binding.root.context.getColor(R.color.white))
+            binding.companyName.setTextColor(binding.root.context.getColor(R.color.green))
+            binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.green))
+            binding.companyRate.apply {
+                visibility = View.VISIBLE
             }
         }
         binding.name = company.name

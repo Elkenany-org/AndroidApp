@@ -27,8 +27,10 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-        binding.bottomNavigation.setupWithNavController(childFragmentManager.findFragmentById(R.id.container)!!
-            .findNavController())
+        binding.bottomNavigation.apply {
+            setupWithNavController(childFragmentManager.findFragmentById(R.id.container)!!
+                .findNavController())
+        }
         return binding.root
     }
 

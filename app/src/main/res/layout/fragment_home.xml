@@ -31,7 +31,8 @@
             android:layoutDirection="rtl"
             app:itemIconTint="@color/green"
             app:itemTextColor="@color/green"
-            app:menu="@menu/bottom_nav_bar_menu" />
+            app:menu="@menu/bottom_nav_bar_menu"
+            />
 
     </RelativeLayout>
 </layout>

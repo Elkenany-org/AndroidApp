@@ -23,16 +23,35 @@ class AuthImplementation {
         auth = null
     }
 
-    suspend fun reLogSocialWithGoogleOrFaceBook(
+    suspend fun reLogSocialWithGoogle(
         name: String?,
         email: String?,
         device_token: String?,
         google_id: String?,
     ): AuthData? {
         return try {
-            val response = AuthHandler.singleton.reLogSocialWithGoogleOrFaceBook(name,
+            val response = AuthHandler.singleton.reLogSocialWithGoogle(name,
                 email,
                 device_token, google_id).await()
+            Log.i("login response", "Login ${response.data}")
+            userApiToken = response.data!!.apiToken
+            getAllUserData(response.data.apiToken)
+            response.data
+        } catch (e: Throwable) {
+            Log.i("login response", "Login with google failed : ${e.message}")
+            null
+        }
+    }
+    suspend fun reLogSocialWithFaceBook(
+        name: String?,
+        email: String?,
+        device_token: String?,
+        facebook_id: String?,
+    ): AuthData? {
+        return try {
+            val response = AuthHandler.singleton.reLogSocialWithFacebook(name,
+                email,
+                device_token, facebook_id).await()
             Log.i("login response", "Login ${response.data}")
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
