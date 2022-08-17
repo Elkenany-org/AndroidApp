@@ -29,6 +29,14 @@ class AdDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
         viewModel.getAdDetailsData(args.id)
+        //I dont know how or why but this makes all the data recieved to be presented
+        //Otherwise it wont work
+        binding.apply {
+            phone = args.id.toString()
+            location = args.id.toString()
+            image = args.id.toString()
+            description = args.id.toString()
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.adsLayout.visibility = View.GONE
@@ -39,12 +47,24 @@ class AdDetailsFragment : Fragment() {
         }
         viewModel.adDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.adsLayout.visibility = View.VISIBLE
-                binding.errorMessage.visibility = View.GONE
-                binding.data = it
+                binding.apply {
+                    adsLayout.visibility = View.VISIBLE
+                    errorMessage.visibility = View.GONE
+                    phone = it.phone
+                    location = it.address
+                    image = if (it.images.isEmpty()) {
+                        null
+                    } else {
+                        it.images[0]!!.image
+                    }
+                    description = it.desc
+                }
+
             } else {
-                binding.adsLayout.visibility = View.GONE
-                binding.errorMessage.visibility = View.VISIBLE
+                binding.apply {
+                    adsLayout.visibility = View.GONE
+                    errorMessage.visibility = View.VISIBLE
+                }
             }
         }
         return binding.root

@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -41,7 +42,12 @@ class GuideCompaniesFragment : Fragment() {
             search = it.toString()
             viewModel.getCompaniesGuideData(args.id, search)
         }
-        companiesAdapter = CompaniesAdapter(ClickListener { })
+        companiesAdapter = CompaniesAdapter(ClickListener {
+            requireView().findNavController().navigate(
+                GuideCompaniesFragmentDirections.actionGuideCompaniesFragmentToCompanyFragment(it.id!!,
+                    it.name!!)
+            )
+        })
         binding.companyListRecyclerView.apply {
             adapter = companiesAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)

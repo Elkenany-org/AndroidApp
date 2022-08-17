@@ -200,7 +200,7 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
-     <fragment
+    <fragment
         android:id="@+id/guideCompaniesFragment"
         android:name="com.example.elkenany.views.guide.GuideCompaniesFragment"
         android:label="GuideCompaniesFragment"
@@ -216,6 +216,9 @@
             android:name="sector"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_guideCompaniesFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
@@ -230,5 +233,17 @@
         <argument
             android:name="id"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyFragment"
+        android:name="com.example.elkenany.views.guide.CompanyFragment"
+        android:label="CompanyFragment"
+        tools:layout="@layout/fragment_company" >
+        <argument
+            android:name="company_id"
+            app:argType="long" />
+        <argument
+            android:name="company_name"
+            app:argType="string" />
     </fragment>
 </navigation>

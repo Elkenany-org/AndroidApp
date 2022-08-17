@@ -10,6 +10,8 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/google_btn_shape.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_book_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.316" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.232" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_fax_24.xml" value="0.232" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_help_outline_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_local_convenience_store_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_local_library_24.xml" value="0.287" />
@@ -17,6 +19,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.269" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.269" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.232" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.269" />
@@ -44,8 +47,9 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/content_main.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_ad_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_advertisment_details.xml" value="0.29200513039760584" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_company.xml" value="0.35789473684210527" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide.xml" value="0.29200513039760584" />
-        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide_companies.xml" value="0.29200513039760584" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide_companies.xml" value="0.18" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home_sector.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home_service.xml" value="0.2804617357845233" />
