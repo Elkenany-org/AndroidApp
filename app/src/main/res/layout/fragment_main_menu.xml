@@ -82,9 +82,10 @@
                         android:layout_gravity="start"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/cairo_bold"
+                        android:maxLines="1"
                         android:padding="5dp"
                         android:textColor="@color/green"
-                        android:textDirection="ltr"
+                        android:textDirection="rtl"
                         android:textSize="14sp"
                         tools:ignore="Autofill,TextFields" />
 
@@ -97,9 +98,9 @@
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/cairo_bold"
                         android:padding="5dp"
+                        android:singleLine="true"
                         android:textColor="@color/green"
-
-                        android:textDirection="ltr"
+                        android:textDirection="rtl"
                         android:textSize="14sp"
                         tools:ignore="Autofill,TextFields" />
                 </LinearLayout>

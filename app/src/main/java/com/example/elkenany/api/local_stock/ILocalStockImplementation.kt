@@ -18,10 +18,18 @@ class ILocalStockImplementation {
         }
     }
 
-    suspend fun getLocalStockDetailsByIdAndType(id: Long, date: String?): LocalStockDetailsData? {
+    suspend fun getLocalStockDetailsByIdAndType(
+        id: Long,
+        date: String?,
+        type: String,
+    ): LocalStockDetailsData? {
+        Log.i("sectionType", type)
         return try {
-            val response =
-                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndType(id, date).await()
+            val response = if (type == "local") {
+                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeLocal(id, date).await()
+            } else {
+                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeFodder(id, date).await()
+            }
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

@@ -45,7 +45,7 @@ class RegisterViewModel : ViewModel() {
     ) {
         uiScope.launch {
             _loading.value = true
-            api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+            api.reLogSocialWithGoogle(name, email, device_token, google_id)
             _loading.value = false
         }
     }

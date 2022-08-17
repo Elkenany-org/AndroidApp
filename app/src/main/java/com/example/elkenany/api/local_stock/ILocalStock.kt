@@ -13,7 +13,13 @@ interface ILocalStock {
     fun getLocalStockSectionsData(@Query("type") type: String): Call<GenericEntity<LocalStockData?>>
 
     @GET("v2/local-android/tables")
-    fun getLocalStockDetailsByIdAndType(
+    fun getLocalStockDetailsByIdAndTypeLocal(
+        @Query("id") id: Long,
+        @Query("date") date: String?,
+    ): Call<GenericEntity<LocalStockDetailsData?>>
+
+    @GET("v2/fodder-android/tables")
+    fun getLocalStockDetailsByIdAndTypeFodder(
         @Query("id") id: Long,
         @Query("date") date: String?,
     ): Call<GenericEntity<LocalStockDetailsData?>>

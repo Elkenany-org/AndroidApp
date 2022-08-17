@@ -42,7 +42,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             val account = GoogleSignIn.getLastSignedInAccount(context)
             if (account != null) {
-                signInSocial(null, account.email, "1", account.id)
+                signInGoogle(null, account.email, "1", account.id)
             }
         }
     }
@@ -56,12 +56,12 @@ class LoginViewModel : ViewModel() {
     }
 
     //this function fires when the user wants to sign in with google account
-    fun signInSocial(name: String?, email: String?, device_token: String?, google_id: String?) {
+    fun signInGoogle(name: String?, email: String?, device_token: String?, google_id: String?) {
         _loading.value = true
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithGoogleOrFaceBook(name, email, device_token, google_id)
+                    api.reLogSocialWithGoogle(name, email, device_token, google_id)
                 if (response != null) {
                     _login.value = true
                 } else {
@@ -75,9 +75,24 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-//    fun signInWithFacebook() {
-//        // ToDo --> implement signin with facebook provider
-//    }
+    fun signInFacebook(name: String?, email: String?, device_token: String?, facebook_id: String?) {
+        _loading.value = true
+        uiScope.launch {
+            try {
+                val response =
+                    api.reLogSocialWithFaceBook(name, email, device_token, facebook_id)
+                if (response != null) {
+                    _login.value = true
+                } else {
+                    _login.value = false
+                    _loading.value = false
+                }
+            } catch (e: Exception) {
+                _login.value = false
+                _loading.value = false
+            }
+        }
+    }
 
     fun signInWithGuestAccount() {
         _login.value = true
@@ -95,6 +110,7 @@ class LoginViewModel : ViewModel() {
 
     }
 
+    @Suppress("DEPRECATION")
     fun signInWithFaceBook(fragment: Fragment, facebookCallbackManager: CallbackManager) {
         val loginManager = LoginManager.getInstance()
         loginManager.logInWithReadPermissions(fragment,
@@ -107,10 +123,10 @@ class LoginViewModel : ViewModel() {
                     Log.i("LoginInformation", "success $accessToken")
                     val request = GraphRequest.newMeRequest(
                         accessToken
-                    ) { obj, response ->
+                    ) { obj, _ ->
                         try {
-                            signInSocial(obj!!.getString("name"),
-                                obj.getString("name")+obj.getString("id"),
+                            signInFacebook(obj!!.getString("name"),
+                                obj.getString("name") + obj.getString("id"),
                                 "1",
                                 obj.getString("id"))
                         } catch (e: JSONException) {
@@ -119,7 +135,7 @@ class LoginViewModel : ViewModel() {
 
                     }
                     val parameters = Bundle()
-                    parameters.putString("fields", "id,birthday,first_name,gender,last_name,name");
+                    parameters.putString("fields", "id,birthday,first_name,gender,last_name,name")
                     request.parameters = parameters
                     request.executeAsync()
                 }
@@ -139,7 +155,7 @@ class LoginViewModel : ViewModel() {
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            signInSocial("${account.givenName} + ${account.familyName}",
+            signInGoogle("${account.givenName} + ${account.familyName}",
                 "${account.email}",
                 "1",
                 "${account.id}")

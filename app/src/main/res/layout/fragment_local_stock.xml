@@ -19,6 +19,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/cairo_bold"
+            android:gravity="center_horizontal"
             android:text="@string/daily_stock_title"
             android:textColor="@color/green"
             android:textSize="20sp" />
@@ -42,61 +43,61 @@
             android:visibility="gone" />
 
 
-            <LinearLayout
-                android:layout_below="@id/app_bar_title"
-                android:id="@+id/stock_page_layout"
+        <LinearLayout
+            android:id="@+id/stock_page_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_bar_title"
+            android:orientation="vertical"
+            android:padding="5dp"
+            tools:context=".views.local_stock.LocalStockFragment"
+            tools:ignore="UselessParent">
+
+            <!-- TODO: Update blank fragment layout -->
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/banners_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="5dp"
-                tools:context=".views.local_stock.LocalStockFragment"
-                tools:ignore="UselessParent">
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:listitem="@layout/big_recycler_item" />
 
-                <!-- TODO: Update blank fragment layout -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/logos_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/small_recycler_item" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sectors_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/sector_item" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/banners_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:ignore="SpeakableTextPresentCheck"
-                    tools:listitem="@layout/big_recycler_item" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                tools:ignore="UselessLeaf" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/logos_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/small_recycler_item" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stock_list_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/big_recycler_item_with_details" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sectors_recycler_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layoutDirection="rtl"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/sector_item" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    tools:ignore="UselessLeaf" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/stock_list_recycler_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/big_recycler_item_with_details" />
-
-            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 </layout>
