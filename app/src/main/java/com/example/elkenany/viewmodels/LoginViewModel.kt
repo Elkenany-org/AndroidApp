@@ -114,7 +114,7 @@ class LoginViewModel : ViewModel() {
     fun signInWithFaceBook(fragment: Fragment, facebookCallbackManager: CallbackManager) {
         val loginManager = LoginManager.getInstance()
         loginManager.logInWithReadPermissions(fragment,
-            listOf("public_profile"))
+            listOf("public_profile", "email"))
         LoginManager.getInstance().registerCallback(
             facebookCallbackManager,
             object : FacebookCallback<LoginResult> {
@@ -126,7 +126,7 @@ class LoginViewModel : ViewModel() {
                     ) { obj, _ ->
                         try {
                             signInFacebook(obj!!.getString("name"),
-                                obj.getString("name") + obj.getString("id"),
+                                obj.getString("email"),
                                 "1",
                                 obj.getString("id"))
                         } catch (e: JSONException) {
@@ -135,7 +135,8 @@ class LoginViewModel : ViewModel() {
 
                     }
                     val parameters = Bundle()
-                    parameters.putString("fields", "id,birthday,first_name,gender,last_name,name")
+                    parameters.putString("fields",
+                        "id,birthday,first_name,gender,last_name,name,email")
                     request.parameters = parameters
                     request.executeAsync()
                 }

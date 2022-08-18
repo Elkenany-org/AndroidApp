@@ -31,12 +31,6 @@ class AdDetailsFragment : Fragment() {
         viewModel.getAdDetailsData(args.id)
         //I dont know how or why but this makes all the data recieved to be presented
         //Otherwise it wont work
-        binding.apply {
-            phone = args.id.toString()
-            location = args.id.toString()
-            image = args.id.toString()
-            description = args.id.toString()
-        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.adsLayout.visibility = View.GONE
@@ -50,14 +44,7 @@ class AdDetailsFragment : Fragment() {
                 binding.apply {
                     adsLayout.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
-                    phone = it.phone
-                    location = it.address
-                    image = if (it.images.isEmpty()) {
-                        null
-                    } else {
-                        it.images[0]!!.image
-                    }
-                    description = it.desc
+                    data = it
                 }
 
             } else {

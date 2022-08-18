@@ -1,8 +1,6 @@
 package com.example.elkenany.views.local_stock.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -42,13 +40,17 @@ class ColumnsDataViewHolder private constructor(private val binding: TableRowIte
         } else {
             binding.cardView.setCardBackgroundColor(itemView.context.getColor(R.color.white))
         }
-            if (columnsData.statistics == "إتجاه السعر") {
-                binding.statistics.visibility = View.GONE
-                binding.statisticsTitle.visibility = View.VISIBLE
-            } else {
-                binding.statistics.visibility = View.VISIBLE
-                binding.statisticsTitle.visibility = View.GONE
+        if (!columnsData.statistics!!.startsWith("h")) {
+            binding.apply {
+                title = columnsData.statistics
+                image = null
             }
+        } else {
+            binding.apply {
+                title = null
+                image = columnsData.statistics
+            }
+        }
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }

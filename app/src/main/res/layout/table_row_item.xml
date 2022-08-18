@@ -9,6 +9,13 @@
             name="data"
             type="com.example.elkenany.entities.stock_data.ColumnsData" />
 
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="image"
+            type="String" />
 
         <variable
             name="clickListener"
@@ -20,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="7dp"
-        app:cardCornerRadius="7dp"
         android:onClick="@{()-> clickListener.onClick(data)}"
+        app:cardCornerRadius="7dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -31,6 +38,11 @@
             android:layoutDirection="rtl"
             android:orientation="horizontal"
             android:padding="2dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/comp_name"
@@ -45,6 +57,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/prod_name"
                 itemText="@{data.categorizeName.toString()}"
@@ -57,6 +74,11 @@
                 android:textColor="@color/green"
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/prod_type"
@@ -71,6 +93,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/prod_price"
                 itemText="@{data.price.toString()}"
@@ -83,6 +110,11 @@
                 android:textColor="@color/green"
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/change"
@@ -97,6 +129,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/weight"
                 itemText="@{data.weight.toString()}"
@@ -109,6 +146,11 @@
                 android:textColor="@color/green"
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/status"
@@ -123,6 +165,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/age"
                 itemText="@{data.age.toString()}"
@@ -135,6 +182,11 @@
                 android:textColor="@color/green"
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/type"
@@ -149,6 +201,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/little_chicken"
                 itemText="@{data.chickType.toString()}"
@@ -161,6 +218,11 @@
                 android:textColor="@color/green"
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/box_weight"
@@ -175,6 +237,11 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/prod_change_date"
                 itemText="@{data.changeDate.toString()}"
@@ -188,17 +255,26 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/statistics"
-                imageUrl="@{data.statistics.toString()}"
+                imageUrl="@{image}"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 tools:ignore="ContentDescription" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/statistics_title"
-                itemText="@{data.statistics.toString()}"
+                itemText="@{title}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -207,6 +283,10 @@
                 android:textSize="10sp"
                 tools:ignore=",SmallSp" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>
