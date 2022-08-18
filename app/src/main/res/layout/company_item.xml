@@ -102,46 +102,49 @@
                     card_view:drawableEndCompat="@drawable/ic_baseline_location_on_24"
                     tools:ignore="SmallSp" />
 
-                <RatingBar
-                    android:id="@+id/company_rate"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/company_location"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="5dp"
-                    android:clickable="false"
-                    android:layoutDirection="ltr"
-                    android:numStars="5"
-                    android:paddingTop="5dp"
-                    android:progressTint="@color/orange"
-                    android:textColor="@color/green" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/company_location">
 
-                <TextView
-                    android:id="@+id/more_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/company_location"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/primary_btn_shape"
-                    android:fontFamily="@font/cairo_regular"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:padding="3sp"
-                    android:text="@string/know_more_title"
-                    android:textColor="@color/green"
-                    android:textSize="10sp"
-                    tools:ignore="SmallSp" />
+                    <RatingBar
+                        android:id="@+id/company_rate"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:clickable="false"
+                        android:layoutDirection="ltr"
+                        android:numStars="5"
+                        android:progressTint="@color/orange"
+                        android:textColor="@color/green" />
 
+                    <TextView
+                        android:id="@+id/more_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/primary_btn_shape"
+                        android:fontFamily="@font/cairo_bold"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingStart="6dp"
+                        android:paddingTop="5sp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="5sp"
+                        android:text="@string/know_more_title"
+                        android:textColor="@color/green"
+                        android:textSize="9sp"
+                        tools:ignore="RelativeOverlap,SmallSp" />
 
+                </RelativeLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

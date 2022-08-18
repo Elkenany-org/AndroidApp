@@ -29,23 +29,6 @@ class CompanyFragment : Fragment() {
         viewmodel = ViewModelProvider(this, viewModelFactory)[CompanyViewModel::class.java]
         binding.appBarTitle.text = args.companyName
         viewmodel.getCompaniesGuideData(args.companyId)
-
-
-        //I dont know how or why but this makes all the data recieved to be presented
-        //Otherwise it wont work
-        binding.apply {
-            ratingBar.rating = args.companyId.toFloat()
-            rateCount = args.companyId.toString()
-            ratePer = args.companyId.toString()
-            companyImage = args.companyId.toString()
-            companyEmail = args.companyId.toString()
-            companyFax = args.companyId.toString()
-            companyLocation = args.companyId.toString()
-            companyPhone = args.companyId.toString()
-            companyShortDescription = args.companyId.toString()
-        }
-
-
         viewmodel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
@@ -60,21 +43,8 @@ class CompanyFragment : Fragment() {
                 binding.adsLayout.visibility = View.VISIBLE
                 binding.apply {
                     ratingBar.rating = it.rate!!.toFloat()
-                    rateCount = it.countRate.toString()
-                    ratePer = it.rate.toString()
-                    companyImage = it.image
-                    companyEmail = if (it.emails.isEmpty()) {
-                        null
-                    } else {
-                        it.emails[0]!!.email.toString()
-                    }
-                    companyLocation = it.address
-                    companyShortDescription = it.shortDesc
-                    companyFax = if (it.faxs.isEmpty()) {
-                        null
-                    } else {
-                        it.faxs[0]!!.name.toString()
-                    }
+                    rateUsers = "( ${it.countRate.toString()} )"
+                    data = it
                 }
             } else {
                 binding.adsLayout.visibility = View.GONE
