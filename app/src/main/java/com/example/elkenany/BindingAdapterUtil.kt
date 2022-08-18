@@ -11,6 +11,7 @@ fun ImageView.loadImage(url: String?) {
     if (url.isNullOrEmpty()) {
         this.visibility = View.GONE
     } else {
+        this.visibility = View.VISIBLE
         Glide.with(this)
             .load(url)
 //            .optionalCenterCrop()
@@ -23,6 +24,7 @@ fun TextView.writeText(text: String?) {
     if (text.isNullOrEmpty()) {
         this.visibility = View.GONE
     } else {
+        this.visibility = View.VISIBLE
         this.text = text
     }
 }
