@@ -1,5 +1,6 @@
 package com.example.elkenany.views.news
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class NewsDetailsFragment : Fragment() {
     private lateinit var moreNewsAdapter: NewsDaumAdapter
     private val args: NewsDetailsFragmentArgs by navArgs()
 
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -35,9 +37,6 @@ class NewsDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
         viewModel.getAllNewsData(args.id)
-        binding.newsDate = args.id.toString()
-        binding.mainTitle = args.id.toString()
-        binding.newsImage = args.id.toString()
         binding.webView.settings.apply {
             javaScriptEnabled = true
             javaScriptCanOpenWindowsAutomatically = true

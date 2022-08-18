@@ -8,38 +8,10 @@
         <variable
             name="data"
             type="com.example.elkenany.entities.guide.CompanyDetailsData" />
-
         <variable
-            name="companyImage"
+            name="rateUsers"
             type="String" />
 
-        <variable
-            name="companyShortDescription"
-            type="String" />
-
-        <variable
-            name="companyEmail"
-            type="String" />
-
-        <variable
-            name="companyPhone"
-            type="String" />
-
-        <variable
-            name="companyLocation"
-            type="String" />
-
-        <variable
-            name="companyFax"
-            type="String" />
-
-        <variable
-            name="ratePer"
-            type="String" />
-
-        <variable
-            name="rateCount"
-            type="String" />
     </data>
 
     <RelativeLayout
@@ -97,7 +69,7 @@
 
                     <ImageView
                         android:id="@+id/ad_image"
-                        imageUrl="@{companyImage}"
+                        imageUrl="@{data.image}"
                         android:layout_width="250dp"
                         android:layout_height="250dp"
                         android:layout_margin="5dp"
@@ -125,7 +97,7 @@
 
                         <TextView
                             android:id="@+id/description"
-                            itemText="@{companyShortDescription}"
+                            itemText="@{data.shortDesc}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -146,34 +118,33 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:layout_marginTop="5dp"
                                 android:layout_marginEnd="7dp"
-                                android:layout_marginBottom="5dp"
                                 android:clickable="false"
                                 android:layoutDirection="ltr"
                                 android:numStars="5"
-                                android:paddingTop="5dp"
                                 android:progressTint="@color/orange"
                                 android:textColor="@color/green" />
 
                             <TextView
                                 android:id="@+id/rating_per"
-                                itemText="@{ratePer}"
+                                itemText="@{data.rate.toString()}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:fontFamily="@font/cairo_bold"
+                                android:gravity="center"
                                 android:textColor="@color/green"
                                 android:textSize="12sp"
                                 tools:ignore="HardcodedText,SmallSp" />
 
                             <TextView
                                 android:id="@+id/rating_num"
-                                itemText="@{rateCount}"
+                                itemText="@{rateUsers}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="5dp"
                                 android:fontFamily="@font/cairo_bold"
+                                android:gravity="center"
                                 android:textColor="@color/green"
                                 android:textSize="12sp"
                                 tools:ignore="HardcodedText,SmallSp" />
@@ -212,7 +183,7 @@
 
                         <TextView
                             android:id="@+id/mail"
-                            itemText="@{companyEmail}"
+                            itemText="@{data.emails[0].email}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -240,7 +211,7 @@
 
                         <TextView
                             android:id="@+id/location"
-                            itemText="@{companyLocation}"
+                            itemText="@{data.address}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
@@ -254,7 +225,7 @@
 
                         <TextView
                             android:id="@+id/fax"
-                            itemText="@{companyFax}"
+                            itemText="@{data.faxs[0].name}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"

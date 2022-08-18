@@ -63,14 +63,39 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="5dp">
 
-                    <ImageView
-                        android:id="@+id/ad_image"
-                        imageUrl="@{data.images[0].image}"
+                    <RelativeLayout
                         android:layout_width="250dp"
                         android:layout_height="250dp"
-                        android:layout_margin="5dp"
-                        android:scaleType="fitXY"
-                        tools:ignore="ContentDescription" />
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/ad_image"
+                            imageUrl="@{data.images[0].image}"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            app:cardBackgroundColor="@color/orange">
+
+                            <TextView
+                                android:id="@+id/product_price"
+                                itemText="@{data.salary.toString()}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/cairo_bold"
+                                android:paddingTop="7dp"
+                                android:paddingBottom="7dp"
+                                android:paddingStart="10sp"
+                                android:paddingEnd="10sp"
+                                android:textSize="16sp"
+                                android:textColor="@color/green" />
+                        </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView

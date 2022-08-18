@@ -40,16 +40,10 @@ class CompaniesDaumViewHolder private constructor(private val binding: CompanyIt
             binding.cardView.setCardBackgroundColor(binding.root.context.getColor(R.color.green))
             binding.companyName.setTextColor(binding.root.context.getColor(R.color.orange))
             binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.orange))
-            binding.companyRate.apply {
-                visibility = View.GONE
-            }
         } else {
             binding.cardView.setCardBackgroundColor(binding.root.context.getColor(R.color.white))
             binding.companyName.setTextColor(binding.root.context.getColor(R.color.green))
             binding.companyLocation.setTextColor(binding.root.context.getColor(R.color.green))
-            binding.companyRate.apply {
-                visibility = View.VISIBLE
-            }
         }
         binding.name = company.name
         binding.image = company.image
