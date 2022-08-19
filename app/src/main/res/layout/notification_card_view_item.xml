@@ -31,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="5dp"
+        android:onClick="@{()-> clickListener.onClick(data)}"
         cardView:cardCornerRadius="10dp"
         cardView:cardElevation="7dp">
 
@@ -59,8 +60,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="5dp"
-                >
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/notification_title"

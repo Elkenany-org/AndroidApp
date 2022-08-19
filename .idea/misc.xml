@@ -79,6 +79,8 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/menu_main.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2907225309961522" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.13894826849080805" />
+        <entry key="app/src/main/res/layout/notification_card_view_item.xml" value="0.2864471996579735" />
       </map>
     </option>
   </component>

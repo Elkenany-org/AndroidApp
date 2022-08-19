@@ -224,7 +224,14 @@
         android:id="@+id/notificationFragment"
         android:name="com.example.elkenany.views.notification.NotificationFragment"
         android:label="NotificationFragment"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/adDetailsFragment"
         android:name="com.example.elkenany.views.store.AdDetailsFragment"
