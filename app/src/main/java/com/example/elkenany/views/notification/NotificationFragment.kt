@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentNotificationBinding
+import com.example.elkenany.entities.home_data.Nots
 import com.example.elkenany.viewmodels.NotificationViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.HomeFragmentDirections
@@ -33,7 +36,9 @@ class NotificationFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NotificationViewModel::class.java]
         viewModel.onGettingNotificationData()
-        notificationAdapter = NotificationListAdapter(ClickListener { })
+        notificationAdapter = NotificationListAdapter(ClickListener {
+            onNotificationClickedToNavigate(it, it.title!!)
+        })
         binding.notificationRecyclerView.apply {
             adapter = notificationAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
@@ -74,5 +79,24 @@ class NotificationFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun onNotificationClickedToNavigate(it: Nots, title: String) {
+        if (it.title!!.startsWith("خبر")) {
+            requireView().findNavController().navigate(
+                NotificationFragmentDirections.actionNotificationFragmentToNewsDetailsFragment(
+                    it.id!!.toInt(),
+                )
+            )
+        } else if (title.startsWith("شركة")) {
+            requireView().findNavController().navigate(
+                NotificationFragmentDirections.actionNotificationFragmentToCompanyFragment(
+                    it.id!!.toLong(),
+                    title
+                )
+            )
+        } else if (title.startsWith("معرض")) {
+            Toast.makeText(requireContext(), "هذه الخدمة لم تتوفر بعد", Toast.LENGTH_SHORT).show()
+        }
     }
 }
