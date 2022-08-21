@@ -30,7 +30,7 @@
         card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:onClick="@{()->clickListener.onClick(data)}">
 
@@ -38,8 +38,8 @@
             <ImageView
                 android:id="@+id/item_img"
                 imageUrl="@{image}"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
 

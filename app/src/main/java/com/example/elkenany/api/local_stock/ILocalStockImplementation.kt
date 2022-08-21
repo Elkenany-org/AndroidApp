@@ -7,10 +7,10 @@ import retrofit2.await
 
 class ILocalStockImplementation {
 
-    suspend fun getLocalStockSectionsData(sectorType: String): LocalStockData? {
+    suspend fun getLocalStockSectionsData(sectorType: String, search: String?): LocalStockData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType).await()
+                ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

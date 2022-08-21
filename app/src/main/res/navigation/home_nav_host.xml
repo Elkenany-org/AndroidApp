@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeSectorFragment_to_adDetailsFragment"
             app:destination="@id/adDetailsFragment" />
+        <action
+            android:id="@+id/action_homeSectorFragment_to_localStockDetailsFragment"
+            app:destination="@id/localStockDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeServiceFragment"
