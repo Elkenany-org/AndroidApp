@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentSearchBinding
+import com.example.elkenany.entities.search.Result
 import com.example.elkenany.viewmodels.SearchViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.search.adapter.SearchResultsAdapter
@@ -37,7 +40,9 @@ class SearchFragment : Fragment() {
             viewModel.getAllSearchData(search)
         }
 
-        resultsAdapter = SearchResultsAdapter(ClickListener { })
+        resultsAdapter = SearchResultsAdapter(ClickListener {
+            onSearchResultNavigation(it)
+        })
         binding.searchResultsRecyclerView.apply {
             adapter = resultsAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
@@ -72,6 +77,36 @@ class SearchFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun onSearchResultNavigation(result: Result) {
+        when (result.type) {
+            "companies" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToCompanyFragment(result.id,
+                    result.name))
+            "guide_sub_sections" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToGuideCompaniesFragment(
+                    result.id,
+                    result.name,
+                    ""))
+            "news" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToNewsDetailsFragment(result.id.toInt()))
+            "stores" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToAdDetailsFragment(result.id))
+            "local_stock_sub" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToLocalStockDetailsFragment(
+                    result.id,
+                    "",
+                    "local"))
+            "fodder_stock_sub" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToLocalStockDetailsFragment(
+                    result.id,
+                    "",
+                    "fodder"))
+            else -> Toast.makeText(requireContext(), "حدوث خطأ في عملية العرض", Toast.LENGTH_SHORT)
+                .show()
+
+        }
     }
 
 }
