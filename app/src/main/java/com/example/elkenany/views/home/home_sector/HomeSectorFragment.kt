@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeSectorBinding
+import com.example.elkenany.entities.home_data.SectorsRecomandtion
 import com.example.elkenany.viewmodels.HomeSectorViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.home_sector.adapter.*
@@ -51,13 +52,19 @@ class HomeSectorFragment : Fragment() {
                     it.type))
         })
         recommendationAdapter = SectorRecommendationAdapter(ClickListener {
-            Toast.makeText(context, it.name.toString(), Toast.LENGTH_LONG).show()
+            onSectorRecommendationNavigation(it)
         })
         partnerAdapter = SectorsPartnerAdapter(ClickListener {
             // ToDo --> navigate to specific page based on the selected item type
         })
         stockAdapter = SectorsStockAdapter(ClickListener {
             // ToDo --> navigate to Stock Details page
+            requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToLocalStockDetailsFragment(
+                    it.id!!,
+                    it.name,
+                    it.type,
+                ))
         })
         guideAdapter = SectorsGuideAdapter(ClickListener {
             requireView().findNavController()
@@ -143,6 +150,34 @@ class HomeSectorFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun onSectorRecommendationNavigation(recommendation: SectorsRecomandtion) {
+        when (recommendation.type) {
+            "guide" -> requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToGuideCompaniesFragment(
+                    recommendation.id!!.toLong(),
+                    recommendation.name,
+                    ""))
+            "local" -> requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToLocalStockDetailsFragment(
+                    recommendation.id!!.toLong(),
+                    recommendation.name,
+                    recommendation.type))
+            "fodder" -> requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToLocalStockDetailsFragment(
+                    recommendation.id!!.toLong(),
+                    recommendation.name,
+                    recommendation.type))
+            "news" -> requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToNewsDetailsFragment(
+                    recommendation.id!!.toInt()))
+            "store" -> requireView().findNavController()
+                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToAdDetailsFragment(
+                    recommendation.id!!.toLong()))
+            else -> Toast.makeText(requireContext(), "لم يتم تفعيل الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
 }

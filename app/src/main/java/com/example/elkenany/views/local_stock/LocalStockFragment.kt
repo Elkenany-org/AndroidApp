@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentLocalStockBinding
@@ -29,6 +31,7 @@ class LocalStockFragment : Fragment() {
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
     private var sectorType: String? = null
+    private var search: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -43,13 +46,17 @@ class LocalStockFragment : Fragment() {
         }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-        viewModel.getHomeStockData(sectorType!!)
+        viewModel.getHomeStockData(sectorType!!, search)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.apply {
             adapter = bannersAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getHomeStockData(sectorType!!, search)
+        }
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
@@ -57,7 +64,8 @@ class LocalStockFragment : Fragment() {
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            viewModel.getHomeStockData(it.type.toString())
+            sectorType = it.type.toString()
+            viewModel.getHomeStockData(sectorType!!, search)
         })
         binding.sectorsRecyclerView.apply {
             adapter = sectorsAdapter
@@ -65,7 +73,7 @@ class LocalStockFragment : Fragment() {
         }
 
         subSection = LocalStockSubSectionsAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(LocalStockFragmentDirections.actionLocalStockFragmentToLocalStockDetailsFragment(
                     it.id!!,
                     it.name,
@@ -73,11 +81,16 @@ class LocalStockFragment : Fragment() {
                 ))
         })
         binding.stockListRecyclerView.apply {
+            layoutManager = GridLayoutManager(requireContext(), 1)
             adapter = subSection
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.apply {
+                    changeViewBtn.visibility = View.VISIBLE
+                    searchBar.visibility = View.VISIBLE
+                }
                 if (it.subSections.isEmpty() && it.fodSections.isEmpty()) {
                     binding.stockPageLayout.visibility = View.GONE
                 } else {
@@ -91,15 +104,22 @@ class LocalStockFragment : Fragment() {
                 subSection.submitList(it.subSections + it.fodSections)
 
             } else {
-                binding.stockListRecyclerView.visibility = View.GONE
-                binding.errorMessage.visibility = View.VISIBLE
+                binding.apply {
+                    changeViewBtn.visibility = View.GONE
+                    stockListRecyclerView.visibility = View.GONE
+                    errorMessage.visibility = View.VISIBLE
+                }
+
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
-                binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.stockListRecyclerView.visibility = View.GONE
-                binding.errorMessage.visibility = View.GONE
+                binding.apply {
+                    loadingProgressbar.visibility = View.VISIBLE
+                    stockListRecyclerView.visibility = View.GONE
+                    errorMessage.visibility = View.GONE
+                    changeViewBtn.visibility = View.GONE
+                }
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
             }
