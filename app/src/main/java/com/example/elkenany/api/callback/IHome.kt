@@ -21,7 +21,7 @@ interface IHome {
     @GET("home-services")
     fun getServicesData(): Call<GenericEntity<HomeServiceData?>>
 
-    @GET("notfications")
+    @GET("v2/notifications")
     fun getAllNotificationData(@Header("Authorization") apiToken: String): Call<GenericEntity<NotificationsData?>>
 }
 

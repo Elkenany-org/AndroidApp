@@ -49,12 +49,20 @@ class NotificationFragment : Fragment() {
         }
         viewModel.notificationList.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.notificationRecyclerView.visibility = View.VISIBLE
-                binding.loginRequiredMessage.visibility = View.GONE
-                binding.errorMessage.visibility = View.GONE
-                notificationAdapter.submitList(it.notifications)
+                if (it.notifications.isNotEmpty()) {
+                    binding.notificationRecyclerView.visibility = View.VISIBLE
+                    binding.loginRequiredMessage.visibility = View.GONE
+                    binding.errorMessage.visibility = View.GONE
+                    notificationAdapter.submitList(it.notifications)
+                } else {
+                    binding.notificationRecyclerView.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.errorMessage.text = "لا توجد لديك إشعارات جديدة"
+                }
+
             } else {
                 binding.notificationRecyclerView.visibility = View.GONE
+                binding.errorMessage.text = R.string.failed_to_receive_data_msg.toString()
                 binding.errorMessage.visibility = View.VISIBLE
             }
         }
@@ -82,21 +90,26 @@ class NotificationFragment : Fragment() {
     }
 
     private fun onNotificationClickedToNavigate(it: Nots, title: String) {
-        if (it.title!!.startsWith("خبر")) {
-            requireView().findNavController().navigate(
-                NotificationFragmentDirections.actionNotificationFragmentToNewsDetailsFragment(
-                    it.id!!.toInt(),
+        when (it.keyName) {
+            "news" -> {
+                requireView().findNavController().navigate(
+                    NotificationFragmentDirections.actionNotificationFragmentToNewsDetailsFragment(
+                        it.keyId!!.toInt(),
+                    )
                 )
-            )
-        } else if (title.startsWith("شركة")) {
-            requireView().findNavController().navigate(
-                NotificationFragmentDirections.actionNotificationFragmentToCompanyFragment(
-                    it.id!!.toLong(),
-                    title
+            }
+            "companies" -> {
+                requireView().findNavController().navigate(
+                    NotificationFragmentDirections.actionNotificationFragmentToCompanyFragment(
+                        it.keyId!!.toLong(),
+                        title
+                    )
                 )
-            )
-        } else if (title.startsWith("معرض")) {
-            Toast.makeText(requireContext(), "هذه الخدمة لم تتوفر بعد", Toast.LENGTH_SHORT).show()
+            }
+            "showes" -> {
+                Toast.makeText(requireContext(), "هذه الخدمة لم تتوفر بعد", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 }
