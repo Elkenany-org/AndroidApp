@@ -164,7 +164,23 @@
         android:id="@+id/searchFragment"
         android:name="com.example.elkenany.views.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_companyFragment"
+            app:destination="@id/companyFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_guideCompaniesFragment"
+            app:destination="@id/guideCompaniesFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_localStockDetailsFragment"
+            app:destination="@id/localStockDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_adDetailsFragment"
+            app:destination="@id/adDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="com.example.elkenany.views.menu.MainMenuFragment"
