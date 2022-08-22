@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/cairo_bold"
+            android:gravity="center_horizontal"
             android:text="@string/failed_to_receive_data_msg"
             android:textColor="@color/green"
             android:textSize="18sp"
@@ -61,11 +62,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/logos_recycler_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="RtlHardcoded"
                 tools:listitem="@layout/small_recycler_item" />
 
             <LinearLayout
@@ -89,28 +92,28 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/search_bar_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="44dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="0dp">
 
-                    <EditText
-                        android:id="@+id/search_bar"
-                        android:layout_width="115dp"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/app_bar_title"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/white"
-                        android:drawableEnd="@drawable/ic_baseline_search_24"
-                        android:drawablePadding="20dp"
-                        android:fontFamily="@font/cairo_bold"
-                        android:hint="@string/homeSearch"
-                        android:paddingStart="20sp"
-                        android:paddingTop="5dp"
-                        android:paddingEnd="20sp"
-                        android:paddingBottom="5dp"
-                        android:textSize="12sp"
-                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
+                    <!--                    <EditText-->
+                    <!--                        android:id="@+id/search_bar"-->
+                    <!--                        android:layout_width="115dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_below="@id/app_bar_title"-->
+                    <!--                        android:layout_centerHorizontal="true"-->
+                    <!--                        android:layout_gravity="center_horizontal"-->
+                    <!--                        android:background="@color/white"-->
+                    <!--                        android:drawableEnd="@drawable/ic_baseline_search_24"-->
+                    <!--                        android:drawablePadding="20dp"-->
+                    <!--                        android:fontFamily="@font/cairo_bold"-->
+                    <!--                        android:hint="@string/homeSearch"-->
+                    <!--                        android:paddingStart="20sp"-->
+                    <!--                        android:paddingTop="5dp"-->
+                    <!--                        android:paddingEnd="20sp"-->
+                    <!--                        android:paddingBottom="5dp"-->
+                    <!--                        android:textSize="12sp"-->
+                    <!--                        tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />-->
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -136,7 +139,8 @@
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/table_row_item" />
+                tools:listitem="@layout/table_row_item"
+                />
         </LinearLayout>
     </RelativeLayout>
 </layout>

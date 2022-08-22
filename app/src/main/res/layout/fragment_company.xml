@@ -8,6 +8,7 @@
         <variable
             name="data"
             type="com.example.elkenany.entities.guide.CompanyDetailsData" />
+
         <variable
             name="rateUsers"
             type="String" />
@@ -97,7 +98,7 @@
 
                         <TextView
                             android:id="@+id/description"
-                            itemText="@{data.shortDesc}"
+                            itemText="@{data.about}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
@@ -105,7 +106,7 @@
                             android:fontFamily="@font/cairo_bold"
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
-                            android:textSize="16sp" />
+                            android:textSize="13sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

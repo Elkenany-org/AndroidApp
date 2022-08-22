@@ -25,18 +25,6 @@
             android:textSize="20sp" />
 
 
-        <TextView
-            android:id="@+id/error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/cairo_bold"
-            android:text="@string/failed_to_receive_data_msg"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
-
         <LinearLayout
             android:id="@+id/stock_page_layout"
             android:layout_width="match_parent"
@@ -135,6 +123,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/failed_to_receive_data_msg"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
 
         </LinearLayout>
     </RelativeLayout>

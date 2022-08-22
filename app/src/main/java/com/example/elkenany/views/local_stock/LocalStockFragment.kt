@@ -91,17 +91,20 @@ class LocalStockFragment : Fragment() {
                     changeViewBtn.visibility = View.VISIBLE
                     searchBar.visibility = View.VISIBLE
                 }
-                if (it.subSections.isEmpty() && it.fodSections.isEmpty()) {
-                    binding.stockPageLayout.visibility = View.GONE
+                val list = it.subSections + it.fodSections
+                if (list.isEmpty()) {
+                    binding.stockListRecyclerView.visibility = View.GONE
+                    binding.errorMessage.visibility = View.VISIBLE
                 } else {
                     binding.stockListRecyclerView.visibility = View.VISIBLE
+                    binding.errorMessage.visibility = View.GONE
                 }
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
-                subSection.submitList(it.subSections + it.fodSections)
+                subSection.submitList(list)
 
             } else {
                 binding.apply {

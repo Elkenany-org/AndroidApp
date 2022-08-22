@@ -1,10 +1,14 @@
 package com.example.elkenany.views.local_stock
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +21,8 @@ import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class LocalStockDetailsFragment : Fragment() {
@@ -27,6 +33,7 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
+    private val myCalendar: Calendar = Calendar.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -46,25 +53,44 @@ class LocalStockDetailsFragment : Fragment() {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        logosAdapter = LocalStockLogosAdapter(ClickListener { })
+        val date =
+            DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, day: Int ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, month)
+                myCalendar.set(Calendar.DAY_OF_MONTH, day)
+                updateLabel()
+            }
+        binding.calenderBtn.setOnClickListener {
+            DatePickerDialog(this.requireActivity(),
+                date,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+
+        logosAdapter = LocalStockLogosAdapter(ClickListener {})
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener { })
+        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener
+        {})
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
-        viewModel.getLocalStockDetailsData(args.id, "",args.sectorType.toString())
-        viewModel.loading.observe(viewLifecycleOwner) {
+        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
+        viewModel.loading.observe(viewLifecycleOwner)
+        {
             if (it) {
+                binding.errorMessage.visibility = View.GONE
                 binding.stockDataRecyclerView.visibility = View.GONE
                 binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.foundDataLayout.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
-        viewModel.localStockDetailsData.observe(viewLifecycleOwner) {
+        viewModel.localStockDetailsData.observe(viewLifecycleOwner)
+        {
             if (it != null) {
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE
@@ -74,8 +100,10 @@ class LocalStockDetailsFragment : Fragment() {
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
 
             } else {
-                binding.foundDataLayout.visibility = View.GONE
-                binding.errorMessage.visibility = View.VISIBLE
+                binding.errorMessage.apply {
+                    text = "برجاء تسجيل الدخول لأستخدام جميع الخدمات بشكل كامل"
+                    visibility = View.VISIBLE
+                }
                 binding.stockDataRecyclerView.visibility = View.GONE
             }
         }
@@ -84,4 +112,13 @@ class LocalStockDetailsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("NewApi", "WeekBasedYear")
+    private fun updateLabel() {
+        val myFormat = "YYYY-MM-d"
+        val dateFormat = SimpleDateFormat(myFormat, Locale.US)
+        Log.i("dataFormant", dateFormat.format(myCalendar.time))
+        viewModel.getLocalStockDetailsData(args.id,
+            dateFormat.format(myCalendar.time),
+            args.sectorType.toString())
+    }
 }
