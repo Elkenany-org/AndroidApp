@@ -131,16 +131,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_recommendation_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_recommendation_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recommendation_recycler_view"
@@ -168,16 +168,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_partners_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_partners_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/partners_recycler_view"
@@ -205,16 +205,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_stocks_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_stocks_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stocks_recycler_view"
@@ -242,16 +242,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_guide_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_guide_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/guides_recycler_view"
@@ -279,16 +279,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_news_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_news_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/news_recycler_view"
@@ -316,16 +316,16 @@
                         android:textColor="@color/green"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/all_stores_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/cairo_regular"
-                        android:text="@string/show_all_title"
-                        android:textColor="@color/green"
-                        android:textSize="16sp"
-                        tools:ignore="RelativeOverlap" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/all_stores_text_view"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:fontFamily="@font/cairo_regular"-->
+<!--                        android:text="@string/show_all_title"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:textSize="16sp"-->
+<!--                        tools:ignore="RelativeOverlap" />-->
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/stores_recycler_view"
