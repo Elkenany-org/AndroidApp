@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -46,9 +47,46 @@ class MainMenuFragment : Fragment() {
         binding.dailyStockBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.localStockFragment)
         }
+        binding.guideBtn.setOnClickListener {
+            requireView().findNavController().navigate(R.id.guideFragment)
+        }
+        binding.storeBtn.setOnClickListener {
+            requireView().findNavController().navigate(R.id.storeFragment)
+        }
         binding.newsBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.newsFragment)
         }
+        binding.showsBtn.setOnClickListener {
+            // ToDo -> implement showsFragment here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.magazineBtn.setOnClickListener {
+            // ToDo -> implement magazineFragment here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.chatBtn.setOnClickListener {
+            // ToDo -> implement chatFragment here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.aboutBtn.setOnClickListener {
+            // ToDo -> implement aboutFragment here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.shareBtn.setOnClickListener {
+            // ToDo -> implement shareFunction here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.rateBtn.setOnClickListener {
+            // ToDo -> implement rateFunction here
+            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
+
         binding.notificationBtn.setOnClickListener {
             requireView().findNavController()
                 .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToNotificationFragment2())

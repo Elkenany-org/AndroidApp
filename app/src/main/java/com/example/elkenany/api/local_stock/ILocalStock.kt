@@ -26,6 +26,20 @@ interface ILocalStock {
         @Query("id") id: Long,
         @Query("date") date: String?,
     ): Call<GenericEntity<LocalStockDetailsData?>>
+
+    @GET("localstock/feeds-items")
+    fun getLocalStockFeedItems(
+        @Query("stock_id") stockId: String?,
+        @Query("mini_id") miniId: String?,
+        @Query("food_Id") foodId: String?,
+        @Query("device") deviceType: String?,
+    ): Call<GenericEntity<Any?>>
+
+    @GET("localstock/companies-items")
+    fun getLocalStockCompanyItems(
+        @Query("stock_id") stockId: String?,
+        @Query("company_id") companyId: String?,
+    ): Call<GenericEntity<Any?>>
 }
 
 object ILocalStockHandler {

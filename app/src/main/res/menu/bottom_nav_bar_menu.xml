@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search_logo"
-        android:title="@string/homeSearch" />
+        android:iconTint="@color/green"
+        android:title="@string/homeSearch"
+        tools:targetApi="o" />
     <item
         android:id="@+id/localStockFragment"
         android:icon="@drawable/ic_stock_logo"
         android:title="@string/stockBtn" />
     <item
-        android:id="@+id/home_nav_host"
+        android:id="@+id/homeSectorFragment"
         android:icon="@drawable/ic_home_logo"
         android:title="@string/homeBtn" />
     <item

@@ -29,6 +29,7 @@ class GuideFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: GuideSubSectionAdapter
+    private lateinit var sectorType: String
     private var search: String? = null
     private val args: GuideFragmentArgs by navArgs()
     override fun onCreateView(
@@ -39,8 +40,12 @@ class GuideFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_guide, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideViewModel::class.java]
-
-        viewModel.getGuideData(args.sectorType.toString(), search)
+        sectorType = try {
+            args.sectorType.toString()
+        } catch (e: Exception) {
+            "poultry"
+        }
+        viewModel.getGuideData(sectorType, search)
 
 //        binding.searchBar.addTextChangedListener {
 //            search = it.toString()
@@ -60,7 +65,8 @@ class GuideFragment : Fragment() {
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            viewModel.getGuideData(it.type.toString(), search)
+            sectorType = it.type.toString()
+            viewModel.getGuideData(sectorType, search)
         })
         binding.sectorsRecyclerView.apply {
             adapter = sectorsAdapter
@@ -68,10 +74,10 @@ class GuideFragment : Fragment() {
         }
 
         subSection = GuideSubSectionAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(GuideFragmentDirections.actionGuideFragmentToGuideCompaniesFragment(it.id!!,
                     it.name,
-                    args.sectorType))
+                    sectorType))
         })
         binding.guideListRecyclerView.apply {
             adapter = subSection
