@@ -30,9 +30,10 @@
             android:layout_alignParentBottom="true"
             android:layoutDirection="rtl"
             app:itemIconTint="@color/green"
+            app:itemRippleColor="@android:color/holo_orange_dark"
             app:itemTextColor="@color/green"
-            app:menu="@menu/bottom_nav_bar_menu"
-            />
+            app:labelVisibilityMode="selected"
+            app:menu="@menu/bottom_nav_bar_menu" />
 
     </RelativeLayout>
 </layout>

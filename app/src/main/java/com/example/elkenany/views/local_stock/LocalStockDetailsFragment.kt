@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,6 +35,7 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
+//    private lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -75,8 +77,7 @@ class LocalStockDetailsFragment : Fragment() {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener
-        {})
+        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener {})
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
         viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
         viewModel.loading.observe(viewLifecycleOwner)
@@ -98,6 +99,19 @@ class LocalStockDetailsFragment : Fragment() {
                 logosAdapter.submitList(it.logos)
                 bannersAdapter.submitList(it.banners)
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
+                if (args.sectorType == "fodder") {
+                    binding.apply {
+                        fodderExternalLayout.visibility = View.VISIBLE
+//                        arrayAdapter = ArrayAdapter(requireContext(), R.layout.small_recycler_item,
+//                            listOf())
+//                        companyAutoCompelete.setAdapter(arrayAdapter)
+                    }
+                } else {
+                    binding.apply {
+                        fodderExternalLayout.visibility = View.GONE
+                    }
+
+                }
 
             } else {
                 binding.errorMessage.apply {

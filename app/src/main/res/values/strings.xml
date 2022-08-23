@@ -72,4 +72,6 @@
     <string name="latest_news_title">أخر الأخبار</string>
     <string name="urgent_title">عاجل</string>
     <string name="most_readable_title">الأكثر قراءة</string>
+    <string name="country_title">الشركة</string>
+    <string name="product_title">الصنف</string>
 </resources>

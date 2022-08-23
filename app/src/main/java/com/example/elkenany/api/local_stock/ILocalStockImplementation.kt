@@ -36,4 +36,14 @@ class ILocalStockImplementation {
             null
         }
     }
+
+    suspend fun getLocalStockFeedsItems(): Any {
+        // ToDo -> impelement getFeedItems from backend
+        throw Exception()
+    }
+
+    suspend fun getLocalStockCompanyItems(): Any {
+        // ToDo -> impelement getCompanyItems from backend
+        throw Exception()
+    }
 }

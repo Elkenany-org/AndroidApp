@@ -27,11 +27,45 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
+
         binding.bottomNavigation.apply {
+            selectedItemId = R.id.homeSectorFragment
             setupWithNavController(childFragmentManager.findFragmentById(R.id.container)!!
                 .findNavController())
-        }
-        return binding.root
-    }
+            setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.searchFragment -> {
+                        childFragmentManager.findFragmentById(R.id.container)!!
+                            .findNavController().navigate(R.id.searchFragment)
+                        true
+                    }
+                    R.id.localStockFragment -> {
+                        childFragmentManager.findFragmentById(R.id.container)!!
+                            .findNavController().navigate(R.id.localStockFragment)
+                        true
+                    }
+                    R.id.homeSectorFragment -> {
+                        childFragmentManager.findFragmentById(R.id.container)!!
+                            .findNavController().navigate(R.id.homeSectorFragment)
+                        true
+                    }
+                    R.id.profileFragment -> {
+                        childFragmentManager.findFragmentById(R.id.container)!!
+                            .findNavController().navigate(R.id.profileFragment)
+                        true
+                    }
+                    R.id.mainMenuFragment -> {
+                        childFragmentManager.findFragmentById(R.id.container)!!
+                            .findNavController().navigate(R.id.mainMenuFragment)
+                        true
+                    }
+                    else -> false
 
+                }
+            }
+            return binding.root
+        }
+
+    }
 }

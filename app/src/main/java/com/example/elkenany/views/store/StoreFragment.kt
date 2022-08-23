@@ -37,7 +37,11 @@ class StoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[StoreViewModel::class.java]
-        sectorType = args.sectorType.toString()
+        sectorType = try {
+            args.sectorType.toString()
+        } catch (e: Exception) {
+            "poultry"
+        }
         viewModel.getAllAdsStoreData(sectorType, search)
 
         binding.searchBar.addTextChangedListener {
@@ -57,7 +61,7 @@ class StoreFragment : Fragment() {
         }
 
         adsStoreAdapter = AdsStoreAdapter(ClickListener {
-            view!!.findNavController()
+            requireView().findNavController()
                 .navigate(StoreFragmentDirections.actionStoreFragmentToAdDetailsFragment(it.id!!))
         })
         binding.storeRecyclerView.apply {

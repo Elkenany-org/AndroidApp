@@ -6,6 +6,7 @@ import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import retrofit2.HttpException
 import retrofit2.await
 
 @Suppress("unused")
@@ -42,6 +43,7 @@ class AuthImplementation {
             null
         }
     }
+
     suspend fun reLogSocialWithFaceBook(
         name: String?,
         email: String?,
@@ -73,9 +75,14 @@ class AuthImplementation {
             userApiToken = response.data!!.apiToken
             getAllUserData(userApiToken)
             true
-        } catch (e: Throwable) {
-            Log.i("login response", "Login failed : ${e.message}")
-            false
+        } catch (e: HttpException) {
+            if (e.code() == 404) {
+                Log.i("login response", "Login failed : email not found")
+                false
+            } else {
+                Log.i("login response", "Login failed : ${e.code()}")
+                false
+            }
         }
     }
 

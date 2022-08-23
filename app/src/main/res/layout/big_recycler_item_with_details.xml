@@ -29,7 +29,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="140dp"
         android:layoutDirection="rtl"
         android:onClick="@{()-> clickListener.onClick(data)}"
