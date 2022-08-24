@@ -68,21 +68,15 @@ class AuthImplementation {
     suspend fun loginWithEmailAndPassword(
         email: String,
         password: String,
-    ): Boolean {
+    ): Int {
         return try {
             val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
             Log.i("login response", "Login response is : $response")
             userApiToken = response.data!!.apiToken
             getAllUserData(userApiToken)
-            true
+            200
         } catch (e: HttpException) {
-            if (e.code() == 404) {
-                Log.i("login response", "Login failed : email not found")
-                false
-            } else {
-                Log.i("login response", "Login failed : ${e.code()}")
-                false
-            }
+            e.code()
         }
     }
 
