@@ -91,9 +91,14 @@ class LoginFragment : Fragment() {
                     // navigation to Home screen
                     requireView().findNavController()
                         .navigate(R.id.action_loginFragment_to_homeFragment)
-                } else {
-                    Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
                 }
+            }
+        }
+        viewModel.exception.observe(viewLifecycleOwner){
+            when(it){
+                404 ->  Toast.makeText(context, "الأيميل غير موجود", Toast.LENGTH_LONG).show()
+                406 ->  Toast.makeText(context, "كلمة المرور خاطئة", Toast.LENGTH_LONG).show()
+                else ->  Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

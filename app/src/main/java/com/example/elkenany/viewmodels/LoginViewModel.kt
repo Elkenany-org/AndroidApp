@@ -31,11 +31,13 @@ class LoginViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _login = MutableLiveData<Boolean?>(null)
+    private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
 
     val loading: LiveData<Boolean> get() = _loading
     val login: LiveData<Boolean?> get() = _login
+    val exception: LiveData<Int?> get() = _exception
 
     //this function fires to check if there is login instance already from google account
     fun initViewModel(context: Context) {
@@ -50,7 +52,24 @@ class LoginViewModel : ViewModel() {
     fun signInWithEmailAndPassword(email: String, password: String) {
         uiScope.launch {
             _loading.value = true
-            _login.value = api.loginWithEmailAndPassword(email, password)
+            _login.value = when (api.loginWithEmailAndPassword(email, password)) {
+                200 -> {
+                    _exception.value = 200
+                    true
+                }
+                404 -> {
+                    _exception.value = 404
+                    false
+                }
+                406 -> {
+                    _exception.value = 406
+                    false
+                }
+                else -> {
+                    _exception.value = 400
+                    false
+                }
+            }
             _loading.value = false
         }
     }
@@ -65,10 +84,12 @@ class LoginViewModel : ViewModel() {
                 if (response != null) {
                     _login.value = true
                 } else {
+                    _exception.value = 400
                     _login.value = false
                     _loading.value = false
                 }
             } catch (e: Exception) {
+                _exception.value = 400
                 _login.value = false
                 _loading.value = false
             }
@@ -84,10 +105,12 @@ class LoginViewModel : ViewModel() {
                 if (response != null) {
                     _login.value = true
                 } else {
+                    _exception.value = 400
                     _login.value = false
                     _loading.value = false
                 }
             } catch (e: Exception) {
+                _exception.value = 400
                 _login.value = false
                 _loading.value = false
             }
