@@ -76,9 +76,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center_vertical"
+                android:layoutAnimation="@anim/layout_animation"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20sp"
+                android:visibility="gone"
                 tools:ignore="UselessLeaf">
 
                 <com.google.android.material.textfield.TextInputLayout
