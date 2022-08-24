@@ -8,11 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
@@ -35,7 +35,8 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
-//    private lateinit var arrayAdapter: ArrayAdapter<String>
+
+    //    private lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -70,6 +71,12 @@ class LocalStockDetailsFragment : Fragment() {
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
+        binding.statisticsBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(LocalStockDetailsFragmentDirections.actionLocalStockDetailsFragmentToStatisticsFragment(
+                    args.id,
+                    args.sectorType))
+        }
 
         logosAdapter = LocalStockLogosAdapter(ClickListener {})
         binding.logosRecyclerView.apply {
@@ -80,8 +87,7 @@ class LocalStockDetailsFragment : Fragment() {
         localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener {})
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
         viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
-        viewModel.loading.observe(viewLifecycleOwner)
-        {
+        viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.errorMessage.visibility = View.GONE
                 binding.stockDataRecyclerView.visibility = View.GONE
@@ -90,8 +96,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
-        viewModel.localStockDetailsData.observe(viewLifecycleOwner)
-        {
+        viewModel.localStockDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE

@@ -74,4 +74,8 @@
     <string name="most_readable_title">الأكثر قراءة</string>
     <string name="country_title">الشركة</string>
     <string name="product_title">الصنف</string>
+    <string name="select_date_title">حدد التاريخ</string>
+    <string name="from_title">من</string>
+    <string name="to_title">الي</string>
+    <string name="unknown_title">-</string>
 </resources>

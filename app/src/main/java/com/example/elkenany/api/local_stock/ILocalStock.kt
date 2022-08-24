@@ -4,8 +4,10 @@ import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.stock_data.LocalStockData
 import com.example.elkenany.entities.stock_data.LocalStockDetailsData
+import com.example.elkenany.entities.stock_data.StatisticsData
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface ILocalStock {
@@ -40,6 +42,15 @@ interface ILocalStock {
         @Query("stock_id") stockId: String?,
         @Query("company_id") companyId: String?,
     ): Call<GenericEntity<Any?>>
+
+    @GET("localstock/statistics-Localstock-members")
+    fun getAllStatisticsData(
+        @Query("id") stockId: Long?,
+        @Query("type") type: String?,
+        @Query("from") from: String?,
+        @Query("to") to: String?,
+        @Header("Authorization") authorization: String?,
+    ): Call<GenericEntity<StatisticsData?>>
 }
 
 object ILocalStockHandler {

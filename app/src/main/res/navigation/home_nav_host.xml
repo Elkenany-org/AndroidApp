@@ -167,7 +167,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.elkenany.views.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_companyFragment"
             app:destination="@id/companyFragment" />
@@ -218,6 +218,9 @@
             android:name="sector_type"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_localStockDetailsFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/guideCompaniesFragment"
@@ -243,7 +246,7 @@
         android:id="@+id/notificationFragment"
         android:name="com.example.elkenany.views.notification.NotificationFragment"
         android:label="NotificationFragment"
-        tools:layout="@layout/fragment_notification" >
+        tools:layout="@layout/fragment_notification">
         <action
             android:id="@+id/action_notificationFragment_to_newsDetailsFragment"
             app:destination="@id/newsDetailsFragment" />
@@ -264,12 +267,25 @@
         android:id="@+id/companyFragment"
         android:name="com.example.elkenany.views.guide.CompanyFragment"
         android:label="CompanyFragment"
-        tools:layout="@layout/fragment_company" >
+        tools:layout="@layout/fragment_company">
         <argument
             android:name="company_id"
             app:argType="long" />
         <argument
             android:name="company_name"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.elkenany.views.local_stock.StatisticsFragment"
+        android:label="StatisticsFragment"
+        tools:layout="@layout/fragment_statistics" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
