@@ -6,6 +6,7 @@ import com.example.elkenany.entities.stock_data.LocalStockDetailsData
 import com.example.elkenany.entities.stock_data.StatisticsData
 import retrofit2.HttpException
 import retrofit2.await
+import java.net.SocketTimeoutException
 
 class ILocalStockImplementation {
 
@@ -50,14 +51,27 @@ class ILocalStockImplementation {
     }
 
     suspend fun getAllStatisticsData(
-        stockId: Long?, type: String?, from: String?, to: String?,authroization:String?
+        stockId: Long?,
+        type: String?,
+        from: String?,
+        to: String?,
+        memId: Long?,
+        authroization: String?,
     ): StatisticsData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getAllStatisticsData(stockId, type, from, to,authroization).await()
+                ILocalStockHandler.singleton.getAllStatisticsData(stockId,
+                    type,
+                    from,
+                    to,
+                    memId,
+                    authroization).await()
             response.data
         } catch (e: HttpException) {
             Log.i("throwable", e.code().toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("throwable", e.cause.toString())
             null
         }
     }
