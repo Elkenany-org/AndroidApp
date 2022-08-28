@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.elkenany.entities.home_data.Office" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/name"
+            itemText="@{data.name}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_bold"
+            android:layoutDirection="rtl"
+            android:textColor="@color/green"
+            android:textSize="18sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/office_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="5dp"
+            app:cardCornerRadius="7dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                android:padding="7dp">
+
+                <TextView
+                    android:id="@+id/location_tv"
+                    itemText="@{data.address}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+
+                <TextView
+                    android:id="@+id/email_tv"
+                    itemText="@{data.emails[0].email}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/location_tv"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_baseline_email_24" />
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    itemText="@{data.phones[0].phone}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/email_tv"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_baseline_phone_android_24" />
+
+                <TextView
+                    android:id="@+id/mobile_tv"
+                    itemText="@{data.mobiles[0].mobile}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/phone_tv"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_baseline_phone_android_24" />
+
+                <TextView
+                    android:id="@+id/fax_tv"
+                    itemText="@{data.faxs[0].fax}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mobile_tv"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    app:drawableStartCompat="@drawable/ic_baseline_fax_24" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

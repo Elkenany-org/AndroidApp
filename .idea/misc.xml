@@ -41,6 +41,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/under_line.xml" value="0.269" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/font/font.xml" value="0.3848958333333333" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout-v31/fragment_main_menu.xml" value="0.3546875" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/about_branch_item_card.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/array_adapter_item.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/banners_card_view_item.xml" value="0.2911500641299701" />
@@ -48,6 +49,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/big_recycler_item_with_details.xml" value="1.0" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/company_item.xml" value="0.53203125" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/content_main.xml" value="0.35572916666666665" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_about.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_ad_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_advertisment_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_company.xml" value="0.35789473684210527" />
