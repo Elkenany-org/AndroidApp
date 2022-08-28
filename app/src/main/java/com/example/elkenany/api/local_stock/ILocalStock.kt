@@ -49,6 +49,7 @@ interface ILocalStock {
         @Query("type") type: String?,
         @Query("from") from: String?,
         @Query("to") to: String?,
+        @Query("mem_id")memId:Long?,
         @Header("Authorization") authorization: String?,
     ): Call<GenericEntity<StatisticsData?>>
 }

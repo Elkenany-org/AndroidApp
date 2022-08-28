@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -136,32 +137,134 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/country_btn"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/company_btn"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/layout3"
             android:layout_marginStart="40sp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/primary_btn_shape"
             android:fontFamily="@font/cairo_bold"
-            android:gravity="center_vertical"
-            android:padding="10sp"
+
             android:textColor="@color/green"
-            android:textSize="12sp"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
 
             <AutoCompleteTextView
                 android:id="@+id/company_auto_compelete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/orange"
-
-                android:drawableTint="@color/green"
-                android:fontFamily="@font/cairo_regular"
-                android:hint="@string/country_title"
+                android:drawableTint="@color/orange"
+                android:fontFamily="@font/cairo_bold"
+                android:hint="location"
                 android:inputType="none"
-                tools:ignore="LabelFor,TouchTargetSizeCheck" />
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/found_data_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/company_btn"
+            android:layout_margin="15dp">
+
+            <ProgressBar
+                android:id="@+id/loading_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/failed_to_receive_data_msg"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="7dp"
+                app:cardCornerRadius="7dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+
+                    <TextView
+                        android:id="@+id/comp_name"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        android:text="@string/name_title"
+                        android:textColor="@color/green"
+                        android:textSize="10sp"
+                        tools:ignore=",SmallSp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/prod_name"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        android:text="@string/change_title"
+                        android:textColor="@color/green"
+                        android:textSize="10sp"
+                        tools:ignore=",SmallSp,TextContrastCheck" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/prod_type"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cairo_bold"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        android:text="@string/changes_number_title"
+                        android:textColor="@color/green"
+                        android:textSize="10sp"
+                        tools:ignore=",SmallSp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sectors_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/card_view"
+                android:layout_marginTop="2dp"
+                android:layoutAnimation="@anim/layout_animation"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/statistics_row_item" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

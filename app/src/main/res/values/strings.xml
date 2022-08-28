@@ -78,4 +78,6 @@
     <string name="from_title">من</string>
     <string name="to_title">الي</string>
     <string name="unknown_title">-</string>
+    <string name="change_title">مقدار التغير</string>
+    <string name="changes_number_title">عدد التغيرات</string>
 </resources>

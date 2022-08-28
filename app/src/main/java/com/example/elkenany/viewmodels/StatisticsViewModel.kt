@@ -23,10 +23,17 @@ class StatisticsViewModel : ViewModel() {
 
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getLocalStockDetailsData(stockId: Long?, type: String?, from: String?, to: String?) {
+    fun getLocalStockDetailsData(
+        stockId: Long?,
+        type: String?,
+        from: String?,
+        to: String?,
+        memId: Long?,
+    ) {
         _loading.value = true
         uiScope.launch {
-            _statisticsData.value = api.getAllStatisticsData(stockId, type, from, to, "Bearer $userApiToken")
+            _statisticsData.value =
+                api.getAllStatisticsData(stockId, type, from, to,memId, "Bearer $userApiToken")
             _loading.value = false
         }
     }
