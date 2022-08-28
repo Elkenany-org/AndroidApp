@@ -32,6 +32,10 @@ class LocalStockFragment : Fragment() {
     private lateinit var subSection: LocalStockSubSectionsAdapter
     private var sectorType: String? = null
     private var search: String? = null
+    override fun onResume() {
+        super.onResume()
+        viewModel.getHomeStockData(sectorType!!, search)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -46,7 +50,7 @@ class LocalStockFragment : Fragment() {
         }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-        viewModel.getHomeStockData(sectorType!!, search)
+//        viewModel.getHomeStockData(sectorType!!, search)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.apply {
             adapter = bannersAdapter

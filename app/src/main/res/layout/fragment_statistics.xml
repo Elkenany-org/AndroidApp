@@ -138,26 +138,30 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/company_btn"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/layout3"
             android:layout_marginStart="40sp"
             android:layout_marginEnd="40dp"
-            android:background="@drawable/primary_btn_shape"
             android:fontFamily="@font/cairo_bold"
-
+            android:hint="@string/product_title"
             android:textColor="@color/green"
+            app:boxBackgroundColor="@color/orange"
+            app:boxCornerRadiusBottomEnd="7dp"
+            app:boxCornerRadiusBottomStart="7dp"
+            app:boxCornerRadiusTopEnd="7dp"
+            app:boxCornerRadiusTopStart="7dp"
             tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
 
             <AutoCompleteTextView
                 android:id="@+id/company_auto_compelete"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableTint="@color/orange"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/orange"
                 android:fontFamily="@font/cairo_bold"
-                android:hint="location"
-                android:inputType="none"
+                android:foregroundTint="@color/orange"
+                android:textColorHint="@color/green"
                 android:textSize="12sp"
                 tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>

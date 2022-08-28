@@ -29,6 +29,12 @@ class StoreFragment : Fragment() {
     private var sectorType: String = ""
     private val args: StoreFragmentArgs by navArgs()
     private var search: String? = null
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllAdsStoreData(sectorType, search)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -42,7 +48,7 @@ class StoreFragment : Fragment() {
         } catch (e: Exception) {
             "poultry"
         }
-        viewModel.getAllAdsStoreData(sectorType, search)
+//        viewModel.getAllAdsStoreData(sectorType, search)
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()

@@ -25,6 +25,10 @@ class NewsDetailsFragment : Fragment() {
     private lateinit var viewModel: NewsDetailsViewModel
     private lateinit var moreNewsAdapter: NewsDaumAdapter
     private val args: NewsDetailsFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllNewsData(args.id)
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
@@ -36,7 +40,7 @@ class NewsDetailsFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_news_details, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
-        viewModel.getAllNewsData(args.id)
+//        viewModel.getAllNewsData(args.id)
         binding.webView.settings.apply {
             javaScriptEnabled = true
             javaScriptCanOpenWindowsAutomatically = true

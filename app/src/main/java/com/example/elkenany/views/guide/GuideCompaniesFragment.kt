@@ -17,6 +17,8 @@ import com.example.elkenany.databinding.FragmentGuideCompaniesBinding
 import com.example.elkenany.viewmodels.GuideCompaniesViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.guide.adapter.CompaniesAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
+import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 
 
 class GuideCompaniesFragment : Fragment() {
@@ -24,8 +26,14 @@ class GuideCompaniesFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: GuideCompaniesViewModel
     private var search: String? = ""
+    private lateinit var bannersAdapter: LocalStockBannersAdapter
+    private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var companiesAdapter: CompaniesAdapter
     private val args: GuideCompaniesFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCompaniesGuideData(args.id, search)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +45,15 @@ class GuideCompaniesFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideCompaniesViewModel::class.java]
         binding.appBarTitle.text = args.name
-        viewModel.getCompaniesGuideData(args.id, search)
+//        viewModel.getCompaniesGuideData(args.id, search)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getCompaniesGuideData(args.id, search)
         }
+        bannersAdapter = LocalStockBannersAdapter(ClickListener { })
+        binding.bannersRecyclerView.adapter = bannersAdapter
+        logosAdapter = LocalStockLogosAdapter(ClickListener { })
+        binding.logosRecyclerView.adapter = logosAdapter
         companiesAdapter = CompaniesAdapter(ClickListener {
             requireView().findNavController().navigate(
                 GuideCompaniesFragmentDirections.actionGuideCompaniesFragmentToCompanyFragment(it.id!!,
@@ -57,6 +69,8 @@ class GuideCompaniesFragment : Fragment() {
                 binding.companyListRecyclerView.visibility = View.VISIBLE
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
+                bannersAdapter.submitList(it.banners)
+                logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
 
             } else {

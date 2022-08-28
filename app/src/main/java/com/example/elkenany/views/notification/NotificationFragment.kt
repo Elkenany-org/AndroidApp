@@ -26,6 +26,12 @@ class NotificationFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: NotificationViewModel
     private lateinit var notificationAdapter: NotificationListAdapter
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onGettingNotificationData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -35,7 +41,7 @@ class NotificationFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_notification, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NotificationViewModel::class.java]
-        viewModel.onGettingNotificationData()
+//        viewModel.onGettingNotificationData()
         notificationAdapter = NotificationListAdapter(ClickListener {
             onNotificationClickedToNavigate(it, it.title!!)
         })

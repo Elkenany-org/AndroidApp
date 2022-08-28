@@ -32,6 +32,11 @@ class GuideFragment : Fragment() {
     private lateinit var sectorType: String
     private var search: String? = null
     private val args: GuideFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getGuideData(sectorType, search)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -45,7 +50,7 @@ class GuideFragment : Fragment() {
         } catch (e: Exception) {
             "poultry"
         }
-        viewModel.getGuideData(sectorType, search)
+//        viewModel.getGuideData(sectorType, search)
 
 //        binding.searchBar.addTextChangedListener {
 //            search = it.toString()

@@ -94,11 +94,12 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-        viewModel.exception.observe(viewLifecycleOwner){
-            when(it){
-                404 ->  Toast.makeText(context, "الأيميل غير موجود", Toast.LENGTH_LONG).show()
-                406 ->  Toast.makeText(context, "كلمة المرور خاطئة", Toast.LENGTH_LONG).show()
-                else ->  Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
+        viewModel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                200 -> Toast.makeText(context, "تم تسجيل الدخول", Toast.LENGTH_LONG).show()
+                404 -> Toast.makeText(context, "الأيميل غير موجود", Toast.LENGTH_LONG).show()
+                406 -> Toast.makeText(context, "كلمة المرور خاطئة", Toast.LENGTH_LONG).show()
+                else -> Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

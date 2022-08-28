@@ -52,12 +52,21 @@
                 tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
         </androidx.cardview.widget.CardView>
 
-        <ProgressBar
+<!--        <ProgressBar-->
+<!--            android:id="@+id/loading_progressbar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:visibility="gone" />-->
+
+        <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_bar_card">
+
+            <include layout="@layout/guide_companies_shimmer" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/error_message"
@@ -71,10 +80,33 @@
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/banners_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_bar_card"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:listitem="@layout/banners_card_view_item" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/logos_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/banners_recycler_view"
+            android:layout_gravity="start"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="RtlHardcoded,SpeakableTextPresentCheck"
+            tools:listitem="@layout/logo_card_view_item" />
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/company_list_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_below="@id/search_bar_card"
+            android:layout_below="@id/logos_recycler_view"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layoutDirection="rtl"
