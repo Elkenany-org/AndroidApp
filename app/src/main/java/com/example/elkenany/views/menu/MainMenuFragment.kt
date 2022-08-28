@@ -1,5 +1,6 @@
 package com.example.elkenany.views.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.elkenany.viewmodels.MainMenuViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.home.HomeFragmentDirections
 
+const val SHARE_LINK = "https://play.google.com/store/apps/details?id=com.Elkenany"
 
 class MainMenuFragment : Fragment() {
     private lateinit var binding: FragmentMainMenuBinding
@@ -56,30 +58,24 @@ class MainMenuFragment : Fragment() {
         binding.newsBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.newsFragment)
         }
-        binding.showsBtn.setOnClickListener {
-            // ToDo -> implement showsFragment here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
-        }
-        binding.magazineBtn.setOnClickListener {
-            // ToDo -> implement magazineFragment here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
-        }
+
+
+        // TODO --> impelement it in phase two
+        binding.showsBtn.visibility = View.GONE
+        // TODO --> impelement it in phase two
+        binding.magazineBtn.visibility = View.GONE
+
+
         binding.chatBtn.setOnClickListener {
             // ToDo -> implement chatFragment here
             Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
                 .show()
         }
         binding.aboutBtn.setOnClickListener {
-            // ToDo -> implement aboutFragment here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
+            requireView().findNavController().navigate(R.id.aboutFragment)
         }
         binding.shareBtn.setOnClickListener {
-            // ToDo -> implement shareFunction here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
+            shareSuccess()
         }
         binding.rateBtn.setOnClickListener {
             // ToDo -> implement rateFunction here
@@ -110,5 +106,18 @@ class MainMenuFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun onsharingdata(): Intent {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT,
+                "تطبيق الكناني أول تطبيق خدمي في المجال البيطري والزراعي\n$SHARE_LINK")
+        }
+        return shareIntent
+    }
+
+    private fun shareSuccess() {
+        startActivity(onsharingdata())
     }
 }

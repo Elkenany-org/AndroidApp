@@ -1,9 +1,7 @@
 package com.example.elkenany.api.callback
 
 import android.util.Log
-import com.example.elkenany.entities.home_data.HomeSectorsData
-import com.example.elkenany.entities.home_data.HomeServiceData
-import com.example.elkenany.entities.home_data.NotificationsData
+import com.example.elkenany.entities.home_data.*
 import retrofit2.await
 
 class IHomeImplementation {
@@ -39,4 +37,23 @@ class IHomeImplementation {
         }
     }
 
+    suspend fun getAllContactUsData(): ContactUsData? {
+        return try {
+            val response = IHomeHandler.singleton.getContactUsData().await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun getAboutUsData(): AboutUsData? {
+        return try {
+            val response = IHomeHandler.singleton.getAboutUsData().await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
 }

@@ -2,9 +2,7 @@ package com.example.elkenany.api.callback
 
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
-import com.example.elkenany.entities.home_data.HomeSectorsData
-import com.example.elkenany.entities.home_data.HomeServiceData
-import com.example.elkenany.entities.home_data.NotificationsData
+import com.example.elkenany.entities.home_data.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -23,6 +21,12 @@ interface IHome {
 
     @GET("v2/notifications")
     fun getAllNotificationData(@Header("Authorization") apiToken: String): Call<GenericEntity<NotificationsData?>>
+
+    @GET("about-us")
+    fun getAboutUsData(): Call<GenericEntity<AboutUsData?>>
+
+    @GET("contuct-us-office")
+    fun getContactUsData(): Call<GenericEntity<ContactUsData?>>
 }
 
 object IHomeHandler {
