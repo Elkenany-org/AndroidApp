@@ -35,6 +35,10 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
+    }
 
     //    private lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreateView(
@@ -86,7 +90,7 @@ class LocalStockDetailsFragment : Fragment() {
 
         localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener {})
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
-        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
+//        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.errorMessage.visibility = View.GONE

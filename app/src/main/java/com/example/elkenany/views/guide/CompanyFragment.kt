@@ -19,6 +19,11 @@ class CompanyFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewmodel: CompanyViewModel
     private val args: CompanyFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewmodel.getCompaniesGuideData(args.companyId)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

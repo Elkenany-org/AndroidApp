@@ -66,7 +66,7 @@ class StatisticsFragment : Fragment() {
                 binding.apply {
                     sectorsRecyclerView.visibility = View.INVISIBLE
                     loadingProgressbar.visibility = View.VISIBLE
-                    companyBtn.visibility = View.INVISIBLE
+                    companyBtn.isClickable = false
                 }
             } else {
                 binding.apply {
@@ -79,7 +79,7 @@ class StatisticsFragment : Fragment() {
         {
             if (it != null) {
                 binding.apply {
-                    companyBtn.visibility = View.VISIBLE
+                    companyBtn.isClickable = true
                     sectorsRecyclerView.visibility = View.VISIBLE
                     statiscsAdapter.submitList(it.changesMembers)
                 }
@@ -107,7 +107,7 @@ class StatisticsFragment : Fragment() {
 
             } else {
                 binding.apply {
-                    companyBtn.visibility = View.GONE
+                    companyBtn.isClickable = true
                     sectorsRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.VISIBLE
                 }

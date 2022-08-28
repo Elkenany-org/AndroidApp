@@ -30,6 +30,11 @@ class NewsFragment : Fragment() {
     private var sectorType: String = ""
     private var sort: String? = null
     private val args: NewsFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllNewsData(sectorType, search, sort)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -44,7 +49,7 @@ class NewsFragment : Fragment() {
             "poultry"
         }
 
-        viewModel.getAllNewsData(sectorType, search, sort)
+//        viewModel.getAllNewsData(sectorType, search, sort)
         binding.filterLayout.layoutAnimation =
             AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
         binding.searchBar.addTextChangedListener {
@@ -83,7 +88,7 @@ class NewsFragment : Fragment() {
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
             sectorType = it.type.toString()
-            viewModel.getAllNewsData(sectorType, search,sort)
+            viewModel.getAllNewsData(sectorType, search, sort)
             newsDaumAdapter.submitList(listOf())
         })
         binding.sectorsRecyclerView.apply {

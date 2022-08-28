@@ -20,6 +20,11 @@ class AdDetailsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: AdDetailsViewModel
     private val args: AdDetailsFragmentArgs by navArgs()
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAdDetailsData(args.id)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -28,9 +33,8 @@ class AdDetailsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ad_details, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
-        viewModel.getAdDetailsData(args.id)
-        //I dont know how or why but this makes all the data recieved to be presented
-        //Otherwise it wont work
+//        viewModel.getAdDetailsData(args.id)
+
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.adsLayout.visibility = View.GONE
