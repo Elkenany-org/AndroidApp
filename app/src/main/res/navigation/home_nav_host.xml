@@ -293,4 +293,9 @@
         android:name="com.example.elkenany.views.about.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/chatsFragment"
+        android:name="com.example.elkenany.views.store.ChatsFragment"
+        android:label="ChatsFragment"
+        tools:layout="@layout/fragment_chats" />
 </navigation>

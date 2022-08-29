@@ -67,9 +67,7 @@ class MainMenuFragment : Fragment() {
 
 
         binding.chatBtn.setOnClickListener {
-            // ToDo -> implement chatFragment here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
+            requireView().findNavController().navigate(R.id.chatsFragment)
         }
         binding.aboutBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.aboutFragment)
