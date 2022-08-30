@@ -7,7 +7,8 @@ data class ChatsData(
 )
 
 data class Chat(
-    val massage: String?,
+    @Json(name = "massage")
+    val message: String?,
     val id: Long?,
     @Json(name = "created_at")
     val createdAt: String?,

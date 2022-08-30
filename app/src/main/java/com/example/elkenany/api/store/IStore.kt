@@ -5,6 +5,7 @@ import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.AdsDetailsData
 import com.example.elkenany.entities.store.AdsStoreData
 import com.example.elkenany.entities.store.ChatsData
+import com.example.elkenany.entities.store.MessagesData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -22,6 +23,13 @@ interface IStore {
 
     @GET("store/chats")
     fun getAllChatsData(@Header("Authorization") apiToken: String?): Call<GenericEntity<ChatsData?>>
+
+    @GET("store/chats-massages")
+    fun getAllMessagesList(
+        @Query("id") id: Long,
+        @Header("Authorization") apiToken: String?,
+    ): Call<GenericEntity<MessagesData?>>
+
 }
 
 object IStoreHandler {

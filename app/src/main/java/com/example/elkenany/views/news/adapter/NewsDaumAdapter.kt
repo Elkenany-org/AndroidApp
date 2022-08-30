@@ -30,7 +30,7 @@ class NewsDaumViewHolder private constructor(private val binding: NewsCardViewIt
         binding.data = news
         binding.url = news.image
         binding.title = news.title
-        binding.createdAt= news.createdAt
+        binding.createdAt = news.createdAt
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }
