@@ -22,6 +22,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.269" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.232" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml" value="0.307" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.2605" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.269" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_source_24.xml" value="0.287" />
@@ -64,6 +65,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_local_stock_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_login.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_main_menu.xml" value="0.29200513039760584" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_messages.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_news.xml" value="0.33" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_news_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_notification.xml" value="0.29200513039760584" />
@@ -77,6 +79,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/guide_companies_shimmer.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/home_shimmer_loading.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/logo_card_view_item.xml" value="0.5" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/message_card_item.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/news_card_view_item.xml" value="0.2" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/news_shimmer_loading.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/notification_card_view_item.xml" value="0.2911500641299701" />

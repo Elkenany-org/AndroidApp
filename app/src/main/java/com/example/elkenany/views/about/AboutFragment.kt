@@ -65,6 +65,7 @@ class AboutFragment : Fragment() {
         }
         viewModel.about.observe(viewLifecycleOwner) {
             if (it != null) {
+                @Suppress("DEPRECATION")
                 val aboutDataEncoded = Html.fromHtml(it.about).toString()
                 binding.apply {
                     aboutCard.visibility = View.VISIBLE

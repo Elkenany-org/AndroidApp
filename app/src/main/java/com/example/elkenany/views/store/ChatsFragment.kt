@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentChatsBinding
@@ -29,7 +30,9 @@ class ChatsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ChatsViewModel::class.java]
         chatsListAdapter = ChatsListAdapter(ClickListener {
-            // ToDo --> impelement navigate to chat page here
+            requireView().findNavController()
+                .navigate(ChatsFragmentDirections.actionChatsFragmentToMessagesFragment(it.id!!,
+                    it.name))
         })
         binding.notificationRecyclerView.adapter = chatsListAdapter
 

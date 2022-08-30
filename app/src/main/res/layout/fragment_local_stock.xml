@@ -55,6 +55,7 @@
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="SpeakableTextPresentCheck"
                 tools:listitem="@layout/logo_card_view_item" />
 
             <androidx.recyclerview.widget.RecyclerView

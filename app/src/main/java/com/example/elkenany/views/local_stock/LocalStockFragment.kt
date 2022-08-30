@@ -36,6 +36,7 @@ class LocalStockFragment : Fragment() {
         super.onResume()
         viewModel.getHomeStockData(sectorType!!, search)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -95,7 +96,7 @@ class LocalStockFragment : Fragment() {
                     changeViewBtn.visibility = View.VISIBLE
                     searchBar.visibility = View.VISIBLE
                 }
-                val list = it.subSections + it.fodSections
+                val list = it.fodSections + it.subSections
                 if (list.isEmpty()) {
                     binding.stockListRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
