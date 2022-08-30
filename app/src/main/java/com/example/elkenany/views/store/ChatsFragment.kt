@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentChatsBinding
@@ -31,11 +32,18 @@ class ChatsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[ChatsViewModel::class.java]
         chatsListAdapter = ChatsListAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(ChatsFragmentDirections.actionChatsFragmentToMessagesFragment(it.id!!,
-                    it.name))
+                .navigate(
+                    ChatsFragmentDirections.actionChatsFragmentToMessagesFragment(
+                        it.id!!,
+                        it.name
+                    )
+                )
         })
         binding.notificationRecyclerView.adapter = chatsListAdapter
-
+        binding.signInBtn.setOnClickListener {
+            requireParentFragment().requireParentFragment().findNavController()
+                .navigate(R.id.loginFragment)
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
