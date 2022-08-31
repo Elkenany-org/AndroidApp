@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.R
+import com.example.elkenany.api.auth.AuthImplementation.Companion.auth
 import com.example.elkenany.databinding.FragmentMessagesBinding
 import com.example.elkenany.viewmodels.MessagesViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
@@ -23,6 +24,7 @@ class MessagesFragment : Fragment() {
     private lateinit var messagesAdapter: MessagesAdapter
 
     private val args: MessagesFragmentArgs by navArgs()
+    private lateinit var userTwoName: String
 
     override fun onResume() {
         super.onResume()
@@ -37,11 +39,21 @@ class MessagesFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_messages, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[MessagesViewModel::class.java]
-        binding.appBarTitle.text = args.name
+        userTwoName = try {
+            args.name!!
+        } catch (e: Exception) {
+            "الرسائل"
+        }
+        binding.appBarTitle.text = userTwoName
 
-        messagesAdapter = MessagesAdapter(args.name.toString())
+        messagesAdapter = MessagesAdapter(auth!!.name.toString())
         binding.messagesRecyclerView.adapter = messagesAdapter
-
+        binding.sendMessageBtn.setOnClickListener {
+            val message = binding.sendMessage.text.trim().toString()
+            if (message.isNotEmpty()) {
+                viewModel.sendMessageData(args.id, message)
+            }
+        }
         viewModel.messageList.observe(viewLifecycleOwner) {
             if (it!!.massages.isEmpty()) {
                 Log.i("massages", "data not found")
@@ -49,7 +61,22 @@ class MessagesFragment : Fragment() {
             } else {
                 Log.i("massages", "data found")
                 binding.messagesRecyclerView.visibility = View.VISIBLE
+                binding.messagesRecyclerView.scrollToPosition(it.massages.size - 1)
                 messagesAdapter.submitList(it.massages)
+            }
+        }
+        viewModel.messageIndicatior.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.apply {
+                    messageIdicator.visibility = View.VISIBLE
+                    sendMessageBtn.visibility = View.GONE
+                    sendMessage.text.clear()
+                }
+            } else {
+                binding.apply {
+                    messageIdicator.visibility = View.GONE
+                    sendMessageBtn.visibility = View.VISIBLE
+                }
             }
         }
         return binding.root

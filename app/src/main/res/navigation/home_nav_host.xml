@@ -262,6 +262,12 @@
         <argument
             android:name="id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_adDetailsFragment_to_messagesFragment"
+            app:destination="@id/messagesFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/messagesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
@@ -300,7 +306,10 @@
         tools:layout="@layout/fragment_chats" >
         <action
             android:id="@+id/action_chatsFragment_to_messagesFragment"
-            app:destination="@id/messagesFragment" />
+            app:destination="@id/messagesFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/messagesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/messagesFragment"
