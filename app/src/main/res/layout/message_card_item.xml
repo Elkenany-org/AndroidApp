@@ -30,7 +30,7 @@
             android:layout_marginBottom="5dp"
             android:layoutDirection="rtl"
             cardView:cardCornerRadius="10dp"
-            cardView:cardElevation="7dp">
+            cardView:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:layout_marginBottom="5dp"
             android:layoutDirection="rtl"
             cardView:cardCornerRadius="10dp"
-            cardView:cardElevation="7dp">
+            cardView:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

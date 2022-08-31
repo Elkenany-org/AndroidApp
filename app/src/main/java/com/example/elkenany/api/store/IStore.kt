@@ -2,14 +2,9 @@ package com.example.elkenany.api.store
 
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
-import com.example.elkenany.entities.store.AdsDetailsData
-import com.example.elkenany.entities.store.AdsStoreData
-import com.example.elkenany.entities.store.ChatsData
-import com.example.elkenany.entities.store.MessagesData
+import com.example.elkenany.entities.store.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface IStore {
     @GET("store/ads-store")
@@ -24,11 +19,26 @@ interface IStore {
     @GET("store/chats")
     fun getAllChatsData(@Header("Authorization") apiToken: String?): Call<GenericEntity<ChatsData?>>
 
+    @GET("store/start-chat")
+    fun getAllStartChatData(
+        @Header("Authorization") apiToken: String?,
+        @Query("id") adsId: Long?,
+    ): Call<GenericEntity<StartChatData>>
+
     @GET("store/chats-massages")
     fun getAllMessagesList(
         @Query("id") id: Long,
         @Header("Authorization") apiToken: String?,
     ): Call<GenericEntity<MessagesData?>>
+
+    @FormUrlEncoded
+    @POST("store/add-massages")
+    fun sendMessageData(
+        @Header("Authorization") apiToken: String?,
+        @Field("id") chatId: Long?,
+        @Field("massage") messageData: String?,
+    ): Call<GenericEntity<MessagesData?>>
+
 
 }
 

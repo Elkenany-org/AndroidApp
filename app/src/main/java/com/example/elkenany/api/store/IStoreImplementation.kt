@@ -1,10 +1,7 @@
 package com.example.elkenany.api.store
 
 import android.util.Log
-import com.example.elkenany.entities.store.AdsDetailsData
-import com.example.elkenany.entities.store.AdsStoreData
-import com.example.elkenany.entities.store.ChatsData
-import com.example.elkenany.entities.store.MessagesData
+import com.example.elkenany.entities.store.*
 import retrofit2.await
 
 class IStoreImplementation {
@@ -43,6 +40,26 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAllMessagesList(id, apiToken).await()
             response.data
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun getAllStartChatData(apiToken: String?, adsId: Long?): StartChatDaum? {
+        return try {
+            val response = IStoreHandler.singleton.getAllStartChatData(apiToken, adsId).await()
+            response.data!!.chat
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun sendMessageData(apiToken: String?, adsId: Long?, message: String?): MessagesList? {
+        return try {
+            val response = IStoreHandler.singleton.sendMessageData(apiToken, adsId, message).await()
+            response.data!!.chat
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())
             null

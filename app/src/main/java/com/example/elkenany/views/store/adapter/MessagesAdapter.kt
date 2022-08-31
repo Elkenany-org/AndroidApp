@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.R
+import com.example.elkenany.api.auth.AuthImplementation.Companion.auth
 import com.example.elkenany.databinding.MessageCardItemBinding
 import com.example.elkenany.entities.store.Massage
 
@@ -34,11 +35,11 @@ class MassageDaumViewHolder private constructor(private val binding: MessageCard
     @SuppressLint("SimpleDateFormat")
     fun bind(message: Massage, user: String) {
         binding.data = message
-        if (message.name == user) {
-            binding.userOne.visibility = View.GONE
-            binding.userTwo.visibility = View.VISIBLE
-        } else {
+        if (user == auth!!.name) {
             binding.userOne.visibility = View.VISIBLE
+            binding.userTwo.visibility = View.GONE
+        } else {
+            binding.userOne.visibility = View.GONE
             binding.userTwo.visibility = View.GONE
         }
         binding.executePendingBindings()

@@ -41,7 +41,8 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/message_card_item" />
+                tools:listitem="@layout/message_card_item"
+                />
 
         </RelativeLayout>
 
@@ -67,12 +68,24 @@
             android:layout_alignBottom="@id/send_message"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
             android:src="@drawable/ic_baseline_send_24"
             tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
+
+        <ProgressBar
+            android:id="@+id/message_idicator"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@id/send_message"
+            android:background="@color/white"
+            android:indeterminateDrawable="@drawable/custom_progress_bar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp" />
     </RelativeLayout>
 </layout>

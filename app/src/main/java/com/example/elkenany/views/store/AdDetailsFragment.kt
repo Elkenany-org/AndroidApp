@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentAdDetailsBinding
@@ -34,7 +36,9 @@ class AdDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
 //        viewModel.getAdDetailsData(args.id)
-
+        binding.chattingBtn.setOnClickListener {
+            viewModel.startChat(args.id)
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.adsLayout.visibility = View.GONE
@@ -56,6 +60,26 @@ class AdDetailsFragment : Fragment() {
                     adsLayout.visibility = View.GONE
                     errorMessage.visibility = View.VISIBLE
                 }
+            }
+        }
+        viewModel.startChatData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                requireView().findNavController()
+                    .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
+                        it.id!!,
+                        null))
+            } else {
+                binding.chattingBtn.text = "كلم البائع"
+            }
+        }
+        viewModel.exception.observe(viewLifecycleOwner) {
+            if (it == 401) {
+                Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (it == 100) {
+                binding.chattingBtn.text = "برجاء الانتظار"
+            } else {
+                binding.chattingBtn.text = "كلم البائع"
             }
         }
         return binding.root

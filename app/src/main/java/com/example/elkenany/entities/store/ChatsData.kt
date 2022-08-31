@@ -6,6 +6,16 @@ data class ChatsData(
     val chat: List<Chat?>,
 )
 
+data class StartChatData(
+    val chat: StartChatDaum?,
+)
+
+data class StartChatDaum(
+    val id: Long?,
+    @Json(name = "massages")
+    val messages: List<Chat?>,
+)
+
 data class Chat(
     @Json(name = "massage")
     val message: String?,
@@ -15,3 +25,5 @@ data class Chat(
     val image: String?,
     val name: String?,
 )
+
+
