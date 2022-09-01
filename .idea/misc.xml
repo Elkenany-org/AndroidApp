@@ -52,11 +52,12 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/chat_card_item.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/company_item.xml" value="0.53203125" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/content_main.xml" value="0.35572916666666665" />
-        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_about.xml" value="0.29200513039760584" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_about.xml" value="0.18259935553168635" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_ad_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_advertisment_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_chats.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_company.xml" value="0.35789473684210527" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_forgot_password.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide_companies.xml" value="0.18" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_home.xml" value="0.29200513039760584" />
@@ -92,6 +93,8 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/table_row_item.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/menu/menu_main.xml" value="0.35572916666666665" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/mipmap-anydpi-v26/verify_password_image.xml" value="0.2605" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/mipmap-anydpi-v26/verify_password_image_round.xml" value="0.2605" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2907225309961522" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.13894826849080805" />
         <entry key="app/src/main/res/layout/notification_card_view_item.xml" value="0.2864471996579735" />

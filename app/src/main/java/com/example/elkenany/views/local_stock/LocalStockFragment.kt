@@ -102,6 +102,7 @@ class LocalStockFragment : Fragment() {
                     binding.errorMessage.visibility = View.VISIBLE
                 } else {
                     binding.stockListRecyclerView.visibility = View.VISIBLE
+                    binding.stockListRecyclerView.scrollToPosition(0)
                     binding.errorMessage.visibility = View.GONE
                 }
                 binding.errorMessage.visibility = View.GONE

@@ -1,10 +1,16 @@
 package com.example.elkenany.views.store
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -47,42 +53,60 @@ class AdDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
-        viewModel.adDetailsData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.apply {
-                    adsLayout.visibility = View.VISIBLE
-                    errorMessage.visibility = View.GONE
-                    data = it
-                }
+        binding.adPhone.setOnClickListener { callThisNumber(binding.adPhone.text.toString()) }
+    viewModel.adDetailsData.observe(viewLifecycleOwner)
+    {
+        if (it != null) {
+            binding.apply {
+                adsLayout.visibility = View.VISIBLE
+                errorMessage.visibility = View.GONE
+                data = it
+            }
 
-            } else {
-                binding.apply {
-                    adsLayout.visibility = View.GONE
-                    errorMessage.visibility = View.VISIBLE
-                }
+        } else {
+            binding.apply {
+                adsLayout.visibility = View.GONE
+                errorMessage.visibility = View.VISIBLE
             }
         }
-        viewModel.startChatData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                requireView().findNavController()
-                    .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
-                        it.id!!,
-                        null))
-            } else {
-                binding.chattingBtn.text = "كلم البائع"
-            }
-        }
-        viewModel.exception.observe(viewLifecycleOwner) {
-            if (it == 401) {
-                Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (it == 100) {
-                binding.chattingBtn.text = "برجاء الانتظار"
-            } else {
-                binding.chattingBtn.text = "كلم البائع"
-            }
-        }
-        return binding.root
     }
+    viewModel.startChatData.observe(viewLifecycleOwner)
+    {
+        if (it != null) {
+            requireView().findNavController()
+                .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
+                    it.id!!,
+                    null))
+        } else {
+            binding.chattingBtn.text = "كلم البائع"
+        }
+    }
+    viewModel.exception.observe(viewLifecycleOwner)
+    {
+        if (it == 401) {
+            Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+                .show()
+        } else if (it == 100) {
+            binding.chattingBtn.text = "برجاء الانتظار"
+        } else {
+            binding.chattingBtn.text = "كلم البائع"
+        }
+    }
+    return binding.root
+}
+
+private fun callThisNumber(phone: String?) {
+    val callIntent = Intent(Intent.ACTION_CALL)
+    callIntent.data = Uri.parse("tel:$phone")
+    if (ContextCompat.checkSelfPermission(requireContext(),
+            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+    ) {
+        ActivityCompat.requestPermissions(requireActivity(),
+            arrayOf(Manifest.permission.CALL_PHONE), 1)
+    } else {
+        startActivity(callIntent)
+    }
+
+}
 
 }

@@ -23,25 +23,57 @@
             android:textColor="@color/green"
             android:textSize="20sp" />
 
-        <ProgressBar
-            android:id="@+id/loading_progressbar"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/search_bar_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:layout_below="@id/app_bar_title"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5sp"
+            app:cardCornerRadius="5sp"
+            app:cardElevation="7dp">
 
-        <TextView
-            android:id="@+id/error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/cairo_bold"
-            android:text="@string/failed_to_receive_data_msg"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:visibility="gone" />
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
 
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:drawableEnd="@drawable/ic_search_logo"
+                android:drawablePadding="10dp"
+                android:fontFamily="@font/cairo_bold"
+                android:hint="@string/homeSearch"
+                android:padding="5dp"
+                android:textColorHint="@color/green"
+                android:textSize="15sp"
+                tools:ignore="Autofill,TextFields,TouchTargetSizeCheck" />
+        </androidx.cardview.widget.CardView>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/search_bar_card">
+
+            <ProgressBar
+                android:id="@+id/loading_progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/cairo_bold"
+                android:text="@string/failed_to_receive_data_msg"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/guide_page_layout"
@@ -49,7 +81,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="5dp"
-                android:layout_below="@id/app_bar_title"
                 tools:context=".views.local_stock.LocalStockFragment"
                 tools:ignore="UselessParent">
 
@@ -59,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:layoutDirection="rtl"
                     android:orientation="horizontal"
-
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:ignore="SpeakableTextPresentCheck"
                     tools:listitem="@layout/big_recycler_item" />
@@ -82,11 +112,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/small_recycler_item" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    tools:ignore="UselessLeaf" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/guide_list_recycler_view"
                     android:layout_width="wrap_content"
@@ -96,5 +121,6 @@
                     tools:listitem="@layout/big_recycler_item_with_details" />
 
             </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

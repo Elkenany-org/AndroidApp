@@ -3,6 +3,7 @@ package com.example.elkenany.api.auth
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.auth_data.AuthData
+import com.example.elkenany.entities.auth_data.PasswordRecoveryData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import retrofit2.Call
 import retrofit2.http.*
@@ -48,6 +49,10 @@ interface IAuth {
         @Field("device_token") device_token: String?,
         @Field("facebook_id") facebookId: String?,
     ): Call<GenericEntity<AuthData?>>
+
+    @FormUrlEncoded
+    @POST("forget-password")
+    fun recoverPasswordWithEmail(@Field("phone") phone: String?): Call<GenericEntity<PasswordRecoveryData?>>
 
 }
 
