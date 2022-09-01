@@ -62,14 +62,13 @@ class LoginFragment : Fragment() {
 
         }
         binding.forgotPasswordBtn.setOnClickListener {
-            //ToDo --> implement viewModel.ForgotPassword function here
+            requireView().findNavController()
+                .navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
         }
         binding.googleSigninBtn.setOnClickListener {
-            //ToDo --> implement viewModel.SignInWithGoogle function here
             signInWithGoogle()
         }
         binding.facebookSigninBtn.setOnClickListener {
-            //ToDo --> implement viewModel.SignInWithFacebook function here
             viewModel.signInWithFaceBook(this, facebookCallbackManager)
         }
         binding.skipBtn.setOnClickListener {

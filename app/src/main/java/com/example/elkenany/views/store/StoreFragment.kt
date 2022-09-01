@@ -79,6 +79,7 @@ class StoreFragment : Fragment() {
                 sectorsAdapter.submitList(it.sectors)
                 if (it.data.isNotEmpty()) {
                     binding.storeRecyclerView.visibility = View.VISIBLE
+                    binding.storeRecyclerView.scrollToPosition(0)
                     binding.errorMessage.visibility = View.GONE
                     //submitting lists to its own adapters
                     adsStoreAdapter.submitList(it.data)

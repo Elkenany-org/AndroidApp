@@ -53,7 +53,7 @@
                 android:id="@+id/ads_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:padding="5dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -88,12 +88,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/cairo_bold"
-                                android:paddingTop="7dp"
-                                android:paddingBottom="7dp"
                                 android:paddingStart="10sp"
+                                android:paddingTop="7dp"
                                 android:paddingEnd="10sp"
-                                android:textSize="16sp"
-                                android:textColor="@color/green" />
+                                android:paddingBottom="7dp"
+                                android:textColor="@color/green"
+                                android:textSize="16sp" />
                         </androidx.cardview.widget.CardView>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
@@ -172,7 +172,7 @@
                             android:textSize="14sp" />
 
                         <TextView
-                            android:id="@+id/ad_location2"
+                            android:id="@+id/ad_phone"
                             itemText="@{data.phone}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                             app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
 
                         <TextView
-                            android:id="@+id/ad_phone"
+                            android:id="@+id/ad_location2"
                             itemText="@{data.address}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

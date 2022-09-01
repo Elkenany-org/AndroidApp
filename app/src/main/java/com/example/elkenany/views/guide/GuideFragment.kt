@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -50,13 +51,11 @@ class GuideFragment : Fragment() {
         } catch (e: Exception) {
             "poultry"
         }
-//        viewModel.getGuideData(sectorType, search)
 
-//        binding.searchBar.addTextChangedListener {
-//            search = it.toString()
-//            viewModel.getAllNewsData(args.sectorType.toString(), search)
-//        }
-
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getGuideData(sectorType, search)
+        }
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.apply {
             adapter = bannersAdapter
@@ -91,6 +90,7 @@ class GuideFragment : Fragment() {
         viewModel.guideData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.guideListRecyclerView.visibility = View.VISIBLE
+                binding.guideListRecyclerView.scrollToPosition(0)
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)

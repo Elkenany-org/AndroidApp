@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.example.elkenany.entities.auth_data.AuthData
+import com.example.elkenany.entities.auth_data.PasswordRecoveryData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import retrofit2.HttpException
@@ -121,6 +122,16 @@ class AuthImplementation {
         if (account != null) {
             val gsc = GoogleSignIn.getClient(context, GoogleAuth_Config.gso)
             gsc.signOut()
+        }
+    }
+
+    suspend fun recoverPasswordWithEmail(email: String?): PasswordRecoveryData? {
+        return try {
+            val response = AuthHandler.singleton.recoverPasswordWithEmail(email).await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("login response", "Login with google failed : ${e.message}")
+            null
         }
     }
 }

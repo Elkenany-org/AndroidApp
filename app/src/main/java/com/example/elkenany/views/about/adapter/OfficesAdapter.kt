@@ -9,7 +9,11 @@ import com.example.elkenany.ClickListener
 import com.example.elkenany.databinding.AboutBranchItemCardBinding
 import com.example.elkenany.entities.home_data.Office
 
-class OfficesAdapter(private val clickListener: ClickListener<Office>) :
+class OfficesAdapter(
+    private val call: ClickListener<Office>,
+    private val mail: ClickListener<Office>,
+    private val locate: ClickListener<Office>,
+) :
     ListAdapter<Office, OfficeViewHolder>(
         OfficeAdapterDiffUtil()
     ) {
@@ -21,7 +25,7 @@ class OfficesAdapter(private val clickListener: ClickListener<Office>) :
     }
 
     override fun onBindViewHolder(holder: OfficeViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, clickListener)
+        holder.bind(getItem(position)!!, call, mail, locate)
     }
 
 }
@@ -31,10 +35,26 @@ class OfficeViewHolder private constructor(private val binding: AboutBranchItemC
 
     fun bind(
         office: Office,
-        clickListener: ClickListener<Office>,
+        call: ClickListener<Office>,
+        mail: ClickListener<Office>,
+        locate: ClickListener<Office>,
     ) {
         binding.data = office
-//        binding.clickListener = clickListener
+        binding.phoneTv.setOnClickListener {
+            call.onClick(office)
+        }
+        binding.mobileTv.setOnClickListener {
+            call.onClick(office)
+        }
+        binding.faxTv.setOnClickListener {
+            call.onClick(office)
+        }
+        binding.emailTv.setOnClickListener {
+            mail.onClick(office)
+        }
+        binding.locationTv.setOnClickListener {
+            locate.onClick(office)
+        }
         binding.executePendingBindings()
     }
 
