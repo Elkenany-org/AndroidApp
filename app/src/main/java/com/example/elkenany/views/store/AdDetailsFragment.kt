@@ -43,7 +43,8 @@ class AdDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
 //        viewModel.getAdDetailsData(args.id)
         binding.chattingBtn.setOnClickListener {
-            viewModel.startChat(args.id)
+//            viewModel.startChat(args.id)
+            callThisNumber(binding.adPhone.text.toString())
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -54,59 +55,59 @@ class AdDetailsFragment : Fragment() {
             }
         }
         binding.adPhone.setOnClickListener { callThisNumber(binding.adPhone.text.toString()) }
-    viewModel.adDetailsData.observe(viewLifecycleOwner)
-    {
-        if (it != null) {
-            binding.apply {
-                adsLayout.visibility = View.VISIBLE
-                errorMessage.visibility = View.GONE
-                data = it
+        viewModel.adDetailsData.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                binding.apply {
+                    adsLayout.visibility = View.VISIBLE
+                    errorMessage.visibility = View.GONE
+                    data = it
+                }
+
+            } else {
+                binding.apply {
+                    adsLayout.visibility = View.GONE
+                    errorMessage.visibility = View.VISIBLE
+                }
             }
-
-        } else {
-            binding.apply {
-                adsLayout.visibility = View.GONE
-                errorMessage.visibility = View.VISIBLE
+        }
+        viewModel.startChatData.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                requireView().findNavController()
+                    .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
+                        it.id!!,
+                        null))
+            } else {
+                binding.chattingBtn.text = "كلم البائع"
             }
         }
-    }
-    viewModel.startChatData.observe(viewLifecycleOwner)
-    {
-        if (it != null) {
-            requireView().findNavController()
-                .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
-                    it.id!!,
-                    null))
-        } else {
-            binding.chattingBtn.text = "كلم البائع"
+        viewModel.exception.observe(viewLifecycleOwner)
+        {
+            if (it == 401) {
+                Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (it == 100) {
+                binding.chattingBtn.text = "برجاء الانتظار"
+            } else {
+                binding.chattingBtn.text = "كلم البائع"
+            }
         }
-    }
-    viewModel.exception.observe(viewLifecycleOwner)
-    {
-        if (it == 401) {
-            Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
-                .show()
-        } else if (it == 100) {
-            binding.chattingBtn.text = "برجاء الانتظار"
-        } else {
-            binding.chattingBtn.text = "كلم البائع"
-        }
-    }
-    return binding.root
-}
-
-private fun callThisNumber(phone: String?) {
-    val callIntent = Intent(Intent.ACTION_CALL)
-    callIntent.data = Uri.parse("tel:$phone")
-    if (ContextCompat.checkSelfPermission(requireContext(),
-            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
-    ) {
-        ActivityCompat.requestPermissions(requireActivity(),
-            arrayOf(Manifest.permission.CALL_PHONE), 1)
-    } else {
-        startActivity(callIntent)
+        return binding.root
     }
 
-}
+    private fun callThisNumber(phone: String?) {
+        val callIntent = Intent(Intent.ACTION_CALL)
+        callIntent.data = Uri.parse("tel:$phone")
+        if (ContextCompat.checkSelfPermission(requireContext(),
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(Manifest.permission.CALL_PHONE), 1)
+        } else {
+            startActivity(callIntent)
+        }
+
+    }
 
 }

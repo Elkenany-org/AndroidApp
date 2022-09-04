@@ -6,83 +6,160 @@
     <data>
 
         <variable
-            name="data"
-            type="com.example.elkenany.entities.stock_data.ChangesMember" />
-
+            name="local_data"
+            type="com.example.elkenany.entities.stock_data.LocalChangesMember" />
+        <variable
+            name="fodder_data"
+            type="com.example.elkenany.entities.stock_data.FodderChangesMember" />
         <variable
             name="clickListener"
             type="com.example.elkenany.ClickListener" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="7dp"
-        android:onClick="@{()-> clickListener.onClick(data)}"
-        app:cardCornerRadius="7dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal"
-            android:padding="2dp">
+            android:elevation="7dp"
+            android:onClick="@{()-> clickListener.onClick(local_data)}"
+            app:cardCornerRadius="7dp"
+            app:cardUseCompatPadding="true">
 
-
-
-            <TextView
-                android:id="@+id/comp_name"
-                itemText="@{data.name.toString()}"
-                android:layout_width="100dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="10sp"
-                tools:ignore=",SmallSp" />
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="2dp">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/prod_name"
-                itemText="@{data.change.toString()}"
-                android:layout_width="100dp"
+                <TextView
+                    android:id="@+id/comp_name"
+                    itemText="@{local_data.name.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/prod_name"
+                    itemText="@{local_data.change.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/prod_type"
+                    itemText="@{local_data.counts.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="7dp"
+            android:onClick="@{()-> clickListener.onClick(fodder_data)}"
+            app:cardCornerRadius="7dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="10sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_type"
-                itemText="@{data.counts.toString()}"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="10sp"
-                tools:ignore=",SmallSp" />
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="2dp">
 
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+
+                    itemText="@{fodder_data.name.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+
+                    itemText="@{fodder_data.change.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    itemText="@{fodder_data.counts.toString()}"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="5dp"
+                    android:textColor="@color/green"
+                    android:textSize="10sp"
+                    tools:ignore=",SmallSp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </layout>

@@ -4,7 +4,8 @@ import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.stock_data.LocalStockData
 import com.example.elkenany.entities.stock_data.LocalStockDetailsData
-import com.example.elkenany.entities.stock_data.StatisticsData
+import com.example.elkenany.entities.stock_data.StatisticsFodderData
+import com.example.elkenany.entities.stock_data.StatisticsLocalData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -44,14 +45,23 @@ interface ILocalStock {
     ): Call<GenericEntity<Any?>>
 
     @GET("localstock/statistics-Localstock-members")
-    fun getAllStatisticsData(
+    fun getAllStatisticsLocalData(
         @Query("id") stockId: Long?,
         @Query("type") type: String?,
         @Query("from") from: String?,
         @Query("to") to: String?,
-        @Query("mem_id")memId:Long?,
+        @Query("mem_id") memId: Long?,
         @Header("Authorization") authorization: String?,
-    ): Call<GenericEntity<StatisticsData?>>
+    ): Call<GenericEntity<StatisticsLocalData?>>
+
+    @GET("fodderstock/statistics-Fodderstock-members")
+    fun getAllStatisticsFodderData(
+        @Header("Authorization") authorization: String?,
+        @Query("from") from: String?,
+        @Query("to") to: String?,
+        @Query("id") fodderId: Long?,
+        @Query("com_id") companyId: Long?,
+    ): Call<GenericEntity<StatisticsFodderData?>>
 }
 
 object ILocalStockHandler {

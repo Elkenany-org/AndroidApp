@@ -18,7 +18,8 @@ import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentStatisticsBinding
 import com.example.elkenany.viewmodels.StatisticsViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.example.elkenany.views.local_stock.adapter.StatisticsAdapter
+import com.example.elkenany.views.local_stock.adapter.StatisticsFodderAdapter
+import com.example.elkenany.views.local_stock.adapter.StatisticsLocalAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,11 +35,17 @@ class StatisticsFragment : Fragment() {
     private var dataTo: String = ""
 
     private var itemId: Long? = null
+    private var companyId: Long? = null
     private lateinit var adapter: ArrayAdapter<String>
-    private lateinit var statiscsAdapter: StatisticsAdapter
+    private lateinit var statiscsAdapter: StatisticsLocalAdapter
+    private lateinit var fodderAdapter: StatisticsFodderAdapter
     override fun onResume() {
         super.onResume()
-        viewModel.getLocalStockDetailsData(args.id, args.type, dataFrom, dataTo, itemId)
+        if (args.type == "local") {
+            viewModel.getLocalStockDetailsData(args.id, args.type, dataFrom, dataTo, itemId)
+        } else {
+            viewModel.getFodderStockDetailsData(dataFrom, dataTo, args.id, companyId)
+        }
     }
 
     override fun onCreateView(
@@ -59,14 +66,19 @@ class StatisticsFragment : Fragment() {
             updateLabel(it)
         }
 
-        statiscsAdapter = StatisticsAdapter(ClickListener { })
-        binding.sectorsRecyclerView.adapter = statiscsAdapter
+        statiscsAdapter = StatisticsLocalAdapter(ClickListener { })
+        binding.localRecyclerView.adapter = statiscsAdapter
+
+        fodderAdapter = StatisticsFodderAdapter(ClickListener { })
+        binding.fodderRecyclerView.adapter = fodderAdapter
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
-                    sectorsRecyclerView.visibility = View.INVISIBLE
+                    localRecyclerView.visibility = View.INVISIBLE
+                    fodderRecyclerView.visibility = View.INVISIBLE
                     loadingProgressbar.visibility = View.VISIBLE
                     companyBtn.isClickable = false
+                    errorMessage.visibility = View.GONE
                 }
             } else {
                 binding.apply {
@@ -74,14 +86,37 @@ class StatisticsFragment : Fragment() {
                 }
             }
         }
-
-        viewModel.statisticsData.observe(viewLifecycleOwner)
+        viewModel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                200 -> {
+                    binding.errorMessage.visibility = View.GONE
+                }
+                401 -> {
+                    binding.errorMessage.text =
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل البورصة"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+                402 -> {
+                    binding.errorMessage.text =
+                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.errorMessage.text =
+                        "تعذر الحصول علي المعلومات"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+            }
+        }
+        viewModel.statisticsLocalData.observe(viewLifecycleOwner)
         {
             if (it != null) {
                 binding.apply {
                     companyBtn.isClickable = true
-                    sectorsRecyclerView.visibility = View.VISIBLE
-                    statiscsAdapter.submitList(it.changesMembers)
+                    localRecyclerView.visibility = View.VISIBLE
+                    statiscsAdapter.submitList(it.localChangesMembers)
+                    fodderRecyclerView.visibility = View.GONE
+                    errorMessage.visibility = View.GONE
                 }
                 val list: MutableList<String> = mutableListOf()
                 for (i in it.listMembers) {
@@ -108,7 +143,43 @@ class StatisticsFragment : Fragment() {
             } else {
                 binding.apply {
                     companyBtn.isClickable = true
-                    sectorsRecyclerView.visibility = View.GONE
+                    localRecyclerView.visibility = View.GONE
+                    errorMessage.visibility = View.VISIBLE
+                }
+            }
+        }
+        viewModel.statisticsFodderData.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                binding.apply {
+                    companyBtn.isClickable = true
+                    localRecyclerView.visibility = View.GONE
+                    fodderAdapter.submitList(it.changesMembers)
+                    fodderRecyclerView.visibility = View.VISIBLE
+                    errorMessage.visibility = View.GONE
+                }
+                val list: MutableList<String> = mutableListOf()
+                for (i in it.listMembers) {
+                    list.add(i!!.name.toString())
+                }
+
+                adapter = ArrayAdapter<String>(requireContext(),
+                    R.layout.array_adapter_item,
+                    list)
+                binding.companyAutoCompelete.setAdapter(adapter)
+                binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                    Log.i("statisticsData", it.listMembers[position]!!.id.toString())
+                    companyId = it.listMembers[position]!!.id
+                    binding.companyAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    viewModel.getFodderStockDetailsData(dataFrom, dataTo, args.id, companyId)
+                }
+
+
+            } else {
+                binding.apply {
+                    companyBtn.isClickable = true
+                    localRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.VISIBLE
                 }
             }
@@ -130,20 +201,35 @@ class StatisticsFragment : Fragment() {
                     R.id.date_from_tv -> {
                         dataFrom = dateFormat.format(myCalendar.time)
                         binding.dateFromTv.text = dataFrom
-                        viewModel.getLocalStockDetailsData(args.id,
-                            args.type,
-                            dataFrom,
-                            dataTo,
-                            itemId)
+                        if (args.type == "local") {
+                            viewModel.getLocalStockDetailsData(args.id,
+                                args.type,
+                                dataFrom,
+                                dataTo,
+                                itemId)
+                        } else if (args.type == "fodder") {
+                            viewModel.getFodderStockDetailsData(dataFrom,
+                                dataTo,
+                                args.id,
+                                companyId)
+                        }
+
                     }
                     R.id.date_to_tv -> {
                         dataTo = dateFormat.format(myCalendar.time)
                         binding.dateToTv.text = dataTo
-                        viewModel.getLocalStockDetailsData(args.id,
-                            args.type,
-                            dataFrom,
-                            dataTo,
-                            itemId)
+                        if (args.type == "local") {
+                            viewModel.getLocalStockDetailsData(args.id,
+                                args.type,
+                                dataFrom,
+                                dataTo,
+                                itemId)
+                        } else if (args.type == "fodder") {
+                            viewModel.getFodderStockDetailsData(dataFrom,
+                                dataTo,
+                                args.id,
+                                companyId)
+                        }
                     }
                     else -> Log.i("nocomment", "no comment")
                 }
