@@ -280,6 +280,9 @@
         <argument
             android:name="company_name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_companyFragment_to_localStockDetailsFragment"
+            app:destination="@id/localStockDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"

@@ -25,8 +25,8 @@ data class CompanyDetailsData(
     val addresses: List<Address?>,
     val gallary: List<Any?>,
     val products: List<Any?>,
-    val localstock: List<Any?>,
-    val fodderstock: List<Any?>,
+    val localstock: List<Localstock?>,
+    val fodderstock: List<Localstock?>,
     val transports: List<Any?>,
     val cities: List<City?>,
 )
@@ -54,6 +54,12 @@ data class Address(
     val address: String?,
     val latitude: String?,
     val longitude: String?,
+)
+
+data class Localstock(
+    val image: String?,
+    val name: String?,
+    val id: Long?,
 )
 
 data class City(

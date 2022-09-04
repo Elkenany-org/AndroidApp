@@ -179,7 +179,7 @@
                             android:fontFamily="@font/cairo_bold"
                             android:gravity="center_vertical"
                             android:text="@string/contact_information_title"
-                            android:textColor="@color/green"
+                            android:textColor="@color/orange"
                             android:textSize="14sp" />
 
                         <TextView
@@ -241,36 +241,54 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/cairo_bold"
-                    android:text="@string/more_ads_title"
-                    android:textColor="@color/green"
-                    android:visibility="gone" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/more_news_recycler_view"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view4"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="15dp"
-                    android:visibility="gone"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/store_card_view_item" />
-
-                <TextView
-                    android:id="@+id/no_more_news_message"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/cairo_bold"
-                    android:text="@string/no_more_news_title"
-                    android:textColor="@color/green"
-                    android:textSize="18sp"
-                    android:visibility="gone" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10sp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="7sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
+                            android:text="@string/stock_title"
+                            android:textColor="@color/orange"
+                            android:textSize="14sp" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/company_local_stocks_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:reverseLayout="true"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/small_recycler_item" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/company_fodder_stocks_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:reverseLayout="true"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/small_recycler_item" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
