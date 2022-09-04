@@ -37,7 +37,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="210dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
@@ -48,7 +48,7 @@
             card_view:cardUseCompatPadding="true">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="@{()->clickListener.onClick(data)}">
