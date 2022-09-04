@@ -2,28 +2,29 @@ package com.example.elkenany.entities.stock_data
 
 import com.squareup.moshi.Json
 
-
-data class StatisticsData(
+data class StatisticsFodderData(
     @Json(name = "list_members")
-    val listMembers: List<ListMember?>,
+    val listMembers: List<FodderListMember?>,
     @Json(name = "changes_members")
-    val changesMembers: List<ChangesMember?>,
+    val changesMembers: List<FodderChangesMember?>,
 )
 
-data class ListMember(
+data class FodderListMember(
     val id: Long?,
     val name: String?,
 )
 
-data class ChangesMember(
+data class FodderChangesMember(
     val id: Long?,
     val name: String?,
-    val changes: List<Change?>,
+    val categorize: String?,
+    val compId: Long?,
+    val changes: List<FodderChange?>,
     val change: String?,
     val counts: Long?,
 )
 
-data class Change(
+data class FodderChange(
     val date: String?,
     val price: Long?,
 )

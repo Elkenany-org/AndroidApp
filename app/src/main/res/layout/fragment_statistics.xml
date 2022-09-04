@@ -185,6 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
                 android:text="@string/failed_to_receive_data_msg"
                 android:textColor="@color/green"
                 android:textSize="18sp"
@@ -260,7 +261,18 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/sectors_recycler_view"
+                android:id="@+id/local_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/card_view"
+                android:layout_marginTop="2dp"
+                android:layoutAnimation="@anim/layout_animation"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/statistics_row_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fodder_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/card_view"
