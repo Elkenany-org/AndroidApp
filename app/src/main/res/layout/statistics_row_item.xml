@@ -112,7 +112,7 @@
 
                 <TextView
 
-                    itemText="@{fodder_data.name.toString()}"
+                    itemText="@{fodder_data.categorize.toString()}"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cairo_bold"

@@ -88,8 +88,10 @@
         <entry key="app/src/main/res/layout/fragment_guide_companies.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2907225309961522" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.13894826849080805" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/message_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/notification_card_view_item.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/statistics_row_item.xml" value="0.2864471996579735" />
       </map>
     </option>
   </component>
