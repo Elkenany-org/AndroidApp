@@ -161,6 +161,7 @@
                 android:backgroundTint="@color/orange"
                 android:fontFamily="@font/cairo_bold"
                 android:foregroundTint="@color/orange"
+                android:inputType="none"
                 android:textColorHint="@color/green"
                 android:textSize="12sp"
                 tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck" />
