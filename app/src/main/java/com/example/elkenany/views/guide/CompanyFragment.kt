@@ -13,17 +13,22 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentCompanyBinding
 import com.example.elkenany.viewmodels.CompanyViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.example.elkenany.views.guide.adapter.CompanyLocalStockAdapter
 
 
 class CompanyFragment : Fragment() {
     private lateinit var binding: FragmentCompanyBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewmodel: CompanyViewModel
+    private lateinit var companyLocalStockAdapter: CompanyLocalStockAdapter
+    private lateinit var companyFodderStockAdapter: CompanyLocalStockAdapter
     private val args: CompanyFragmentArgs by navArgs()
     private lateinit var latid: String
     private lateinit var longtid: String
@@ -53,6 +58,18 @@ class CompanyFragment : Fragment() {
         binding.fax.setOnClickListener {
             callThisNumber(binding.fax.text.toString())
         }
+        companyLocalStockAdapter = CompanyLocalStockAdapter(ClickListener {
+            navigateToStockPage(it.id!!,
+                it.name.toString(),
+                "local")
+        })
+        binding.companyLocalStocksRecyclerview.adapter = companyLocalStockAdapter
+        companyFodderStockAdapter = CompanyLocalStockAdapter(ClickListener {
+            navigateToStockPage(it.id!!,
+                it.name.toString(),
+                "fodder")
+        })
+        binding.companyFodderStocksRecyclerview.adapter = companyFodderStockAdapter
         viewmodel.getCompaniesGuideData(args.companyId)
         viewmodel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -64,6 +81,18 @@ class CompanyFragment : Fragment() {
         }
         viewmodel.companyData.observe(viewLifecycleOwner) {
             if (it != null) {
+                if (it.localstock.isEmpty()) {
+                    binding.companyLocalStocksRecyclerview.visibility = View.GONE
+                } else {
+                    binding.companyLocalStocksRecyclerview.visibility = View.VISIBLE
+                    companyLocalStockAdapter.submitList(it.localstock)
+                }
+                if (it.fodderstock.isEmpty()) {
+                    binding.companyFodderStocksRecyclerview.visibility = View.GONE
+                } else {
+                    binding.companyFodderStocksRecyclerview.visibility = View.VISIBLE
+                    companyFodderStockAdapter.submitList(it.fodderstock)
+                }
                 binding.errorMessage.visibility = View.GONE
                 binding.adsLayout.visibility = View.VISIBLE
                 binding.apply {
@@ -79,6 +108,14 @@ class CompanyFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun navigateToStockPage(id: Long, name: String, type: String) {
+        requireView().findNavController()
+            .navigate(CompanyFragmentDirections.actionCompanyFragmentToLocalStockDetailsFragment(
+                id,
+                name,
+                type))
     }
 
     private fun callThisNumber(phone: String?) {
