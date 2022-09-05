@@ -54,6 +54,14 @@ interface IAuth {
     @POST("forget-password")
     fun recoverPasswordWithEmail(@Field("email") email: String?): Call<GenericEntity<PasswordRecoveryData?>>
 
+    @FormUrlEncoded
+    @POST("forget-password-code")
+    fun onSuccessResetPassword(
+        @Field("email") email: String?,
+        @Field("code") code: String?,
+        @Field("password") newPassword: String?,
+    ): Call<GenericEntity<AuthData?>>
+
 }
 
 object AuthHandler {
