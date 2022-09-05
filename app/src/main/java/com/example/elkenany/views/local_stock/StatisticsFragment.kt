@@ -42,8 +42,10 @@ class StatisticsFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (args.type == "local") {
+            binding.companyAutoCompelete.hint = "الصنف"
             viewModel.getLocalStockDetailsData(args.id, args.type, dataFrom, dataTo, itemId)
         } else {
+            binding.companyAutoCompelete.hint = "الشركات"
             viewModel.getFodderStockDetailsData(dataFrom, dataTo, args.id, companyId)
         }
     }
@@ -118,14 +120,10 @@ class StatisticsFragment : Fragment() {
                     fodderRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.GONE
                 }
-                val list: MutableList<String> = mutableListOf()
-                for (i in it.listMembers) {
-                    list.add(i!!.name.toString())
-                }
-
+                val productList = it.listMembers.map { list -> list!!.name }.toList()
                 adapter = ArrayAdapter<String>(requireContext(),
                     R.layout.array_adapter_item,
-                    list)
+                    productList)
                 binding.companyAutoCompelete.setAdapter(adapter)
                 binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
                     Log.i("statisticsData", it.listMembers[position]!!.id.toString())
@@ -158,14 +156,10 @@ class StatisticsFragment : Fragment() {
                     fodderRecyclerView.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
                 }
-                val list: MutableList<String> = mutableListOf()
-                for (i in it.listMembers) {
-                    list.add(i!!.name.toString())
-                }
-
+                val companiesList = it.listMembers.map { list -> list!!.name }.toList()
                 adapter = ArrayAdapter<String>(requireContext(),
                     R.layout.array_adapter_item,
-                    list)
+                    companiesList)
                 binding.companyAutoCompelete.setAdapter(adapter)
                 binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
                     Log.i("statisticsData", it.listMembers[position]!!.id.toString())
