@@ -145,7 +145,6 @@
             android:layout_marginStart="40sp"
             android:layout_marginEnd="40dp"
             android:fontFamily="@font/cairo_bold"
-            android:hint="@string/product_title"
             android:textColor="@color/green"
             app:boxBackgroundColor="@color/orange"
             app:boxCornerRadiusBottomEnd="7dp"
