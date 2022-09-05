@@ -134,4 +134,18 @@ class AuthImplementation {
             null
         }
     }
+
+    suspend fun onSuccessResetPassword(email: String?,code:String?,password: String?) : AuthData?{
+        return try {
+            val response = AuthHandler.singleton.onSuccessResetPassword(
+                email,
+                code, password).await()
+            userApiToken = response.data!!.apiToken
+            getAllUserData(response.data.apiToken)
+            response.data
+        } catch (e: Throwable) {
+            Log.i("login response", "Login with google failed : ${e.message}")
+            null
+        }
+    }
 }
