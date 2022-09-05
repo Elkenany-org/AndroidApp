@@ -116,6 +116,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/cairo_bold"
+                android:textColor="@color/orange"
                 android:text="@string/short_cuts_title"
                 android:textSize="20sp"
                 app:drawableBottomCompat="@drawable/under_line" />
@@ -238,43 +239,43 @@
                         tools:ignore="TouchTargetSizeCheck" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/chat_btn"
-                        android:layout_width="150dp"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:drawableEnd="@drawable/ic_baseline_message_24"
-                        android:drawablePadding="10dp"
-                        android:fontFamily="@font/cairo_bold"
-                        android:text="@string/messages_title"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/green"
-                        android:visibility="gone"
-                        tools:ignore="TouchTargetSizeCheck" />
-                </LinearLayout>
+<!--                    <androidx.appcompat.widget.AppCompatButton-->
+<!--                        android:id="@+id/chat_btn"-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:drawableEnd="@drawable/ic_baseline_message_24"-->
+<!--                        android:drawablePadding="10dp"-->
+<!--                        android:fontFamily="@font/cairo_bold"-->
+<!--                        android:text="@string/messages_title"-->
+<!--                        android:textAlignment="textStart"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:visibility="gone"-->
+<!--                        tools:ignore="TouchTargetSizeCheck" />-->
+<!--                </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/settings_btn"
-                        android:layout_width="150dp"
-                        android:layout_height="40dp"
-                        android:background="@color/white"
-                        android:drawableEnd="@drawable/ic_baseline_settings_24"
-                        android:drawablePadding="10dp"
-                        android:fontFamily="@font/cairo_bold"
-                        android:text="@string/settings_title"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/green"
-                        android:visibility="gone"
-                        tools:ignore="TouchTargetSizeCheck" />
-                </LinearLayout>
+<!--                    <androidx.appcompat.widget.AppCompatButton-->
+<!--                        android:id="@+id/settings_btn"-->
+<!--                        android:layout_width="150dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:drawableEnd="@drawable/ic_baseline_settings_24"-->
+<!--                        android:drawablePadding="10dp"-->
+<!--                        android:fontFamily="@font/cairo_bold"-->
+<!--                        android:text="@string/settings_title"-->
+<!--                        android:textAlignment="textStart"-->
+<!--                        android:textColor="@color/green"-->
+<!--                        android:visibility="gone"-->
+<!--                        tools:ignore="TouchTargetSizeCheck" />-->
+<!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
