@@ -23,11 +23,11 @@ data class CompanyDetailsData(
     val faxs: List<Fax?>,
     val social: List<Social?>,
     val addresses: List<Address?>,
-    val gallary: List<Any?>,
+    val gallary: List<Gallary?>,
     val products: List<Any?>,
     val localstock: List<Localstock?>,
     val fodderstock: List<Localstock?>,
-    val transports: List<Any?>,
+    val transports: List<Transports?>,
     val cities: List<City?>,
 )
 
@@ -70,4 +70,18 @@ data class City(
 data class Fax(
     val id: Long?,
     val name: String?,
+)
+
+data class Gallary(
+    val id: Long?,
+    val name: String?,
+    val image: String?,
+)
+
+data class Transports(
+    val id: Long?,
+    val name: String?,
+    val price: Float?,
+    val type: String?,
+    val city: String?,
 )
