@@ -103,4 +103,8 @@
                                 "\n"
                                 "الرؤية :\n"
                                 "تتطلع مجموعة الكناني أن تصبح الاختيار الأول لأى عامل ومستثمر في جميع قطاعات المجال البيطري والزراعي من خلال تقديم خدمات إستثنائية قبل وبعد البيع لعملائنا وتوفير حلول إقتصادية مبتكرة ."</string>
+    <string name="enter_verification_code_message">برجاء ادخال الكود المرسل اليك علي البريد الالكتروني</string>
+    <string name="enter_code_title">ادخل الكود</string>
+    <string name="change_passcode_title">تغيير كلمة المرور</string>
+    <string name="resend_verification_code_title">لم يصلك رمز التأكد؟ ارسل مرة اخري</string>
 </resources>
