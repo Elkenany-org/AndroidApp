@@ -66,9 +66,9 @@ class MainMenuFragment : Fragment() {
         binding.magazineBtn.visibility = View.GONE
 
 
-        binding.chatBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.chatsFragment)
-        }
+//        binding.chatBtn.setOnClickListener {
+//            requireView().findNavController().navigate(R.id.chatsFragment)
+//        }
         binding.aboutBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.aboutFragment)
         }

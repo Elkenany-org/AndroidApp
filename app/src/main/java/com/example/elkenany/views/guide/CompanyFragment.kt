@@ -140,9 +140,9 @@ class CompanyFragment : Fragment() {
     }
 
     private fun locateThisLocation(latid: String, longtid: String) {
-        val gmmIntentUri = Uri.parse("google.navigation:q=${latid},${longtid}");
-        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
+        val gmmIntentUri = Uri.parse("google.navigation:q=${latid},${longtid}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
     }
 }
