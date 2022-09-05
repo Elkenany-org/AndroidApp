@@ -17,11 +17,16 @@ import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentLocalStockDetailsBinding
+import com.example.elkenany.entities.stock_data.LocalStockBanner
 import com.example.elkenany.viewmodels.LocalStockDetailsViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -107,6 +112,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.stockDataRecyclerView.visibility = View.VISIBLE
                 logosAdapter.submitList(it.logos)
                 bannersAdapter.submitList(it.banners)
+                scrollRecyclerView(it.banners)
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
                 if (args.sectorType == "fodder") {
                     binding.apply {
@@ -144,4 +150,21 @@ class LocalStockDetailsFragment : Fragment() {
             dateFormat.format(myCalendar.time),
             args.sectorType.toString())
     }
+
+    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            var counter = 0
+            while (counter < banners.size) {
+                delay(3000L).apply {
+                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
+                }
+                if (counter == banners.size - 1) {
+                    counter = 0
+                } else {
+                    counter += 1
+                }
+            }
+        }
+    }
+
 }

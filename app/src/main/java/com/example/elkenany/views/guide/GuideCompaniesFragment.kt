@@ -14,11 +14,16 @@ import androidx.navigation.fragment.navArgs
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentGuideCompaniesBinding
+import com.example.elkenany.entities.stock_data.LocalStockBanner
 import com.example.elkenany.viewmodels.GuideCompaniesViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.guide.adapter.CompaniesAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.example.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class GuideCompaniesFragment : Fragment() {
@@ -70,6 +75,7 @@ class GuideCompaniesFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
+                scrollRecyclerView(it.banners)
                 logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
 
@@ -88,6 +94,21 @@ class GuideCompaniesFragment : Fragment() {
             }
         }
         return binding.root
+    }
+    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            var counter = 0
+            while (counter < banners.size) {
+                delay(3000L).apply {
+                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
+                }
+                if (counter == banners.size - 1) {
+                    counter = 0
+                } else {
+                    counter += 1
+                }
+            }
+        }
     }
 
 }

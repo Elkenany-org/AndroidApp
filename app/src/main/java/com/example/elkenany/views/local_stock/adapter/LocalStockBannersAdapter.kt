@@ -2,10 +2,13 @@ package com.example.elkenany.views.local_stock.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.elkenany.ClickListener
+import com.example.elkenany.R
 import com.example.elkenany.databinding.BannersCardViewItemBinding
 import com.example.elkenany.databinding.BigRecyclerItemBinding
 import com.example.elkenany.entities.stock_data.LocalStockBanner
@@ -19,6 +22,9 @@ class LocalStockBannersAdapter(private val sectorClickListener: ClickListener<Lo
     }
 
     override fun onBindViewHolder(holder: LocalStockBannerViewHolder, position: Int) {
+//        holder.itemView
+//            .startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,
+//                com.facebook.login.R.anim.abc_fade_in))
         holder.bind(getItem(position)!!, sectorClickListener)
     }
 
