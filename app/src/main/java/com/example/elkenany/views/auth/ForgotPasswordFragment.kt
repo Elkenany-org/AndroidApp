@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,8 @@ class ForgotPasswordFragment : Fragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ForgotPasswordViewModel
-
+    private lateinit var email: String
+    private lateinit var password:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +29,7 @@ class ForgotPasswordFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[ForgotPasswordViewModel::class.java]
 
         binding.confirmBtn.setOnClickListener {
-            val email = binding.emailInput.text.toString().trim()
+            email = binding.emailInput.text.toString().trim()
             if (email.isEmpty()) {
                 binding.emailInput.apply {
                     error = "يرجي ادخال الإيميل"
@@ -39,16 +39,26 @@ class ForgotPasswordFragment : Fragment() {
                 viewModel.getVerificationCodeForEmail(email)
             }
         }
-
+        binding.changePasswordBtn.setOnClickListener {
+            password = binding.passwordInput.text.toString().trim()
+            //ToDo --> implement send new password function
+        }
+        binding.resendEmailMessage.setOnClickListener {
+            viewModel.getVerificationCodeForEmail(email)
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
-                    loadingProgressbar.visibility = View.VISIBLE
+                    loadingProgressbar1.visibility = View.VISIBLE
+                    loadingProgressbar2.visibility = View.VISIBLE
                     confirmBtn.visibility = View.GONE
+                    changePasswordBtn.visibility = View.GONE
                 }
             } else {
                 binding.apply {
-                    loadingProgressbar.visibility = View.GONE
+                    loadingProgressbar1.visibility = View.GONE
+                    loadingProgressbar2.visibility = View.GONE
+                    changePasswordBtn.visibility = View.VISIBLE
                     confirmBtn.visibility = View.VISIBLE
                 }
             }
@@ -56,11 +66,15 @@ class ForgotPasswordFragment : Fragment() {
 
         viewModel.passwordRecoveryCode.observe(viewLifecycleOwner) {
             if (it != null) {
-                Toast.makeText(requireContext(),
-                    "your code is : ${it.code.toString()}",
-                    Toast.LENGTH_SHORT).show()
+                binding.apply {
+                    confirmEmailLayout.visibility = View.GONE
+                    confirmCodeLayout.visibility = View.VISIBLE
+                }
             } else {
-                Toast.makeText(requireContext(), "please try again", Toast.LENGTH_SHORT).show()
+                binding.apply {
+                    confirmEmailLayout.visibility = View.VISIBLE
+                    confirmCodeLayout.visibility = View.GONE
+                }
             }
         }
         return binding.root

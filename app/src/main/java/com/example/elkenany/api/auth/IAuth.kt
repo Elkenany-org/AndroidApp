@@ -52,7 +52,7 @@ interface IAuth {
 
     @FormUrlEncoded
     @POST("forget-password")
-    fun recoverPasswordWithEmail(@Field("phone") phone: String?): Call<GenericEntity<PasswordRecoveryData?>>
+    fun recoverPasswordWithEmail(@Field("email") email: String?): Call<GenericEntity<PasswordRecoveryData?>>
 
 }
 
