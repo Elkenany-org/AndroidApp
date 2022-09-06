@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="member"
-            type="com.example.elkenany.entities.stock_data.ListMember" />
+            name="sector"
+            type="com.example.elkenany.entities.stock_data.LocalStockSector" />
 
         <variable
             name="clickListener"
@@ -13,13 +13,13 @@
     </data>
 
     <TextView
-        itemText="@{member.name}"
+        itemText="@{sector.name}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:fontFamily="@font/cairo_regular"
         android:maxLines="1"
-        android:onClick="@{()-> clickListener.onClick(member)}"
+        android:onClick="@{()-> clickListener.onClick(sector)}"
         android:padding="16dp">
 
     </TextView>

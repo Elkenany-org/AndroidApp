@@ -32,6 +32,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(ChatsViewModel::class.java) -> ChatsViewModel() as T
             modelClass.isAssignableFrom(MessagesViewModel::class.java) -> MessagesViewModel() as T
             modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java) -> ForgotPasswordViewModel() as T
+            modelClass.isAssignableFrom(CreateAdViewModel::class.java) -> CreateAdViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }

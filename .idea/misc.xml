@@ -9,6 +9,8 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/facebook_btn_shape.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/g_logo.xml" value="0.307" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/google_btn_shape.xml" value="0.307" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2455" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_add_a_photo_24.xml" value="0.2455" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_book_24.xml" value="0.287" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.316" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.2325" />
@@ -58,6 +60,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_advertisment_details.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_chats.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_company.xml" value="0.35789473684210527" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_create_ad.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_forgot_password.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/fragment_guide_companies.xml" value="0.18" />
@@ -88,6 +91,7 @@
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/notification_card_view_item.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/notification_shimmer_loading.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/search_result_item.xml" value="0.2911500641299701" />
+        <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/sector_array_adapter.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/sector_item.xml" value="0.2911500641299701" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/small_recycler_item.xml" value="0.29200513039760584" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/layout/statistics_row_item.xml" value="0.29200513039760584" />
