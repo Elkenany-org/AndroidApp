@@ -107,4 +107,10 @@
     <string name="enter_code_title">ادخل الكود</string>
     <string name="change_passcode_title">تغيير كلمة المرور</string>
     <string name="resend_verification_code_title">لم يصلك رمز التأكد؟ ارسل مرة اخري</string>
+    <string name="add_ad_title">إضافة إعلان</string>
+    <string name="select_photo_title">اختر صورة</string>
+    <string name="title_ad_title">أسم الاعلان</string>
+    <string name="ad_address_title">العنوان</string>
+    <string name="fill_data_completely_title">ادخل البيانات الأتية كاملة</string>
+    <string name="price_title">السعر</string>
 </resources>

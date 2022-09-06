@@ -163,7 +163,7 @@
                 android:inputType="none"
                 android:textColorHint="@color/green"
                 android:textSize="12sp"
-                tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck" />
+                tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
