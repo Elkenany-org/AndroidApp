@@ -5,6 +5,7 @@ import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface IStore {
     @GET("store/ads-store")
@@ -38,6 +39,20 @@ interface IStore {
         @Field("id") chatId: Long?,
         @Field("massage") messageData: String?,
     ): Call<GenericEntity<MessagesData?>>
+
+    @FormUrlEncoded
+    @POST("store/add-ads-store")
+    fun createNewAd(
+        @Header("Authorization") apiToken: String?,
+        @Field("title") title: String?,
+        @Field("desc") description: String?,
+        @Field("phone") phone: String?,
+        @Field("salary") price: String?,
+        @Field("section_id") sectorId: Long?,
+        @Field("address") address: String?,
+        @Field("con_type") connection: String?,
+        @Field("images[]") imageFile: File?,
+    ): Call<GenericEntity<NewAdData?>>
 
 
 }

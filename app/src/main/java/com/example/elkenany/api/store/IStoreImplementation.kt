@@ -3,6 +3,7 @@ package com.example.elkenany.api.store
 import android.util.Log
 import com.example.elkenany.entities.store.*
 import retrofit2.await
+import java.io.File
 
 class IStoreImplementation {
 
@@ -60,6 +61,34 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.sendMessageData(apiToken, adsId, message).await()
             response.data!!.chat
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun createNewAd(
+        apiToken: String?,
+        title: String?,
+        description: String?,
+        phone: String?,
+        price: String?,
+        sectorId: Long?,
+        address: String?,
+        connection: String?,
+        imageFile: File?,
+    ): NewAdData? {
+        return try {
+            val response = IStoreHandler.singleton.createNewAd(apiToken,
+                title,
+                description,
+                phone,
+                price,
+                sectorId,
+                address,
+                connection,
+                imageFile).await()
+            response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())
             null
