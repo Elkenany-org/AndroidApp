@@ -113,4 +113,6 @@
     <string name="ad_address_title">العنوان</string>
     <string name="fill_data_completely_title">ادخل البيانات الأتية كاملة</string>
     <string name="price_title">السعر</string>
+    <string name="create_ad_title">إنشاء إعلان</string>
+    <string name="done_upload_image_title">تم إضافة صورة</string>
 </resources>
