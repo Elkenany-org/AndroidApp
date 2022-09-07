@@ -7,12 +7,12 @@ import java.io.File
 
 class IStoreImplementation {
 
-    suspend fun getAllAdsStoreData(type: String?, search: String?): AdsStoreData? {
+    suspend fun getAllAdsStoreData(type: String?, search: String?, header: String?): AdsStoreData? {
         return try {
-            val response = IStoreHandler.singleton.getAdsStoreData("android",type, search).await()
+            val response = IStoreHandler.singleton.getAdsStoreData(type, search, header).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("ads throwable", e.message.toString())
             null
         }
     }
@@ -76,7 +76,7 @@ class IStoreImplementation {
         sectorId: Long?,
         address: String?,
         connection: String?,
-        imageFile: File?,
+        imageFile: Array<File?>,
     ): NewAdData? {
         return try {
             val response = IStoreHandler.singleton.createNewAd(apiToken,

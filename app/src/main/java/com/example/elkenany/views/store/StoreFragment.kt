@@ -92,6 +92,7 @@ class StoreFragment : Fragment() {
                     binding.storeRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.errorMessage.text = "لا توجد نتائج في محرك البحث"
+                    Log.i("null", it.toString())
                 }
             } else {
                 binding.storeRecyclerView.visibility = View.GONE
@@ -110,7 +111,7 @@ class StoreFragment : Fragment() {
                         .show()
                 }
             } else {
-                Log.i("null", "null")
+//                Log.i("null", "null")
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

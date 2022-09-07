@@ -10,9 +10,9 @@ import java.io.File
 interface IStore {
     @GET("store/ads-store")
     fun getAdsStoreData(
-        @Header("android") device: String?,
         @Query("type") type: String?,
         @Query("search") search: String?,
+        @Header("android") device: String?,
     ): Call<GenericEntity<AdsStoreData?>>
 
     @GET("store/ads-store-detials")
@@ -52,7 +52,7 @@ interface IStore {
         @Field("section_id") sectorId: Long?,
         @Field("address") address: String?,
         @Field("con_type") connection: String?,
-        @Field("images[]") imageFile: File?,
+        @Field("images[]") imageFile: Array<File?>,
     ): Call<GenericEntity<NewAdData?>>
 
 
