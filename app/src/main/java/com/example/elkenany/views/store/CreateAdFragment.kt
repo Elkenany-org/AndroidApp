@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +32,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var viewModel: CreateAdViewModel
     private lateinit var sectroList: List<LocalStockSector>
     private lateinit var adapter: ArrayAdapter<String>
-    private lateinit var sectorId: String
+    private var sectorId: String? = null
     private lateinit var title: String
     private lateinit var description: String
     private lateinit var phone: String
@@ -76,18 +74,49 @@ class CreateAdFragment : Fragment() {
             phone = binding.phoneInput.text.toString().trim()
             price = binding.priceInput.text.toString().trim()
             address = binding.addressInput.text.toString().trim()
-            if (title.isEmpty() && description.isEmpty() && phone.isEmpty() && price.isEmpty() && address.isEmpty() && !imageFile.exists()) {
+            if (title.isEmpty() && description.isEmpty() && phone.isEmpty() && price.isEmpty() && address.isEmpty() && sectorId.isNullOrEmpty()) {
                 Toast.makeText(requireContext(),
                     "برجاء ادخال بيانات الاعلان كاملة",
                     Toast.LENGTH_SHORT).show()
+            } else if (title.isEmpty()) {
+                binding.adTitleInput.apply {
+                    error = "برجاء ادخال أسم الأعلان"
+                    requestFocus()
+                }
+            } else if (description.isEmpty()) {
+                binding.descriptionInput.apply {
+                    error = "برجاء ادخال وصف الأعلان"
+                    requestFocus()
+                }
+            } else if (phone.isEmpty()) {
+                binding.phoneInput.apply {
+                    error = "برجاء ادخال رقم الهاتف"
+                    requestFocus()
+                }
+            } else if (price.isEmpty()) {
+                binding.priceInput.apply {
+                    error = "برجاء ادخال السعر"
+                    requestFocus()
+                }
+            } else if (address.isEmpty()) {
+                binding.addressInput.apply {
+                    error = "برجاء ادخال العنوان"
+                    requestFocus()
+                }
+            } else if (sectorId.isNullOrEmpty()) {
+                binding.sectorBtn.apply {
+                    requestFocus()
+                }
+                Toast.makeText(requireContext(), "برجاء تحديد القطاع", Toast.LENGTH_SHORT).show()
             } else {
+                binding.imageIndicator.visibility = View.GONE
                 viewModel.createNewAd(title,
                     description,
                     phone,
                     price,
-                    sectorId.toLong(),
+                    sectorId!!.toLong(),
                     address,
-                    imageFile)
+                    arrayOf(imageFile))
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -129,10 +158,11 @@ class CreateAdFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
             val image = data?.data!!
-            val inputStream = requireContext().contentResolver.openInputStream(image)
-            val selectedImage = BitmapFactory.decodeStream(inputStream)
-            val encodedImage: String = encodeImage(selectedImage)
-            Log.i("base64", encodedImage)
+//            val inputStream = requireContext().contentResolver.openInputStream(image)
+//            val selectedImage = BitmapFactory.decodeStream(inputStream)
+//            val encodedImage: String = encodeImage(selectedImage)
+//            Log.i("base64", encodedImage)
+            imageFile = File(image.toString())
         } else {
             binding.imageIndicator.visibility = View.VISIBLE
         }

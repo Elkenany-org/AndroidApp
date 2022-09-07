@@ -27,7 +27,7 @@ class StoreViewModel : ViewModel() {
         _loading.value = true
         uiScope.launch {
             // ToDo --> implementing getHomeStockData(sectorType) function here
-            _adsStoreData.value = api.getAllAdsStoreData(sectorType, search)
+            _adsStoreData.value = api.getAllAdsStoreData(sectorType, search, "android")
             _loading.value = false
         }
     }

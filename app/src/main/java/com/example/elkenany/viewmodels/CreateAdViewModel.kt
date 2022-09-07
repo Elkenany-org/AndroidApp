@@ -29,7 +29,7 @@ class CreateAdViewModel : ViewModel() {
         price: String?,
         sectorId: Long?,
         address: String?,
-        imageFile: File?,
+        imageFile: Array<File?>,
     ) {
         _loading.value = true
         uiScope.launch {
