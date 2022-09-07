@@ -1,5 +1,6 @@
 package com.example.elkenany.views.local_stock.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -40,17 +41,22 @@ class ColumnsDataViewHolder private constructor(private val binding: TableRowIte
         } else {
             binding.cardView.setCardBackgroundColor(itemView.context.getColor(R.color.white))
         }
-        if (!columnsData.statistics!!.startsWith("h")) {
-            binding.apply {
-                title = columnsData.statistics
-                image = null
+        try {
+            if (!columnsData.statistics!!.startsWith("h")) {
+                binding.apply {
+                    title = columnsData.statistics
+                    image = null
+                }
+            } else {
+                binding.apply {
+                    title = null
+                    image = columnsData.statistics
+                }
             }
-        } else {
-            binding.apply {
-                title = null
-                image = columnsData.statistics
-            }
+        }catch (e:Exception){
+            Log.i("LocalStockDetailsAdapterException",e.message.toString())
         }
+
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }
