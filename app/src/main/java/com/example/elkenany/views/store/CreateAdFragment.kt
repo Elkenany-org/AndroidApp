@@ -3,12 +3,17 @@ package com.example.elkenany.views.store
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -18,7 +23,9 @@ import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.util.*
 
 
 class CreateAdFragment : Fragment() {
@@ -114,6 +121,7 @@ class CreateAdFragment : Fragment() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -121,9 +129,20 @@ class CreateAdFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
             val image = data?.data!!
-            imageFile = image.path?.let { File(it) }!!
-        }else{
+            val inputStream = requireContext().contentResolver.openInputStream(image)
+            val selectedImage = BitmapFactory.decodeStream(inputStream)
+            val encodedImage: String = encodeImage(selectedImage)
+            Log.i("base64", encodedImage)
+        } else {
             binding.imageIndicator.visibility = View.VISIBLE
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun encodeImage(bm: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.getEncoder().encodeToString(b)
     }
 }
