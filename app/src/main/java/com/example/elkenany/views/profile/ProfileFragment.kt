@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentProfileBinding
@@ -40,6 +41,10 @@ class ProfileFragment : Fragment() {
         }
         binding.signOutBtn.setOnClickListener {
             viewModel.signOutFromGoogle(requireContext())
+        }
+        binding.adsBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(ProfileFragmentDirections.actionProfileFragmentToMyAdsListFragment())
         }
         viewModel.userData.observe(viewLifecycleOwner) {
             if (it != null) {

@@ -115,4 +115,5 @@
     <string name="price_title">السعر</string>
     <string name="create_ad_title">إنشاء إعلان</string>
     <string name="done_upload_image_title">تم إضافة صورة</string>
+    <string name="delete_ad_title">حذف الإعلان</string>
 </resources>

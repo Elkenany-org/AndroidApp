@@ -1,5 +1,6 @@
 package com.example.elkenany.api.store
 
+import androidx.annotation.Nullable
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
@@ -55,6 +56,17 @@ interface IStore {
         @Field("images[]") imageFile: Array<File?>,
     ): Call<GenericEntity<NewAdData?>>
 
+    @GET("store/my-ads-store")
+    fun getAllMyAdsListData(
+        @Header("Authorization") apiToken: String?,
+        @Query("type") sectorType: String?
+    ): Call<GenericEntity<MyAdsListData?>>
+
+    @GET("store/delete-ads-store")
+    fun deleteAdFromDataBase(
+        @Header("Authorization") apiToken: String?,
+        @Query("id") adId: Long?
+    ): Call<GenericEntity<Any>>
 
 }
 

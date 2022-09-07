@@ -50,7 +50,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.elkenany.views.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_myAdsListFragment"
+            app:destination="@id/myAdsListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/sectorsChoicesFragment"
         android:name="com.example.elkenany.views.home.home_sector.SectorsChoicesFragment"
@@ -335,4 +339,13 @@
         android:name="com.example.elkenany.views.store.CreateAdFragment"
         android:label="CreateAdFragment"
         tools:layout="@layout/fragment_create_ad" />
+    <fragment
+        android:id="@+id/myAdsListFragment"
+        android:name="com.example.elkenany.views.store.MyAdsListFragment"
+        android:label="MyAdsListFragment"
+        tools:layout="@layout/fragment_my_ads_list" >
+        <action
+            android:id="@+id/action_myAdsListFragment_to_adDetailsFragment"
+            app:destination="@id/adDetailsFragment" />
+    </fragment>
 </navigation>

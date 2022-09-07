@@ -30,7 +30,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var binding: FragmentCreateAdBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: CreateAdViewModel
-    private lateinit var sectroList: List<LocalStockSector>
+    private lateinit var sectorList: List<LocalStockSector>
     private lateinit var adapter: ArrayAdapter<String>
     private var sectorId: String? = null
     private lateinit var title: String
@@ -50,18 +50,18 @@ class CreateAdFragment : Fragment() {
             hint = "القطاعات"
             setHintTextColor(ContextCompat.getColorStateList(requireContext(), R.color.orange))
         }
-        sectroList = listOf(
+        sectorList = listOf(
             LocalStockSector(1, "الداجني", "poultry", null),
             LocalStockSector(2, "الحيواني", "animal", null),
             LocalStockSector(3, "الزراعي", "farm", null),
             LocalStockSector(4, "السمكي", "fish", null),
             LocalStockSector(5, "الخيول", "horses", null),
         )
-        val sectorNames = sectroList.map { list -> list.name }.toList()
+        val sectorNames = sectorList.map { list -> list.name }.toList()
         adapter = ArrayAdapter<String>(requireContext(), R.layout.sector_array_adapter, sectorNames)
         binding.sectorAutoCompelete.setAdapter(adapter)
         binding.sectorAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-            sectorId = sectroList[position].id.toString()
+            sectorId = sectorList[position].id.toString()
             binding.sectorAutoCompelete.hint = adapterView.getItemAtPosition(position)
                 .toString()
         }
