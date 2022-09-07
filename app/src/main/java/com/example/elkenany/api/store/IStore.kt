@@ -10,6 +10,7 @@ import java.io.File
 interface IStore {
     @GET("store/ads-store")
     fun getAdsStoreData(
+        @Header("android") device: String?,
         @Query("type") type: String?,
         @Query("search") search: String?,
     ): Call<GenericEntity<AdsStoreData?>>

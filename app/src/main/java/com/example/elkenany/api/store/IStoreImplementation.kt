@@ -9,7 +9,7 @@ class IStoreImplementation {
 
     suspend fun getAllAdsStoreData(type: String?, search: String?): AdsStoreData? {
         return try {
-            val response = IStoreHandler.singleton.getAdsStoreData(type, search).await()
+            val response = IStoreHandler.singleton.getAdsStoreData("android",type, search).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())

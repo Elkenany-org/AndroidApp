@@ -6,11 +6,11 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-////this base url for published server
-//const val PUBLISH_BASE_URL = "https://elkenany.com/api/"
+//this base url for published server
+const val BASE_URL = "https://elkenany.com/api/"
 
-//this base url for testing server
-const val TEST_BASE_URL = "https://test.elkenany.com/api/"
+////this base url for testing server
+//const val BASE_URL = "https://test.elkenany.com/api/"
 
 private val moshi by lazy {
     Moshi.Builder()
@@ -20,7 +20,7 @@ private val moshi by lazy {
 
 val retrofit: Retrofit by lazy {
     Retrofit.Builder()
-        .baseUrl(TEST_BASE_URL)
+        .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
