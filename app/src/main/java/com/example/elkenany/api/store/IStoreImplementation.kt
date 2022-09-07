@@ -1,6 +1,7 @@
 package com.example.elkenany.api.store
 
 import android.util.Log
+import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
 import retrofit2.await
 import java.io.File
@@ -79,7 +80,8 @@ class IStoreImplementation {
         imageFile: Array<File?>,
     ): NewAdData? {
         return try {
-            val response = IStoreHandler.singleton.createNewAd(apiToken,
+            val response = IStoreHandler.singleton.createNewAd(
+                apiToken,
                 title,
                 description,
                 phone,
@@ -87,11 +89,36 @@ class IStoreImplementation {
                 sectorId,
                 address,
                 connection,
-                imageFile).await()
+                imageFile
+            ).await()
             response.data
         } catch (e: Throwable) {
             Log.i("throwable", e.message.toString())
             null
         }
     }
+
+    suspend fun getAllMyAdsListData(
+        apiToken: String?,
+        sectorType: String?
+    ): GenericEntity<MyAdsListData?>? {
+        return try {
+            val response = IStoreHandler.singleton.getAllMyAdsListData(apiToken, sectorType).await()
+            response
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun deleteAdFromDataBase(apiToken: String?, adId: Long?): Boolean? {
+        return try {
+            val response = IStoreHandler.singleton.deleteAdFromDataBase(apiToken, adId).await()
+            response.message != null
+        } catch (e: Throwable) {
+            Log.i("throwable", e.message.toString())
+            null
+        }
+    }
+
 }

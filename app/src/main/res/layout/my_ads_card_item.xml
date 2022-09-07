@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!--this data made for clickListener-->
+        <variable
+            name="data"
+            type="com.example.elkenany.entities.store.MyAdsDaum" />
+        <!--this data made for displaying title in text view-->
+
+        <variable
+            name="createdAt"
+            type="String" />
+        <!--this clicklistener made to execute the clicklistener function-->
+        <variable
+            name="clickListener"
+            type="com.example.elkenany.ClickListener" />
+
+        <variable
+            name="deleteAd"
+            type="com.example.elkenany.ClickListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="5dp"
+        android:layoutDirection="rtl"
+        android:onClick="@{()-> clickListener.onClick(data)}"
+        cardView:cardCornerRadius="10dp"
+        cardView:cardElevation="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="ltr">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp"
+                cardView:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:id="@+id/item_image"
+                    android:layout_width="111dp"
+                    android:layout_height="111dp"
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/more_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"
+                android:background="@drawable/primary_btn_shape"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:onClick="@{()->deleteAd.onClick(data)}"
+                android:paddingStart="6dp"
+                android:paddingTop="5sp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="5sp"
+                android:text="@string/delete_ad_title"
+                android:textColor="@color/green"
+                android:textSize="15sp"
+                tools:ignore="RelativeOverlap,SmallSp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
