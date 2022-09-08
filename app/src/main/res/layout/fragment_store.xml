@@ -104,22 +104,22 @@
                 tools:listitem="@layout/store_card_view_item" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/add_ad_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="15dp"
-            android:background="@drawable/primary_btn_shape"
-            android:drawableStart="@drawable/ic_baseline_add_24"
-            android:drawablePadding="2dp"
-            android:fontFamily="@font/cairo_regular"
-            android:foregroundGravity="center_vertical"
-            android:gravity="center_vertical"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/add_ad_title"
-            tools:ignore="ContentDescription" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/add_ad_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:background="@drawable/primary_btn_shape"-->
+<!--            android:drawableStart="@drawable/ic_baseline_add_24"-->
+<!--            android:drawablePadding="2dp"-->
+<!--            android:fontFamily="@font/cairo_regular"-->
+<!--            android:foregroundGravity="center_vertical"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="10dp"-->
+<!--            android:paddingEnd="10dp"-->
+<!--            android:text="@string/add_ad_title"-->
+<!--            tools:ignore="ContentDescription" />-->
     </RelativeLayout>
 </layout>

@@ -57,9 +57,7 @@ class StoreFragment : Fragment() {
             adsStoreAdapter.submitList(listOf())
             viewModel.getAllAdsStoreData(sectorType, search)
         }
-        binding.addAdBtn.setOnClickListener {
-            viewModel.navigateToCreateAdFragment()
-        }
+
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
             sectorType = it.type.toString()
             adsStoreAdapter.submitList(listOf())
@@ -100,20 +98,20 @@ class StoreFragment : Fragment() {
             }
 
         }
-        viewModel.googeToNavigate.observe(viewLifecycleOwner) {
-            if (it != null) {
-                if (it == true) {
-                    requireView().findNavController()
-                        .navigate(StoreFragmentDirections.actionStoreFragmentToCreateAdFragment())
-                    viewModel.onDoneNavigating()
-                } else if (it == false) {
-                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            } else {
-//                Log.i("null", "null")
-            }
-        }
+//        viewModel.googeToNavigate.observe(viewLifecycleOwner) {
+//            if (it != null) {
+//                if (it == true) {
+//                    requireView().findNavController()
+//                        .navigate(StoreFragmentDirections.actionStoreFragmentToCreateAdFragment())
+//                    viewModel.onDoneNavigating()
+//                } else if (it == false) {
+//                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//            } else {
+////                Log.i("null", "null")
+//            }
+//        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE

@@ -16,12 +16,14 @@ class MyAdsListViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _myAdsList = MutableLiveData<MyAdsListData?>()
     private val _exception = MutableLiveData<Int>()
+    private val _goodToNavigate = MutableLiveData<Boolean?>(null)
     private val _loading = MutableLiveData(false)
     private val api = IStoreImplementation()
 
     val myAdsList: LiveData<MyAdsListData?> get() = _myAdsList
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int> get() = _exception
+    val googeToNavigate: LiveData<Boolean?> get() = _goodToNavigate
 
     fun getAllNewsData(sectorType: String?) {
         _loading.value = true
@@ -72,5 +74,13 @@ class MyAdsListViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         job.cancel()
+    }
+
+    fun navigateToCreateAdFragment() {
+        _goodToNavigate.value = userApiToken != null
+    }
+
+    fun onDoneNavigating() {
+        _goodToNavigate.value = null
     }
 }
