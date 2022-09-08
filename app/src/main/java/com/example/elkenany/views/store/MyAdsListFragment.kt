@@ -60,6 +60,10 @@ class MyAdsListFragment : Fragment() {
             viewModel.getAllNewsData(sectorType)
         }
 
+        binding.addAdBtn.setOnClickListener {
+            viewModel.navigateToCreateAdFragment()
+        }
+
         myAdsAdapter = MyAdsAdapter(ClickListener {
             requireView().findNavController()
                 .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToAdDetailsFragment(it.id!!))
@@ -108,6 +112,20 @@ class MyAdsListFragment : Fragment() {
                     adsListRecyclerView.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
                 }
+            }
+        }
+        viewModel.googeToNavigate.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it == true) {
+                    requireView().findNavController()
+                        .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToCreateAdFragment())
+                    viewModel.onDoneNavigating()
+                } else if (it == false) {
+                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+//                Log.i("null", "null")
             }
         }
         return binding.root

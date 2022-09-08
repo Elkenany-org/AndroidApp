@@ -347,5 +347,8 @@
         <action
             android:id="@+id/action_myAdsListFragment_to_adDetailsFragment"
             app:destination="@id/adDetailsFragment" />
+        <action
+            android:id="@+id/action_myAdsListFragment_to_createAdFragment"
+            app:destination="@id/createAdFragment" />
     </fragment>
 </navigation>
