@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 
 class MyAdsAdapter(
     private val clickListener: ClickListener<MyAdsDaum>,
-    private val removeAdClickListener: ClickListener<MyAdsDaum>
+    private val removeAdClickListener: ClickListener<MyAdsDaum>,
 ) :
     ListAdapter<MyAdsDaum, MyAdsDaumViewHolder>(
         MyAdsDaumAdapterDiffUtil()
@@ -43,13 +43,18 @@ class MyAdsDaumViewHolder private constructor(private val binding: MyAdsCardItem
     fun bind(
         myAds: MyAdsDaum,
         clickListener: ClickListener<MyAdsDaum>,
-        removeAdClickListener: ClickListener<MyAdsDaum>
+        removeAdClickListener: ClickListener<MyAdsDaum>,
     ) {
         binding.data = myAds
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val text = myAds.createdAt
         val date = text?.let { formatter.parse(it) }
         binding.createdAt = date?.let { formatter.format(it).toString() }
+        binding.price = if (myAds.salary == null) {
+            null
+        } else {
+            myAds.salary.toString() + " جنية "
+        }
         binding.clickListener = clickListener
         binding.deleteAd = removeAdClickListener
         binding.executePendingBindings()

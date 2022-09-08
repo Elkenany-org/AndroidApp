@@ -24,6 +24,7 @@ data class MyAdsDaum(
     val salary: Long?,
     val address: String?,
     val desc: String?,
+    val image: String?,
     @Json(name = "created_at")
     val createdAt: String?,
 )

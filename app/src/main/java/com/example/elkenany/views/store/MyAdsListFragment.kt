@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -16,7 +17,6 @@ import com.example.elkenany.databinding.FragmentMyAdsListBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.MyAdsListViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.example.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.example.elkenany.views.store.adapter.MyAdsAdapter
 
 class MyAdsListFragment : Fragment() {
@@ -24,35 +24,42 @@ class MyAdsListFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MyAdsListViewModel
     private lateinit var myAdsAdapter: MyAdsAdapter
-    private lateinit var localStockSectorAdapter: LocalStockSectorsAdapter
+
+    //    private lateinit var localStockSectorAdapter: MyAdsSectorsAdapter
     private lateinit var sectorList: List<LocalStockSector>
     private var sectorType: String = "poultry"
 
     override fun onResume() {
         super.onResume()
+        binding.sectorAutoCompelete.hint = "الداجني"
         viewModel.getAllNewsData(sectorType)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_ads_list, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[MyAdsListViewModel::class.java]
         sectorList = listOf(
-            LocalStockSector(1, "الداجني", "poultry", null),
-            LocalStockSector(2, "الحيواني", "animal", null),
-            LocalStockSector(3, "الزراعي", "farm", null),
-            LocalStockSector(4, "السمكي", "fish", null),
-            LocalStockSector(5, "الخيول", "horses", null),
+            LocalStockSector(1, "الداجني", "poultry", 0),
+            LocalStockSector(2, "الحيواني", "animal", 0),
+            LocalStockSector(3, "الزراعي", "farm", 0),
+            LocalStockSector(4, "السمكي", "fish", 0),
+            LocalStockSector(5, "الخيول", "horses", 0),
         )
-        localStockSectorAdapter = LocalStockSectorsAdapter(ClickListener {
-            sectorType = it.type.toString()
+
+        val sectorNames = sectorList.map { list -> list.name }.toList()
+        val adapter =
+            ArrayAdapter<String>(requireContext(), R.layout.sector_array_adapter, sectorNames)
+        binding.sectorAutoCompelete.setAdapter(adapter)
+        binding.sectorAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+            binding.sectorAutoCompelete.hint = adapterView.getItemAtPosition(position).toString()
+            sectorType = sectorList[position].type.toString()
             viewModel.getAllNewsData(sectorType)
-        })
-        binding.sectorsRecyclerView.adapter = localStockSectorAdapter
-        localStockSectorAdapter.submitList(sectorList)
+        }
+
         myAdsAdapter = MyAdsAdapter(ClickListener {
             requireView().findNavController()
                 .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToAdDetailsFragment(it.id!!))
@@ -107,3 +114,11 @@ class MyAdsListFragment : Fragment() {
     }
 
 }
+
+
+//        localStockSectorAdapter = MyAdsSectorsAdapter(ClickListener {
+//            sectorType = it.type.toString()
+//            viewModel.getAllNewsData(sectorType)
+//        })
+//        binding.sectorsRecyclerView.adapter = localStockSectorAdapter
+//        localStockSectorAdapter.submitList(sectorList)
