@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -23,9 +23,6 @@ import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
@@ -46,6 +43,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var price: String
     private lateinit var address: String
     private lateinit var imageFile: File
+    private lateinit var fileResult: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -123,7 +121,7 @@ class CreateAdFragment : Fragment() {
                     price,
                     sectorId!!.toLong(),
                     address,
-                    arrayOf(imageFile))
+                    listOf(fileResult))
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -139,9 +137,11 @@ class CreateAdFragment : Fragment() {
         viewModel.createdAd.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it) {
-                    Toast.makeText(requireContext(), "done", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "تم إنشاء الإعلان بنجاح", Toast.LENGTH_SHORT)
+                        .show()
                 } else {
-                    Toast.makeText(requireContext(), "fail", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "حدث خطأ في إنشاء الإعلان", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -163,15 +163,16 @@ class CreateAdFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
             val uri = data?.data!!
-//            val inputStream = requireContext().contentResolver.openInputStream(image)
-//            val selectedImage = BitmapFactory.decodeStream(inputStream)
-//            val encodedImage: String = encodeImage(selectedImage)
-//            Log.i("base64", encodedImage)
-            val uri1 = Uri.parse(uri.toString())
-            val file = File(uri1.path.toString())
-            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-            val image = MultipartBody.Part.createFormData("part", file.name, reqFile)
-            Log.i("ImageFIle", "$image.body()")
+            val inputStream = requireContext().contentResolver.openInputStream(uri)
+            val selectedImage = BitmapFactory.decodeStream(inputStream)
+            val encodedImage: String = encodeImage(selectedImage)
+            fileResult = "data:image/png;base64,$encodedImage"
+            Log.i("base64", encodedImage)
+//            val uri1 = Uri.parse(uri.toString())
+//            val file = File(uri1.toString())
+//            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+//            val image = MultipartBody.Part.createFormData("part", file.name, reqFile)
+//            Log.i("ImageFIle", "$reqFile")
         } else {
             binding.imageIndicator.visibility = View.GONE
         }

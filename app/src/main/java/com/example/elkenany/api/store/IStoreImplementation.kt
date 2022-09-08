@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
 import retrofit2.await
-import java.io.File
 
 class IStoreImplementation {
 
@@ -77,10 +76,11 @@ class IStoreImplementation {
         sectorId: Long?,
         address: String?,
         connection: String?,
-        imageFile: Array<File?>,
+        imageFile: List<String>,
     ): NewAdData? {
         return try {
             val response = IStoreHandler.singleton.createNewAd(
+                "android",
                 apiToken,
                 title,
                 description,
@@ -100,7 +100,7 @@ class IStoreImplementation {
 
     suspend fun getAllMyAdsListData(
         apiToken: String?,
-        sectorType: String?
+        sectorType: String?,
     ): GenericEntity<MyAdsListData?>? {
         return try {
             val response = IStoreHandler.singleton.getAllMyAdsListData(apiToken, sectorType).await()
