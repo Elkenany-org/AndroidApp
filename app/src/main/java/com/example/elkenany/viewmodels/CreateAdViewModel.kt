@@ -29,7 +29,7 @@ class CreateAdViewModel : ViewModel() {
         price: String?,
         sectorId: Long?,
         address: String?,
-        imageFile: List<String>,
+        imageFile: String?,
     ) {
         Log.i("ArrayList", imageFile.toString())
         _loading.value = true

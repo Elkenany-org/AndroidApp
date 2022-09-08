@@ -121,7 +121,7 @@ class CreateAdFragment : Fragment() {
                     price,
                     sectorId!!.toLong(),
                     address,
-                    listOf(fileResult))
+                    fileResult)
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

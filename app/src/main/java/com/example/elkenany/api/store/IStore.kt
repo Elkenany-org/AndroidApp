@@ -52,7 +52,7 @@ interface IStore {
         @Field("section_id") sectorId: Long?,
         @Field("address") address: String?,
         @Field("con_type") connection: String?,
-        @Field("images") imageFile: List<String>,
+        @Field("images") imageFile: String?,
     ): Call<GenericEntity<NewAdData?>>
 
     @GET("store/my-ads-store")

@@ -76,7 +76,7 @@ class IStoreImplementation {
         sectorId: Long?,
         address: String?,
         connection: String?,
-        imageFile: List<String>,
+        imageFile: String?,
     ): NewAdData? {
         return try {
             val response = IStoreHandler.singleton.createNewAd(
