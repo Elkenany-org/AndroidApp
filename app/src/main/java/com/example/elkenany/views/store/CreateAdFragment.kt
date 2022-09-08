@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,11 +23,16 @@ import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
 
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Suppress("DEPRECATION")
 class CreateAdFragment : Fragment() {
     private lateinit var binding: FragmentCreateAdBinding
     private lateinit var viewModelFactory: ViewModelFactory
@@ -141,7 +148,7 @@ class CreateAdFragment : Fragment() {
         return binding.root
     }
 
-    @Suppress("DEPRECATION")
+
     @SuppressLint("IntentReset")
     private fun getImageFromStorage() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -150,25 +157,26 @@ class CreateAdFragment : Fragment() {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
-            val image = data?.data!!
+            val uri = data?.data!!
 //            val inputStream = requireContext().contentResolver.openInputStream(image)
 //            val selectedImage = BitmapFactory.decodeStream(inputStream)
 //            val encodedImage: String = encodeImage(selectedImage)
 //            Log.i("base64", encodedImage)
-            imageFile = File(image.toString())
+            val uri1 = Uri.parse(uri.toString())
+            val file = File(uri1.path.toString())
+            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+            val image = MultipartBody.Part.createFormData("part", file.name, reqFile)
+            Log.i("ImageFIle", "$image.body()")
         } else {
-            binding.imageIndicator.visibility = View.VISIBLE
+            binding.imageIndicator.visibility = View.GONE
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun encodeImage(bm: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)

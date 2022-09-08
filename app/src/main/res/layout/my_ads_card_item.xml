@@ -15,6 +15,10 @@
             type="String" />
         <!--this clicklistener made to execute the clicklistener function-->
         <variable
+            name="price"
+            type="String" />
+
+        <variable
             name="clickListener"
             type="com.example.elkenany.ClickListener" />
 
@@ -26,7 +30,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:layout_margin="5dp"
         android:layoutDirection="rtl"
         android:onClick="@{()-> clickListener.onClick(data)}"
@@ -39,18 +43,21 @@
             android:layoutDirection="ltr">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/image_card_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_margin="5dp"
+                android:elevation="10dp"
                 cardView:cardCornerRadius="5dp">
 
                 <ImageView
                     android:id="@+id/item_image"
+                    imageUrl="@{data.image.toString()}"
                     android:layout_width="111dp"
                     android:layout_height="111dp"
                     android:scaleType="fitXY"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -59,19 +66,71 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/primary_btn_shape"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="1"
                 android:onClick="@{()->deleteAd.onClick(data)}"
-                android:paddingStart="6dp"
-                android:paddingTop="5sp"
-                android:paddingEnd="6dp"
-                android:paddingBottom="5sp"
+                android:paddingStart="10dp"
+                android:paddingTop="7sp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="7sp"
                 android:text="@string/delete_ad_title"
                 android:textColor="@color/green"
-                android:textSize="15sp"
+                android:textSize="12sp"
+                tools:ignore="RelativeOverlap,SmallSp,TextContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="111dp"
+                android:layout_above="@id/more_title"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20sp"
+                android:layout_toEndOf="@+id/image_card_view"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/ad_title_tv"
+                    itemText="@{data.title.toString()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:ellipsize="start"
+                    android:fontFamily="@font/cairo_bold"
+                    android:maxLines="1"
+                    android:textColor="@color/green"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ad_price_tv"
+                    itemText="@{price}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:ellipsize="start"
+                    android:fontFamily="@font/cairo_regular"
+                    android:maxLines="1"
+                    android:textColor="@color/green" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/date_tv"
+                itemText="@{createdAt}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/cairo_regular"
+                android:textColor="@color/green"
+                android:textSize="9sp"
                 tools:ignore="RelativeOverlap,SmallSp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

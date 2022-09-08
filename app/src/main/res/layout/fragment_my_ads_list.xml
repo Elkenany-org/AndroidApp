@@ -25,17 +25,44 @@
             android:textColor="@color/green"
             android:textSize="20sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/sectors_recycler_view"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/app_bar_title"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:layout_marginTop="15dp"-->
+        <!--            android:layoutDirection="rtl"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            tools:listitem="@layout/sector_item" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sectors_recycler_view"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/app_bar_title"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/sector_item" />
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/cairo_bold"
+            android:textColorHint="@color/orange"
+            app:boxBackgroundColor="@color/green"
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
+
+            <AutoCompleteTextView
+                android:id="@+id/sector_auto_compelete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/green"
+                android:drawableTint="@color/orange"
+                android:fontFamily="@font/cairo_bold"
+                android:foregroundTint="@color/orange"
+                android:inputType="none"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -47,11 +74,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layoutDirection="rtl"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/big_recycler_item_with_details" />
+                tools:listitem="@layout/my_ads_card_item" />
 
             <TextView
                 android:id="@+id/error_message"
