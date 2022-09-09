@@ -18,13 +18,14 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import java.io.ByteArrayOutputStream
-import java.io.File
+//import java.io.File
 import java.util.*
 
 
@@ -42,7 +43,8 @@ class CreateAdFragment : Fragment() {
     private lateinit var phone: String
     private lateinit var price: String
     private lateinit var address: String
-    private lateinit var imageFile: File
+
+    //    private lateinit var imageFile: File
     private lateinit var fileResult: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,9 +82,11 @@ class CreateAdFragment : Fragment() {
             price = binding.priceInput.text.toString().trim()
             address = binding.addressInput.text.toString().trim()
             if (title.isEmpty() && description.isEmpty() && phone.isEmpty() && price.isEmpty() && address.isEmpty() && sectorId.isNullOrEmpty()) {
-                Toast.makeText(requireContext(),
+                Toast.makeText(
+                    requireContext(),
                     "برجاء ادخال بيانات الاعلان كاملة",
-                    Toast.LENGTH_SHORT).show()
+                    Toast.LENGTH_SHORT
+                ).show()
             } else if (title.isEmpty()) {
                 binding.adTitleInput.apply {
                     error = "برجاء ادخال أسم الأعلان"
@@ -115,13 +119,15 @@ class CreateAdFragment : Fragment() {
                 Toast.makeText(requireContext(), "برجاء تحديد القطاع", Toast.LENGTH_SHORT).show()
             } else {
                 binding.imageIndicator.visibility = View.GONE
-                viewModel.createNewAd(title,
+                viewModel.createNewAd(
+                    title,
                     description,
                     phone,
                     price,
                     sectorId!!.toLong(),
                     address,
-                    fileResult)
+                    fileResult
+                )
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -139,6 +145,7 @@ class CreateAdFragment : Fragment() {
                 if (it) {
                     Toast.makeText(requireContext(), "تم إنشاء الإعلان بنجاح", Toast.LENGTH_SHORT)
                         .show()
+                    requireView().findNavController().popBackStack()
                 } else {
                     Toast.makeText(requireContext(), "حدث خطأ في إنشاء الإعلان", Toast.LENGTH_SHORT)
                         .show()
@@ -163,6 +170,10 @@ class CreateAdFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
             val uri = data?.data!!
+            binding.pickImageBtn.apply {
+                foreground.setVisible(false, true)
+                setImageURI(uri)
+            }
             val inputStream = requireContext().contentResolver.openInputStream(uri)
             val selectedImage = BitmapFactory.decodeStream(inputStream)
             val encodedImage: String = encodeImage(selectedImage)
