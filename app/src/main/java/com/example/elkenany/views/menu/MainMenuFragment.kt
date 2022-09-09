@@ -122,6 +122,7 @@ class MainMenuFragment : Fragment() {
         startActivity(onsharingdata())
     }
 
+    @Suppress("SameParameterValue")
     private fun navigateToGooglePlay(packageName: String?) {
         val uri: Uri = Uri.parse("market://details?id=$packageName")
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)

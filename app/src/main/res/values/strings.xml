@@ -116,4 +116,5 @@
     <string name="create_ad_title">إنشاء إعلان</string>
     <string name="done_upload_image_title">تم إضافة صورة</string>
     <string name="delete_ad_title">حذف الإعلان</string>
+    <string name="coming_soon_title">سوف يتم توفير هذة الخدمة قريبا</string>
 </resources>

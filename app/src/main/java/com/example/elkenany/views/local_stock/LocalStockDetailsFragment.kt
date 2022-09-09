@@ -77,6 +77,7 @@ class LocalStockDetailsFragment : Fragment() {
         binding.appBarTitle.text = args.sectorName
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.apply {
+
             adapter = bannersAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }

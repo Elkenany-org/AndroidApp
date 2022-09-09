@@ -46,7 +46,7 @@ class ILocalStockImplementation {
         }
     }
 
-    suspend fun getLocalStockFeedsItems(stockId: Long?): FeedsData?? {
+    suspend fun getLocalStockFeedsItems(stockId: Long?): FeedsData? {
         return try {
             val response =
                 ILocalStockHandler.singleton.getLocalStockFeedItems(stockId).await()

@@ -79,15 +79,14 @@
             android:textSize="18sp"
             android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
             android:id="@+id/banners_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search_bar_card"
             android:layoutDirection="rtl"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginHorizontal="10dp"
             tools:listitem="@layout/banners_card_view_item" />
 
         <androidx.recyclerview.widget.RecyclerView
