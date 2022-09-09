@@ -1,12 +1,13 @@
 package com.example.elkenany.views.menu
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -77,8 +78,7 @@ class MainMenuFragment : Fragment() {
         }
         binding.rateBtn.setOnClickListener {
             // ToDo -> implement rateFunction here
-            Toast.makeText(requireContext(), "لم يتم تفعيل هذه الخدمة بعد", Toast.LENGTH_SHORT)
-                .show()
+            navigateToGooglePlay("com.Elkenany")
         }
 
         binding.notificationBtn.setOnClickListener {
@@ -106,16 +106,40 @@ class MainMenuFragment : Fragment() {
         return binding.root
     }
 
+
     private fun onsharingdata(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT,
-                "تطبيق الكناني أول تطبيق خدمي في المجال البيطري والزراعي\n$SHARE_LINK")
+            putExtra(
+                Intent.EXTRA_TEXT,
+                "تطبيق الكناني أول تطبيق خدمي في المجال البيطري والزراعي\n$SHARE_LINK"
+            )
         }
         return shareIntent
     }
 
     private fun shareSuccess() {
         startActivity(onsharingdata())
+    }
+
+    private fun navigateToGooglePlay(packageName: String?) {
+        val uri: Uri = Uri.parse("market://details?id=$packageName")
+        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+
+        goToMarket.addFlags(
+            Intent.FLAG_ACTIVITY_NO_HISTORY or
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        )
+        try {
+            startActivity(goToMarket)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=$packageName")
+                )
+            )
+        }
     }
 }
