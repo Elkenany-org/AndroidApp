@@ -1,5 +1,6 @@
 package com.example.elkenany.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import java.io.File
 
 class CreateAdViewModel : ViewModel() {
     private val job = Job()
@@ -29,8 +29,9 @@ class CreateAdViewModel : ViewModel() {
         price: String?,
         sectorId: Long?,
         address: String?,
-        imageFile: Array<File?>,
+        imageFile: String?,
     ) {
+        Log.i("ArrayList", imageFile.toString())
         _loading.value = true
         uiScope.launch {
             val reponse = api.createNewAd("Bearer $userApiToken",

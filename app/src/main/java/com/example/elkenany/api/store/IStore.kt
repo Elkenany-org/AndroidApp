@@ -1,12 +1,10 @@
 package com.example.elkenany.api.store
 
-import androidx.annotation.Nullable
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 interface IStore {
     @GET("store/ads-store")
@@ -45,6 +43,7 @@ interface IStore {
     @FormUrlEncoded
     @POST("store/add-ads-store")
     fun createNewAd(
+        @Header("android") device: String?,
         @Header("Authorization") apiToken: String?,
         @Field("title") title: String?,
         @Field("desc") description: String?,
@@ -53,19 +52,19 @@ interface IStore {
         @Field("section_id") sectorId: Long?,
         @Field("address") address: String?,
         @Field("con_type") connection: String?,
-        @Field("images[]") imageFile: Array<File?>,
+        @Field("images") imageFile: String?,
     ): Call<GenericEntity<NewAdData?>>
 
     @GET("store/my-ads-store")
     fun getAllMyAdsListData(
         @Header("Authorization") apiToken: String?,
-        @Query("type") sectorType: String?
+        @Query("type") sectorType: String?,
     ): Call<GenericEntity<MyAdsListData?>>
 
     @GET("store/delete-ads-store")
     fun deleteAdFromDataBase(
         @Header("Authorization") apiToken: String?,
-        @Query("id") adId: Long?
+        @Query("id") adId: Long?,
     ): Call<GenericEntity<Any>>
 
 }
