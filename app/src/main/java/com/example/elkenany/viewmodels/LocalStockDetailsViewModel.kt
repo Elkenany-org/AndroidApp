@@ -23,7 +23,7 @@ class LocalStockDetailsViewModel : ViewModel() {
     private val api = ILocalStockImplementation()
 
 
-    val feedsItem: LiveData<FeedsData??> get() = _feedsItem
+    val feedsItem: LiveData<FeedsData?> get() = _feedsItem
     val companyItem: LiveData<List<LocalStockCompanyDaum?>?> get() = _companyItem
     val localStockDetailsData: LiveData<LocalStockDetailsData?> get() = _localStockDetailsData
 

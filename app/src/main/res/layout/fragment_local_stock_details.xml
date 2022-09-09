@@ -24,25 +24,6 @@
             android:textColor="@color/green"
             android:textSize="20sp" />
 
-        <ProgressBar
-            android:id="@+id/loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/cairo_bold"
-            android:gravity="center_horizontal"
-            android:text="@string/failed_to_receive_data_msg"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
         <LinearLayout
             android:id="@+id/found_data_layout"
             android:layout_width="match_parent"
@@ -50,14 +31,14 @@
             android:layout_below="@id/app_bar_title"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
                 android:id="@+id/banners_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
+                android:layout_marginHorizontal="10dp"
                 tools:listitem="@layout/banners_card_view_item" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -139,8 +120,8 @@
                         android:layout_margin="10dp"
                         android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
-                        android:fontFamily="@font/cairo_bold"
                         android:ellipsize="start"
+                        android:fontFamily="@font/cairo_bold"
                         android:foregroundTint="@color/green"
                         android:inputType="none"
                         android:maxLines="1"
@@ -191,16 +172,41 @@
                     tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/stock_data_recycler_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3sp"
-                android:layoutDirection="rtl"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/table_row_item" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@string/failed_to_receive_data_msg"
+                    android:textColor="@color/green"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/loading_progressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/stock_data_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="3sp"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/table_row_item" />
+            </RelativeLayout>
+
         </LinearLayout>
     </RelativeLayout>
 </layout>

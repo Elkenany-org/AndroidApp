@@ -1,14 +1,14 @@
 package com.example.elkenany.views.home.home_service
 
 import android.os.Bundle
-import android.util.Log
+//import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+//import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeServiceBinding
@@ -44,44 +44,44 @@ class HomeServiceFragment : Fragment() {
         recommendationAdapter = ServiceRecommendationAdapter(ClickListener { })
         guideAndMagazineAdapter = ServiceGuideAndMagazineAdapter(ClickListener { })
 
-        //assign each adapter to its own recyclerView
-        binding.recommendationRecyclerView.adapter = recommendationAdapter
-        binding.partnersRecyclerView.adapter = partnerAdapter
-        binding.showsRecyclerView.adapter = showsAdapter
-        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
-
-        //navigate to sectorsFragment
-        binding.sectorsBtn.setOnClickListener {
-            view!!.findNavController()
-                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
-        }
-
-        // Loading progressbar
-        viewModel.loading.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.loadingProgressbar.visibility = View.VISIBLE
-                binding.line2.visibility = View.GONE
-            } else {
-                binding.loadingProgressbar.visibility = View.INVISIBLE
-
-            }
-        }
-
-        //submitting all the recyclerAdapter lists to it value
-        viewModel.homeServiceData.observe(viewLifecycleOwner) {
-            if (it != null) {
-//              serviceAdapter.submitList(it.services)
-                partnerAdapter.submitList(it.serviceLogos)
-                showsAdapter.submitList(it.serviceShows)
-                guideAndMagazineAdapter.submitList(it.serviceMagazine)
-                recommendationAdapter.submitList(it.serviceRecommendation)
-                binding.errorMessage.visibility = View.GONE
-            } else {
-                binding.errorMessage.visibility = View.VISIBLE
-                binding.line2.visibility = View.GONE
-                Log.i("list", "Have no data to load")
-            }
-        }
+//        //assign each adapter to its own recyclerView
+//        binding.recommendationRecyclerView.adapter = recommendationAdapter
+//        binding.partnersRecyclerView.adapter = partnerAdapter
+//        binding.showsRecyclerView.adapter = showsAdapter
+//        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
+//
+//        //navigate to sectorsFragment
+//        binding.sectorsBtn.setOnClickListener {
+//            view!!.findNavController()
+//                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
+//        }
+//
+//        // Loading progressbar
+//        viewModel.loading.observe(viewLifecycleOwner) {
+//            if (it) {
+//                binding.loadingProgressbar.visibility = View.VISIBLE
+//                binding.line2.visibility = View.GONE
+//            } else {
+//                binding.loadingProgressbar.visibility = View.INVISIBLE
+//
+//            }
+//        }
+//
+//        //submitting all the recyclerAdapter lists to it value
+//        viewModel.homeServiceData.observe(viewLifecycleOwner) {
+//            if (it != null) {
+////              serviceAdapter.submitList(it.services)
+//                partnerAdapter.submitList(it.serviceLogos)
+//                showsAdapter.submitList(it.serviceShows)
+//                guideAndMagazineAdapter.submitList(it.serviceMagazine)
+//                recommendationAdapter.submitList(it.serviceRecommendation)
+//                binding.errorMessage.visibility = View.GONE
+//            } else {
+//                binding.errorMessage.visibility = View.VISIBLE
+//                binding.line2.visibility = View.GONE
+//                Log.i("list", "Have no data to load")
+//            }
+//        }
 
         return binding.root
     }

@@ -75,28 +75,35 @@ class MyAdsListFragment : Fragment() {
 
         viewModel.exception.observe(viewLifecycleOwner) {
             Log.i("exception", it.toString())
-            if (it == 404) {
-                binding.apply {
-                    errorMessage.text = "لا يوجد لديك إعلانات"
-                    errorMessage.visibility = View.VISIBLE
+            when (it) {
+                404 -> {
+                    binding.apply {
+                        errorMessage.text = "لا يوجد لديك إعلانات"
+                        errorMessage.visibility = View.VISIBLE
+                    }
                 }
-            } else if (it == 200) {
-                binding.apply {
-                    errorMessage.visibility = View.GONE
+                200 -> {
+                    binding.apply {
+                        errorMessage.visibility = View.GONE
+                    }
                 }
-            } else if (it == 401) {
-                binding.apply {
-                    errorMessage.text = "يرجي تسجيل الدخول أولا"
-                    errorMessage.visibility = View.VISIBLE
+                401 -> {
+                    binding.apply {
+                        errorMessage.text = "يرجي تسجيل الدخول أولا"
+                        errorMessage.visibility = View.VISIBLE
+                    }
                 }
-            } else if (it == 100) {
-                Toast.makeText(requireContext(), "تم حذف الاعلان بنجاح", Toast.LENGTH_SHORT).show()
-            } else if (it == 104) {
-                Toast.makeText(requireContext(), "تعذر حذف الاعلان", Toast.LENGTH_SHORT).show()
-            } else {
-                binding.apply {
-                    errorMessage.text = "تعذر الحصول علي معلومات"
-                    errorMessage.visibility = View.VISIBLE
+                100 -> {
+                    Toast.makeText(requireContext(), "تم حذف الاعلان بنجاح", Toast.LENGTH_SHORT).show()
+                }
+                104 -> {
+                    Toast.makeText(requireContext(), "تعذر حذف الاعلان", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    binding.apply {
+                        errorMessage.text = "تعذر الحصول علي معلومات"
+                        errorMessage.visibility = View.VISIBLE
+                    }
                 }
             }
         }
