@@ -12,7 +12,7 @@ class IHomeImplementation {
             val response = IHomeHandler.singleton.getSectorsData().await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getHomeSectorsData", e.message.toString())
             null
         }
     }
@@ -22,7 +22,7 @@ class IHomeImplementation {
             val response = IHomeHandler.singleton.getServicesData().await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getHomeServiceData", e.message.toString())
             null
         }
     }
@@ -32,7 +32,7 @@ class IHomeImplementation {
             val response = IHomeHandler.singleton.getAllNotificationData(apiToken).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllNotificationData", e.message.toString())
             null
         }
     }
@@ -42,18 +42,18 @@ class IHomeImplementation {
             val response = IHomeHandler.singleton.getContactUsData().await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllContactUsData", e.message.toString())
             null
         }
     }
 
-    suspend fun getAboutUsData(): AboutUsData? {
-        return try {
-            val response = IHomeHandler.singleton.getAboutUsData().await()
-            response.data
-        } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
-            null
-        }
-    }
+//    suspend fun getAboutUsData(): AboutUsData? {
+//        return try {
+//            val response = IHomeHandler.singleton.getAboutUsData().await()
+//            response.data
+//        } catch (e: Throwable) {
+//            Log.i("getAboutUsData", e.message.toString())
+//            null
+//        }
+//    }
 }

@@ -74,71 +74,80 @@
             <LinearLayout
                 android:id="@+id/fodder_external_layout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:layoutAnimation="@anim/layout_animation"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
-                android:paddingHorizontal="20sp"
+                android:paddingHorizontal="10sp"
                 android:visibility="gone"
                 tools:ignore="UselessLeaf"
                 tools:visibility="visible">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country_btn"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="0dp"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/primary_btn_shape"
-                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                     android:fontFamily="@font/cairo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10sp"
-                    android:textColor="@color/green"
-                    android:textSize="12sp"
+                    android:layoutDirection="rtl"
+                    android:textColorHint="@color/green"
+                    app:boxBackgroundColor="@color/orange"
                     tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
 
                     <AutoCompleteTextView
                         android:id="@+id/company_auto_compelete"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange"
-                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
-                        android:hint="@string/country_title"
+                        android:ellipsize="start"
+                        android:fontFamily="@font/cairo_bold"
+                        android:foregroundTint="@color/green"
                         android:inputType="none"
-                        tools:ignore="LabelFor,TouchTargetSizeCheck" />
+                        android:maxLines="1"
+                        android:textColor="@color/green"
+                        android:textColorHint="@color/green"
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="15dp"
-                    android:layout_height="44dp"
-                    app:cardElevation="0dp">
-                </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    app:cardElevation="0dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/product_btn"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="0dp"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
                     android:layout_weight="1"
-                    android:background="@drawable/primary_btn_shape"
-                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                     android:fontFamily="@font/cairo_bold"
-                    android:gravity="center_vertical"
-                    android:padding="10sp"
-                    android:textColor="@color/orange"
-                    android:textSize="12sp"
+                    android:layoutDirection="rtl"
+                    android:textColorHint="@color/green"
+                    app:boxBackgroundColor="@color/orange"
                     tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
+
                     <AutoCompleteTextView
                         android:id="@+id/product_auto_compelete"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/orange"
-                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
-                        android:hint="@string/product_title"
+                        android:fontFamily="@font/cairo_bold"
+                        android:ellipsize="start"
+                        android:foregroundTint="@color/green"
                         android:inputType="none"
-                        tools:ignore="LabelFor,TouchTargetSizeCheck" />
+                        android:maxLines="1"
+                        android:textColor="@color/green"
+                        android:textColorHint="@color/green"
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 

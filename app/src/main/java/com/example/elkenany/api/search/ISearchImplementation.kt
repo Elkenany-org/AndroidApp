@@ -12,7 +12,7 @@ class ISearchImplementation {
             val response = ISearchHandler.singleton.getAllSearchData(search).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllSearchData", e.message.toString())
             null
         }
     }

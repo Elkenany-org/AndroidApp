@@ -14,7 +14,7 @@ class IGuideImplementation {
             val response = IGuideHandler.singleton.getAllGuideData(sectorType, search).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllGuideData", e.message.toString())
             null
 
         }
@@ -26,7 +26,7 @@ class IGuideImplementation {
                 IGuideHandler.singleton.getAllCompaniesData(sectionId, search, "android").await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllCompaniesData", e.message.toString())
             null
 
         }
@@ -38,7 +38,7 @@ class IGuideImplementation {
                 IGuideHandler.singleton.getCompanyData(id, "Bearer $userApiToken").await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getCompanyData", e.message.toString())
             null
         }
     }

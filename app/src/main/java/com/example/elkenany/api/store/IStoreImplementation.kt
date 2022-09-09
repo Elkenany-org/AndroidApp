@@ -12,7 +12,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAdsStoreData(type, search, header).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("ads throwable", e.message.toString())
+            Log.i("getAllAdsStoreData", e.message.toString())
             null
         }
     }
@@ -22,7 +22,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAdDetailsData(id).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAdDetailsData", e.message.toString())
             null
         }
     }
@@ -32,7 +32,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAllChatsData(apiToken).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllChatsData", e.message.toString())
             null
         }
     }
@@ -42,7 +42,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAllMessagesList(id, apiToken).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllMessagesData", e.message.toString())
             null
         }
     }
@@ -52,7 +52,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAllStartChatData(apiToken, adsId).await()
             response.data!!.chat
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllStartChatData", e.message.toString())
             null
         }
     }
@@ -62,7 +62,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.sendMessageData(apiToken, adsId, message).await()
             response.data!!.chat
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("sendMessageData", e.message.toString())
             null
         }
     }
@@ -93,7 +93,7 @@ class IStoreImplementation {
             ).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("createNewAd", e.message.toString())
             null
         }
     }
@@ -106,7 +106,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.getAllMyAdsListData(apiToken, sectorType).await()
             response
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllMyAdsListData", e.message.toString())
             null
         }
     }
@@ -116,7 +116,7 @@ class IStoreImplementation {
             val response = IStoreHandler.singleton.deleteAdFromDataBase(apiToken, adId).await()
             response.message != null
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("deleteAdFromDataBase", e.message.toString())
             null
         }
     }

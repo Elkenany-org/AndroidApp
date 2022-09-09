@@ -32,15 +32,17 @@ class AuthImplementation {
         google_id: String?,
     ): AuthData? {
         return try {
-            val response = AuthHandler.singleton.reLogSocialWithGoogle(name,
+            val response = AuthHandler.singleton.reLogSocialWithGoogle(
+                name,
                 email,
-                device_token, google_id).await()
+                device_token, google_id
+            ).await()
             Log.i("login response", "Login ${response.data}")
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
         } catch (e: Throwable) {
-            Log.i("login response", "Login with google failed : ${e.message}")
+            Log.i("reLogSocialWithGoogle", "Login with google failed : ${e.message}")
             null
         }
     }
@@ -52,15 +54,17 @@ class AuthImplementation {
         facebook_id: String?,
     ): AuthData? {
         return try {
-            val response = AuthHandler.singleton.reLogSocialWithFacebook(name,
+            val response = AuthHandler.singleton.reLogSocialWithFacebook(
+                name,
                 email,
-                device_token, facebook_id).await()
+                device_token, facebook_id
+            ).await()
             Log.i("login response", "Login ${response.data}")
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
         } catch (e: Throwable) {
-            Log.i("login response", "Login with google failed : ${e.message}")
+            Log.i("reLogSocialWithFaceBook", "Login with google failed : ${e.message}")
             null
         }
     }
@@ -77,6 +81,7 @@ class AuthImplementation {
             getAllUserData(userApiToken)
             200
         } catch (e: HttpException) {
+            Log.i("loginWithEmailAndPassword", e.code().toString())
             e.code()
         }
     }
@@ -90,17 +95,19 @@ class AuthImplementation {
         deviceToken: String,
     ): Boolean {
         return try {
-            val response = AuthHandler.singleton.registerWithEmailAndPasswordWithPhone(name,
+            val response = AuthHandler.singleton.registerWithEmailAndPasswordWithPhone(
+                name,
                 email,
                 password,
                 phone,
-                deviceToken)
+                deviceToken
+            )
                 .await()
             userApiToken = response.data!!.apiToken
             getAllUserData(userApiToken)
             true
         } catch (e: Throwable) {
-            Log.i("register", "register failed : ${e.message}")
+            Log.i("registerWithEmailAndPassword", "register failed : ${e.message}")
             false
         }
     }
@@ -112,7 +119,7 @@ class AuthImplementation {
             auth = response.data
             auth
         } catch (e: Throwable) {
-            Log.i("user_data", "${e.message}")
+            Log.i("getAllUserData", "${e.message}")
             auth
         }
     }
@@ -130,21 +137,26 @@ class AuthImplementation {
             val response = AuthHandler.singleton.recoverPasswordWithEmail(email).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("login response", "Login with google failed : ${e.message}")
+            Log.i("recoverPasswordWithEmail", "Login with google failed : ${e.message}")
             null
         }
     }
 
-    suspend fun onSuccessResetPassword(email: String?,code:String?,password: String?) : AuthData?{
+    suspend fun onSuccessResetPassword(
+        email: String?,
+        code: String?,
+        password: String?
+    ): AuthData? {
         return try {
             val response = AuthHandler.singleton.onSuccessResetPassword(
                 email,
-                code, password).await()
+                code, password
+            ).await()
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
         } catch (e: Throwable) {
-            Log.i("login response", "Login with google failed : ${e.message}")
+            Log.i("onSuccessResetPassword", "Login with google failed : ${e.message}")
             null
         }
     }

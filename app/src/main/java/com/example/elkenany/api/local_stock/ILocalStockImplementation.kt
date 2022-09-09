@@ -2,10 +2,7 @@ package com.example.elkenany.api.local_stock
 
 import android.util.Log
 import com.example.elkenany.entities.GenericEntity
-import com.example.elkenany.entities.stock_data.LocalStockData
-import com.example.elkenany.entities.stock_data.LocalStockDetailsData
-import com.example.elkenany.entities.stock_data.StatisticsFodderData
-import com.example.elkenany.entities.stock_data.StatisticsLocalData
+import com.example.elkenany.entities.stock_data.*
 import retrofit2.HttpException
 import retrofit2.await
 import java.net.SocketTimeoutException
@@ -18,7 +15,7 @@ class ILocalStockImplementation {
                 ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getLocalStockSectionsData", e.message.toString())
             null
         }
     }
@@ -27,29 +24,48 @@ class ILocalStockImplementation {
         id: Long,
         date: String?,
         type: String,
+        feedId: String?,
+        companyId: String?
     ): LocalStockDetailsData? {
         Log.i("sectionType", type)
         return try {
             val response = if (type == "local") {
                 ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeLocal(id, date).await()
             } else {
-                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeFodder(id, date).await()
+                ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeFodder(
+                    id,
+                    date,
+                    feedId,
+                    companyId
+                ).await()
             }
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
             null
         }
     }
 
-    suspend fun getLocalStockFeedsItems(): Any {
-        // ToDo -> impelement getFeedItems from backend
-        throw Exception()
+    suspend fun getLocalStockFeedsItems(stockId: Long?): FeedsData?? {
+        return try {
+            val response =
+                ILocalStockHandler.singleton.getLocalStockFeedItems(stockId).await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("getLocalStockFeedsItems", e.message.toString())
+            null
+        }
     }
 
-    suspend fun getLocalStockCompanyItems(): Any {
-        // ToDo -> impelement getCompanyItems from backend
-        throw Exception()
+    suspend fun getLocalStockCompanyItems(stockId: Long?): List<LocalStockCompanyDaum?>? {
+        return try {
+            val response =
+                ILocalStockHandler.singleton.getLocalStockCompanyItems(stockId).await()
+            response.data
+        } catch (e: Throwable) {
+            Log.i("getLocalStockCompanyItems", e.message.toString())
+            null
+        }
     }
 
     suspend fun getAllStatisticsLocalData(
@@ -62,18 +78,20 @@ class ILocalStockImplementation {
     ): StatisticsLocalData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getAllStatisticsLocalData(stockId,
+                ILocalStockHandler.singleton.getAllStatisticsLocalData(
+                    stockId,
                     type,
                     from,
                     to,
                     memId,
-                    authroization).await()
+                    authroization
+                ).await()
             response.data
         } catch (e: HttpException) {
-            Log.i("throwable", e.code().toString())
+            Log.i("getAllStatisticsLocalData", e.code().toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("throwable", e.cause.toString())
+            Log.i("getAllStatisticsLocalData", e.cause.toString())
             null
         }
     }
@@ -87,11 +105,13 @@ class ILocalStockImplementation {
     ): GenericEntity<StatisticsFodderData?> {
         return try {
             val response =
-                ILocalStockHandler.singleton.getAllStatisticsFodderData(apiToken,
+                ILocalStockHandler.singleton.getAllStatisticsFodderData(
+                    apiToken,
                     from,
                     to,
                     fodderId,
-                    companyId).await()
+                    companyId
+                ).await()
             response
         } catch (e: HttpException) {
             if (e.code() == 402) {
@@ -100,7 +120,7 @@ class ILocalStockImplementation {
                 GenericEntity(null, null, null)
             }
         } catch (e: SocketTimeoutException) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getAllStatisticsFodderData", e.message.toString())
             GenericEntity(null, "socket time out", null)
         }
     }

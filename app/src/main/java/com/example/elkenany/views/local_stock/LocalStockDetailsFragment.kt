@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -39,22 +40,37 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
+    private var companyId: String? = null
+    private var feedId: String? = null
+    private var dateFormat: String? = null
     private val myCalendar: Calendar = Calendar.getInstance()
+    private lateinit var feedAdapter: ArrayAdapter<String?>
+    private lateinit var companyAdapter: ArrayAdapter<String?>
     override fun onResume() {
         super.onResume()
-        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
+        binding.companyAutoCompelete.setText("الشركات")
+        binding.productAutoCompelete.setText("الأصناف")
+        Log.i("args.id", args.id.toString())
+        viewModel.getLocalStockDetailsData(
+            args.id,
+            dateFormat,
+            args.sectorType.toString(),
+            null,
+            null
+        )
     }
 
-    //    private lateinit var arrayAdapter: ArrayAdapter<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,
+        binding = DataBindingUtil.inflate(
+            inflater,
             R.layout.fragment_local_stock_details,
             container,
-            false)
+            false
+        )
         viewModelFactory = ViewModelFactory()
         viewModel =
             ViewModelProvider(this, viewModelFactory)[LocalStockDetailsViewModel::class.java]
@@ -73,18 +89,23 @@ class LocalStockDetailsFragment : Fragment() {
                 updateLabel()
             }
         binding.calenderBtn.setOnClickListener {
-            DatePickerDialog(this.requireActivity(),
+            DatePickerDialog(
+                this.requireActivity(),
                 date,
                 myCalendar.get(Calendar.YEAR),
                 myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
         }
 
         binding.statisticsBtn.setOnClickListener {
             requireView().findNavController()
-                .navigate(LocalStockDetailsFragmentDirections.actionLocalStockDetailsFragmentToStatisticsFragment(
-                    args.id,
-                    args.sectorType))
+                .navigate(
+                    LocalStockDetailsFragmentDirections.actionLocalStockDetailsFragmentToStatisticsFragment(
+                        args.id,
+                        args.sectorType
+                    )
+                )
         }
 
         logosAdapter = LocalStockLogosAdapter(ClickListener {})
@@ -105,6 +126,68 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
+
+        viewModel.feedsItem.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.productBtn.visibility = View.VISIBLE
+                val feedList =
+                    it.fodderCategories.map { newList -> newList!!.name }.toList()
+                feedAdapter = ArrayAdapter<String?>(
+                    requireContext(),
+                    R.layout.array_adapter_item,
+                    feedList
+                )
+                binding.productAutoCompelete.setAdapter(feedAdapter)
+                binding.productAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                    binding.companyAutoCompelete.setText("الشركات")
+                    feedId = it.fodderCategories[position]!!.id.toString()
+                    binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    viewModel.getLocalStockDetailsData(
+                        args.id,
+                        dateFormat,
+                        args.sectorType.toString(),
+                        feedId,
+                        null
+                    )
+                }
+            } else {
+                binding.productBtn.visibility = View.GONE
+                Log.i("feedList", "failed to load feed data in it $it")
+            }
+
+        }
+        viewModel.companyItem.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.countryBtn.visibility = View.VISIBLE
+                val companyList = it.map { newList -> newList!!.name }.toList()
+                companyAdapter = ArrayAdapter<String?>(
+                    requireContext(),
+                    R.layout.array_adapter_item,
+                    companyList
+                )
+                binding.companyAutoCompelete.setAdapter(companyAdapter)
+                binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                    binding.productAutoCompelete.setText("الأصناف")
+                    companyId = it[position]!!.id.toString()
+                    binding.companyAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    viewModel.getLocalStockDetailsData(
+                        args.id,
+                        dateFormat,
+                        args.sectorType.toString(),
+                        null,
+                        companyId
+                    )
+                }
+            } else {
+                binding.countryBtn.visibility = View.GONE
+                Log.i(
+                    "companyList",
+                    "failed to load company data in localStockDetailsFragment.kt $it"
+                )
+            }
+        }
         viewModel.localStockDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.errorMessage.visibility = View.GONE
@@ -117,20 +200,16 @@ class LocalStockDetailsFragment : Fragment() {
                 if (args.sectorType == "fodder") {
                     binding.apply {
                         fodderExternalLayout.visibility = View.VISIBLE
-//                        arrayAdapter = ArrayAdapter(requireContext(), R.layout.small_recycler_item,
-//                            listOf())
-//                        companyAutoCompelete.setAdapter(arrayAdapter)
                     }
                 } else {
                     binding.apply {
                         fodderExternalLayout.visibility = View.GONE
                     }
-
                 }
 
             } else {
                 binding.errorMessage.apply {
-                    text = "برجاء تسجيل الدخول لأستخدام جميع الخدمات بشكل كامل"
+                    text = "تعذر الحصول علي اي بيانات"
                     visibility = View.VISIBLE
                 }
                 binding.stockDataRecyclerView.visibility = View.GONE
@@ -144,11 +223,13 @@ class LocalStockDetailsFragment : Fragment() {
     @SuppressLint("NewApi", "WeekBasedYear")
     private fun updateLabel() {
         val myFormat = "YYYY-MM-d"
-        val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        Log.i("dataFormant", dateFormat.format(myCalendar.time))
-        viewModel.getLocalStockDetailsData(args.id,
-            dateFormat.format(myCalendar.time),
-            args.sectorType.toString())
+        dateFormat = SimpleDateFormat(myFormat, Locale.US).format(myCalendar.time)
+        viewModel.getLocalStockDetailsData(
+            args.id,
+            dateFormat,
+            args.sectorType.toString(),
+            feedId, companyId
+        )
     }
 
     private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {

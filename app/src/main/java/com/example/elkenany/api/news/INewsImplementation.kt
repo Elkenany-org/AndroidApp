@@ -11,7 +11,7 @@ class INewsImplementation {
             val response = INewsHandler.singleton.getAllNews(type, search,sort).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("INewsImplementation", e.message.toString())
             null
         }
     }
@@ -21,7 +21,7 @@ class INewsImplementation {
             val response = INewsHandler.singleton.getNewsDetailsByID(id).await()
             response.data
         } catch (e: Throwable) {
-            Log.i("throwable", e.message.toString())
+            Log.i("getNewsDetailsData", e.message.toString())
             null
         }
     }
