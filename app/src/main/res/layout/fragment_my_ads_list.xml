@@ -71,6 +71,8 @@
                     android:layout_margin="10dp"
                     android:backgroundTint="@color/orange"
                     android:drawableTint="@color/green"
+                    android:maxLines="1"
+                    android:ellipsize="start"
                     android:fontFamily="@font/cairo_bold"
                     android:foregroundTint="@color/green"
                     android:inputType="none"

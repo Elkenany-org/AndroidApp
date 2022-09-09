@@ -2,10 +2,7 @@ package com.example.elkenany.api.local_stock
 
 import com.example.elkenany.api.retrofit_configs.retrofit
 import com.example.elkenany.entities.GenericEntity
-import com.example.elkenany.entities.stock_data.LocalStockData
-import com.example.elkenany.entities.stock_data.LocalStockDetailsData
-import com.example.elkenany.entities.stock_data.StatisticsFodderData
-import com.example.elkenany.entities.stock_data.StatisticsLocalData
+import com.example.elkenany.entities.stock_data.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -28,21 +25,19 @@ interface ILocalStock {
     fun getLocalStockDetailsByIdAndTypeFodder(
         @Query("id") id: Long,
         @Query("date") date: String?,
+        @Query("fod_id") feedId: String?,
+        @Query("comp_id") companyId: String?
     ): Call<GenericEntity<LocalStockDetailsData?>>
 
     @GET("localstock/feeds-items")
     fun getLocalStockFeedItems(
-        @Query("stock_id") stockId: String?,
-        @Query("mini_id") miniId: String?,
-        @Query("food_Id") foodId: String?,
-        @Query("device") deviceType: String?,
-    ): Call<GenericEntity<Any?>>
+        @Query("stock_id") stockId: Long?,
+    ): Call<GenericEntity<FeedsData?>>
 
     @GET("localstock/companies-items")
     fun getLocalStockCompanyItems(
-        @Query("stock_id") stockId: String?,
-        @Query("company_id") companyId: String?,
-    ): Call<GenericEntity<Any?>>
+        @Query("stock_id") stockId: Long?,
+    ): Call<GenericEntity<List<LocalStockCompanyDaum?>?>>
 
     @GET("localstock/statistics-Localstock-members")
     fun getAllStatisticsLocalData(
