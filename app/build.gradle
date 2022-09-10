@@ -78,5 +78,5 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     //carousel recyclerview
-    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
+//    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
 }
