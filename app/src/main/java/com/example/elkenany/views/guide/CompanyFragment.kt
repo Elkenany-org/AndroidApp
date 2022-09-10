@@ -32,11 +32,15 @@ class CompanyFragment : Fragment() {
     private val args: CompanyFragmentArgs by navArgs()
     private lateinit var latid: String
     private lateinit var longtid: String
-    override fun onResume() {
-        super.onResume()
-        viewmodel.getCompaniesGuideData(args.companyId)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//    }
 
+    override fun onStart() {
+        super.onStart()
+        viewmodel.getCompaniesGuideData(args.companyId)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -59,15 +63,19 @@ class CompanyFragment : Fragment() {
             callThisNumber(binding.fax.text.toString())
         }
         companyLocalStockAdapter = CompanyLocalStockAdapter(ClickListener {
-            navigateToStockPage(it.id!!,
+            navigateToStockPage(
+                it.id!!,
                 it.name.toString(),
-                "local")
+                "local"
+            )
         })
         binding.companyLocalStocksRecyclerview.adapter = companyLocalStockAdapter
         companyFodderStockAdapter = CompanyLocalStockAdapter(ClickListener {
-            navigateToStockPage(it.id!!,
+            navigateToStockPage(
+                it.id!!,
                 it.name.toString(),
-                "fodder")
+                "fodder"
+            )
         })
         binding.companyFodderStocksRecyclerview.adapter = companyFodderStockAdapter
         viewmodel.getCompaniesGuideData(args.companyId)
@@ -81,17 +89,22 @@ class CompanyFragment : Fragment() {
         }
         viewmodel.companyData.observe(viewLifecycleOwner) {
             if (it != null) {
-                if (it.localstock.isEmpty()) {
-                    binding.companyLocalStocksRecyclerview.visibility = View.GONE
+                if (it.localstock.isEmpty() && it.fodderstock.isEmpty()) {
+                    binding.cardView4.visibility = View.GONE
                 } else {
-                    binding.companyLocalStocksRecyclerview.visibility = View.VISIBLE
-                    companyLocalStockAdapter.submitList(it.localstock)
-                }
-                if (it.fodderstock.isEmpty()) {
-                    binding.companyFodderStocksRecyclerview.visibility = View.GONE
-                } else {
-                    binding.companyFodderStocksRecyclerview.visibility = View.VISIBLE
-                    companyFodderStockAdapter.submitList(it.fodderstock)
+                    binding.cardView4.visibility = View.VISIBLE
+                    if (it.localstock.isEmpty()) {
+                        binding.companyLocalStocksRecyclerview.visibility = View.GONE
+                    } else {
+                        binding.companyLocalStocksRecyclerview.visibility = View.VISIBLE
+                        companyLocalStockAdapter.submitList(it.localstock)
+                    }
+                    if (it.fodderstock.isEmpty()) {
+                        binding.companyFodderStocksRecyclerview.visibility = View.GONE
+                    } else {
+                        binding.companyFodderStocksRecyclerview.visibility = View.VISIBLE
+                        companyFodderStockAdapter.submitList(it.fodderstock)
+                    }
                 }
                 binding.errorMessage.visibility = View.GONE
                 binding.adsLayout.visibility = View.VISIBLE
@@ -112,20 +125,27 @@ class CompanyFragment : Fragment() {
 
     private fun navigateToStockPage(id: Long, name: String, type: String) {
         requireView().findNavController()
-            .navigate(CompanyFragmentDirections.actionCompanyFragmentToLocalStockDetailsFragment(
-                id,
-                name,
-                type))
+            .navigate(
+                CompanyFragmentDirections.actionCompanyFragmentToLocalStockDetailsFragment(
+                    id,
+                    name,
+                    type
+                )
+            )
     }
 
     private fun callThisNumber(phone: String?) {
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:$phone")
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(Manifest.permission.CALL_PHONE), 1)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.CALL_PHONE), 1
+            )
         } else {
             startActivity(callIntent)
         }
