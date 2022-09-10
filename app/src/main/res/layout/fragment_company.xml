@@ -180,7 +180,8 @@
                             android:gravity="center_vertical"
                             android:text="@string/contact_information_title"
                             android:textColor="@color/orange"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck" />
 
                         <TextView
                             android:id="@+id/mail"
@@ -260,6 +261,7 @@
                         android:padding="15dp">
 
                         <TextView
+                            android:id="@+id/stocks_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -268,7 +270,8 @@
                             android:gravity="center_vertical"
                             android:text="@string/stock_title"
                             android:textColor="@color/orange"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/company_local_stocks_recyclerview"

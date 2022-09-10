@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-//import androidx.navigation.findNavController
+import androidx.navigation.findNavController
 import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentHomeServiceBinding
@@ -51,10 +51,10 @@ class HomeServiceFragment : Fragment() {
 //        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
 //
 //        //navigate to sectorsFragment
-//        binding.sectorsBtn.setOnClickListener {
-//            view!!.findNavController()
-//                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
-//        }
+        binding.sectorsBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
+        }
 //
 //        // Loading progressbar
 //        viewModel.loading.observe(viewLifecycleOwner) {
