@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
@@ -137,10 +138,13 @@ class CreateAdFragment : Fragment() {
         }
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
-                200 -> Toast.makeText(requireContext(),
-                    "تم إنشاء الإعلان بنجاح",
-                    Toast.LENGTH_SHORT)
-                    .show()
+                200 -> {
+                    Toast.makeText(requireContext(),
+                        "تم إنشاء الإعلان بنجاح",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                    requireView().findNavController().popBackStack()
+                }
                 402 -> Toast.makeText(requireContext(),
                     "لقد تخطيت الحد الأقصي للأعلانات , برجاء التحويل للباقة المدفوعة",
                     Toast.LENGTH_SHORT)
