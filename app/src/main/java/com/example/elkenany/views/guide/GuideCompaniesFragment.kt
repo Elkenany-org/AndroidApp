@@ -1,5 +1,7 @@
 package com.example.elkenany.views.guide
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,9 +57,13 @@ class GuideCompaniesFragment : Fragment() {
             search = it.toString()
             viewModel.getCompaniesGuideData(args.id, search)
         }
-        bannersAdapter = LocalStockBannersAdapter(ClickListener { })
+        bannersAdapter = LocalStockBannersAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.bannersRecyclerView.adapter = bannersAdapter
-        logosAdapter = LocalStockLogosAdapter(ClickListener { })
+        logosAdapter = LocalStockLogosAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.logosRecyclerView.adapter = logosAdapter
         companiesAdapter = CompaniesAdapter(ClickListener {
             requireView().findNavController().navigate(
@@ -95,6 +101,7 @@ class GuideCompaniesFragment : Fragment() {
         }
         return binding.root
     }
+
     private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
         CoroutineScope(Dispatchers.Main).launch {
             var counter = 0
@@ -111,4 +118,9 @@ class GuideCompaniesFragment : Fragment() {
         }
     }
 
+    private fun navigateToBroswerIntent(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }

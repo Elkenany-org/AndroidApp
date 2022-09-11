@@ -67,16 +67,27 @@ class StatisticsViewModel : ViewModel() {
         to: String?,
         memId: Long?,
     ) {
-        _loading.value = true
-        uiScope.launch {
-            _statisticsLocalData.value =
-                api.getAllStatisticsLocalData(stockId,
-                    type,
-                    from,
-                    to,
-                    memId,
-                    "Bearer $userApiToken")
-            _loading.value = false
+        if (userApiToken == null) {
+            _exception.value = 401
+        } else {
+            _loading.value = true
+            uiScope.launch {
+                val response =
+                    api.getAllStatisticsLocalData(stockId,
+                        type,
+                        from,
+                        to,
+                        memId,
+                        "Bearer $userApiToken")
+                if (response.error == "402") {
+                    _exception.value = 402
+                    _statisticsFodderData.value = null
+                } else {
+                    _exception.value = 200
+                    _statisticsLocalData.value = response.data
+                }
+                _loading.value = false
+            }
         }
     }
 

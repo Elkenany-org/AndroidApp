@@ -2,6 +2,8 @@ package com.example.elkenany.views.local_stock
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -75,7 +77,9 @@ class LocalStockDetailsFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, viewModelFactory)[LocalStockDetailsViewModel::class.java]
         binding.appBarTitle.text = args.sectorName
-        bannersAdapter = LocalStockBannersAdapter(ClickListener { })
+        bannersAdapter = LocalStockBannersAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.bannersRecyclerView.apply {
 
             adapter = bannersAdapter
@@ -109,7 +113,9 @@ class LocalStockDetailsFragment : Fragment() {
                 )
         }
 
-        logosAdapter = LocalStockLogosAdapter(ClickListener {})
+        logosAdapter = LocalStockLogosAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
@@ -249,4 +255,9 @@ class LocalStockDetailsFragment : Fragment() {
         }
     }
 
+    private fun navigateToBroswerIntent(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }
