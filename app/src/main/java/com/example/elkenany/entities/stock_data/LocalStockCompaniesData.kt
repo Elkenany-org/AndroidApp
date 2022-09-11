@@ -2,9 +2,9 @@ package com.example.elkenany.entities.stock_data
 
 import com.squareup.moshi.Json
 
-data class LocalStockCompaniesData(
-    val data: List<LocalStockCompanyDaum?>,
-)
+//data class LocalStockCompaniesData(
+//    val data: List<LocalStockCompanyDaum?>,
+//)
 
 data class LocalStockCompanyDaum(
     val id: Long?,

@@ -15,11 +15,13 @@ class CreateAdViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _createdAdd = MutableLiveData<Boolean?>(null)
+    private val _exception = MutableLiveData<Int>()
     private val _loading = MutableLiveData(false)
     private val api = IStoreImplementation()
 
 
     val createdAd: LiveData<Boolean?> get() = _createdAdd
+    val exception: LiveData<Int> get() = _exception
     val loading: LiveData<Boolean> get() = _loading
 
     fun createNewAd(
@@ -43,7 +45,15 @@ class CreateAdViewModel : ViewModel() {
                 address,
                 "mobile",
                 imageFile)
-            _createdAdd.value = reponse != null
+            if (reponse!!.error.isNullOrEmpty()) {
+                _exception.value = 200
+            } else {
+                if (reponse.error == "402") {
+                    _exception.value = 402
+                } else {
+                    _exception.value = 400
+                }
+            }
             _loading.value = false
         }
     }

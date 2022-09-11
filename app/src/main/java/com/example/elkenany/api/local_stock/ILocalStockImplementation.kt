@@ -25,7 +25,7 @@ class ILocalStockImplementation {
         date: String?,
         type: String,
         feedId: String?,
-        companyId: String?
+        companyId: String?,
     ): LocalStockDetailsData? {
         Log.i("sectionType", type)
         return try {
@@ -75,7 +75,7 @@ class ILocalStockImplementation {
         to: String?,
         memId: Long?,
         authroization: String?,
-    ): StatisticsLocalData? {
+    ): GenericEntity<StatisticsLocalData?> {
         return try {
             val response =
                 ILocalStockHandler.singleton.getAllStatisticsLocalData(
@@ -86,13 +86,16 @@ class ILocalStockImplementation {
                     memId,
                     authroization
                 ).await()
-            response.data
+            response
         } catch (e: HttpException) {
-            Log.i("getAllStatisticsLocalData", e.code().toString())
-            null
+            if (e.code() == 402) {
+                GenericEntity(null, e.code().toString(), null)
+            } else {
+                GenericEntity(null, null, null)
+            }
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.cause.toString())
-            null
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            GenericEntity(null, "socket time out", null)
         }
     }
 
@@ -117,7 +120,7 @@ class ILocalStockImplementation {
             if (e.code() == 402) {
                 GenericEntity(null, "402", null)
             } else {
-                GenericEntity(null, null, null)
+                GenericEntity(null, "400", null)
             }
         } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsFodderData", e.message.toString())

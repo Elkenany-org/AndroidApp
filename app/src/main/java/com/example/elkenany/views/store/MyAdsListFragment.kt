@@ -1,7 +1,10 @@
 package com.example.elkenany.views.store
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +18,7 @@ import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentMyAdsListBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
+import com.example.elkenany.entities.store.MyAdsDaum
 import com.example.elkenany.viewmodels.MyAdsListViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.store.adapter.MyAdsAdapter
@@ -68,8 +72,7 @@ class MyAdsListFragment : Fragment() {
             requireView().findNavController()
                 .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToAdDetailsFragment(it.id!!))
         }, ClickListener {
-            viewModel.deleteAdFromDataBase(it.id)
-            viewModel.getAllNewsData(sectorType)
+            basicAlert(requireContext(), it)
         })
         binding.adsListRecyclerView.adapter = myAdsAdapter
 
@@ -94,7 +97,8 @@ class MyAdsListFragment : Fragment() {
                     }
                 }
                 100 -> {
-                    Toast.makeText(requireContext(), "تم حذف الاعلان بنجاح", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "تم حذف الاعلان بنجاح", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 104 -> {
                     Toast.makeText(requireContext(), "تعذر حذف الاعلان", Toast.LENGTH_SHORT).show()
@@ -138,6 +142,21 @@ class MyAdsListFragment : Fragment() {
         return binding.root
     }
 
+    private fun basicAlert(context: Context, ad: MyAdsDaum) {
+
+        val builder = AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+
+        with(builder)
+        {
+            setMessage("هل تريد حذف إعلان ' ${ad.title} ' ؟ ")
+            setPositiveButton("حذف") { _, _ ->
+                viewModel.deleteAdFromDataBase(ad.id)
+                viewModel.getAllNewsData(sectorType)
+            }
+            setNegativeButton("الغاء", null)
+            show()
+        }
+    }
 }
 
 

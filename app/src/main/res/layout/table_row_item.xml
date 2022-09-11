@@ -37,16 +37,13 @@
             android:gravity="center"
             android:layoutDirection="rtl"
             android:orientation="horizontal"
-            android:padding="2dp">
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="2dp">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/comp_name"
-                itemText="@{data.name.toString()}"
+                itemText="@{data.name}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -58,49 +55,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_name"
-                itemText="@{data.categorizeName.toString()}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="10sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_type"
-                itemText="@{data.productType.toString()}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="10sp"
-                tools:ignore=",SmallSp" />
-
-            <View
+                android:id="@+id/comp_name_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/prod_price"
-                itemText="@{data.price.toString()}"
+                itemText="@{data.price}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -112,13 +74,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_price_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/change"
-                itemText="@{data.change.toString()}"
+                android:id="@+id/prod_change"
+                itemText="@{data.change}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -130,13 +93,15 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_change_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
+
             <TextView
-                android:id="@+id/weight"
-                itemText="@{data.weight.toString()}"
+                android:id="@+id/prod_categorize_name"
+                itemText="@{data.categorizeName}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -148,13 +113,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/categorize_name_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/status"
-                itemText="@{data.priceStatus.toString()}"
+                android:id="@+id/prod_chargin_system_name"
+                itemText="@{data.chargingSystem}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -166,13 +132,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/chargin_system_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/age"
-                itemText="@{data.age.toString()}"
+                android:id="@+id/prod_weight"
+                itemText="@{data.weight}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -184,13 +151,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_weight_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/type"
-                itemText="@{data.productType.toString()}"
+                android:id="@+id/prod_price_status"
+                itemText="@{data.priceStatus}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -202,13 +170,14 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_price_status_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/little_chicken"
-                itemText="@{data.chickType.toString()}"
+                android:id="@+id/prod_age"
+                itemText="@{data.age}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -220,17 +189,18 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_age_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/box_weight"
-                itemText="@{data.weightContainer.toString()}"
+                android:id="@+id/prod_type"
+                itemText="@{data.productType}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
@@ -238,13 +208,52 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_type_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/prod_chick_type"
+                itemText="@{data.chickType}"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/green"
+                android:textSize="10sp"
+                tools:ignore=",SmallSp" />
+
+            <View
+                android:id="@+id/prod_chick_type_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/prod_weight_container"
+                itemText="@{data.weightContainer}"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/green"
+                android:textSize="10sp"
+                tools:ignore=",SmallSp" />
+
+            <View
+                android:id="@+id/prod_weight_container_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/prod_change_date"
-                itemText="@{data.changeDate.toString()}"
+                itemText="@{data.changeDate}"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_bold"
@@ -256,6 +265,26 @@
                 tools:ignore=",SmallSp" />
 
             <View
+                android:id="@+id/prod_change_date_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/prod_feed_date"
+                itemText="@{data.feed}"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:padding="5dp"
+                android:textColor="@color/green"
+                android:textSize="10sp"
+                tools:ignore=",SmallSp" />
+
+            <View
+                android:id="@+id/prod_feed_date_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
@@ -266,11 +295,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 tools:ignore="ContentDescription" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/statistics_title"

@@ -1,5 +1,7 @@
 package com.example.elkenany.views.home.home_sector
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,6 +58,8 @@ class HomeSectorFragment : Fragment() {
         })
         partnerAdapter = SectorsPartnerAdapter(ClickListener {
             // ToDo --> navigate to specific page based on the selected item type
+            navigateToBroswerIntent(it.link)
+
         })
         stockAdapter = SectorsStockAdapter(ClickListener {
             // ToDo --> navigate to Stock Details page
@@ -180,4 +184,9 @@ class HomeSectorFragment : Fragment() {
         }
     }
 
+    private fun navigateToBroswerIntent(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }

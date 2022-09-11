@@ -3,6 +3,7 @@ package com.example.elkenany.api.store
 import android.util.Log
 import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
+import retrofit2.HttpException
 import retrofit2.await
 
 class IStoreImplementation {
@@ -77,7 +78,7 @@ class IStoreImplementation {
         address: String?,
         connection: String?,
         imageFile: String?,
-    ): NewAdData? {
+    ): GenericEntity<NewAdData?>? {
         return try {
             val response = IStoreHandler.singleton.createNewAd(
                 "android",
@@ -91,10 +92,10 @@ class IStoreImplementation {
                 connection,
                 imageFile
             ).await()
-            response.data
-        } catch (e: Throwable) {
-            Log.i("createNewAd", e.message.toString())
-            null
+            response
+        } catch (e: HttpException) {
+
+            GenericEntity(null, e.code().toString(), null)
         }
     }
 

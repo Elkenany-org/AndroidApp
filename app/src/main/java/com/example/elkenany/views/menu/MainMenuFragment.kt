@@ -1,9 +1,12 @@
 package com.example.elkenany.views.menu
 
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +47,7 @@ class MainMenuFragment : Fragment() {
             parentNavController.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         binding.signOutBtn.setOnClickListener {
-            viewModel.signOutFromGoogle(requireContext())
+            basicAlert(requireContext())
 
         }
         binding.dailyStockBtn.setOnClickListener {
@@ -106,6 +109,20 @@ class MainMenuFragment : Fragment() {
         return binding.root
     }
 
+    private fun basicAlert(context: Context) {
+
+        val builder = AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+
+        with(builder)
+        {
+            setMessage("هل تريد تسجيل الخروج ؟ ")
+            setPositiveButton("تسجيل خروج") { _, _ ->
+                viewModel.signOutFromGoogle(context)
+            }
+            setNegativeButton("الغاء", null)
+            show()
+        }
+    }
 
     private fun onsharingdata(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {

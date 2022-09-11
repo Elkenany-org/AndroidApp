@@ -1,5 +1,6 @@
 package com.example.elkenany.views.store
 
+//import java.io.File
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -18,14 +19,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
-//import java.io.File
 import java.util.*
 
 
@@ -119,6 +119,10 @@ class CreateAdFragment : Fragment() {
                 Toast.makeText(requireContext(), "برجاء تحديد القطاع", Toast.LENGTH_SHORT).show()
             } else {
                 binding.imageIndicator.visibility = View.GONE
+                val jsonObject = JsonObject()
+                val list = ArrayList<String>()
+//                list.add(fileResult)
+//                list.map { item -> jsonObject.addProperty("data", item) }.toList()
                 viewModel.createNewAd(
                     title,
                     description,
@@ -126,11 +130,29 @@ class CreateAdFragment : Fragment() {
                     price,
                     sectorId!!.toLong(),
                     address,
-                    fileResult
+                    arrayListOf(fileResult).toString()
                 )
             }
+
         }
-        viewModel.loading.observe(viewLifecycleOwner) {
+        viewModel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                200 -> Toast.makeText(requireContext(),
+                    "تم إنشاء الإعلان بنجاح",
+                    Toast.LENGTH_SHORT)
+                    .show()
+                402 -> Toast.makeText(requireContext(),
+                    "لقد تخطيت الحد الأقصي للأعلانات , برجاء التحويل للباقة المدفوعة",
+                    Toast.LENGTH_SHORT)
+                    .show()
+                else -> Toast.makeText(requireContext(),
+                    "حدث خطأ في إنشاء الإعلان",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+        viewModel.loading.observe(viewLifecycleOwner)
+        {
             if (it) {
                 binding.loadingProgressbar1.visibility = View.VISIBLE
                 binding.addAdBtn.visibility = View.GONE
@@ -140,18 +162,6 @@ class CreateAdFragment : Fragment() {
             }
         }
 
-        viewModel.createdAd.observe(viewLifecycleOwner) {
-            if (it != null) {
-                if (it) {
-                    Toast.makeText(requireContext(), "تم إنشاء الإعلان بنجاح", Toast.LENGTH_SHORT)
-                        .show()
-                    requireView().findNavController().popBackStack()
-                } else {
-                    Toast.makeText(requireContext(), "حدث خطأ في إنشاء الإعلان", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        }
         return binding.root
     }
 
@@ -177,8 +187,9 @@ class CreateAdFragment : Fragment() {
             val inputStream = requireContext().contentResolver.openInputStream(uri)
             val selectedImage = BitmapFactory.decodeStream(inputStream)
             val encodedImage: String = encodeImage(selectedImage)
-            fileResult = "data:image/png;base64,$encodedImage"
+            fileResult = "\"data:image/png;base64,$encodedImage \""
             Log.i("base64", encodedImage)
+            Log.i("arrayList", arrayOf(fileResult, fileResult).toString())
 //            val uri1 = Uri.parse(uri.toString())
 //            val file = File(uri1.toString())
 //            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)

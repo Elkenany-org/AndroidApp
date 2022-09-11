@@ -1,5 +1,7 @@
 package com.example.elkenany.views.guide
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,13 +63,17 @@ class GuideFragment : Fragment() {
             search = it.toString()
             viewModel.getGuideData(sectorType, search)
         }
-        bannersAdapter = LocalStockBannersAdapter(ClickListener { })
+        bannersAdapter = LocalStockBannersAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.bannersRecyclerView.apply {
             adapter = bannersAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        logosAdapter = LocalStockLogosAdapter(ClickListener { })
+        logosAdapter = LocalStockLogosAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
@@ -135,5 +141,9 @@ class GuideFragment : Fragment() {
             }
         }
     }
-
+    private fun navigateToBroswerIntent(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }

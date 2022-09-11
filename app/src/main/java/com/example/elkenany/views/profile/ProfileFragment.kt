@@ -1,6 +1,9 @@
 package com.example.elkenany.views.profile
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +43,7 @@ class ProfileFragment : Fragment() {
             viewModel.signIn()
         }
         binding.signOutBtn.setOnClickListener {
-            viewModel.signOutFromGoogle(requireContext())
+            basicAlert(requireContext())
         }
         binding.adsBtn.setOnClickListener {
             requireView().findNavController()
@@ -68,4 +71,18 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    private fun basicAlert(context: Context) {
+
+        val builder = AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+
+        with(builder)
+        {
+            setMessage("هل تريد تسجيل الخروج ؟ ")
+            setPositiveButton("تسجيل خروج") { _, _ ->
+                viewModel.signOutFromGoogle(context)
+            }
+            setNegativeButton("الغاء", null)
+            show()
+        }
+    }
 }
