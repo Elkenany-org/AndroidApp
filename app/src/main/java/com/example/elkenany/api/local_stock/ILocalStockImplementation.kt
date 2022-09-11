@@ -49,7 +49,7 @@ class ILocalStockImplementation {
     suspend fun getLocalStockFeedsItems(stockId: Long?): FeedsData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getLocalStockFeedItems(stockId).await()
+                ILocalStockHandler.singleton.getLocalStockFeedItems("web", stockId).await()
             response.data
         } catch (e: Throwable) {
             Log.i("getLocalStockFeedsItems", e.message.toString())
