@@ -64,14 +64,14 @@ class NewsFragment : Fragment() {
             viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.latestNewsBtn.setOnClickListener {
-            sort = "2"
+            sort = "3"
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
             viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.urgentBtn.setOnClickListener {
-            sort = "3"
+            sort = "2"
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))

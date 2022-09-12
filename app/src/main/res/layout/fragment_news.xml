@@ -147,7 +147,7 @@
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/cairo_regular"
                     android:maxLines="1"
-                    android:text="@string/most_readable_title"
+                    android:text="@string/alphapetical_title"
                     android:textColor="@color/green"
                     android:textStyle="bold"
                     tools:ignore="RelativeOverlap" />

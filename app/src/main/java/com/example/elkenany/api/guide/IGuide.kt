@@ -5,10 +5,9 @@ import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.guide.CompaniesData
 import com.example.elkenany.entities.guide.CompanyDetailsData
 import com.example.elkenany.entities.guide.GuideData
+import com.example.elkenany.entities.store.RatingData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface IGuide {
     @GET("guide/section")
@@ -29,6 +28,14 @@ interface IGuide {
         @Query("id") Id: Long,
         @Header("Authorization") apiToken: String?,
     ): Call<GenericEntity<CompanyDetailsData?>>
+
+    @FormUrlEncoded
+    @POST("guide/rating-company")
+    fun rateThisCompany(
+        @Header("Authorization") apiToken: String?,
+        @Field("company_id") companyId: Long?,
+        @Field("reat") rate: Long?,
+    ): Call<GenericEntity<RatingData?>>
 }
 
 object IGuideHandler {

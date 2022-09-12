@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -148,6 +149,9 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.productAutoCompelete.setAdapter(feedAdapter)
                 binding.productAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
                     binding.companyAutoCompelete.setText("الشركات")
+                    Toast.makeText(requireContext(),
+                        it.fodderList[position]!!.name,
+                        Toast.LENGTH_SHORT).show()
                     feedId = it.fodderList[position]!!.id.toString()
                     binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
@@ -177,6 +181,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.companyAutoCompelete.setAdapter(companyAdapter)
                 binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
                     binding.productAutoCompelete.setText("الأصناف")
+                    Toast.makeText(requireContext(), it[position]!!.name, Toast.LENGTH_SHORT).show()
                     companyId = it[position]!!.id.toString()
                     binding.companyAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()

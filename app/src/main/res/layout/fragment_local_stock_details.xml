@@ -60,10 +60,11 @@
                 android:gravity="center_vertical"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
-                android:paddingHorizontal="10sp"
+                android:paddingHorizontal="5sp"
                 android:visibility="gone"
                 tools:ignore="UselessLeaf"
-                tools:visibility="visible">
+                tools:visibility="visible"
+                android:baselineAligned="false">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country_btn"
@@ -82,7 +83,7 @@
                         android:id="@+id/company_auto_compelete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
                         android:ellipsize="start"
@@ -95,11 +96,6 @@
                         android:textSize="12sp"
                         tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="15dp"
-                    android:layout_height="wrap_content"
-                    app:cardElevation="0dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/product_btn"
@@ -118,7 +114,7 @@
                         android:id="@+id/product_auto_compelete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
                         android:ellipsize="start"
