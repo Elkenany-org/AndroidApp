@@ -25,7 +25,6 @@ import com.example.elkenany.databinding.FragmentCreateAdBinding
 import com.example.elkenany.entities.stock_data.LocalStockSector
 import com.example.elkenany.viewmodels.CreateAdViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
-import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
 import java.util.*
 
@@ -44,9 +43,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var phone: String
     private lateinit var price: String
     private lateinit var address: String
-
-    //    private lateinit var imageFile: File
-    private lateinit var fileResult: String
+    private val myArrayUri = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -120,10 +117,6 @@ class CreateAdFragment : Fragment() {
                 Toast.makeText(requireContext(), "برجاء تحديد القطاع", Toast.LENGTH_SHORT).show()
             } else {
                 binding.imageIndicator.visibility = View.GONE
-                val jsonObject = JsonObject()
-                val list = ArrayList<String>()
-//                list.add(fileResult)
-//                list.map { item -> jsonObject.addProperty("data", item) }.toList()
                 viewModel.createNewAd(
                     title,
                     description,
@@ -131,7 +124,7 @@ class CreateAdFragment : Fragment() {
                     price,
                     sectorId!!.toLong(),
                     address,
-                    arrayListOf(fileResult).toString()
+                    myArrayUri.toString()
                 )
             }
 
@@ -173,6 +166,7 @@ class CreateAdFragment : Fragment() {
     @SuppressLint("IntentReset")
     private fun getImageFromStorage() {
         val intent = Intent(Intent.ACTION_PICK)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.type = "image/*"
         startActivityForResult(intent, 1)
     }
@@ -183,22 +177,30 @@ class CreateAdFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             binding.imageIndicator.visibility = View.VISIBLE
-            val uri = data?.data!!
-            binding.pickImageBtn.apply {
-                foreground.setVisible(false, true)
-                setImageURI(uri)
+            if (data?.clipData != null) {
+                var i = 0
+                val cout = data.clipData!!.itemCount
+                binding.pickImageBtn.apply {
+                    binding.pickImageBtn.apply {
+                        foreground.setVisible(false, true)
+                        setImageURI(data.clipData!!.getItemAt(i).uri)
+                    }
+                }
+                while (i <= cout - 1) {
+                    // adding imageuri in array
+                    val imageurl = data.clipData!!.getItemAt(i).uri
+                    val inputStream = requireContext().contentResolver.openInputStream(imageurl)
+                    val selectedImage = BitmapFactory.decodeStream(inputStream)
+                    val encodedImage: String = encodeImage(selectedImage)
+                    myArrayUri.add("\"data:image/*;base64,$encodedImage\"")
+                    i++
+                }
+                Log.i("arrayList", myArrayUri.toString())
+            } else {
+                // show this if no image is selected
+                Toast.makeText(requireContext(), "You haven't picked Image", Toast.LENGTH_LONG)
+                    .show()
             }
-            val inputStream = requireContext().contentResolver.openInputStream(uri)
-            val selectedImage = BitmapFactory.decodeStream(inputStream)
-            val encodedImage: String = encodeImage(selectedImage)
-            fileResult = "\"data:image/png;base64,$encodedImage \""
-            Log.i("base64", encodedImage)
-            Log.i("arrayList", arrayOf(fileResult, fileResult).toString())
-//            val uri1 = Uri.parse(uri.toString())
-//            val file = File(uri1.toString())
-//            val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
-//            val image = MultipartBody.Part.createFormData("part", file.name, reqFile)
-//            Log.i("ImageFIle", "$reqFile")
         } else {
             binding.imageIndicator.visibility = View.GONE
         }

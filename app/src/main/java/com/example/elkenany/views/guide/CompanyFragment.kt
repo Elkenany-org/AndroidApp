@@ -5,9 +5,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -41,6 +43,7 @@ class CompanyFragment : Fragment() {
         viewmodel.getCompaniesGuideData(args.companyId)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -87,6 +90,24 @@ class CompanyFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
+        binding.ratingBar.setOnRatingBarChangeListener { rating, _, _ ->
+            viewmodel.rateThisCompany(rating.rating.toLong(), args.companyId)
+            Log.i("rating", rating.rating.toString() + args.companyId.toString())
+        }
+
+        viewmodel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                200 -> Toast.makeText(requireContext(), "تم التقييم بنجاح", Toast.LENGTH_SHORT)
+                    .show()
+                401 -> Toast.makeText(requireContext(),
+                    "برجاء تسجيل الدخول أولا حتي تتمكن من تقييم الشركة",
+                    Toast.LENGTH_SHORT).show()
+
+                else -> Toast.makeText(requireContext(),
+                    "تعذر تقييم الشركة",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
         viewmodel.companyData.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.localstock.isEmpty() && it.fodderstock.isEmpty()) {
@@ -109,7 +130,6 @@ class CompanyFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 binding.adsLayout.visibility = View.VISIBLE
                 binding.apply {
-                    ratingBar.rating = it.rate!!.toFloat()
                     rateUsers = "( ${it.countRate.toString()} )"
                     data = it
                     latid = it.latitude!!

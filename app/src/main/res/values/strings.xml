@@ -27,7 +27,7 @@
     <string name="create_account_title">انشاء حساب جديد</string>
     <string name="name_title">الأسم</string>
     <string name="email_title">الأيميل</string>
-    <string name="phone_title">رقم الهاتف 0123456789</string>
+    <string name="phone_title">رقم الهاتف</string>
     <string name="confirm_password_title">تأكيد كلمة المرور</string>
     <string name="have_account_title">لديك حساب؟ سجل دخول</string>
     <string name="homeBtn">الرئيسية</string>
@@ -50,7 +50,7 @@
     <string name="logout_title">تسجيل الخروج</string>
     <string name="my_ads_title">اعلاناتي</string>
     <string name="daily_stock_title">البورصة اليومية</string>
-    <string name="failed_to_receive_data_msg">تعذر الحصول علي اي معلومات</string>
+    <string name="failed_to_receive_data_msg">تعذر الحصول علي اي معلومات بسبب ضعف شبكة الأنترنت</string>
     <string name="menu_title">القائمة</string>
     <string name="messages_title">الرسائل</string>
     <string name="settings_title">الأعدادات</string>
@@ -70,7 +70,7 @@
     <string name="statistics_title">الإحصائيات</string>
     <string name="today_title">تاريخ اليوم</string>
     <string name="latest_news_title">أخر الأخبار</string>
-    <string name="urgent_title">عاجل</string>
+    <string name="urgent_title">الأحدث</string>
     <string name="most_readable_title">الأكثر قراءة</string>
     <string name="country_title">الشركة</string>
     <string name="product_title">الصنف</string>
@@ -117,4 +117,5 @@
     <string name="done_upload_image_title">تم إضافة صورة</string>
     <string name="delete_ad_title">حذف الإعلان</string>
     <string name="coming_soon_title">سوف يتم توفير هذة الخدمة قريبا</string>
+    <string name="alphapetical_title">أبجدي</string>
 </resources>

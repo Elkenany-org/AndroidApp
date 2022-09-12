@@ -51,7 +51,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -70,7 +70,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -89,7 +89,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -109,7 +109,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -128,7 +128,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -147,7 +147,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -166,7 +166,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -185,7 +185,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -204,7 +204,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -223,7 +223,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -242,7 +242,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -261,7 +261,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -280,7 +280,7 @@
                 android:maxLines="2"
                 android:padding="5dp"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
@@ -304,7 +304,7 @@
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:textColor="@color/green"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 tools:ignore=",SmallSp" />
 
             <View
