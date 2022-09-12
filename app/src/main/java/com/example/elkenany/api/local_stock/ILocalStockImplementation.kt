@@ -50,6 +50,7 @@ class ILocalStockImplementation {
         return try {
             val response =
                 ILocalStockHandler.singleton.getLocalStockFeedItems("web", stockId).await()
+            Log.i("getLocalStockCompanyItems", response.data.toString())
             response.data
         } catch (e: Throwable) {
             Log.i("getLocalStockFeedsItems", e.message.toString())

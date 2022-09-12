@@ -31,7 +31,7 @@ interface ILocalStock {
 
     @GET("localstock/feeds-items")
     fun getLocalStockFeedItems(
-        @Header("device") device: String?,
+        @Query("device") device: String?,
         @Query("stock_id") stockId: Long?,
     ): Call<GenericEntity<FeedsData?>>
 
