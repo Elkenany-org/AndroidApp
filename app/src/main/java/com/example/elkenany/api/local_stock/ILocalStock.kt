@@ -26,11 +26,12 @@ interface ILocalStock {
         @Query("id") id: Long,
         @Query("date") date: String?,
         @Query("fod_id") feedId: String?,
-        @Query("comp_id") companyId: String?
+        @Query("comp_id") companyId: String?,
     ): Call<GenericEntity<LocalStockDetailsData?>>
 
     @GET("localstock/feeds-items")
     fun getLocalStockFeedItems(
+        @Query("device") device: String?,
         @Query("stock_id") stockId: Long?,
     ): Call<GenericEntity<FeedsData?>>
 

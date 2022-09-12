@@ -137,8 +137,9 @@ class LocalStockDetailsFragment : Fragment() {
         viewModel.feedsItem.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.productBtn.visibility = View.VISIBLE
+                Log.i("feedList", it.fodderList.toString())
                 val feedList =
-                    it.fodderCategories.map { newList -> newList!!.name }.toList()
+                    it.fodderList.map { newList -> newList!!.name }.toList()
                 feedAdapter = ArrayAdapter<String?>(
                     requireContext(),
                     R.layout.array_adapter_item,
@@ -147,7 +148,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.productAutoCompelete.setAdapter(feedAdapter)
                 binding.productAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
                     binding.companyAutoCompelete.setText("الشركات")
-                    feedId = it.fodderCategories[position]!!.id.toString()
+                    feedId = it.fodderList[position]!!.id.toString()
                     binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
                     viewModel.getLocalStockDetailsData(
