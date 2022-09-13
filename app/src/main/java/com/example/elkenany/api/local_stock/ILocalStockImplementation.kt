@@ -14,7 +14,7 @@ class ILocalStockImplementation {
             val response =
                 ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getLocalStockSectionsData", e.message.toString())
             null
         }
@@ -40,7 +40,7 @@ class ILocalStockImplementation {
                 ).await()
             }
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
             null
         }
@@ -52,7 +52,7 @@ class ILocalStockImplementation {
                 ILocalStockHandler.singleton.getLocalStockFeedItems("web", stockId).await()
             Log.i("getLocalStockCompanyItems", response.data.toString())
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getLocalStockFeedsItems", e.message.toString())
             null
         }
@@ -63,7 +63,7 @@ class ILocalStockImplementation {
             val response =
                 ILocalStockHandler.singleton.getLocalStockCompanyItems(stockId).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getLocalStockCompanyItems", e.message.toString())
             null
         }

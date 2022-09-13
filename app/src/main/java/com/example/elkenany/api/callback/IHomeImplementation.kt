@@ -2,7 +2,9 @@ package com.example.elkenany.api.callback
 
 import android.util.Log
 import com.example.elkenany.entities.home_data.*
+import retrofit2.HttpException
 import retrofit2.await
+import java.net.SocketTimeoutException
 
 class IHomeImplementation {
     // ToDo --> implement all the required function to receive data from the backend
@@ -11,8 +13,11 @@ class IHomeImplementation {
         return try {
             val response = IHomeHandler.singleton.getSectorsData().await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getHomeSectorsData", e.message.toString())
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -21,8 +26,11 @@ class IHomeImplementation {
         return try {
             val response = IHomeHandler.singleton.getServicesData().await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getHomeServiceData", e.message.toString())
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -31,8 +39,11 @@ class IHomeImplementation {
         return try {
             val response = IHomeHandler.singleton.getAllNotificationData(apiToken).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllNotificationData", e.message.toString())
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -41,8 +52,11 @@ class IHomeImplementation {
         return try {
             val response = IHomeHandler.singleton.getContactUsData().await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllContactUsData", e.message.toString())
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }

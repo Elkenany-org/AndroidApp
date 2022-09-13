@@ -23,6 +23,7 @@ import com.example.elkenany.databinding.FragmentCompanyBinding
 import com.example.elkenany.viewmodels.CompanyViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
 import com.example.elkenany.views.guide.adapter.CompanyLocalStockAdapter
+import com.example.elkenany.views.guide.adapter.GalleryAdapter
 
 
 class CompanyFragment : Fragment() {
@@ -31,6 +32,7 @@ class CompanyFragment : Fragment() {
     private lateinit var viewmodel: CompanyViewModel
     private lateinit var companyLocalStockAdapter: CompanyLocalStockAdapter
     private lateinit var companyFodderStockAdapter: CompanyLocalStockAdapter
+    private lateinit var galleryAdapter: GalleryAdapter
     private val args: CompanyFragmentArgs by navArgs()
     private lateinit var latid: String
     private lateinit var longtid: String
@@ -56,15 +58,28 @@ class CompanyFragment : Fragment() {
         binding.location.setOnClickListener {
             locateThisLocation(latid, longtid)
         }
-        binding.phone.setOnClickListener {
-            callThisNumber(binding.phone.text.toString())
+        binding.apply {
+            phone.setOnClickListener {
+                callThisNumber(binding.phone.text.toString())
+            }
+            phone1.setOnClickListener {
+                callThisNumber(binding.phone1.text.toString())
+            }
+            phone2.setOnClickListener {
+                callThisNumber(binding.phone2.text.toString())
+            }
+            phone3.setOnClickListener {
+                callThisNumber(binding.phone3.text.toString())
+            }
+
+            mail.setOnClickListener {
+                emailThisEmail(binding.mail.text.toString())
+            }
+            fax.setOnClickListener {
+                callThisNumber(binding.fax.text.toString())
+            }
         }
-        binding.mail.setOnClickListener {
-            emailThisEmail(binding.mail.text.toString())
-        }
-        binding.fax.setOnClickListener {
-            callThisNumber(binding.fax.text.toString())
-        }
+
         companyLocalStockAdapter = CompanyLocalStockAdapter(ClickListener {
             navigateToStockPage(
                 it.id!!,
@@ -94,7 +109,8 @@ class CompanyFragment : Fragment() {
             viewmodel.rateThisCompany(rating.rating.toLong(), args.companyId)
             Log.i("rating", rating.rating.toString() + args.companyId.toString())
         }
-
+        galleryAdapter = GalleryAdapter(ClickListener { })
+        binding.companyGallerysRecyclerview.adapter = galleryAdapter
         viewmodel.exception.observe(viewLifecycleOwner) {
             when (it) {
                 200 -> Toast.makeText(requireContext(), "تم التقييم بنجاح", Toast.LENGTH_SHORT)
@@ -126,6 +142,12 @@ class CompanyFragment : Fragment() {
                         binding.companyFodderStocksRecyclerview.visibility = View.VISIBLE
                         companyFodderStockAdapter.submitList(it.fodderstock)
                     }
+                }
+                if (it.gallary.isEmpty()) {
+                    binding.cardView5.visibility = View.GONE
+                } else {
+                    binding.cardView5.visibility = View.VISIBLE
+                    galleryAdapter.submitList(it.gallary)
                 }
                 binding.errorMessage.visibility = View.GONE
                 binding.adsLayout.visibility = View.VISIBLE
