@@ -19,7 +19,7 @@ data class CompanyDetailsData(
     val createdAt: String?,
     val phones: List<Phone?>,
     val emails: List<Email?>,
-    val mobiles: List<Any?>,
+    val mobiles: List<Mobile?>,
     val faxs: List<Fax?>,
     val social: List<Social?>,
     val addresses: List<Address?>,
@@ -35,6 +35,9 @@ data class Phone(
     val phone: String?,
 )
 
+data class Mobile(
+    val mobile: String?,
+)
 data class Email(
     val email: String?,
 )

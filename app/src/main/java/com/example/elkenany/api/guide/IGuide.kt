@@ -5,6 +5,7 @@ import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.guide.CompaniesData
 import com.example.elkenany.entities.guide.CompanyDetailsData
 import com.example.elkenany.entities.guide.GuideData
+import com.example.elkenany.entities.guide.GuideFiltersData
 import com.example.elkenany.entities.store.RatingData
 import retrofit2.Call
 import retrofit2.http.*
@@ -20,6 +21,8 @@ interface IGuide {
     fun getAllCompaniesData(
         @Query("sub_id") subId: Long,
         @Query("search") search: String?,
+        @Query("country_id") countryId: Long?,
+        @Query("city_id") cityId: Long?,
         @Header("android") header: String?,
     ): Call<GenericEntity<CompaniesData?>>
 
@@ -36,6 +39,9 @@ interface IGuide {
         @Field("company_id") companyId: Long?,
         @Field("reat") rate: Long?,
     ): Call<GenericEntity<RatingData?>>
+
+    @GET("guide/filter-guide-companies")
+    fun getGuideFilterData(@Query("sector_id") sectorId: Long?): Call<GenericEntity<GuideFiltersData?>>
 }
 
 object IGuideHandler {

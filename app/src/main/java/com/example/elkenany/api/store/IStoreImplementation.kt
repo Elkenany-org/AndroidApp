@@ -5,6 +5,7 @@ import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.store.*
 import retrofit2.HttpException
 import retrofit2.await
+import java.net.SocketTimeoutException
 
 class IStoreImplementation {
 
@@ -12,8 +13,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAdsStoreData(type, search, header).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllAdsStoreData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -22,8 +26,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAdDetailsData("android", id).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAdDetailsData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -32,8 +39,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAllChatsData(apiToken).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllChatsData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -42,8 +52,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAllMessagesList(id, apiToken).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllMessagesData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -52,8 +65,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.getAllStartChatData(apiToken, adsId).await()
             response.data!!.chat
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllStartChatData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -62,8 +78,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.sendMessageData(apiToken, adsId, message).await()
             response.data!!.chat
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("sendMessageData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -96,6 +115,9 @@ class IStoreImplementation {
         } catch (e: HttpException) {
 
             GenericEntity(null, e.code().toString(), null)
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            null
         }
     }
 
@@ -109,6 +131,9 @@ class IStoreImplementation {
         } catch (e: Throwable) {
             Log.i("getAllMyAdsListData", e.message.toString())
             null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            null
         }
     }
 
@@ -116,8 +141,11 @@ class IStoreImplementation {
         return try {
             val response = IStoreHandler.singleton.deleteAdFromDataBase(apiToken, adId).await()
             response.message != null
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("deleteAdFromDataBase", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }

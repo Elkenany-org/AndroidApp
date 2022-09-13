@@ -3,12 +3,14 @@ package com.example.elkenany.api.auth
 import android.content.Context
 import android.util.Log
 import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
+import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.PasswordRecoveryData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import retrofit2.HttpException
 import retrofit2.await
+import java.net.SocketTimeoutException
 
 @Suppress("unused")
 class AuthImplementation {
@@ -41,8 +43,11 @@ class AuthImplementation {
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("reLogSocialWithGoogle", "Login with google failed : ${e.message}")
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -63,8 +68,11 @@ class AuthImplementation {
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("reLogSocialWithFaceBook", "Login with google failed : ${e.message}")
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -83,6 +91,9 @@ class AuthImplementation {
         } catch (e: HttpException) {
             Log.i("loginWithEmailAndPassword", e.code().toString())
             e.code()
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            400
         }
     }
 
@@ -106,8 +117,11 @@ class AuthImplementation {
             userApiToken = response.data!!.apiToken
             getAllUserData(userApiToken)
             true
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("registerWithEmailAndPassword", "register failed : ${e.message}")
+            false
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             false
         }
     }
@@ -118,9 +132,12 @@ class AuthImplementation {
             Log.i("user_data", response.data.toString())
             auth = response.data
             auth
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("getAllUserData", "${e.message}")
             auth
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            null
         }
     }
 
@@ -136,8 +153,11 @@ class AuthImplementation {
         return try {
             val response = AuthHandler.singleton.recoverPasswordWithEmail(email).await()
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("recoverPasswordWithEmail", "Login with google failed : ${e.message}")
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }
@@ -155,8 +175,11 @@ class AuthImplementation {
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
-        } catch (e: Throwable) {
+        } catch (e: HttpException) {
             Log.i("onSuccessResetPassword", "Login with google failed : ${e.message}")
+            null
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
             null
         }
     }

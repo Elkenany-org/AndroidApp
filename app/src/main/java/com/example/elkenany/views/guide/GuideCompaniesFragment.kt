@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,13 +35,19 @@ class GuideCompaniesFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: GuideCompaniesViewModel
     private var search: String? = ""
+    private var countryId: Long? = null
+    private var cityId: Long? = null
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var companiesAdapter: CompaniesAdapter
+    private lateinit var countryAdapter: ArrayAdapter<String?>
+    private lateinit var cityAdapter: ArrayAdapter<String?>
     private val args: GuideCompaniesFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
-        viewModel.getCompaniesGuideData(args.id, search)
+        binding.companyAutoCompelete.setText("البلاد")
+        binding.productAutoCompelete.setText("الدول")
+        viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
     }
 
     override fun onCreateView(
@@ -55,7 +63,7 @@ class GuideCompaniesFragment : Fragment() {
 //        viewModel.getCompaniesGuideData(args.id, search)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getCompaniesGuideData(args.id, search)
+            viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
         }
         bannersAdapter = LocalStockBannersAdapter(ClickListener {
             navigateToBroswerIntent(it.link)
@@ -74,6 +82,55 @@ class GuideCompaniesFragment : Fragment() {
         binding.companyListRecyclerView.apply {
             adapter = companiesAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+        }
+        viewModel.guideFilter.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.apply {
+                    productBtn.visibility = View.VISIBLE
+                    countryBtn.visibility = View.VISIBLE
+                }
+                val countryList =
+                    it.countries.map { newList -> newList!!.name }.toList()
+                countryAdapter = ArrayAdapter<String?>(
+                    requireContext(),
+                    R.layout.array_adapter_item,
+                    countryList
+                )
+                binding.productAutoCompelete.setAdapter(countryAdapter)
+                binding.productAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+//                    binding.companyAutoCompelete.setText("البلاد")
+                    Toast.makeText(requireContext(),
+                        it.countries[position]!!.name,
+                        Toast.LENGTH_SHORT).show()
+                    countryId = it.countries[position]!!.id
+                    binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
+                }
+                val cityList =
+                    it.cities.map { newList -> newList!!.name }.toList()
+                cityAdapter = ArrayAdapter<String?>(
+                    requireContext(),
+                    R.layout.array_adapter_item,
+                    cityList
+                )
+                binding.companyAutoCompelete.setAdapter(cityAdapter)
+                binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+//                    binding.productAutoCompelete.setText("الدول")
+                    Toast.makeText(requireContext(),
+                        it.cities[position]!!.name,
+                        Toast.LENGTH_SHORT).show()
+                    cityId = it.cities[position]!!.id
+                    binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
+                }
+            } else {
+                binding.apply {
+                    productBtn.visibility = View.GONE
+                    countryBtn.visibility = View.GONE
+                }
+            }
         }
         viewModel.companiesDataData.observe(viewLifecycleOwner) {
             if (it != null) {

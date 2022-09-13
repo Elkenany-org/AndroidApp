@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/cairo_bold"
+            android:gravity="center"
             android:text="@string/failed_to_receive_data_msg"
             android:textColor="@color/green"
             android:textSize="18sp"
@@ -123,7 +124,8 @@
                                 android:numStars="5"
                                 android:progressTint="@color/orange"
                                 android:stepSize="1"
-                                android:textColor="@color/green" />
+                                android:textColor="@color/green"
+                                tools:ignore="SpeakableTextPresentCheck" />
 
                             <TextView
                                 android:id="@+id/rating_per"
@@ -205,6 +207,49 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10sp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="7sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/gallery_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
+                            android:text="@string/gallery_title"
+                            android:textColor="@color/orange"
+                            android:textSize="14sp"
+                            tools:ignore="TextContrastCheck" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/company_gallerys_recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:reverseLayout="true"
+                            tools:listitem="@layout/small_recycler_item" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/card_view3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -258,6 +303,49 @@
                             android:layout_margin="12dp"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/green"
+                            android:textSize="12sp"
+                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+
+                        <TextView
+                            android:id="@+id/phone1"
+                            itemText="@{data.mobiles[0].mobile}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="12dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/green"
+                            android:textSize="12sp"
+                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+
+                        <TextView
+                            android:id="@+id/phone2"
+                            itemText="@{data.mobiles[1].mobile}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="12dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/green"
+                            android:textSize="12sp"
+                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+
+                        <TextView
+                            android:id="@+id/phone3"
+                            itemText="@{data.mobiles[2].mobile}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_margin="12dp"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/cairo_bold"
+                            android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
                             app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />

@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/cairo_bold"
+            android:gravity="center"
             android:text="@string/failed_to_receive_data_msg"
             android:textColor="@color/green"
             android:textSize="18sp"
@@ -103,11 +104,87 @@
             tools:ignore="RtlHardcoded,SpeakableTextPresentCheck"
             tools:listitem="@layout/logo_card_view_item" />
 
+        <LinearLayout
+            android:id="@+id/fodder_external_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logos_recycler_view"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5sp"
+            tools:ignore="UselessLeaf"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/country_btn"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/cairo_bold"
+                android:layoutDirection="rtl"
+                android:textColorHint="@color/green"
+                app:boxBackgroundColor="@color/orange"
+                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
+
+                <AutoCompleteTextView
+                    android:id="@+id/company_auto_compelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@color/orange"
+                    android:drawableTint="@color/green"
+                    android:ellipsize="start"
+                    android:fontFamily="@font/cairo_bold"
+                    android:foregroundTint="@color/green"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:textColor="@color/green"
+                    android:textColorHint="@color/green"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/product_btn"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/cairo_bold"
+                android:layoutDirection="rtl"
+                android:textColorHint="@color/green"
+                app:boxBackgroundColor="@color/orange"
+                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck">
+
+                <AutoCompleteTextView
+                    android:id="@+id/product_auto_compelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="@color/orange"
+                    android:drawableTint="@color/green"
+                    android:ellipsize="start"
+                    android:fontFamily="@font/cairo_bold"
+                    android:foregroundTint="@color/green"
+                    android:inputType="none"
+                    android:maxLines="1"
+                    android:textColor="@color/green"
+                    android:textColorHint="@color/green"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/company_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/logos_recycler_view"
+            android:layout_below="@id/fodder_external_layout"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layoutDirection="rtl"

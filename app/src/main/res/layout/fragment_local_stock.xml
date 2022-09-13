@@ -132,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
                 android:text="@string/failed_to_receive_data_msg"
                 android:textColor="@color/green"
                 android:textSize="18sp"
