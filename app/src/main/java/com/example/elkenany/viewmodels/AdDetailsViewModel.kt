@@ -3,7 +3,7 @@ package com.example.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.elkenany.api.auth.AuthImplementation.Companion.userApiToken
+//import com.example.elkenany.api.auth.AuthImplementation.Companion.userApiToken
 import com.example.elkenany.api.store.IStoreImplementation
 import com.example.elkenany.entities.store.AdsDetailsData
 import com.example.elkenany.entities.store.StartChatDaum
@@ -35,19 +35,19 @@ class AdDetailsViewModel : ViewModel() {
         }
     }
 
-    fun startChat(id: Long?) {
-        // present loading number
-        _exception.value = 100
-        if (userApiToken == null) {
-        // present unAuthorized number
-            _exception.value = 401
-        } else {
-            uiScope.launch {
-                _startChatData.value = api.getAllStartChatData("Bearer $userApiToken", id)
-                _exception.value = 110
-            }
-        }
-    }
+//    fun startChat(id: Long?) {
+//        // present loading number
+//        _exception.value = 100
+//        if (userApiToken == null) {
+//        // present unAuthorized number
+//            _exception.value = 401
+//        } else {
+//            uiScope.launch {
+//                _startChatData.value = api.getAllStartChatData("Bearer $userApiToken", id)
+//                _exception.value = 110
+//            }
+//        }
+//    }
 
     override fun onCleared() {
         super.onCleared()

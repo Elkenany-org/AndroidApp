@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="Object" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="image"
+            type="String" />
+
+        <variable
+            name="clickListener"
+            type="com.example.elkenany.ClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="1dp"
+        card_view:cardUseCompatPadding="true"
+        android:onClick="@{()->clickListener.onClick(data)}">
+
+        <ImageView
+            android:id="@+id/item_img"
+            imageUrl="@{image}"
+            android:layout_width="70dp"
+            android:layout_height="45dp"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    </androidx.cardview.widget.CardView>
+</layout>

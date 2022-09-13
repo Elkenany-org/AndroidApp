@@ -20,7 +20,7 @@ class IStoreImplementation {
 
     suspend fun getAdDetailsData(id: Long): AdsDetailsData? {
         return try {
-            val response = IStoreHandler.singleton.getAdDetailsData(id).await()
+            val response = IStoreHandler.singleton.getAdDetailsData("android", id).await()
             response.data
         } catch (e: Throwable) {
             Log.i("getAdDetailsData", e.message.toString())

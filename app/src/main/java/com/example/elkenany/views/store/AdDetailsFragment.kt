@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -16,10 +17,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.elkenany.ClickListener
 import com.example.elkenany.R
 import com.example.elkenany.databinding.FragmentAdDetailsBinding
 import com.example.elkenany.viewmodels.AdDetailsViewModel
 import com.example.elkenany.viewmodels.ViewModelFactory
+import com.example.elkenany.views.store.adapter.AdsImagesAdapter
 
 
 class AdDetailsFragment : Fragment() {
@@ -27,6 +30,7 @@ class AdDetailsFragment : Fragment() {
     private lateinit var binding: FragmentAdDetailsBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: AdDetailsViewModel
+    private lateinit var adsImagesAdapter: AdsImagesAdapter
     private val args: AdDetailsFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
@@ -54,6 +58,20 @@ class AdDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
+        adsImagesAdapter = AdsImagesAdapter(ClickListener {
+            binding.clickable = false
+            binding.imagePopUpLayout.layoutAnimation =
+                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+            binding.imagePopUpLayout.visibility = View.VISIBLE
+            binding.scrollView.setScrollingEnabled(false)
+            binding.image = it.image
+        })
+        binding.imageButton.setOnClickListener {
+            binding.imagePopUpLayout.visibility = View.GONE
+            binding.scrollView.setScrollingEnabled(true)
+            binding.clickable = true
+        }
+        binding.moreImagesRecyclerview.adapter = adsImagesAdapter
         binding.adPhone.setOnClickListener { callThisNumber(binding.adPhone.text.toString()) }
         viewModel.adDetailsData.observe(viewLifecycleOwner)
         {
@@ -62,6 +80,7 @@ class AdDetailsFragment : Fragment() {
                     adsLayout.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
                     data = it
+                    adsImagesAdapter.submitList(it.images)
                 }
 
             } else {

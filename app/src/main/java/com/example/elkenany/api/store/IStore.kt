@@ -15,7 +15,10 @@ interface IStore {
     ): Call<GenericEntity<AdsStoreData?>>
 
     @GET("store/ads-store-detials")
-    fun getAdDetailsData(@Query("id") id: Long): Call<GenericEntity<AdsDetailsData?>>
+    fun getAdDetailsData(
+        @Header("android") device: String?,
+        @Query("id") id: Long,
+    ): Call<GenericEntity<AdsDetailsData?>>
 
     @GET("store/chats")
     fun getAllChatsData(@Header("Authorization") apiToken: String?): Call<GenericEntity<ChatsData?>>

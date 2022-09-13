@@ -24,7 +24,7 @@ data class CompanyDetailsData(
     val social: List<Social?>,
     val addresses: List<Address?>,
     val gallary: List<Gallary?>,
-    val products: List<Any?>,
+    val products: List<CompanyDetailsProduct?>,
     val localstock: List<Localstock?>,
     val fodderstock: List<Localstock?>,
     val transports: List<Transports?>,
@@ -76,6 +76,12 @@ data class Gallary(
     val id: Long?,
     val name: String?,
     val image: String?,
+)
+
+data class CompanyDetailsProduct(
+    val id: Long?,
+    val image: String?,
+    val name: String?,
 )
 
 data class Transports(
