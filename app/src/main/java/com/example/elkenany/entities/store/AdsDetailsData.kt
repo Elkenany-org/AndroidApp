@@ -22,5 +22,6 @@ data class AdsDetailsData(
 )
 
 data class AdsImage(
+    val id: Long?,
     val image: String?,
 )
