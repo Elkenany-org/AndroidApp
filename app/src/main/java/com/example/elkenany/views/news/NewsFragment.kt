@@ -28,7 +28,7 @@ class NewsFragment : Fragment() {
     private lateinit var viewModel: NewViewModel
     private var search: String? = null
     private var sectorType: String = ""
-    private var sort: String? = null
+    private var sort: String? = "1"
     private val args: NewsFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
@@ -57,7 +57,7 @@ class NewsFragment : Fragment() {
             viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.mostReadableBtn.setOnClickListener {
-            sort = "1"
+            sort = "2"
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))
@@ -71,7 +71,7 @@ class NewsFragment : Fragment() {
             viewModel.getAllNewsData(sectorType, search, sort)
         }
         binding.urgentBtn.setOnClickListener {
-            sort = "2"
+            sort = "1"
             binding.urgentBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostReadableBtn.setTextColor(requireContext().getColor(R.color.green))
             binding.latestNewsBtn.setTextColor(requireContext().getColor(R.color.green))

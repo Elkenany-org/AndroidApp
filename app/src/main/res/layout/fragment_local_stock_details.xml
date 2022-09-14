@@ -86,15 +86,17 @@
                         android:layout_margin="5dp"
                         android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
-                        android:ellipsize="start"
                         android:fontFamily="@font/cairo_bold"
                         android:foregroundTint="@color/green"
                         android:inputType="none"
+                        android:lines="1"
                         android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:textColor="@color/green"
                         android:textColorHint="@color/green"
-                        android:textSize="12sp"
-                        tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                        android:textSize="9sp"
+                        tools:ignore="HardcodedText,LabelFor,SmallSp,SpeakableTextPresentCheck,TextContrastCheck,TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -117,15 +119,17 @@
                         android:layout_margin="5dp"
                         android:backgroundTint="@color/orange"
                         android:drawableTint="@color/green"
-                        android:ellipsize="start"
                         android:fontFamily="@font/cairo_bold"
                         android:foregroundTint="@color/green"
                         android:inputType="none"
+                        android:lines="1"
                         android:maxLines="1"
+                        android:ellipsize="end"
+                        android:singleLine="true"
                         android:textColor="@color/green"
                         android:textColorHint="@color/green"
-                        android:textSize="12sp"
-                        tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                        android:textSize="9sp"
+                        tools:ignore="HardcodedText,LabelFor,SmallSp,SpeakableTextPresentCheck,TextContrastCheck,TouchTargetSizeCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 

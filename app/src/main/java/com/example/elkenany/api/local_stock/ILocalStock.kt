@@ -23,6 +23,7 @@ interface ILocalStock {
 
     @GET("v2/fodder-android/tables")
     fun getLocalStockDetailsByIdAndTypeFodder(
+        @Header("device") device: String?,
         @Query("id") id: Long,
         @Query("date") date: String?,
         @Query("fod_id") feedId: String?,

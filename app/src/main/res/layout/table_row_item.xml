@@ -40,19 +40,38 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="2dp">
 
-
-            <TextView
-                android:id="@+id/comp_name"
-                itemText="@{data.name}"
-                android:layout_width="50dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="5dp">
+
+                    <ImageView
+                        imageUrl="@{data.image}"
+                        android:layout_width="25sp"
+                        android:layout_height="25sp"
+                        tools:ignore="ContentDescription" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/comp_name"
+                    itemText="@{data.name}"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textColor="@color/green"
+                    android:textSize="8sp"
+                    tools:ignore=",SmallSp" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/comp_name_view"

@@ -130,6 +130,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 binding.stockDataRecyclerView.visibility = View.GONE
                 binding.loadingProgressbar.visibility = View.VISIBLE
+                binding.stockDataRecyclerView.smoothScrollToPosition(0)
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
             }
