@@ -77,9 +77,10 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="5dp"
                         android:fontFamily="@font/cairo_bold"
+                        android:gravity="center"
                         android:text="@string/contact_us_title"
                         android:textColor="@color/green"
-                        android:textSize="12sp" />
+                        android:textSize="11sp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.recyclerview.widget.RecyclerView

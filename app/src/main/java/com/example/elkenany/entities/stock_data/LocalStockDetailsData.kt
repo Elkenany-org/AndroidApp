@@ -22,6 +22,7 @@ data class ColumnsData(
     val weight: String?,
     @Json(name = "price_status")
     val priceStatus: String?,
+    val image: String?,
     val feed: String?,
     val age: String?,
     @Json(name = "product_type")

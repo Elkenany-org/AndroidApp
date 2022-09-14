@@ -139,7 +139,8 @@
                     android:maxLines="1"
                     android:text="@string/urgent_title"
                     android:textColor="@color/orange"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck" />
 
                 <TextView
                     android:id="@+id/most_readable_btn"

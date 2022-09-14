@@ -33,6 +33,7 @@ class ILocalStockImplementation {
                 ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeLocal(id, date).await()
             } else {
                 ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeFodder(
+                    "device",
                     id,
                     date,
                     feedId,
