@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:indeterminateDrawable="@drawable/custom_progress_bar"
             android:visibility="gone" />
 
         <TextView
@@ -111,17 +112,16 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center">
+                            android:layout_height="wrap_content">
 
                             <RatingBar
                                 android:id="@+id/rating_bar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginEnd="7dp"
                                 android:layoutDirection="ltr"
                                 android:numStars="5"
+                                android:layout_marginEnd="7dp"
+                                android:layout_gravity="center_vertical"
                                 android:progressTint="@color/orange"
                                 android:stepSize="1"
                                 android:textColor="@color/green"
@@ -132,6 +132,7 @@
                                 itemText="@{data.rate.toString()}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_margin="5dp"
                                 android:fontFamily="@font/cairo_bold"
                                 android:gravity="center"
@@ -144,6 +145,7 @@
                                 itemText="@{rateUsers}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
                                 android:layout_margin="5dp"
                                 android:fontFamily="@font/cairo_bold"
                                 android:gravity="center"

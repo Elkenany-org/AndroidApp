@@ -118,7 +118,7 @@
                         android:fontFamily="@font/cairo_regular"
                         android:textColor="@color/green"
                         android:textSize="13sp"
-                        app:drawableEndCompat="@drawable/ic_baseline_location_on_24" />
+                        app:drawableEndCompat="@drawable/location_icon" />
 
 
                 </LinearLayout>
