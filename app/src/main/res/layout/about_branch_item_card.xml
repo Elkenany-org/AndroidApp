@@ -29,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
             android:elevation="5dp"
             app:cardCornerRadius="7dp">
 
@@ -52,7 +52,7 @@
                     android:gravity="start"
                     android:padding="5dp"
                     android:textColor="@color/green"
-                    app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+                    app:drawableStartCompat="@drawable/location_icon" />
 
                 <TextView
                     android:id="@+id/email_tv"
@@ -65,7 +65,7 @@
                     android:gravity="start"
                     android:padding="5dp"
                     android:textColor="@color/green"
-                    app:drawableStartCompat="@drawable/ic_baseline_email_24" />
+                    app:drawableStartCompat="@drawable/message_icon" />
 
                 <TextView
                     android:id="@+id/phone_tv"
@@ -78,7 +78,7 @@
                     android:gravity="start"
                     android:padding="5dp"
                     android:textColor="@color/green"
-                    app:drawableStartCompat="@drawable/ic_baseline_phone_android_24" />
+                    app:drawableStartCompat="@drawable/phone_icon" />
 
                 <TextView
                     android:id="@+id/mobile_tv"
@@ -91,7 +91,7 @@
                     android:gravity="start"
                     android:padding="5dp"
                     android:textColor="@color/green"
-                    app:drawableStartCompat="@drawable/ic_baseline_phone_android_24" />
+                    app:drawableStartCompat="@drawable/mobile_icon" />
 
                 <TextView
                     android:id="@+id/fax_tv"
@@ -104,7 +104,7 @@
                     android:gravity="start"
                     android:padding="5dp"
                     android:textColor="@color/green"
-                    app:drawableStartCompat="@drawable/ic_baseline_fax_24" />
+                    app:drawableStartCompat="@drawable/fax_icon" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

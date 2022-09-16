@@ -173,6 +173,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:indeterminateDrawable="@drawable/custom_progress_bar"
                 android:visibility="gone" />
 
             <TextView
