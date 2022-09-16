@@ -38,7 +38,6 @@
                 android:id="@+id/search_bar"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/white"
@@ -46,6 +45,8 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/cairo_bold"
                 android:hint="@string/homeSearch"
+                android:inputType="textLongMessage"
+                android:maxLines="1"
                 android:padding="5dp"
                 android:textColorHint="@color/green"
                 android:textSize="15sp"

@@ -46,6 +46,8 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/cairo_bold"
                 android:hint="@string/homeSearch"
+                android:inputType="textLongMessage"
+                android:maxLines="1"
                 android:padding="5dp"
                 android:textColorHint="@color/green"
                 android:textSize="15sp"

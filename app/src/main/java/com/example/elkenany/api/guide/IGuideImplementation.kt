@@ -20,7 +20,9 @@ class IGuideImplementation {
         } catch (e: HttpException) {
             Log.i("getAllGuideData", e.message.toString())
             null
-
+        } catch (e: Exception) {
+            Log.i("getAllGuideData", e.message.toString())
+            null
         }
     }
 
@@ -32,18 +34,23 @@ class IGuideImplementation {
     ): CompaniesData? {
         return try {
             val response =
-                IGuideHandler.singleton.getAllCompaniesData(sectionId,
+                IGuideHandler.singleton.getAllCompaniesData(
+                    sectionId,
                     search,
                     countryId,
                     cityId,
-                    "android").await()
+                    "android"
+                ).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getAllCompaniesData", e.message.toString())
             null
 
-        }catch (e: SocketTimeoutException) {
+        } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsLocalData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllCompaniesData", e.message.toString())
             null
         }
     }
@@ -56,8 +63,11 @@ class IGuideImplementation {
         } catch (e: HttpException) {
             Log.i("getCompanyData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getCompanyData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getCompanyData", e.message.toString())
             null
         }
     }
@@ -68,10 +78,13 @@ class IGuideImplementation {
                 IGuideHandler.singleton.rateThisCompany(apiToken, companyId, rating).await()
             response.data
         } catch (e: HttpException) {
-            Log.i("getCompanyData", e.code().toString())
+            Log.i("rateThisCompany", e.code().toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("rateThisCompany", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("rateThisCompany", e.message.toString())
             null
         }
     }
@@ -84,8 +97,11 @@ class IGuideImplementation {
         } catch (e: HttpException) {
             Log.i("getGuideFilterData", e.code().toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getGuideFilterData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getGuideFilterData", e.message.toString())
             null
         }
     }

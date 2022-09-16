@@ -17,7 +17,10 @@ class IStoreImplementation {
             Log.i("getAllAdsStoreData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllAdsStoreData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllAdsStoreData", e.message.toString())
             null
         }
     }
@@ -30,7 +33,10 @@ class IStoreImplementation {
             Log.i("getAdDetailsData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAdDetailsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAdDetailsData", e.message.toString())
             null
         }
     }
@@ -43,7 +49,10 @@ class IStoreImplementation {
             Log.i("getAllChatsData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllChatsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllChatsData", e.message.toString())
             null
         }
     }
@@ -56,11 +65,15 @@ class IStoreImplementation {
             Log.i("getAllMessagesData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllMessagesData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllMessagesData", e.message.toString())
             null
         }
     }
 
+    @Suppress("unused")
     suspend fun getAllStartChatData(apiToken: String?, adsId: Long?): StartChatDaum? {
         return try {
             val response = IStoreHandler.singleton.getAllStartChatData(apiToken, adsId).await()
@@ -69,7 +82,10 @@ class IStoreImplementation {
             Log.i("getAllStartChatData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllStartChatData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllStartChatData", e.message.toString())
             null
         }
     }
@@ -82,7 +98,10 @@ class IStoreImplementation {
             Log.i("sendMessageData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("sendMessageData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("sendMessageData", e.message.toString())
             null
         }
     }
@@ -113,10 +132,12 @@ class IStoreImplementation {
             ).await()
             response
         } catch (e: HttpException) {
-
             GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("createNewAd", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("createNewAd", e.message.toString())
             null
         }
     }
@@ -132,7 +153,10 @@ class IStoreImplementation {
             Log.i("getAllMyAdsListData", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllMyAdsListData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllMyAdsListData", e.message.toString())
             null
         }
     }
@@ -145,7 +169,10 @@ class IStoreImplementation {
             Log.i("deleteAdFromDataBase", e.message.toString())
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("deleteAdFromDataBase", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("deleteAdFromDataBase", e.message.toString())
             null
         }
     }
