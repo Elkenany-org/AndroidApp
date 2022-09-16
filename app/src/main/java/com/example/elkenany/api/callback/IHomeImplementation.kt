@@ -1,7 +1,10 @@
 package com.example.elkenany.api.callback
 
 import android.util.Log
-import com.example.elkenany.entities.home_data.*
+import com.example.elkenany.entities.home_data.ContactUsData
+import com.example.elkenany.entities.home_data.HomeSectorsData
+import com.example.elkenany.entities.home_data.HomeServiceData
+import com.example.elkenany.entities.home_data.NotificationsData
 import retrofit2.HttpException
 import retrofit2.await
 import java.net.SocketTimeoutException
@@ -16,8 +19,11 @@ class IHomeImplementation {
         } catch (e: HttpException) {
             Log.i("getHomeSectorsData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getHomeSectorsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getHomeSectorsData", e.message.toString())
             null
         }
     }
@@ -29,8 +35,11 @@ class IHomeImplementation {
         } catch (e: HttpException) {
             Log.i("getHomeServiceData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getHomeServiceData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getHomeServiceData", e.message.toString())
             null
         }
     }
@@ -42,8 +51,11 @@ class IHomeImplementation {
         } catch (e: HttpException) {
             Log.i("getAllNotificationData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllNotificationData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllNotificationData", e.message.toString())
             null
         }
     }
@@ -55,8 +67,11 @@ class IHomeImplementation {
         } catch (e: HttpException) {
             Log.i("getAllContactUsData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllContactUsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllContactUsData", e.message.toString())
             null
         }
     }

@@ -8,15 +8,18 @@ import retrofit2.await
 import java.net.SocketTimeoutException
 
 class INewsImplementation {
-    suspend fun getAllNewsData(type: String?, search: String?,sort:String?): NewsData? {
+    suspend fun getAllNewsData(type: String?, search: String?, sort: String?): NewsData? {
         return try {
-            val response = INewsHandler.singleton.getAllNews(type, search,sort).await()
+            val response = INewsHandler.singleton.getAllNews(type, search, sort).await()
             response.data
         } catch (e: HttpException) {
-            Log.i("INewsImplementation", e.message.toString())
+            Log.i("getAllNewsData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllNewsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllNewsData", e.message.toString())
             null
         }
     }
@@ -28,8 +31,11 @@ class INewsImplementation {
         } catch (e: HttpException) {
             Log.i("getNewsDetailsData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getNewsDetailsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getNewsDetailsData", e.message.toString())
             null
         }
     }

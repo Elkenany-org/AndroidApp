@@ -293,7 +293,7 @@
                             android:gravity="center"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_email_24" />
+                            app:drawableEndCompat="@drawable/message_icon" />
 
 
                         <TextView
@@ -308,7 +308,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+                            app:drawableEndCompat="@drawable/phone_icon" />
 
                         <TextView
                             android:id="@+id/phone1"
@@ -322,7 +322,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+                            app:drawableEndCompat="@drawable/phone_icon" />
 
                         <TextView
                             android:id="@+id/phone2"
@@ -336,7 +336,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+                            app:drawableEndCompat="@drawable/mobile_icon" />
 
                         <TextView
                             android:id="@+id/phone3"
@@ -350,7 +350,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_phone_android_24" />
+                            app:drawableEndCompat="@drawable/mobile_icon" />
 
                         <TextView
                             android:id="@+id/location"
@@ -364,7 +364,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_location_on_24" />
+                            app:drawableEndCompat="@drawable/location_icon" />
 
                         <TextView
                             android:id="@+id/fax"
@@ -378,7 +378,7 @@
                             android:gravity="center_vertical"
                             android:textColor="@color/green"
                             android:textSize="12sp"
-                            app:drawableEndCompat="@drawable/ic_baseline_fax_24" />
+                            app:drawableEndCompat="@drawable/fax_icon" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

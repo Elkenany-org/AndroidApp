@@ -3,7 +3,6 @@ package com.example.elkenany.api.auth
 import android.content.Context
 import android.util.Log
 import com.example.elkenany.api.retrofit_configs.GoogleAuth_Config
-import com.example.elkenany.entities.GenericEntity
 import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.PasswordRecoveryData
 import com.example.elkenany.entities.auth_data.UserAuthData
@@ -47,7 +46,10 @@ class AuthImplementation {
             Log.i("reLogSocialWithGoogle", "Login with google failed : ${e.message}")
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("reLogSocialWithGoogle", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("reLogSocialWithGoogle", e.message.toString())
             null
         }
     }
@@ -72,7 +74,10 @@ class AuthImplementation {
             Log.i("reLogSocialWithFaceBook", "Login with google failed : ${e.message}")
             null
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("reLogSocialWithFaceBook", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("reLogSocialWithFaceBook", e.message.toString())
             null
         }
     }
@@ -92,7 +97,10 @@ class AuthImplementation {
             Log.i("loginWithEmailAndPassword", e.code().toString())
             e.code()
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("loginWithEmailAndPassword", e.message.toString())
+            400
+        } catch (e: Exception) {
+            Log.i("loginWithEmailAndPassword", e.message.toString())
             400
         }
     }
@@ -121,7 +129,10 @@ class AuthImplementation {
             Log.i("registerWithEmailAndPassword", "register failed : ${e.message}")
             false
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("registerWithEmailAndPassword", e.message.toString())
+            false
+        } catch (e: Exception) {
+            Log.i("registerWithEmailAndPassword", e.message.toString())
             false
         }
     }
@@ -136,7 +147,10 @@ class AuthImplementation {
             Log.i("getAllUserData", "${e.message}")
             auth
         } catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+            Log.i("getAllUserData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllUserData", e.message.toString())
             null
         }
     }
@@ -156,8 +170,11 @@ class AuthImplementation {
         } catch (e: HttpException) {
             Log.i("recoverPasswordWithEmail", "Login with google failed : ${e.message}")
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("recoverPasswordWithEmail", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("recoverPasswordWithEmail", e.message.toString())
             null
         }
     }
@@ -178,8 +195,11 @@ class AuthImplementation {
         } catch (e: HttpException) {
             Log.i("onSuccessResetPassword", "Login with google failed : ${e.message}")
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("onSuccessResetPassword", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("onSuccessResetPassword", e.message.toString())
             null
         }
     }

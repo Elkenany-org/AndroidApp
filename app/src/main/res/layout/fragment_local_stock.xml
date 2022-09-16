@@ -25,7 +25,7 @@
             android:textSize="20sp" />
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/stock_page_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,17 +42,18 @@
                 android:id="@+id/banners_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                android:layout_marginHorizontal="10dp"
                 tools:listitem="@layout/banners_card_view_item" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/logos_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/banners_recycler_view"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -63,6 +64,7 @@
                 android:id="@+id/sectors_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/logos_recycler_view"
                 android:layout_gravity="center_horizontal"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
@@ -70,8 +72,10 @@
                 tools:listitem="@layout/sector_item" />
 
             <RelativeLayout
+                android:id="@+id/relative_layout1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_below="@id/sectors_recycler_view"
                 android:layout_margin="5dp">
 
                 <androidx.cardview.widget.CardView
@@ -95,6 +99,8 @@
                         android:drawablePadding="10dp"
                         android:fontFamily="@font/cairo_bold"
                         android:hint="@string/homeSearch"
+                        android:inputType="textLongMessage"
+                        android:maxLines="1"
                         android:padding="5dp"
                         android:textColorHint="@color/green"
                         android:textSize="15sp"
@@ -117,29 +123,39 @@
                 android:id="@+id/stock_list_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/relative_layout1"
                 android:layout_gravity="center_horizontal"
                 tools:listitem="@layout/big_recycler_item_with_details" />
 
-            <ProgressBar
-                android:id="@+id/loading_progressbar"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminateDrawable="@drawable/custom_progress_bar"
-                android:visibility="gone" />
+                android:layout_height="match_parent"
+                android:layout_below="@id/relative_layout1">
 
-            <TextView
-                android:id="@+id/error_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:text="@string/failed_to_receive_data_msg"
-                android:textColor="@color/green"
-                android:textSize="18sp"
-                android:visibility="gone" />
+                <ProgressBar
+                    android:id="@+id/loading_progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:indeterminateDrawable="@drawable/custom_progress_bar"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/error_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/cairo_bold"
+                    android:gravity="center"
+                    android:text="@string/failed_to_receive_data_msg"
+                    android:textColor="@color/green"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
 
-        </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

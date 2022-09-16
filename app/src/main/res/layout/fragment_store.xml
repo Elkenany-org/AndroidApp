@@ -74,6 +74,8 @@
                     android:drawablePadding="20dp"
                     android:fontFamily="@font/cairo_bold"
                     android:hint="@string/homeSearch"
+                    android:inputType="textLongMessage"
+                    android:maxLines="1"
                     android:paddingStart="20sp"
                     android:paddingTop="5dp"
                     android:paddingEnd="20sp"

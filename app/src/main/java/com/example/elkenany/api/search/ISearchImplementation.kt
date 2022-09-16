@@ -16,8 +16,11 @@ class ISearchImplementation {
         } catch (e: HttpException) {
             Log.i("getAllSearchData", e.message.toString())
             null
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
+        } catch (e: SocketTimeoutException) {
+            Log.i("getAllSearchData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getAllSearchData", e.message.toString())
             null
         }
     }

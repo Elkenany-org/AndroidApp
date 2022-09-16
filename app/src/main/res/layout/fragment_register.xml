@@ -25,8 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/cairo_regular"
-                android:text="@string/create_account_title"
                 android:gravity="center_horizontal"
+                android:text="@string/create_account_title"
                 android:textColor="@color/green"
                 android:textSize="22sp" />
 
@@ -116,19 +116,36 @@
                 android:layout_marginEnd="10dp"
                 app:cardCornerRadius="7dp">
 
-                <EditText
-                    android:id="@+id/password_input"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/primary_edit_text_shape"
-                    android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
-                    android:fontFamily="@font/cairo_bold"
-                    android:hint="@string/password_title"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textAlignment="textEnd"
-                    android:textSize="14sp"
-                    tools:ignore="Autofill,TextFields,TextContrastCheck" />
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/password_visibilty_btn"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:src="@drawable/ic_baseline_remove_red_eye_24"-->
+<!--                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+
+                    <EditText
+                        android:id="@+id/password_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/primary_edit_text_shape"
+                        android:fontFamily="@font/cairo_bold"
+                        android:hint="@string/password_title"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,TextFields,TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -140,19 +157,36 @@
                 android:layout_marginEnd="10dp"
                 app:cardCornerRadius="7dp">
 
-                <EditText
-                    android:id="@+id/confirm_password_input"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/primary_edit_text_shape"
-                    android:drawableStart="@drawable/ic_baseline_remove_red_eye_24"
-                    android:fontFamily="@font/cairo_bold"
-                    android:hint="@string/confirm_password_title"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textAlignment="textEnd"
-                    android:textSize="14sp"
-                    tools:ignore="Autofill,TextFields,TextContrastCheck" />
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+<!--                    <ImageButton-->
+<!--                        android:id="@+id/confirm_password_visibilty_btn"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="5dp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:src="@drawable/ic_baseline_remove_red_eye_24"-->
+<!--                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+
+                    <EditText
+                        android:id="@+id/confirm_password_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/primary_edit_text_shape"
+                        android:fontFamily="@font/cairo_bold"
+                        android:hint="@string/password_title"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,TextFields,TextContrastCheck" />
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatButton

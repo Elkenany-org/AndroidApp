@@ -17,6 +17,12 @@ class ILocalStockImplementation {
         } catch (e: HttpException) {
             Log.i("getLocalStockSectionsData", e.message.toString())
             null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getLocalStockSectionsData", e.message.toString())
+            null
+        }catch (e: Exception) {
+            Log.i("getLocalStockSectionsData", e.message.toString())
+            null
         }
     }
 
@@ -44,6 +50,12 @@ class ILocalStockImplementation {
         } catch (e: HttpException) {
             Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
             null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
+            null
+        }catch (e: Exception) {
+            Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
+            null
         }
     }
 
@@ -56,6 +68,12 @@ class ILocalStockImplementation {
         } catch (e: HttpException) {
             Log.i("getLocalStockFeedsItems", e.message.toString())
             null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getLocalStockFeedsItems", e.message.toString())
+            null
+        }catch (e: Exception) {
+            Log.i("getGuideFilterData", e.message.toString())
+            null
         }
     }
 
@@ -65,6 +83,12 @@ class ILocalStockImplementation {
                 ILocalStockHandler.singleton.getLocalStockCompanyItems(stockId).await()
             response.data
         } catch (e: HttpException) {
+            Log.i("getLocalStockCompanyItems", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getLocalStockCompanyItems", e.message.toString())
+            null
+        }catch (e: Exception) {
             Log.i("getLocalStockCompanyItems", e.message.toString())
             null
         }
@@ -98,6 +122,12 @@ class ILocalStockImplementation {
         } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsLocalData", e.message.toString())
             GenericEntity(null, "socket time out", null)
+        }catch (e: SocketTimeoutException) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            GenericEntity(null, "socket time out", null)
+        } catch (e: Exception) {
+            Log.i("getAllStatisticsLocalData", e.message.toString())
+            GenericEntity(null, "Exception : ${e.message}", null)
         }
     }
 
@@ -127,6 +157,9 @@ class ILocalStockImplementation {
         } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsFodderData", e.message.toString())
             GenericEntity(null, "socket time out", null)
+        } catch (e: Exception) {
+            Log.i("getAllStatisticsFodderData", e.message.toString())
+            GenericEntity(null, "Exception ${e.message}", null)
         }
     }
 }

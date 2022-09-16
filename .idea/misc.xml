@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/calender_btn_selected.xml" value="0.316" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2605" />
         <entry key="..\:/Users/10/AndroidStudioProjects/ElKenany/app/src/main/res/drawable/f_logo.xml" value="0.307" />
@@ -154,10 +155,15 @@
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/statistics_row_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/store_card_view_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/table_row_item.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/about_branch_item_card.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/array_adapter_item.xml" value="0.2860196665241556" />
         <entry key="app/src/main/res/layout/banners_card_view_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/big_recycler_item.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/big_recycler_item_with_details.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/chat_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/company_item.xml" value="0.2828197551709582" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_ad_details.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.2864471996579735" />
@@ -175,7 +181,7 @@
         <entry key="app/src/main/res/layout/fragment_main_menu.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_my_ads_list.xml" value="0.2864471996579735" />
-        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.13894826849080805" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_news_details.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2864471996579735" />
@@ -187,6 +193,7 @@
         <entry key="app/src/main/res/layout/general_shimmer_loading.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/guide_companies_shimmer.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/home_shimmer_loading.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/image_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/logo_card_view_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/message_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/my_ads_card_item.xml" value="0.28559213339033773" />
@@ -194,8 +201,10 @@
         <entry key="app/src/main/res/layout/news_shimmer_loading.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/notification_card_view_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/notification_shimmer_loading.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/search_result_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/sector_array_adapter.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/sector_item.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/small_recycler_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/statistics_row_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/store_card_view_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/table_row_item.xml" value="0.2864471996579735" />
