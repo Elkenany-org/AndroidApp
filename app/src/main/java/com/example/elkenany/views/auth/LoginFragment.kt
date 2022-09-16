@@ -4,7 +4,6 @@ package com.example.elkenany.views.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +31,7 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var email: String
     private lateinit var password: String
-    private var textVisibilty: Boolean = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,9 +62,9 @@ class LoginFragment : Fragment() {
             }
 
         }
-        binding.passwordVisibiltyBtn.setOnClickListener {
-            binding.passwordInput.inputType = InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
-        }
+//        binding.passwordVisibiltyBtn.setOnClickListener {
+//            binding.passwordInput.inputType = InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD
+//        }
         binding.forgotPasswordBtn.setOnClickListener {
             requireView().findNavController()
                 .navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
