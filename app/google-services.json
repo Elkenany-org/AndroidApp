@@ -1,0 +1,89 @@
+{
+  "project_info": {
+    "project_number": "711464214583",
+    "firebase_url": "https://elkenany-fbdc6.firebaseio.com",
+    "project_id": "elkenany-fbdc6",
+    "storage_bucket": "elkenany-fbdc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711464214583:android:b91c3b40cdd70f251b5fb2",
+        "android_client_info": {
+          "package_name": "com.Elkenany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711464214583-79hfhf6a8n3msqknls2djk6m8iqfnlpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX1rOJogMRtDZetGEwWjGUVAHzOrk6Ef8"
+        },
+        {
+          "current_key": "AIzaSyCU1Cbmm2SIxod0iyxwsHVhTVZb1MdliR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111639473312497180934",
+              "client_type": 3
+            },
+            {
+              "client_id": "711464214583-5gploctchaj35oi5h7r17k2ri5ehat7q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.elkenanyapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711464214583:android:839c19210a4e58131b5fb2",
+        "android_client_info": {
+          "package_name": "com.example.elkenany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711464214583-79hfhf6a8n3msqknls2djk6m8iqfnlpc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX1rOJogMRtDZetGEwWjGUVAHzOrk6Ef8"
+        },
+        {
+          "current_key": "AIzaSyCU1Cbmm2SIxod0iyxwsHVhTVZb1MdliR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111639473312497180934",
+              "client_type": 3
+            },
+            {
+              "client_id": "711464214583-5gploctchaj35oi5h7r17k2ri5ehat7q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.elkenanyapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
