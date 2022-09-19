@@ -68,7 +68,7 @@ class RegisterFragment : Fragment() {
             } else {
                 // register function here
                 // ToDo --> implement to receive device token here
-                viewModel.registerAccount(name, email, phone, password, "")
+                viewModel.registerAccount(name, email, phone, password)
             }
 
         }
