@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552649577410",
+    "project_id": "causal-producer-359007",
+    "storage_bucket": "causal-producer-359007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552649577410:android:5a94c06fc8a6c1ce00bc5b",
+        "android_client_info": {
+          "package_name": "com.example.elkenany"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552649577410-lju0fksn52m0gtsgp4pv6ebp44tjl201.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKjGTxPdmB8MQ_XX8GYEvack6dzN4vKFo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552649577410-lju0fksn52m0gtsgp4pv6ebp44tjl201.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

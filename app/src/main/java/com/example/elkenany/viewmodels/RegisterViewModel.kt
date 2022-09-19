@@ -27,12 +27,11 @@ class RegisterViewModel : ViewModel() {
         email: String,
         phone: String,
         password: String,
-        deviceToken: String,
     ) {
         uiScope.launch {
             _loading.value = true
             _register.value =
-                api.registerWithEmailAndPassword(name, email, password, phone, deviceToken)
+                api.registerWithEmailAndPassword(name, email, password, phone)
             _loading.value = false
         }
     }

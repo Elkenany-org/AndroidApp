@@ -7,6 +7,7 @@ import com.example.elkenany.entities.auth_data.AuthData
 import com.example.elkenany.entities.auth_data.PasswordRecoveryData
 import com.example.elkenany.entities.auth_data.UserAuthData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.HttpException
 import retrofit2.await
 import java.net.SocketTimeoutException
@@ -111,7 +112,6 @@ class AuthImplementation {
         email: String,
         password: String,
         phone: String,
-        deviceToken: String,
     ): Boolean {
         return try {
             val response = AuthHandler.singleton.registerWithEmailAndPasswordWithPhone(
@@ -119,7 +119,7 @@ class AuthImplementation {
                 email,
                 password,
                 phone,
-                deviceToken
+                "",
             )
                 .await()
             userApiToken = response.data!!.apiToken
@@ -179,10 +179,12 @@ class AuthImplementation {
         }
     }
 
+
+
     suspend fun onSuccessResetPassword(
         email: String?,
         code: String?,
-        password: String?
+        password: String?,
     ): AuthData? {
         return try {
             val response = AuthHandler.singleton.onSuccessResetPassword(
