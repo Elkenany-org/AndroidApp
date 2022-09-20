@@ -33,7 +33,7 @@
         <!--this clicklistener made to execute the clicklistener function-->
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
 
     </data>
 

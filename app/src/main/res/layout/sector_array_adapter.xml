@@ -5,11 +5,11 @@
 
         <variable
             name="sector"
-            type="com.example.elkenany.entities.stock_data.LocalStockSector" />
+            type="com.elkenany.entities.stock_data.LocalStockSector" />
 
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
     </data>
 
     <TextView

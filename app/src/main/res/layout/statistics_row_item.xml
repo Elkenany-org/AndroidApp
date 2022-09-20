@@ -7,13 +7,13 @@
 
         <variable
             name="local_data"
-            type="com.example.elkenany.entities.stock_data.LocalChangesMember" />
+            type="com.elkenany.entities.stock_data.LocalChangesMember" />
         <variable
             name="fodder_data"
-            type="com.example.elkenany.entities.stock_data.FodderChangesMember" />
+            type="com.elkenany.entities.stock_data.FodderChangesMember" />
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
     </data>
 
     <LinearLayout
