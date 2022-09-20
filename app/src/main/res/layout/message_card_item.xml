@@ -6,11 +6,11 @@
         <!--this data made for clickListener-->
         <variable
             name="data"
-            type="com.example.elkenany.entities.store.Massage" />
+            type="com.elkenany.entities.store.Massage" />
         <!--this data made for displaying title in text view-->
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
 
     </data>
 

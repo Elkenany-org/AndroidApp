@@ -7,7 +7,7 @@
         <!--this data made for clickListener-->
         <variable
             name="data"
-            type="com.example.elkenany.entities.store.MyAdsDaum" />
+            type="com.elkenany.entities.store.MyAdsDaum" />
         <!--this data made for displaying title in text view-->
 
         <variable
@@ -20,11 +20,11 @@
 
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
 
         <variable
             name="deleteAd"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
 
     </data>
 

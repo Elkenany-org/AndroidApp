@@ -27,7 +27,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
     </data>
 
     <RelativeLayout

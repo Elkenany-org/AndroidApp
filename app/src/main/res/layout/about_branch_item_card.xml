@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.example.elkenany.entities.home_data.Office" />
+            type="com.elkenany.entities.home_data.Office" />
 
     </data>
 

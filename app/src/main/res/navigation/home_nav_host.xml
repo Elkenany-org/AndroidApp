@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeSectorFragment"
-        android:name="com.example.elkenany.views.home.home_sector.HomeSectorFragment"
+        android:name="com.elkenany.views.home.home_sector.HomeSectorFragment"
         android:label="fragment_home_sector"
         tools:layout="@layout/fragment_home_sector">
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeServiceFragment"
-        android:name="com.example.elkenany.views.home.home_service.HomeServiceFragment"
+        android:name="com.elkenany.views.home.home_service.HomeServiceFragment"
         android:label="fragment_home_service"
         tools:layout="@layout/fragment_home_service">
         <action
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.elkenany.views.profile.ProfileFragment"
+        android:name="com.elkenany.views.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/sectorsChoicesFragment"
-        android:name="com.example.elkenany.views.home.home_sector.SectorsChoicesFragment"
+        android:name="com.elkenany.views.home.home_sector.SectorsChoicesFragment"
         android:label="SectorsChoicesFragment"
         tools:layout="@layout/fragment_sectors_choices">
         <argument
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/localStockFragment"
-        android:name="com.example.elkenany.views.local_stock.LocalStockFragment"
+        android:name="com.elkenany.views.local_stock.LocalStockFragment"
         android:label="LocalStockFragment"
         tools:layout="@layout/fragment_local_stock">
         <argument
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.elkenany.views.news.NewsFragment"
+        android:name="com.elkenany.views.news.NewsFragment"
         android:label="NewsFragment"
         tools:layout="@layout/fragment_news">
         <argument
@@ -128,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.example.elkenany.views.store.StoreFragment"
+        android:name="com.elkenany.views.store.StoreFragment"
         android:label="StoreFragment"
         tools:layout="@layout/fragment_store">
         <argument
@@ -151,7 +151,7 @@
     </fragment>
     <fragment
         android:id="@+id/guideFragment"
-        android:name="com.example.elkenany.views.guide.GuideFragment"
+        android:name="com.elkenany.views.guide.GuideFragment"
         android:label="GuideFragment"
         tools:layout="@layout/fragment_guide">
         <argument
@@ -172,7 +172,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.elkenany.views.search.SearchFragment"
+        android:name="com.elkenany.views.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search">
         <action
@@ -193,7 +193,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainMenuFragment"
-        android:name="com.example.elkenany.views.menu.MainMenuFragment"
+        android:name="com.elkenany.views.menu.MainMenuFragment"
         android:label="MainMenuFragment"
         tools:layout="@layout/fragment_main_menu">
         <action
@@ -202,7 +202,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.example.elkenany.views.news.NewsDetailsFragment"
+        android:name="com.elkenany.views.news.NewsDetailsFragment"
         android:label="NewsDetailsFragment"
         tools:layout="@layout/fragment_news_details">
         <argument
@@ -211,7 +211,7 @@
     </fragment>
     <fragment
         android:id="@+id/localStockDetailsFragment"
-        android:name="com.example.elkenany.views.local_stock.LocalStockDetailsFragment"
+        android:name="com.elkenany.views.local_stock.LocalStockDetailsFragment"
         android:label="LocalStockDetailsFragment"
         tools:layout="@layout/fragment_local_stock_details">
         <argument
@@ -231,7 +231,7 @@
     </fragment>
     <fragment
         android:id="@+id/guideCompaniesFragment"
-        android:name="com.example.elkenany.views.guide.GuideCompaniesFragment"
+        android:name="com.elkenany.views.guide.GuideCompaniesFragment"
         android:label="GuideCompaniesFragment"
         tools:layout="@layout/fragment_guide_companies">
         <argument
@@ -251,7 +251,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.example.elkenany.views.notification.NotificationFragment"
+        android:name="com.elkenany.views.notification.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification">
         <action
@@ -263,7 +263,7 @@
     </fragment>
     <fragment
         android:id="@+id/adDetailsFragment"
-        android:name="com.example.elkenany.views.store.AdDetailsFragment"
+        android:name="com.elkenany.views.store.AdDetailsFragment"
         android:label="AdDetailsFragment"
         tools:layout="@layout/fragment_ad_details">
         <argument
@@ -278,7 +278,7 @@
     </fragment>
     <fragment
         android:id="@+id/companyFragment"
-        android:name="com.example.elkenany.views.guide.CompanyFragment"
+        android:name="com.elkenany.views.guide.CompanyFragment"
         android:label="CompanyFragment"
         tools:layout="@layout/fragment_company">
         <argument
@@ -293,7 +293,7 @@
     </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.elkenany.views.local_stock.StatisticsFragment"
+        android:name="com.elkenany.views.local_stock.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/fragment_statistics">
         <argument
@@ -306,12 +306,12 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.elkenany.views.about.AboutFragment"
+        android:name="com.elkenany.views.about.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/chatsFragment"
-        android:name="com.example.elkenany.views.store.ChatsFragment"
+        android:name="com.elkenany.views.store.ChatsFragment"
         android:label="ChatsFragment"
         tools:layout="@layout/fragment_chats">
         <action
@@ -323,7 +323,7 @@
     </fragment>
     <fragment
         android:id="@+id/messagesFragment"
-        android:name="com.example.elkenany.views.store.MessagesFragment"
+        android:name="com.elkenany.views.store.MessagesFragment"
         android:label="MessagesFragment"
         tools:layout="@layout/fragment_messages">
         <argument
@@ -336,12 +336,12 @@
     </fragment>
     <fragment
         android:id="@+id/createAdFragment"
-        android:name="com.example.elkenany.views.store.CreateAdFragment"
+        android:name="com.elkenany.views.store.CreateAdFragment"
         android:label="CreateAdFragment"
         tools:layout="@layout/fragment_create_ad" />
     <fragment
         android:id="@+id/myAdsListFragment"
-        android:name="com.example.elkenany.views.store.MyAdsListFragment"
+        android:name="com.elkenany.views.store.MyAdsListFragment"
         android:label="MyAdsListFragment"
         tools:layout="@layout/fragment_my_ads_list" >
         <action

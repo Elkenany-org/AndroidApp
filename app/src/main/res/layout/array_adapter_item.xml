@@ -6,11 +6,11 @@
 
         <variable
             name="member"
-            type="com.example.elkenany.entities.stock_data.ListMember" />
+            type="com.elkenany.entities.stock_data.ListMember" />
 
         <variable
             name="clickListener"
-            type="com.example.elkenany.ClickListener" />
+            type="com.elkenany.ClickListener" />
     </data>
 
     <TextView
