@@ -338,7 +338,12 @@
         android:id="@+id/createAdFragment"
         android:name="com.elkenany.views.store.CreateAdFragment"
         android:label="CreateAdFragment"
-        tools:layout="@layout/fragment_create_ad" />
+        tools:layout="@layout/fragment_create_ad" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/myAdsListFragment"
         android:name="com.elkenany.views.store.MyAdsListFragment"

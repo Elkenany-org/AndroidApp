@@ -69,7 +69,7 @@
     <string name="more_ads_title">عروض أخري :</string>
     <string name="statistics_title">الإحصائيات</string>
     <string name="today_title">تاريخ اليوم</string>
-    <string name="latest_news_title">الأكضر تداولا</string>
+    <string name="latest_news_title">الأكثر تداولا</string>
     <string name="urgent_title">الأحدث</string>
     <string name="most_readable_title">الأكثر قراءة</string>
     <string name="country_title">الشركة</string>
@@ -121,10 +121,11 @@
     <string name="price_title">السعر</string>
     <string name="create_ad_title">إنشاء إعلان</string>
     <string name="done_upload_image_title">تم إضافة صورة</string>
-    <string name="delete_ad_title">حذف الإعلان</string>
+    <string name="delete_ad_title">حذف</string>
     <string name="coming_soon_title">سوف يتم توفير هذة الخدمة قريبا</string>
     <string name="alphapetical_title">أبجدي</string>
     <string name="gallery_title">الصور</string>
     <string name="select_company_title">أختر الشركة</string>
     <string name="select_product_title">أختر الصنف</string>
+    <string name="edit_ad_title">تعديل</string>
 </resources>

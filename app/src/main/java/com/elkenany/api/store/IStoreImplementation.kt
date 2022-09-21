@@ -142,6 +142,44 @@ class IStoreImplementation {
         }
     }
 
+    suspend fun editAd(
+        apiToken: String?,
+        adsId: Long,
+        title: String?,
+        description: String?,
+        phone: String?,
+        price: String?,
+        sectorId: Long?,
+        address: String?,
+        connection: String?,
+        imageFile: String?,
+    ): GenericEntity<NewAdData?>? {
+        return try {
+            val response = IStoreHandler.singleton.editAd(
+                "android",
+                apiToken,
+                adsId,
+                title,
+                description,
+                phone,
+                price,
+                sectorId,
+                address,
+                connection,
+                imageFile
+            ).await()
+            response
+        } catch (e: HttpException) {
+            GenericEntity(null, e.code().toString(), null)
+        } catch (e: SocketTimeoutException) {
+            Log.i("createNewAd", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("createNewAd", e.message.toString())
+            null
+        }
+    }
+
     suspend fun getAllMyAdsListData(
         apiToken: String?,
         sectorType: String?,

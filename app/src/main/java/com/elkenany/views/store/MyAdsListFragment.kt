@@ -73,6 +73,9 @@ class MyAdsListFragment : Fragment() {
                 .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToAdDetailsFragment(it.id!!))
         }, ClickListener {
             basicAlert(requireContext(), it)
+        }, ClickListener {
+            requireView().findNavController()
+                .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToCreateAdFragment(it.id.toString()))
         })
         binding.adsListRecyclerView.adapter = myAdsAdapter
 
@@ -129,7 +132,11 @@ class MyAdsListFragment : Fragment() {
             if (it != null) {
                 if (it == true) {
                     requireView().findNavController()
-                        .navigate(MyAdsListFragmentDirections.actionMyAdsListFragmentToCreateAdFragment())
+                        .navigate(
+                            MyAdsListFragmentDirections.actionMyAdsListFragmentToCreateAdFragment(
+                                null
+                            )
+                        )
                     viewModel.onDoneNavigating()
                 } else if (it == false) {
                     Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)

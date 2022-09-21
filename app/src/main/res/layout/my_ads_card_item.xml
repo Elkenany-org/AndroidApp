@@ -23,6 +23,10 @@
             type="com.elkenany.ClickListener" />
 
         <variable
+            name="editAd"
+            type="com.elkenany.ClickListener" />
+
+        <variable
             name="deleteAd"
             type="com.elkenany.ClickListener" />
 
@@ -47,14 +51,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_margin="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:elevation="10dp"
                 cardView:cardCornerRadius="5dp">
 
                 <ImageView
                     android:id="@+id/item_image"
                     imageUrl="@{data.image.toString()}"
-                    android:layout_width="111dp"
+                    android:layout_width="95dp"
                     android:layout_height="111dp"
                     android:scaleType="fitXY"
                     tools:ignore="ContentDescription,ImageContrastCheck" />
@@ -65,12 +72,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/image_card_view"
                 android:background="@drawable/primary_btn_shape"
+                android:drawablePadding="3dp"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:maxLines="1"
@@ -81,7 +89,35 @@
                 android:paddingBottom="7sp"
                 android:text="@string/delete_ad_title"
                 android:textColor="@color/green"
-                android:textSize="12sp"
+                android:textSize="10sp"
+                cardView:drawableStartCompat="@drawable/ic_baseline_delete_forever_24"
+                tools:ignore="RelativeOverlap,SmallSp,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/edit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/more_title"
+                android:background="@drawable/primary_btn_shape"
+                android:drawablePadding="3dp"
+                android:fontFamily="@font/cairo_bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:onClick="@{()->editAd.onClick(data)}"
+                android:paddingStart="10dp"
+                android:paddingTop="7sp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="7sp"
+                android:text="@string/edit_ad_title"
+                android:textColor="@color/green"
+                android:textSize="10sp"
+                cardView:drawableStartCompat="@drawable/ic_baseline_edit_24"
                 tools:ignore="RelativeOverlap,SmallSp,TextContrastCheck" />
 
             <LinearLayout
@@ -127,7 +163,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/edit_title"
                 android:fontFamily="@font/cairo_regular"
                 android:textColor="@color/green"
                 android:textSize="9sp"
