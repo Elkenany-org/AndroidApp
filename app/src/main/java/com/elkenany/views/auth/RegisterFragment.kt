@@ -95,16 +95,20 @@ class RegisterFragment : Fragment() {
                 binding.signUpBtn.visibility = View.VISIBLE
             }
         }
-        viewModel.register.observe(viewLifecycleOwner) {
+        viewModel.exception.observe(viewLifecycleOwner) {
             if (it != null) {
-                if (it) {
-                    // ToDo --> implement navigation to home screen here
-                } else {
-                    Toast.makeText(context, "تعذر انشاء حساب", Toast.LENGTH_LONG).show()
+                when (it) {
+                    200 -> {
+                        Toast.makeText(context, "تم التسجيل بنجاح", Toast.LENGTH_LONG).show()
+                        requireView().findNavController()
+                            .navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
+                    }
+                    406 -> Toast.makeText(context, "هذا الحساب موجود بالفعل", Toast.LENGTH_LONG)
+                        .show()
+                    else -> Toast.makeText(context, "تعذر انشاء حساب", Toast.LENGTH_LONG).show()
                 }
             }
         }
-
         return binding.root
     }
 

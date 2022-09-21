@@ -1,0 +1,14 @@
+<vector android:height="20dp" android:viewportHeight="21.28"
+    android:viewportWidth="21.281" android:width="20dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#58595b" android:pathData="M8.732,18.596h4.422L13.154,0.434l-4.422,2.077Z"/>
+    <path android:fillColor="#266d37" android:pathData="M18.019,21.281a0.434,0.434 0,1 0,0 -0.868L3.263,20.413a0.434,0.434 0,1 0,0 0.868Z"/>
+    <path android:fillColor="#266d37" android:pathData="M20.847,18.598L18.1,18.598L18.1,13.021a0.434,0.434 0,0 0,-0.237 -0.387l-4.447,-2.26L13.416,0.434a0.434,0.434 0,0 0,-0.63 -0.387L8.1,2.428a0.434,0.434 0,0 0,-0.237 0.387v4.25L3.417,9.326a0.434,0.434 0,0 0,-0.237 0.387L3.18,18.598L0.434,18.598a0.434,0.434 0,0 0,0 0.868L20.847,19.466a0.434,0.434 0,0 0,0 -0.868Z"/>
+    <path android:fillColor="#266d37" android:pathData="M7.864,18.599L4.047,18.599v-8.62l3.817,-1.94Z"/>
+    <path android:fillColor="#266d37" android:pathData="M17.236,18.596h-3.82L13.416,11.348l3.817,1.94Z"/>
+    <path android:fillColor="#fb3" android:pathData="M14.602,17.99a0.326,0.326 0,0 0,0.326 -0.326v-4.727a0.326,0.326 0,1 0,-0.651 0v4.728a0.325,0.325 0,0 0,0.325 0.325Z"/>
+    <path android:fillColor="#fb3" android:pathData="M16.051,17.99a0.326,0.326 0,0 0,0.326 -0.326v-3.354a0.326,0.326 0,1 0,-0.651 0v3.354a0.325,0.325 0,0 0,0.325 0.326Z"/>
+    <path android:fillColor="#fb3" android:pathData="M6.683,17.99a0.325,0.325 0,0 0,0.325 -0.326v-7.932a0.326,0.326 0,0 0,-0.651 0v7.932a0.325,0.325 0,0 0,0.326 0.326Z"/>
+    <path android:fillColor="#fb3" android:pathData="M5.228,17.991a0.325,0.325 0,0 0,0.325 -0.326v-6.559a0.326,0.326 0,0 0,-0.651 0v6.559a0.325,0.325 0,0 0,0.326 0.326Z"/>
+    <path android:fillColor="#fb3" android:pathData="M11.427,17.99a0.325,0.325 0,0 0,0.325 -0.326L11.752,2.938a0.326,0.326 0,0 0,-0.651 0L11.101,17.665a0.326,0.326 0,0 0,0.326 0.325Z"/>
+    <path android:fillColor="#fb3" android:pathData="M9.853,17.99a0.325,0.325 0,0 0,0.325 -0.326L10.178,4.385a0.326,0.326 0,0 0,-0.651 0v13.28a0.325,0.325 0,0 0,0.326 0.325Z"/>
+</vector>

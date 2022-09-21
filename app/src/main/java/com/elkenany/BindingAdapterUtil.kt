@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+//import androidx.recyclerview.widget.LinearSmoothScroller
+//import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
@@ -35,3 +37,19 @@ class ClickListener<T>(private val clickListener: (type: T) -> Unit) {
         clickListener(type)
     }
 }
+
+//fun RecyclerView.smoothScrollToCenteredPosition(position: Int) {
+//    val smoothScroller = object : LinearSmoothScroller(context) {
+//
+//        override fun calculateDxToMakeVisible(view: View?,
+//                                              snapPref: Int): Int {
+//            val dxToStart = super.calculateDxToMakeVisible(view, SNAP_TO_START)
+//            val dxToEnd = super.calculateDxToMakeVisible(view, SNAP_TO_END)
+//
+//            return (dxToStart + dxToEnd) / 2
+//        }
+//    }
+//
+//    smoothScroller.targetPosition = position
+//    layoutManager?.startSmoothScroll(smoothScroller)
+//}
