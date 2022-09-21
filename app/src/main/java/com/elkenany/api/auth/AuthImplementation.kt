@@ -111,28 +111,29 @@ class AuthImplementation {
         email: String,
         password: String,
         phone: String,
-    ): Boolean {
+        device_token: String?,
+    ): Int {
         return try {
             val response = AuthHandler.singleton.registerWithEmailAndPasswordWithPhone(
                 name,
                 email,
                 password,
                 phone,
-                "",
+                device_token!!,
             )
                 .await()
             userApiToken = response.data!!.apiToken
             getAllUserData(userApiToken)
-            true
+            200
         } catch (e: HttpException) {
             Log.i("registerWithEmailAndPassword", "register failed : ${e.message}")
-            false
+            e.code()
         } catch (e: SocketTimeoutException) {
             Log.i("registerWithEmailAndPassword", e.message.toString())
-            false
+            500
         } catch (e: Exception) {
             Log.i("registerWithEmailAndPassword", e.message.toString())
-            false
+            300
         }
     }
 
@@ -177,7 +178,6 @@ class AuthImplementation {
             null
         }
     }
-
 
 
     suspend fun onSuccessResetPassword(
