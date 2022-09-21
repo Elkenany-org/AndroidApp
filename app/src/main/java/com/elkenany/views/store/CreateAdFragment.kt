@@ -231,6 +231,7 @@ class CreateAdFragment : Fragment() {
             if (it) {
                 binding.loadingProgressbar1.visibility = View.VISIBLE
                 binding.addAdBtn.visibility = View.GONE
+                binding.editAdBtn.visibility = View.GONE
             } else if (!it) {
                 binding.loadingProgressbar1.visibility = View.GONE
                 if (adId != null) {
