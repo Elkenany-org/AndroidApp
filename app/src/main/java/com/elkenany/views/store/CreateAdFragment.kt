@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.elkenany.R
 import com.elkenany.databinding.FragmentCreateAdBinding
 import com.elkenany.entities.stock_data.LocalStockSector
@@ -37,6 +38,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var viewModel: CreateAdViewModel
     private lateinit var sectorList: List<LocalStockSector>
     private lateinit var adapter: ArrayAdapter<String>
+    private var adId: Long? = null
     private var sectorId: String? = null
     private lateinit var title: String
     private lateinit var description: String
@@ -44,6 +46,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var price: String
     private lateinit var address: String
     private val myArrayUri = ArrayList<String>()
+    private val args: CreateAdFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -51,6 +54,18 @@ class CreateAdFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_ad, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[CreateAdViewModel::class.java]
+        adId = try {
+            args.id!!.toLong()
+        } catch (e: Exception) {
+            null
+        }
+        if (adId != null) {
+            binding.addAdBtn.visibility = View.GONE
+            binding.editAdBtn.visibility = View.VISIBLE
+        } else {
+            binding.addAdBtn.visibility = View.VISIBLE
+            binding.editAdBtn.visibility = View.GONE
+        }
         binding.sectorAutoCompelete.apply {
             hint = "القطاعات"
             setHintTextColor(ContextCompat.getColorStateList(requireContext(), R.color.orange))
@@ -72,6 +87,63 @@ class CreateAdFragment : Fragment() {
         }
         binding.pickImageBtn.setOnClickListener {
             getImageFromStorage()
+        }
+        binding.editAdBtn.setOnClickListener {
+            title = binding.adTitleInput.text.toString().trim()
+            description = binding.descriptionInput.text.toString().trim()
+            phone = binding.phoneInput.text.toString().trim()
+            price = binding.priceInput.text.toString().trim()
+            address = binding.addressInput.text.toString().trim()
+            if (title.isEmpty() && description.isEmpty() && phone.isEmpty() && price.isEmpty() && address.isEmpty() && sectorId.isNullOrEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    "برجاء ادخال بيانات الاعلان كاملة",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (title.isEmpty()) {
+                binding.adTitleInput.apply {
+                    error = "برجاء ادخال أسم الأعلان"
+                    requestFocus()
+                }
+            } else if (description.isEmpty()) {
+                binding.descriptionInput.apply {
+                    error = "برجاء ادخال وصف الأعلان"
+                    requestFocus()
+                }
+            } else if (phone.isEmpty()) {
+                binding.phoneInput.apply {
+                    error = "برجاء ادخال رقم الهاتف"
+                    requestFocus()
+                }
+            } else if (price.isEmpty()) {
+                binding.priceInput.apply {
+                    error = "برجاء ادخال السعر"
+                    requestFocus()
+                }
+            } else if (address.isEmpty()) {
+                binding.addressInput.apply {
+                    error = "برجاء ادخال العنوان"
+                    requestFocus()
+                }
+            } else if (sectorId.isNullOrEmpty()) {
+                binding.sectorBtn.apply {
+                    requestFocus()
+                }
+                Toast.makeText(requireContext(), "برجاء تحديد القطاع", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.imageIndicator.visibility = View.GONE
+                viewModel.editAd(
+                    adId!!.toLong(),
+                    title,
+                    description,
+                    phone,
+                    price,
+                    sectorId!!.toLong(),
+                    address,
+                    myArrayUri.toString()
+                )
+            }
+
         }
         binding.addAdBtn.setOnClickListener {
             title = binding.adTitleInput.text.toString().trim()
@@ -132,19 +204,25 @@ class CreateAdFragment : Fragment() {
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
                 200 -> {
-                    Toast.makeText(requireContext(),
+                    Toast.makeText(
+                        requireContext(),
                         "تم إنشاء الإعلان بنجاح",
-                        Toast.LENGTH_SHORT)
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     requireView().findNavController().popBackStack()
                 }
-                402 -> Toast.makeText(requireContext(),
+                402 -> Toast.makeText(
+                    requireContext(),
                     "لقد تخطيت الحد الأقصي للأعلانات , برجاء التحويل للباقة المدفوعة",
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_SHORT
+                )
                     .show()
-                else -> Toast.makeText(requireContext(),
+                else -> Toast.makeText(
+                    requireContext(),
                     "حدث خطأ في إنشاء الإعلان",
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }
@@ -153,9 +231,15 @@ class CreateAdFragment : Fragment() {
             if (it) {
                 binding.loadingProgressbar1.visibility = View.VISIBLE
                 binding.addAdBtn.visibility = View.GONE
-            } else {
+            } else if (!it) {
                 binding.loadingProgressbar1.visibility = View.GONE
-                binding.addAdBtn.visibility = View.VISIBLE
+                if (adId != null) {
+                    binding.addAdBtn.visibility = View.GONE
+                    binding.editAdBtn.visibility = View.VISIBLE
+                } else {
+                    binding.addAdBtn.visibility = View.VISIBLE
+                    binding.editAdBtn.visibility = View.GONE
+                }
             }
         }
 

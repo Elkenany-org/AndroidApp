@@ -251,6 +251,19 @@
                         android:text="@string/create_ad_title"
                         tools:ignore="ContentDescription" />
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/edit_ad_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/primary_btn_shape"
+                        android:fontFamily="@font/cairo_bold"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
+                        android:text="@string/edit_ad_title"
+                        tools:ignore="ContentDescription" />
+
                     <ProgressBar
                         android:id="@+id/loading_progressbar1"
                         android:layout_width="wrap_content"

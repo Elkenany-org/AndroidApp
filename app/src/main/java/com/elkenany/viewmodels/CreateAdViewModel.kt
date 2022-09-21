@@ -36,7 +36,8 @@ class CreateAdViewModel : ViewModel() {
         Log.i("ArrayList", imageFile.toString())
         _loading.value = true
         uiScope.launch {
-            val reponse = api.createNewAd("Bearer $userApiToken",
+            val reponse = api.createNewAd(
+                "Bearer $userApiToken",
                 title,
                 description,
                 phone,
@@ -44,7 +45,46 @@ class CreateAdViewModel : ViewModel() {
                 sectorId,
                 address,
                 "mobile",
-                imageFile)
+                imageFile
+            )
+            if (reponse!!.error.isNullOrEmpty()) {
+                _exception.value = 200
+            } else {
+                if (reponse.error == "402") {
+                    _exception.value = 402
+                } else {
+                    _exception.value = 400
+                }
+            }
+            _loading.value = false
+        }
+    }
+
+    fun editAd(
+        adId: Long,
+        title: String?,
+        description: String?,
+        phone: String?,
+        price: String?,
+        sectorId: Long?,
+        address: String?,
+        imageFile: String?,
+    ) {
+        Log.i("ArrayList", imageFile.toString())
+        _loading.value = true
+        uiScope.launch {
+            val reponse = api.editAd(
+                "Bearer $userApiToken",
+                adId,
+                title,
+                description,
+                phone,
+                price,
+                sectorId,
+                address,
+                "mobile",
+                imageFile
+            )
             if (reponse!!.error.isNullOrEmpty()) {
                 _exception.value = 200
             } else {

@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat
 class MyAdsAdapter(
     private val clickListener: ClickListener<MyAdsDaum>,
     private val removeAdClickListener: ClickListener<MyAdsDaum>,
+    private val editAdClickListener: ClickListener<MyAdsDaum>
 ) :
     ListAdapter<MyAdsDaum, MyAdsDaumViewHolder>(
         MyAdsDaumAdapterDiffUtil()
@@ -31,7 +32,7 @@ class MyAdsAdapter(
                 R.anim.anim
             )
         )
-        holder.bind(getItem(position)!!, clickListener, removeAdClickListener)
+        holder.bind(getItem(position)!!, clickListener, removeAdClickListener, editAdClickListener)
     }
 
 }
@@ -44,6 +45,7 @@ class MyAdsDaumViewHolder private constructor(private val binding: MyAdsCardItem
         myAds: MyAdsDaum,
         clickListener: ClickListener<MyAdsDaum>,
         removeAdClickListener: ClickListener<MyAdsDaum>,
+        editAdClickListener: ClickListener<MyAdsDaum>
     ) {
         binding.data = myAds
         val formatter = SimpleDateFormat("yyyy-MM-dd")
@@ -57,6 +59,7 @@ class MyAdsDaumViewHolder private constructor(private val binding: MyAdsCardItem
         }
         binding.clickListener = clickListener
         binding.deleteAd = removeAdClickListener
+        binding.editAd = editAdClickListener
         binding.executePendingBindings()
     }
 

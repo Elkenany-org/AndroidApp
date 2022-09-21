@@ -58,6 +58,22 @@ interface IStore {
         @Field("images") imageFile: String?,
     ): Call<GenericEntity<NewAdData?>>
 
+    @FormUrlEncoded
+    @POST("store/update-ads-store")
+    fun editAd(
+        @Header("android") device: String?,
+        @Header("Authorization") apiToken: String?,
+        @Field("id") adId: Long,
+        @Field("title") title: String?,
+        @Field("desc") description: String?,
+        @Field("phone") phone: String?,
+        @Field("salary") price: String?,
+        @Field("section_id") sectorId: Long?,
+        @Field("address") address: String?,
+        @Field("con_type") connection: String?,
+        @Field("images") imageFile: String?,
+    ): Call<GenericEntity<NewAdData?>>
+
     @GET("store/my-ads-store")
     fun getAllMyAdsListData(
         @Header("Authorization") apiToken: String?,
