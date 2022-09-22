@@ -12,7 +12,10 @@ import com.elkenany.R
 import com.elkenany.databinding.TableRowItemBinding
 import com.elkenany.entities.stock_data.ColumnsData
 
-class LocalStockDetailsAdapter(private val clickListener: ClickListener<ColumnsData>) :
+class LocalStockDetailsAdapter(
+    private val clickListener: ClickListener<ColumnsData>,
+    private val companyListener: ClickListener<ColumnsData>,
+) :
     ListAdapter<ColumnsData, ColumnsDataViewHolder>(
         ColumnsDataAdapterDiffUtil()
     ) {
@@ -24,7 +27,7 @@ class LocalStockDetailsAdapter(private val clickListener: ClickListener<ColumnsD
     }
 
     override fun onBindViewHolder(holder: ColumnsDataViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, clickListener)
+        holder.bind(getItem(position)!!, clickListener, companyListener)
     }
 
 }
@@ -35,6 +38,7 @@ class ColumnsDataViewHolder private constructor(private val binding: TableRowIte
     fun bind(
         columnsData: ColumnsData,
         clickListener: ClickListener<ColumnsData>,
+        companyListener: ClickListener<ColumnsData>,
     ) {
         binding.data = columnsData
         if (columnsData.type == "1") {
@@ -122,6 +126,7 @@ class ColumnsDataViewHolder private constructor(private val binding: TableRowIte
         } else {
             binding.prodFeedDateView.visibility = View.VISIBLE
         }
+        binding.companyListener = companyListener
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }

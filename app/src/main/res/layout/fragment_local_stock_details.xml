@@ -219,6 +219,22 @@
 					/>
 			</LinearLayout>
 			
+			<TextView
+				android:id="@+id/notice_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="20sp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="3sp"
+				android:background="@drawable/notice_message_shape"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:textColor="@color/green"
+				android:textSize="10sp"
+				android:visibility="gone"
+				tools:ignore="SmallSp"
+				/>
+			
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="50dp"

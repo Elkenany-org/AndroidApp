@@ -139,19 +139,19 @@
                                 android:textColor="@color/green"
                                 android:textSize="12sp"
                                 tools:ignore="HardcodedText,SmallSp" />
-
-                            <TextView
-                                android:id="@+id/rating_num"
-                                itemText="@{rateUsers}"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:layout_margin="5dp"
-                                android:fontFamily="@font/cairo_bold"
-                                android:gravity="center"
-                                android:textColor="@color/green"
-                                android:textSize="12sp"
-                                tools:ignore="HardcodedText,SmallSp" />
+    
+                            <!--                            <TextView-->
+                            <!--                                android:id="@+id/rating_num"-->
+                            <!--                                itemText="@{rateUsers}"-->
+                            <!--                                android:layout_width="wrap_content"-->
+                            <!--                                android:layout_height="wrap_content"-->
+                            <!--                                android:layout_gravity="center_vertical"-->
+                            <!--                                android:layout_margin="5dp"-->
+                            <!--                                android:fontFamily="@font/cairo_bold"-->
+                            <!--                                android:gravity="center"-->
+                            <!--                                android:textColor="@color/green"-->
+                            <!--                                android:textSize="12sp"-->
+                            <!--                                tools:ignore="HardcodedText,SmallSp" />-->
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
