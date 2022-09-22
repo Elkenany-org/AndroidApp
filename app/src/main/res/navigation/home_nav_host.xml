@@ -228,6 +228,10 @@
         <action
             android:id="@+id/action_localStockDetailsFragment_to_statisticsFragment"
             app:destination="@id/statisticsFragment" />
+        <action
+            android:id="@+id/action_localStockDetailsFragment_to_companyFragment"
+            app:destination="@id/companyFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/guideCompaniesFragment"

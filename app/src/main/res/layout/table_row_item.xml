@@ -1,335 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="data"
-            type="com.elkenany.entities.stock_data.ColumnsData" />
-
-        <variable
-            name="title"
-            type="String" />
-
-        <variable
-            name="image"
-            type="String" />
-
-        <variable
-            name="clickListener"
-            type="com.elkenany.ClickListener" />
-    </data>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="7dp"
-        android:onClick="@{()-> clickListener.onClick(data)}"
-        app:cardCornerRadius="7dp"
-        app:cardUseCompatPadding="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="2dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:ignore="UseCompoundDrawables">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="5dp">
-
-                    <ImageView
-                        imageUrl="@{data.image}"
-                        android:layout_width="25sp"
-                        android:layout_height="25sp"
-                        tools:ignore="ContentDescription" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/comp_name"
-                    itemText="@{data.name}"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:fontFamily="@font/cairo_bold"
-                    android:gravity="center"
-                    android:maxLines="2"
-                    android:textColor="@color/green"
-                    android:textSize="8sp"
-                    tools:ignore=",SmallSp" />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/comp_name_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_price"
-                itemText="@{data.price}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_price_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_change"
-                itemText="@{data.change}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_change_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-
-            <TextView
-                android:id="@+id/prod_categorize_name"
-                itemText="@{data.categorizeName}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/categorize_name_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_chargin_system_name"
-                itemText="@{data.chargingSystem}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/chargin_system_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_weight"
-                itemText="@{data.weight}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_weight_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_price_status"
-                itemText="@{data.priceStatus}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_price_status_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_age"
-                itemText="@{data.age}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_age_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_type"
-                itemText="@{data.productType}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_type_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_chick_type"
-                itemText="@{data.chickType}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_chick_type_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_weight_container"
-                itemText="@{data.weightContainer}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_weight_container_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_change_date"
-                itemText="@{data.changeDate}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_change_date_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/prod_feed_date"
-                itemText="@{data.feed}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:maxLines="2"
-                android:padding="5dp"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:id="@+id/prod_feed_date_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/statistics"
-                imageUrl="@{image}"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/statistics_title"
-                itemText="@{title}"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cairo_bold"
-                android:gravity="center"
-                android:textColor="@color/green"
-                android:textSize="8sp"
-                tools:ignore=",SmallSp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.stock_data.ColumnsData"
+			/>
+		
+		<variable
+			name="title"
+			type="String"
+			/>
+		
+		<variable
+			name="image"
+			type="String"
+			/>
+		
+		<variable
+			name="clickListener"
+			type="com.elkenany.ClickListener"
+			/>
+		
+		<variable
+			name="companyListener"
+			type="com.elkenany.ClickListener"
+			/>
+	</data>
+	
+	<androidx.cardview.widget.CardView
+		android:id="@+id/card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:elevation="7dp"
+		android:onClick="@{()-> clickListener.onClick(data)}"
+		app:cardCornerRadius="7dp"
+		app:cardUseCompatPadding="true"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layoutDirection="rtl"
+			android:orientation="horizontal"
+			android:paddingHorizontal="10dp"
+			android:paddingVertical="2dp"
+			>
+			
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				tools:ignore="UseCompoundDrawables"
+				>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/company_image_card"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					app:cardCornerRadius="5dp"
+					>
+					
+					<ImageView
+						imageUrl="@{data.image}"
+						android:layout_width="20dp"
+						android:layout_height="20dp"
+						tools:ignore="ContentDescription"
+						android:onClick="@{()-> companyListener.onClick(data)}"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<TextView
+					android:id="@+id/comp_name"
+					itemText="@{data.name}"
+					android:layout_width="50dp"
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:maxLines="2"
+					android:textColor="@color/green"
+					android:textSize="8sp"
+					tools:ignore=",SmallSp"
+					/>
+			</LinearLayout>
+			
+			<View
+				android:id="@+id/comp_name_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_price"
+				itemText="@{data.price}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_price_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_change"
+				itemText="@{data.change}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_change_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			
+			<TextView
+				android:id="@+id/prod_categorize_name"
+				itemText="@{data.categorizeName}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/categorize_name_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_chargin_system_name"
+				itemText="@{data.chargingSystem}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/chargin_system_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_weight"
+				itemText="@{data.weight}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_weight_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_price_status"
+				itemText="@{data.priceStatus}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_price_status_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_age"
+				itemText="@{data.age}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_age_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_type"
+				itemText="@{data.productType}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_type_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_chick_type"
+				itemText="@{data.chickType}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_chick_type_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_weight_container"
+				itemText="@{data.weightContainer}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_weight_container_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_change_date"
+				itemText="@{data.changeDate}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_change_date_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_feed_date"
+				itemText="@{data.feed}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_feed_date_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<ImageView
+				android:id="@+id/statistics"
+				imageUrl="@{image}"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				tools:ignore="ContentDescription"
+				/>
+			
+			<TextView
+				android:id="@+id/statistics_title"
+				itemText="@{title}"
+				android:layout_width="50dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:textColor="@color/green"
+				android:textSize="8sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
 </layout>

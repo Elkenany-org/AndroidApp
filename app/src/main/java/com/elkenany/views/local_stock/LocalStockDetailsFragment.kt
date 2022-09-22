@@ -122,7 +122,12 @@ class LocalStockDetailsFragment : Fragment() {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
-        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener {})
+        localStockDetailsAdapter = LocalStockDetailsAdapter(ClickListener {}, ClickListener {
+            requireView().findNavController()
+                .navigate(LocalStockDetailsFragmentDirections.actionLocalStockDetailsFragmentToCompanyFragment(
+                    it.memId!!.toLong(),
+                    it.name!!))
+        })
         binding.stockDataRecyclerView.adapter = localStockDetailsAdapter
 //        viewModel.getLocalStockDetailsData(args.id, "", args.sectorType.toString())
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -204,6 +209,15 @@ class LocalStockDetailsFragment : Fragment() {
         }
         viewModel.localStockDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
+                if (it.message.isNullOrEmpty()) {
+                    binding.noticeTv.visibility = View.GONE
+                } else {
+                    binding.noticeTv.apply {
+                        visibility = View.VISIBLE
+                        text = it.message
+                    }
+
+                }
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE
                 binding.stockDataRecyclerView.visibility = View.VISIBLE

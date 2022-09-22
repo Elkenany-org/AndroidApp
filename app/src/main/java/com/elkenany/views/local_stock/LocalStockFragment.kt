@@ -104,7 +104,7 @@ class LocalStockFragment : Fragment() {
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.apply {
-                    changeViewBtn.visibility = View.VISIBLE
+//                    changeViewBtn.visibility = View.VISIBLE
                     searchBar.visibility = View.VISIBLE
                 }
                 val list = it.fodSections + it.subSections
@@ -126,7 +126,7 @@ class LocalStockFragment : Fragment() {
 
             } else {
                 binding.apply {
-                    changeViewBtn.visibility = View.GONE
+//                    changeViewBtn.visibility = View.GONE
                     stockListRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.VISIBLE
                 }
@@ -139,7 +139,7 @@ class LocalStockFragment : Fragment() {
                     loadingProgressbar.visibility = View.VISIBLE
                     stockListRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.GONE
-                    changeViewBtn.visibility = View.GONE
+//                    changeViewBtn.visibility = View.GONE
                 }
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
