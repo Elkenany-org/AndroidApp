@@ -46,6 +46,7 @@ class CreateAdFragment : Fragment() {
     private lateinit var price: String
     private lateinit var address: String
     private val myArrayUri = ArrayList<String>()
+    private val myOldImage = ArrayList<String>()
     private val args: CreateAdFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +63,7 @@ class CreateAdFragment : Fragment() {
         if (adId != null) {
             binding.addAdBtn.visibility = View.GONE
             binding.editAdBtn.visibility = View.VISIBLE
+            viewModel.getAdDetailsData(adId!!.toLong())
         } else {
             binding.addAdBtn.visibility = View.VISIBLE
             binding.editAdBtn.visibility = View.GONE
@@ -140,10 +142,23 @@ class CreateAdFragment : Fragment() {
                     price,
                     sectorId!!.toLong(),
                     address,
+                    myOldImage.toString(),
                     myArrayUri.toString()
                 )
             }
 
+        }
+        viewModel.adDetailsData.observe(viewLifecycleOwner)
+        {
+            if (it != null) {
+                binding.apply {
+                    adTitleInput.setText(it.title.toString().trim())
+                    descriptionInput.setText(it.desc.toString().trim())
+                    addressInput.setText(it.address.toString().trim())
+                    phoneInput.setText(it.phone.toString().trim())
+                    priceInput.setText(it.salary.toString().trim())
+                }
+            }
         }
         binding.addAdBtn.setOnClickListener {
             title = binding.adTitleInput.text.toString().trim()
@@ -206,7 +221,7 @@ class CreateAdFragment : Fragment() {
                 200 -> {
                     Toast.makeText(
                         requireContext(),
-                        "تم إنشاء الإعلان بنجاح",
+                        "تمت العملية بنجاح",
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -220,7 +235,7 @@ class CreateAdFragment : Fragment() {
                     .show()
                 else -> Toast.makeText(
                     requireContext(),
-                    "حدث خطأ في إنشاء الإعلان",
+                    "حدث خطأ في اتمام العملية",
                     Toast.LENGTH_SHORT
                 )
                     .show()
@@ -257,12 +272,16 @@ class CreateAdFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            binding.imageIndicator.visibility = View.VISIBLE
             if (data?.clipData != null) {
+                binding.imageIndicator.apply {
+                    visibility = View.VISIBLE
+                    text = " تم إضافة${data.clipData!!.itemCount} صورة "
+                }
                 var i = 0
                 val cout = data.clipData!!.itemCount
                 binding.pickImageBtn.apply {

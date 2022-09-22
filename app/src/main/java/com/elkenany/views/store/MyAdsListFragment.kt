@@ -156,7 +156,7 @@ class MyAdsListFragment : Fragment() {
         with(builder)
         {
             setMessage("هل تريد حذف إعلان ' ${ad.title} ' ؟ ")
-            setPositiveButton("حذف") { _, _ ->
+            setPositiveButton("نعم إحذف الإعلان") { _, _ ->
                 viewModel.deleteAdFromDataBase(ad.id)
                 viewModel.getAllNewsData(sectorType)
             }
