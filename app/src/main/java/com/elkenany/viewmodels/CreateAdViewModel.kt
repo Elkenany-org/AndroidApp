@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.elkenany.api.auth.AuthImplementation.Companion.userApiToken
 import com.elkenany.api.store.IStoreImplementation
+import com.elkenany.entities.store.AdsDetailsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -14,15 +15,15 @@ import kotlinx.coroutines.launch
 class CreateAdViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
-    private val _createdAdd = MutableLiveData<Boolean?>(null)
     private val _exception = MutableLiveData<Int>()
     private val _loading = MutableLiveData(false)
+    private val _adDetailsData = MutableLiveData<AdsDetailsData?>()
     private val api = IStoreImplementation()
 
 
-    val createdAd: LiveData<Boolean?> get() = _createdAdd
     val exception: LiveData<Int> get() = _exception
     val loading: LiveData<Boolean> get() = _loading
+    val adDetailsData: LiveData<AdsDetailsData?> get() = _adDetailsData
 
     fun createNewAd(
         title: String?,
@@ -60,6 +61,14 @@ class CreateAdViewModel : ViewModel() {
         }
     }
 
+    fun getAdDetailsData(id: Long) {
+        _loading.value = true
+        uiScope.launch {
+            _adDetailsData.value = api.getAdDetailsData(id)
+            _loading.value = false
+        }
+    }
+
     fun editAd(
         adId: Long,
         title: String?,
@@ -68,9 +77,9 @@ class CreateAdViewModel : ViewModel() {
         price: String?,
         sectorId: Long?,
         address: String?,
-        imageFile: String?,
+        oldImages: String?,
+        newImages: String?,
     ) {
-        Log.i("ArrayList", imageFile.toString())
         _loading.value = true
         uiScope.launch {
             val reponse = api.editAd(
@@ -83,7 +92,8 @@ class CreateAdViewModel : ViewModel() {
                 sectorId,
                 address,
                 "mobile",
-                imageFile
+                oldImages,
+                newImages
             )
             if (reponse!!.error.isNullOrEmpty()) {
                 _exception.value = 200

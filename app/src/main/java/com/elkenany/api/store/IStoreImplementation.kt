@@ -152,7 +152,8 @@ class IStoreImplementation {
         sectorId: Long?,
         address: String?,
         connection: String?,
-        imageFile: String?,
+        oldImages: String?,
+        newImages: String?,
     ): GenericEntity<NewAdData?>? {
         return try {
             val response = IStoreHandler.singleton.editAd(
@@ -166,10 +167,12 @@ class IStoreImplementation {
                 sectorId,
                 address,
                 connection,
-                imageFile
+                oldImages,
+                newImages
             ).await()
             response
         } catch (e: HttpException) {
+            Log.i("createNewAd", e.message.toString())
             GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("createNewAd", e.message.toString())
