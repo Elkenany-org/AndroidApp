@@ -2,7 +2,9 @@
 
 package com.elkenany.views.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,14 +25,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 
+const val SHARED_PREFRENCES = "user_credentials"
 
 class LoginFragment : Fragment() {
     private lateinit var facebookCallbackManager: CallbackManager
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LoginViewModel
-    private lateinit var email: String
-    private lateinit var password: String
+    private lateinit var sharedPreferences: SharedPreferences
+    private var email: String? = null
+    private var password: String? = null
 
 
     override fun onCreateView(
@@ -38,27 +42,30 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
+        sharedPreferences =
+            requireActivity().getSharedPreferences(SHARED_PREFRENCES, Context.MODE_PRIVATE)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
-        viewModel.initViewModel(requireContext())
+//        viewModel.initViewModel(requireContext(), requireActivity())
+        loadSavedData()
         facebookCallbackManager = CallbackManager.Factory.create()
         binding.lifecycleOwner = viewLifecycleOwner
         // showing app logo inside ImageView
         binding.signInBtn.setOnClickListener {
             email = binding.emailInput.text.toString().trim()
             password = binding.passwordInput.text.toString().trim()
-            if (email.isEmpty() && password.isEmpty()) {
+            if (email.isNullOrEmpty() && password.isNullOrEmpty()) {
                 Toast.makeText(this.context, "يرجي ادخال البيانات كاملة", Toast.LENGTH_LONG).show()
-            } else if (email.isEmpty()) {
+            } else if (email.isNullOrEmpty()) {
                 binding.emailInput.error = "يرجي ادخال الايميل"
                 binding.emailInput.requestFocus()
-            } else if (password.isEmpty()) {
+            } else if (password.isNullOrEmpty()) {
                 binding.passwordInput.error = "يرجي ادخال الرقم السري"
                 binding.passwordInput.requestFocus()
             } else {
                 //ToDo --> implement viewModel.SigninWithEmailAndPassword function here
-                viewModel.signInWithEmailAndPassword(email, password)
+                viewModel.signInWithEmailAndPassword(email!!, password!!)
             }
 
         }
@@ -92,6 +99,7 @@ class LoginFragment : Fragment() {
             if (it != null) {
                 if (it) {
                     // navigation to Home screen
+                    saveUserCredentials()
                     requireView().findNavController()
                         .navigate(R.id.action_loginFragment_to_homeFragment)
                 }
@@ -102,6 +110,7 @@ class LoginFragment : Fragment() {
                 200 -> Toast.makeText(context, "تم تسجيل الدخول", Toast.LENGTH_LONG).show()
                 404 -> Toast.makeText(context, "الأيميل غير موجود", Toast.LENGTH_LONG).show()
                 406 -> Toast.makeText(context, "كلمة المرور خاطئة", Toast.LENGTH_LONG).show()
+                300 -> {}
                 else -> Toast.makeText(context, "تعذر تسجيل الدخول", Toast.LENGTH_LONG).show()
             }
         }
@@ -153,6 +162,28 @@ class LoginFragment : Fragment() {
         if (requestCode == 1000) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             viewModel.handleSignInResult(task)
+        }
+    }
+
+    private fun saveUserCredentials() {
+        with(sharedPreferences.edit()) {
+            putString("email", email)
+            putString("password", password)
+            apply()
+        }
+
+    }
+
+
+    private fun loadSavedData() {
+        email = sharedPreferences.getString("email", null)
+        password = sharedPreferences.getString("password", null)
+        if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+            binding.emailInput.setText(email.toString())
+            binding.passwordInput.setText(password.toString())
+            viewModel.signInWithEmailAndPassword(email!!, password!!)
+        } else {
+            viewModel.initViewModel(requireContext())
         }
     }
 }

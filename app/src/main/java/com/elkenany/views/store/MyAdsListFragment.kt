@@ -1,5 +1,6 @@
 package com.elkenany.views.store
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
@@ -32,13 +33,16 @@ class MyAdsListFragment : Fragment() {
     //    private lateinit var localStockSectorAdapter: MyAdsSectorsAdapter
     private lateinit var sectorList: List<LocalStockSector>
     private var sectorType: String = "poultry"
+    private var sectorName: String? = null
 
     override fun onResume() {
         super.onResume()
         binding.sectorAutoCompelete.hint = "الداجني"
+        sectorName = "الداجني"
         viewModel.getAllNewsData(sectorType)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -61,6 +65,7 @@ class MyAdsListFragment : Fragment() {
         binding.sectorAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
             binding.sectorAutoCompelete.hint = adapterView.getItemAtPosition(position).toString()
             sectorType = sectorList[position].type.toString()
+            sectorName = sectorList[position].name.toString()
             viewModel.getAllNewsData(sectorType)
         }
 
@@ -84,7 +89,8 @@ class MyAdsListFragment : Fragment() {
             when (it) {
                 404 -> {
                     binding.apply {
-                        errorMessage.text = "لا يوجد لديك إعلانات"
+                        errorMessage.text =
+                            "لا يوجد لديك إعلانات في القطاع $sectorName"
                         errorMessage.visibility = View.VISIBLE
                     }
                 }

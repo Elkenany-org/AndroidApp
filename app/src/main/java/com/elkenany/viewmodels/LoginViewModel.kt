@@ -2,6 +2,7 @@
 
 package com.elkenany.viewmodels
 
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,7 @@ class LoginViewModel : ViewModel() {
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
 
+
     val loading: LiveData<Boolean> get() = _loading
     val login: LiveData<Boolean?> get() = _login
     val exception: LiveData<Int?> get() = _exception
@@ -64,6 +66,10 @@ class LoginViewModel : ViewModel() {
                 406 -> {
                     _exception.value = 406
                     false
+                }
+                300 -> {
+                    _exception.value = 300
+                    null
                 }
                 else -> {
                     _exception.value = 400
@@ -188,4 +194,8 @@ class LoginViewModel : ViewModel() {
             Log.i("googleFailed", e.message.toString())
         }
     }
+
+
+
+
 }
