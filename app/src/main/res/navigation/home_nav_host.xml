@@ -208,6 +208,10 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_newsDetailsFragment_self"
+            app:destination="@id/newsDetailsFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/localStockDetailsFragment"

@@ -34,6 +34,7 @@ class AdDetailsFragment : Fragment() {
     private val args: AdDetailsFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
+        binding.clickable = true
         viewModel.getAdDetailsData(args.id)
     }
 
@@ -46,6 +47,7 @@ class AdDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
 //        viewModel.getAdDetailsData(args.id)
+        binding.clickable = true
         binding.chattingBtn.setOnClickListener {
 //            viewModel.startChat(args.id)
             callThisNumber(binding.adPhone.text.toString())
