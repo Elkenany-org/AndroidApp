@@ -134,6 +134,7 @@ class GuideCompaniesFragment : Fragment() {
         }
         viewModel.companiesDataData.observe(viewLifecycleOwner) {
             if (it != null) {
+                binding.fodderExternalLayout.visibility = View.VISIBLE
                 binding.companyListRecyclerView.visibility = View.VISIBLE
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
@@ -149,6 +150,7 @@ class GuideCompaniesFragment : Fragment() {
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
+                binding.fodderExternalLayout.visibility = View.GONE
                 binding.loadingProgressbar.visibility = View.VISIBLE
                 binding.companyListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
