@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
@@ -25,10 +26,10 @@ class NewsDetailsFragment : Fragment() {
     private lateinit var viewModel: NewsDetailsViewModel
     private lateinit var moreNewsAdapter: NewsDaumAdapter
     private val args: NewsDetailsFragmentArgs by navArgs()
-    override fun onResume() {
-        super.onResume()
-        viewModel.getAllNewsData(args.id)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        viewModel.getAllNewsData(args.id)
+//    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
@@ -40,14 +41,16 @@ class NewsDetailsFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_news_details, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsDetailsViewModel::class.java]
-//        viewModel.getAllNewsData(args.id)
+        viewModel.getAllNewsData(args.id)
         binding.webView.settings.apply {
             javaScriptEnabled = true
             javaScriptCanOpenWindowsAutomatically = true
         }
 
         moreNewsAdapter = NewsDaumAdapter(ClickListener {
-            viewModel.getAllNewsData(it.id!!.toInt())
+//            viewModel.getAllNewsData(it.id!!.toInt())
+            requireView().findNavController()
+                .navigate(NewsDetailsFragmentDirections.actionNewsDetailsFragmentSelf(it.id!!.toInt()))
         })
         binding.moreNewsRecyclerView.apply {
             adapter = moreNewsAdapter
@@ -73,10 +76,12 @@ class NewsDetailsFragment : Fragment() {
                     "text/html",
                     "UTF-8")
                 if (it.news.isNotEmpty()) {
+                    binding.moreNewsTv.visibility = View.VISIBLE
                     moreNewsAdapter.submitList(it.news)
                     binding.moreNewsRecyclerView.visibility = View.VISIBLE
                     binding.noMoreNewsMessage.visibility = View.GONE
                 } else {
+                    binding.moreNewsTv.visibility = View.GONE
                     binding.moreNewsRecyclerView.visibility = View.GONE
                     binding.noMoreNewsMessage.visibility = View.VISIBLE
                 }
