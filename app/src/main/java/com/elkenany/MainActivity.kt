@@ -13,6 +13,7 @@ import com.facebook.LoggingBehavior
 import com.facebook.appevents.AppEventsLogger
 import com.google.firebase.messaging.FirebaseMessaging
 
+const val SHARED_PREFRENCES = "user_credentials"
 
 class MainActivity : AppCompatActivity() {
 

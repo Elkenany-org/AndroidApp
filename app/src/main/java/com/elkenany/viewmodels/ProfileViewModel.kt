@@ -1,9 +1,11 @@
 package com.elkenany.viewmodels
 
+import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elkenany.SHARED_PREFRENCES
 import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.auth.AuthImplementation.Companion.auth
 import com.elkenany.entities.auth_data.UserAuthData
@@ -26,10 +28,22 @@ class ProfileViewModel : ViewModel() {
         _userData.value = auth
     }
 
-    fun signOutFromGoogle(context: Context) {
+    fun signOutFromGoogle(context: Context, activity: Activity) {
         uiScope.launch {
+            clearUserSharedPreferences(activity)
             api.signOutFromGoogle(context)
             _loggedOut.value = true
+        }
+    }
+
+    private fun clearUserSharedPreferences(activity: Activity) {
+        val sharedPreferences =
+            activity.getSharedPreferences(SHARED_PREFRENCES, Context.MODE_PRIVATE)
+                ?: return
+        with(sharedPreferences.edit()) {
+            putString("email", null)
+            putString("password", null)
+            apply()
         }
     }
 

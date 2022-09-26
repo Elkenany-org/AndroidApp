@@ -91,8 +91,12 @@ class AuthImplementation {
             val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
             Log.i("login response", "Login response is : $response")
             userApiToken = response.data!!.apiToken
-            getAllUserData(userApiToken)
-            200
+            val t = getAllUserData(userApiToken)
+            if (t != null) {
+                200
+            } else {
+                300
+            }
         } catch (e: HttpException) {
             Log.i("loginWithEmailAndPassword", e.code().toString())
             e.code()
@@ -123,7 +127,7 @@ class AuthImplementation {
             )
                 .await()
             userApiToken = response.data!!.apiToken
-            getAllUserData(userApiToken)
+            getAllUserData(response.data.apiToken)
             200
         } catch (e: HttpException) {
             Log.i("registerWithEmailAndPassword", "register failed : ${e.message}")

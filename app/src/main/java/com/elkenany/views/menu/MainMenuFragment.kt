@@ -117,7 +117,7 @@ class MainMenuFragment : Fragment() {
         {
             setMessage("هل تريد تسجيل الخروج ؟ ")
             setPositiveButton("تسجيل خروج") { _, _ ->
-                viewModel.signOutFromGoogle(context)
+                viewModel.signOutFromGoogle(context, requireActivity())
             }
             setNegativeButton("الغاء", null)
             show()
