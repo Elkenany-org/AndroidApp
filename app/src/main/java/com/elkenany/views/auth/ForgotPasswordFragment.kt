@@ -85,22 +85,37 @@ class ForgotPasswordFragment : Fragment() {
             if (it == true) {
                 requireView().findNavController()
                     .navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToHomeFragment())
-            } else if (it == false)  {
+            } else if (it == false) {
                 Toast.makeText(requireContext(),
                     "فشل في اتمام العملية برجاء المحاولة مرة اخري",
                     Toast.LENGTH_SHORT).show()
             }
         }
         viewModel.passwordRecoveryCode.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.apply {
-                    confirmEmailLayout.visibility = View.GONE
-                    confirmCodeLayout.visibility = View.VISIBLE
+            when (it) {
+                200 -> {
+                    binding.apply {
+                        confirmEmailLayout.visibility = View.GONE
+                        confirmCodeLayout.visibility = View.VISIBLE
+                    }
                 }
-            } else {
-                binding.apply {
-                    confirmEmailLayout.visibility = View.VISIBLE
-                    confirmCodeLayout.visibility = View.GONE
+                404 -> {
+                    binding.apply {
+                        confirmEmailLayout.visibility = View.VISIBLE
+                        confirmCodeLayout.visibility = View.GONE
+                    }
+                    Toast.makeText(requireContext(),
+                        "لم يتم العثور علي الأيميل",
+                        Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    binding.apply {
+                        confirmEmailLayout.visibility = View.VISIBLE
+                        confirmCodeLayout.visibility = View.GONE
+                    }
+                    Toast.makeText(requireContext(),
+                        "تعذر إتمام العملية",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
         }

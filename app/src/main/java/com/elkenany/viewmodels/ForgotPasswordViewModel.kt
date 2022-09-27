@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.elkenany.api.auth.AuthImplementation
-import com.elkenany.entities.auth_data.PasswordRecoveryData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -13,13 +12,13 @@ import kotlinx.coroutines.launch
 class ForgotPasswordViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
-    private val _passwordRecoveryCode = MutableLiveData<PasswordRecoveryData?>()
+    private val _passwordRecoveryCode = MutableLiveData<Int>()
     private val _resetPasswordSuccess = MutableLiveData<Boolean?>(null)
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
 
 
-    val passwordRecoveryCode: LiveData<PasswordRecoveryData?> get() = _passwordRecoveryCode
+    val passwordRecoveryCode: LiveData<Int> get() = _passwordRecoveryCode
     val resetPasswordSuccess: LiveData<Boolean?> get() = _resetPasswordSuccess
     val loading: LiveData<Boolean> get() = _loading
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import com.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.elkenany.entities.auth_data.AuthData
-import com.elkenany.entities.auth_data.PasswordRecoveryData
 import com.elkenany.entities.auth_data.UserAuthData
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import retrofit2.HttpException
@@ -167,19 +166,19 @@ class AuthImplementation {
         }
     }
 
-    suspend fun recoverPasswordWithEmail(email: String?): PasswordRecoveryData? {
+    suspend fun recoverPasswordWithEmail(email: String?): Int {
         return try {
-            val response = AuthHandler.singleton.recoverPasswordWithEmail(email).await()
-            response.data
+            AuthHandler.singleton.recoverPasswordWithEmail(email).await()
+            200
         } catch (e: HttpException) {
             Log.i("recoverPasswordWithEmail", "Login with google failed : ${e.message}")
-            null
+            e.code()
         } catch (e: SocketTimeoutException) {
             Log.i("recoverPasswordWithEmail", e.message.toString())
-            null
+            400
         } catch (e: Exception) {
             Log.i("recoverPasswordWithEmail", e.message.toString())
-            null
+            400
         }
     }
 

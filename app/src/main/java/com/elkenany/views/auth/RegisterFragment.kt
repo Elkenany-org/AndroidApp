@@ -4,6 +4,7 @@ package com.elkenany.views.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +18,14 @@ import com.elkenany.api.retrofit_configs.GoogleAuth_Config
 import com.elkenany.databinding.FragmentRegisterBinding
 import com.elkenany.viewmodels.RegisterViewModel
 import com.elkenany.viewmodels.ViewModelFactory
+import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
 
 
 class RegisterFragment : Fragment() {
+    private lateinit var facebookCallbackManager: CallbackManager
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: RegisterViewModel
@@ -39,7 +42,7 @@ class RegisterFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[RegisterViewModel::class.java]
-
+        facebookCallbackManager = CallbackManager.Factory.create()
         //Register button onClick
         binding.signUpBtn.setOnClickListener {
             name = binding.nameInput.text.toString().trim()
@@ -78,6 +81,7 @@ class RegisterFragment : Fragment() {
         }
         binding.facebookSignupBtn.setOnClickListener {
             // ToDo --> implement signUpWithFacebook function here
+            viewModel.signUpWithFacebook(this, facebookCallbackManager)
         }
         binding.haveAccountBtn.setOnClickListener {
             // ToDo --> implement navigation to login fragment here
@@ -122,6 +126,11 @@ class RegisterFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        try {
+            facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
+        } catch (e: Exception) {
+            Log.i("LoginInformation", "cancel")
+        }
         if (requestCode == 1000) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             viewModel.handleSignInResult(task)
