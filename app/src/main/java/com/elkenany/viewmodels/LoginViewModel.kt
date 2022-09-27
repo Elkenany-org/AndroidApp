@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elkenany.MainActivity
 import com.elkenany.api.auth.AuthImplementation
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -35,6 +36,7 @@ class LoginViewModel : ViewModel() {
     private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
+    private val _token = MainActivity.getToken().toString()
 
 
     val loading: LiveData<Boolean> get() = _loading
@@ -46,7 +48,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             val account = GoogleSignIn.getLastSignedInAccount(context)
             if (account != null) {
-                signInGoogle(null, account.email, "1", account.id)
+                signInGoogle(null, account.email,account.id)
             }
         }
     }
@@ -81,12 +83,12 @@ class LoginViewModel : ViewModel() {
     }
 
     //this function fires when the user wants to sign in with google account
-    fun signInGoogle(name: String?, email: String?, device_token: String?, google_id: String?) {
+    fun signInGoogle(name: String?, email: String?, google_id: String?) {
         _loading.value = true
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithGoogle(name, email, device_token, google_id)
+                    api.reLogSocialWithGoogle(name, email, _token, google_id)
                 if (response != null) {
                     _login.value = true
                 } else {
@@ -102,12 +104,12 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun signInFacebook(name: String?, email: String?, device_token: String?, facebook_id: String?) {
+   private fun signInFacebook(name: String?, email: String?, facebook_id: String?) {
         _loading.value = true
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithFaceBook(name, email, device_token, facebook_id)
+                    api.reLogSocialWithFaceBook(name, email, _token, facebook_id)
                 if (response != null) {
                     _login.value = true
                 } else {
@@ -156,7 +158,6 @@ class LoginViewModel : ViewModel() {
                         try {
                             signInFacebook(obj!!.getString("name"),
                                 obj.getString("email"),
-                                "1",
                                 obj.getString("id"))
                         } catch (e: JSONException) {
                             Log.i("LoginInformation", "failed : ${e.message.toString()}")
@@ -187,7 +188,6 @@ class LoginViewModel : ViewModel() {
             val account = completedTask.getResult(ApiException::class.java)
             signInGoogle("${account.givenName} + ${account.familyName}",
                 "${account.email}",
-                "1",
                 "${account.id}")
             Log.i("account", account.toString())
         } catch (e: ApiException) {
