@@ -103,6 +103,7 @@ class RegisterViewModel : ViewModel() {
                                 obj.getString("id"))
                         } catch (e: JSONException) {
                             Log.i("LoginInformation", "failed : ${e.message.toString()}")
+                            _exception.value = 400
                         }
 
                     }
@@ -115,10 +116,12 @@ class RegisterViewModel : ViewModel() {
 
                 override fun onCancel() {
                     Log.i("LoginInformation", "cancel")
+                    _exception.value = 400
                 }
 
                 override fun onError(error: FacebookException) {
                     Log.i("LoginInformation", "failure")
+                    _exception.value = 400
                 }
             })
 

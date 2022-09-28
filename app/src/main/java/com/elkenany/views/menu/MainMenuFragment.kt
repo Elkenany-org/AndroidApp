@@ -81,7 +81,7 @@ class MainMenuFragment : Fragment() {
         }
         binding.rateBtn.setOnClickListener {
             // ToDo -> implement rateFunction here
-            navigateToGooglePlay("com.Elkenany")
+            navigateToGooglePlay("com.elkenany")
         }
 
         binding.notificationBtn.setOnClickListener {

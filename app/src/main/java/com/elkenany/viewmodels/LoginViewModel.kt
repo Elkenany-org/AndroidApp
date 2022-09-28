@@ -48,7 +48,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             val account = GoogleSignIn.getLastSignedInAccount(context)
             if (account != null) {
-                signInGoogle(null, account.email,account.id)
+                signInGoogle(null, account.email, account.id)
             }
         }
     }
@@ -104,7 +104,7 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-   private fun signInFacebook(name: String?, email: String?, facebook_id: String?) {
+    private fun signInFacebook(name: String?, email: String?, facebook_id: String?) {
         _loading.value = true
         uiScope.launch {
             try {
@@ -112,6 +112,7 @@ class LoginViewModel : ViewModel() {
                     api.reLogSocialWithFaceBook(name, email, _token, facebook_id)
                 if (response != null) {
                     _login.value = true
+                    _exception.value = 200
                 } else {
                     _exception.value = 400
                     _login.value = false
@@ -161,6 +162,7 @@ class LoginViewModel : ViewModel() {
                                 obj.getString("id"))
                         } catch (e: JSONException) {
                             Log.i("LoginInformation", "failed : ${e.message.toString()}")
+                            _exception.value = 400
                         }
 
                     }
@@ -173,10 +175,12 @@ class LoginViewModel : ViewModel() {
 
                 override fun onCancel() {
                     Log.i("LoginInformation", "cancel")
+                    _exception.value = 400
                 }
 
                 override fun onError(error: FacebookException) {
                     Log.i("LoginInformation", "failure")
+                    _exception.value = 400
                 }
             })
 
@@ -190,12 +194,12 @@ class LoginViewModel : ViewModel() {
                 "${account.email}",
                 "${account.id}")
             Log.i("account", account.toString())
+            _exception.value = 200
         } catch (e: ApiException) {
             Log.i("googleFailed", e.message.toString())
+            _exception.value = 400
         }
     }
-
-
 
 
 }
