@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10dp"
+		tools:context=".views.shows.ShowsFragment"
+		>
+		
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center_horizontal"
+			android:text="@string/shows_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		
+		<RelativeLayout
+			android:id="@+id/stock_page_layout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/app_bar_title"
+			android:orientation="vertical"
+			android:padding="5dp"
+			tools:context=".views.local_stock.LocalStockFragment"
+			tools:ignore="UselessParent"
+			>
+			
+			<!-- TODO: Update blank fragment layout -->
+			
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/banners_recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:ignore="SpeakableTextPresentCheck"
+				tools:listitem="@layout/banners_card_view_item"
+				/>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/logos_recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/banners_recycler_view"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:ignore="SpeakableTextPresentCheck"
+				tools:listitem="@layout/logo_card_view_item"
+				/>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/sectors_recycler_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/logos_recycler_view"
+				android:layout_gravity="center_horizontal"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:listitem="@layout/sector_item"
+				/>
+			
+			<RelativeLayout
+				android:id="@+id/relative_layout1"
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:layout_below="@id/sectors_recycler_view"
+				android:layout_margin="5dp"
+				>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/search_bar_card"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:layout_margin="10sp"
+					app:cardCornerRadius="5sp"
+					app:cardElevation="7dp"
+					>
+					
+					<EditText
+						android:id="@+id/search_bar"
+						android:layout_width="250dp"
+						android:layout_height="wrap_content"
+						android:layout_below="@id/app_bar_title"
+						android:layout_centerHorizontal="true"
+						android:layout_gravity="center_horizontal"
+						android:background="@color/white"
+						android:drawableEnd="@drawable/ic_search_logo"
+						android:drawablePadding="10dp"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/homeSearch"
+						android:inputType="textLongMessage"
+						android:maxLines="1"
+						android:padding="5dp"
+						android:textColorHint="@color/green"
+						android:textSize="15sp"
+						tools:ignore="Autofill,TextFields,TouchTargetSizeCheck"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<!--                <ImageButton-->
+				<!--                    android:id="@+id/change_view_btn"-->
+				<!--                    android:layout_width="wrap_content"-->
+				<!--                    android:layout_height="wrap_content"-->
+				<!--                    android:layout_alignParentEnd="true"-->
+				<!--                    android:layout_centerInParent="true"-->
+				<!--                    android:background="@color/white"-->
+				<!--                    android:src="@drawable/ic_baseline_view_list_24"-->
+				<!--                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck"-->
+				<!--                    />-->
+			
+			</RelativeLayout>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/shows_list_recycler_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/relative_layout1"
+				android:layout_gravity="center_horizontal"
+				tools:listitem="@layout/big_recycler_item_with_details"
+				/>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_below="@id/relative_layout1"
+				>
+				
+				<ProgressBar
+					android:id="@+id/loading_progressbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:indeterminateDrawable="@drawable/custom_progress_bar"
+					android:visibility="gone"
+					/>
+				
+				<TextView
+					android:id="@+id/error_message"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:layout_gravity="center"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:text="@string/failed_to_receive_data_msg"
+					android:textColor="@color/green"
+					android:textSize="18sp"
+					android:visibility="gone"
+					/>
+			
+			
+			</RelativeLayout>
+		</RelativeLayout>
+	</RelativeLayout>
+</layout>
