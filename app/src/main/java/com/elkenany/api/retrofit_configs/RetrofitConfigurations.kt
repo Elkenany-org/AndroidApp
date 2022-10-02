@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 //this base url for published server
-const val BASE_URL = "https://elkenany.com/api/"
+const val BASE_URL = "https://admin.elkenany.com/api/"
 
 ////this base url for testing server
 //const val BASE_URL = "https://test.elkenany.com/api/"

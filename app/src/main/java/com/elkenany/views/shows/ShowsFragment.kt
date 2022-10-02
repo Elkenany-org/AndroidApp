@@ -1,6 +1,7 @@
 package com.elkenany.views.shows
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
+import com.elkenany.views.shows.adapter.ShowsAdapter
 
 class ShowsFragment : Fragment() {
     private lateinit var binding: FragmentShowsBinding
@@ -23,12 +25,13 @@ class ShowsFragment : Fragment() {
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
+    private lateinit var showsAdapter: ShowsAdapter
 
     private var sectorType: String = "poultry"
     private var search: String? = null
-    private var sort: Long? = 0
-    private var cityId: Long? = 0
-    private var countryId: Long? = 0
+    private var sort: Long? = null
+    private var cityId: Long? = null
+    private var countryId: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,10 @@ class ShowsFragment : Fragment() {
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
+        showsAdapter = ShowsAdapter(ClickListener { })
+        binding.showsListRecyclerView.apply {
+            adapter = showsAdapter
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
@@ -65,13 +72,16 @@ class ShowsFragment : Fragment() {
             }
         }
         viewModel.showsStoreData.observe(viewLifecycleOwner) {
+
             if (it != null) {
+                Log.i("showsListData", it.data.toString())
                 binding.apply {
-                    showsListRecyclerView.visibility = View.GONE
+                    showsListRecyclerView.visibility = View.VISIBLE
                 }
                 bannersAdapter.submitList(it.banners)
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
+                showsAdapter.submitList(it.data)
             } else {
                 binding.apply {
                     loadingProgressbar.visibility = View.VISIBLE

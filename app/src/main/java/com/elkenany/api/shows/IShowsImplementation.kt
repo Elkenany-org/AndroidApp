@@ -16,7 +16,12 @@ class IShowsImplementation {
     ): ShowsListData? {
         return try {
             val response =
-                IShowsHandler.singleton.getAllShowsData(sectorType, search, sort, cityId, countryId)
+                IShowsHandler.singleton.getAllShowsData(true,
+                    sectorType,
+                    search,
+                    sort,
+                    cityId,
+                    countryId)
                     .await()
             response.data
         } catch (e: HttpException) {
