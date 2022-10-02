@@ -16,6 +16,13 @@ data class HomeServiceData(
     val serviceMagazine: List<ServiceMagazine>?,
 )
 
+data class HomeServiceDaum(
+    val id: Long?,
+    val name: String?,
+    val type: String?,
+    val image: String?,
+)
+
 data class ServiceLogo(
     val id: Long?,
     val link: String?,
