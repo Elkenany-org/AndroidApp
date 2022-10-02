@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.shows_data.ShowsData"
+			/>
+		
+		<variable
+			name="date"
+			type="String"
+			/>
+		
+		<variable
+			name="followers"
+			type="String"
+			/>
+		
+		<variable
+			name="clickListener"
+			type="com.elkenany.ClickListener"
+			/>
+	</data>
+	
+	
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="155dp"
+		android:layoutDirection="rtl"
+		android:onClick="@{()-> clickListener.onClick(data)}"
+		app:cardCornerRadius="7dp"
+		app:cardUseCompatPadding="true"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_margin="7dp"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<ImageView
+					android:id="@+id/show_imgview"
+					imageUrl="@{data.image.toString()}"
+					android:layout_width="100dp"
+					android:layout_height="match_parent"
+					android:scaleType="fitXY"
+					tools:ignore="ContentDescription,ImageContrastCheck"
+					/>
+			</androidx.cardview.widget.CardView>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginHorizontal="7dp"
+				android:layout_marginVertical="10dp"
+				android:gravity="bottom"
+				tools:ignore="UselessLeaf"
+				>
+				
+				<TextView
+					android:id="@+id/show_name_txtview"
+					itemText="@{data.name}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentStart="true"
+					android:ellipsize="end"
+					android:fontFamily="@font/cairo_bold"
+					android:maxLines="1"
+					android:textColor="@color/green"
+					android:textSize="14sp"
+					tools:ignore="HardcodedText"
+					/>
+				
+				<TextView
+					android:id="@+id/show_description_txtview"
+					itemText="@{data.desc}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@id/show_name_txtview"
+					android:layout_marginTop="7dp"
+					android:ellipsize="end"
+					android:fontFamily="@font/cairo_regular"
+					android:gravity="center_vertical"
+					android:maxLines="2"
+					android:textColor="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText"
+					/>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_below="@id/show_description_txtview"
+					android:gravity="bottom">
+					
+					<TextView
+						android:id="@+id/location_txtview"
+						itemText="@{data.address}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_above="@id/intersted_people_txtview"
+						android:layout_marginHorizontal="2.5dp"
+						android:layout_marginVertical="1dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_regular"
+						android:gravity="center"
+						android:textColor="@color/green"
+						android:textSize="9sp"
+						app:drawableStartCompat="@drawable/stroke_location"
+						tools:ignore="RelativeOverlap,SmallSp"
+						/>
+					
+					<TextView
+						android:id="@+id/intersted_people_txtview"
+						itemText="@{followers}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:layout_marginHorizontal="2.5dp"
+						android:layout_marginVertical="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_regular"
+						android:gravity="center"
+						android:textColor="@color/green"
+						android:textSize="9sp"
+						app:drawableStartCompat="@drawable/goup_people"
+						tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp"
+						/>
+					
+					<TextView
+						android:id="@+id/date_txtview"
+						itemText="@{date}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentBottom="true"
+						android:layout_marginHorizontal="2.5dp"
+						android:layout_marginVertical="5dp"
+						android:layout_toLeftOf="@id/intersted_people_txtview"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_regular"
+						android:gravity="center"
+						android:textColor="@color/green"
+						android:textSize="9sp"
+						app:drawableStartCompat="@drawable/stroke_calender"
+						tools:ignore="RelativeOverlap,RtlHardcoded,SmallSp"
+						/>
+					
+					<androidx.appcompat.widget.AppCompatButton
+						android:id="@+id/intersted_btn"
+						android:layout_width="60dp"
+						android:layout_height="25dp"
+						android:layout_alignParentEnd="true"
+						android:layout_alignParentBottom="true"
+						android:layout_marginStart="7dp"
+						android:layout_marginEnd="7dp"
+						android:layout_marginBottom="1dp"
+						android:background="@drawable/primary_btn_shape"
+						android:fontFamily="@font/cairo_regular"
+						android:text="@string/intrested_title"
+						android:textColor="@color/green"
+						android:textSize="12sp"
+						tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
+						/>
+				</RelativeLayout>
+			</RelativeLayout>
+		
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</layout>
