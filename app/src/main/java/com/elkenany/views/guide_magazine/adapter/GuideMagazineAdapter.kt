@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
-import com.elkenany.databinding.ShowsCardItemBinding
-import com.elkenany.entities.shows_data.ShowsData
+import com.elkenany.databinding.MagazineCardItemBinding
+import com.elkenany.entities.guide_magazine.MagazineDaum
 import java.text.SimpleDateFormat
 
-class GuideMagazineAdapter(private val clickListener: ClickListener<ShowsData>) :
-    ListAdapter<ShowsData, ShowsAdapterViewHolder>(
+class GuideMagazineAdapter(private val clickListener: ClickListener<MagazineDaum>) :
+    ListAdapter<MagazineDaum, ShowsAdapterViewHolder>(
         ShowsAdapterDiffUtil()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowsAdapterViewHolder {
@@ -25,17 +25,12 @@ class GuideMagazineAdapter(private val clickListener: ClickListener<ShowsData>) 
 
 }
 
-class ShowsAdapterViewHolder private constructor(private val binding: ShowsCardItemBinding) :
+class ShowsAdapterViewHolder private constructor(private val binding: MagazineCardItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SimpleDateFormat")
-    fun bind(data: ShowsData, clickListener: ClickListener<ShowsData>) {
+    fun bind(data: MagazineDaum, clickListener: ClickListener<MagazineDaum>) {
         binding.data = data
-        binding.followers = "${data.viewCount} متابع"
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        val text = data.date
-        val date = text?.let { formatter.parse(it) }
-        binding.date = date?.let { formatter.format(it).toString() }
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }
@@ -43,19 +38,19 @@ class ShowsAdapterViewHolder private constructor(private val binding: ShowsCardI
     companion object {
         fun from(parent: ViewGroup): ShowsAdapterViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ShowsCardItemBinding.inflate(layoutInflater, parent, false)
+            val binding = MagazineCardItemBinding.inflate(layoutInflater, parent, false)
             return ShowsAdapterViewHolder(binding)
         }
     }
 }
 
 
-class ShowsAdapterDiffUtil : DiffUtil.ItemCallback<ShowsData>() {
-    override fun areItemsTheSame(oldItem: ShowsData, newItem: ShowsData): Boolean {
+class ShowsAdapterDiffUtil : DiffUtil.ItemCallback<MagazineDaum>() {
+    override fun areItemsTheSame(oldItem: MagazineDaum, newItem: MagazineDaum): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: ShowsData, newItem: ShowsData): Boolean {
+    override fun areContentsTheSame(oldItem: MagazineDaum, newItem: MagazineDaum): Boolean {
         return oldItem == newItem
     }
 }

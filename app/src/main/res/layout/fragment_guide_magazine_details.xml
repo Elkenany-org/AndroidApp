@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.guide_magazine.MagazineDetailsData"
+			/>
+		
+		<variable
+			name="rateUsers"
+			type="String"
+			/>
+		
+		<variable
+			name="rate"
+			type="Float"
+			/>
+		
+		<variable
+			name="website"
+			type="String"
+			/>
+		
+		<variable
+			name="facebook"
+			type="String"
+			/>
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10sp"
+		>
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:text="@string/guide_data_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		<ProgressBar
+			android:id="@+id/loading_progressbar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:indeterminateDrawable="@drawable/custom_progress_bar"
+			android:visibility="gone"
+			/>
+		
+		<TextView
+			android:id="@+id/error_message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center"
+			android:text="@string/failed_to_receive_data_msg"
+			android:textColor="@color/green"
+			android:textSize="18sp"
+			android:visibility="gone"
+			/>
+		
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/app_bar_title"
+			>
+			
+			<LinearLayout
+				android:id="@+id/ads_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="5dp"
+				>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/card_view1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="5dp"
+					app:cardCornerRadius="7dp"
+					>
+					
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layoutDirection="rtl"
+						android:orientation="horizontal"
+						>
+						
+						<ImageView
+							android:id="@+id/ad_image"
+							imageUrl="@{data.image}"
+							android:layout_width="100dp"
+							android:layout_height="130dp"
+							android:layout_margin="5dp"
+							android:scaleType="fitXY"
+							tools:ignore="ContentDescription"
+							/>
+						
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_marginHorizontal="7dp"
+							android:layout_marginVertical="10dp"
+							tools:ignore="UselessLeaf"
+							>
+							
+							<LinearLayout
+								android:id="@+id/layout1"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								>
+								
+								<TextView
+									android:id="@+id/show_name_txtview"
+									itemText="@{data.name}"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:ellipsize="end"
+									android:fontFamily="@font/cairo_bold"
+									android:maxWidth="150dp"
+									android:maxLines="1"
+									android:text="aaaaaaaaaaaaaaaaaaaaaaa"
+									android:textColor="@color/green"
+									android:textSize="14sp"
+									tools:ignore="HardcodedText"
+									/>
+								
+								<View
+									android:layout_width="0dp"
+									android:layout_height="0dp"
+									android:layout_weight="1"
+									/>
+							
+							</LinearLayout>
+							
+							
+							<TextView
+								android:id="@+id/show_description_txtview"
+								itemText="@{data.shortDesc}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_above="@id/layout2"
+								android:layout_below="@id/layout1"
+								android:layout_marginTop="1dp"
+								android:ellipsize="end"
+								android:fontFamily="@font/cairo_regular"
+								android:gravity="top"
+								android:maxLines="3"
+								android:textColor="@color/green"
+								android:textSize="12sp"
+								tools:ignore="HardcodedText"
+								/>
+							
+							<LinearLayout
+								android:id="@+id/layout2"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_alignParentBottom="true"
+								android:gravity="center_vertical"
+								>
+								
+								<TextView
+									android:id="@+id/location_txtview"
+									itemText="@{rateUsers}"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:fontFamily="@font/cairo_regular"
+									android:gravity="center"
+									android:maxWidth="150dp"
+									android:maxLines="1"
+									android:textColor="@color/green"
+									android:textSize="12sp"
+									tools:ignore="RelativeOverlap,SmallSp"
+									/>
+								
+								<View
+									android:layout_width="0dp"
+									android:layout_height="1dp"
+									android:layout_weight="1"
+									/>
+								
+								<RatingBar
+									android:id="@+id/rating_bar"
+									style="@style/Widget.AppCompat.RatingBar.Small"
+									android:layout_width="wrap_content"
+									android:layout_height="wrap_content"
+									android:layout_margin="5dp"
+									android:layoutDirection="ltr"
+									android:progressBackgroundTint="@color/gray"
+									android:progressTint="@color/orange"
+									android:rating="@{rate}"
+									/>
+							</LinearLayout>
+						</RelativeLayout>
+					</LinearLayout>
+				
+				</androidx.cardview.widget.CardView>
+				
+				<!--				<androidx.cardview.widget.CardView-->
+				<!--					android:id="@+id/card_view4"-->
+				<!--					android:layout_width="match_parent"-->
+				<!--					android:layout_height="wrap_content"-->
+				<!--					android:layout_gravity="center_horizontal"-->
+				<!--					android:layout_marginStart="5dp"-->
+				<!--					android:layout_marginTop="5dp"-->
+				<!--					android:layout_marginEnd="5dp"-->
+				<!--					android:layout_marginBottom="10sp"-->
+				<!--					app:cardCornerRadius="7dp"-->
+				<!--					app:cardElevation="7sp"-->
+				<!--					>-->
+				<!--					-->
+				<!--					<LinearLayout-->
+				<!--						android:layout_width="match_parent"-->
+				<!--						android:layout_height="match_parent"-->
+				<!--						android:orientation="vertical"-->
+				<!--						android:padding="15dp"-->
+				<!--						>-->
+				<!--						-->
+				<!--						<TextView-->
+				<!--							android:id="@+id/stocks_tv"-->
+				<!--							android:layout_width="match_parent"-->
+				<!--							android:layout_height="wrap_content"-->
+				<!--							android:layout_margin="10dp"-->
+				<!--							android:drawablePadding="5dp"-->
+				<!--							android:fontFamily="@font/cairo_bold"-->
+				<!--							android:gravity="center_vertical"-->
+				<!--							android:text="@string/stock_title"-->
+				<!--							android:textColor="@color/orange"-->
+				<!--							android:textSize="14sp"-->
+				<!--							tools:ignore="TextContrastCheck"-->
+				<!--							/>-->
+				<!--						-->
+				<!--						<androidx.recyclerview.widget.RecyclerView-->
+				<!--							android:id="@+id/company_local_stocks_recyclerview"-->
+				<!--							android:layout_width="match_parent"-->
+				<!--							android:layout_height="wrap_content"-->
+				<!--							android:orientation="horizontal"-->
+				<!--							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+				<!--							app:reverseLayout="true"-->
+				<!--							tools:listitem="@layout/small_recycler_item"-->
+				<!--							/>-->
+				<!--						-->
+				<!--						<androidx.recyclerview.widget.RecyclerView-->
+				<!--							android:id="@+id/company_fodder_stocks_recyclerview"-->
+				<!--							android:layout_width="match_parent"-->
+				<!--							android:layout_height="wrap_content"-->
+				<!--							android:orientation="horizontal"-->
+				<!--							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+				<!--							app:reverseLayout="true"-->
+				<!--							tools:listitem="@layout/small_recycler_item"-->
+				<!--							/>-->
+				<!--					-->
+				<!--					</LinearLayout>-->
+				<!--				</androidx.cardview.widget.CardView>-->
+				<androidx.cardview.widget.CardView
+					android:id="@+id/card_view2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginStart="5dp"
+					android:layout_marginTop="20sp"
+					android:layout_marginEnd="5dp"
+					android:layout_marginBottom="20sp"
+					android:padding="10dp"
+					app:cardCornerRadius="7dp"
+					app:cardElevation="7sp"
+					>
+					
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						>
+						
+						<TextView
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginHorizontal="10dp"
+							android:layout_marginVertical="5dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:text="@string/about_company_title"
+							android:textColor="@color/orange"
+							android:textSize="14sp"
+							tools:ignore="TextContrastCheck"
+							/>
+						
+						<TextView
+							android:id="@+id/description"
+							itemText="@{data.about}"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginHorizontal="10dp"
+							android:layout_marginBottom="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="13sp"
+							/>
+					</LinearLayout>
+				
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/card_view5"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginStart="5dp"
+					android:layout_marginTop="5dp"
+					android:layout_marginEnd="5dp"
+					android:layout_marginBottom="10sp"
+					app:cardCornerRadius="7dp"
+					app:cardElevation="7sp"
+					>
+					
+					<LinearLayout
+						android:id="@+id/gallery_layout"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="vertical"
+						android:padding="15dp"
+						>
+						
+						<TextView
+							android:id="@+id/gallery_tv"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:text="@string/gallery_title"
+							android:textColor="@color/orange"
+							android:textSize="14sp"
+							tools:ignore="TextContrastCheck"
+							/>
+						
+						<androidx.recyclerview.widget.RecyclerView
+							android:id="@+id/company_gallerys_recyclerview"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:orientation="horizontal"
+							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+							app:reverseLayout="true"
+							tools:listitem="@layout/small_recycler_item"
+							/>
+					
+					</LinearLayout>
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/card_view3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginStart="5dp"
+					android:layout_marginTop="5dp"
+					android:layout_marginEnd="5dp"
+					android:layout_marginBottom="10sp"
+					app:cardCornerRadius="7dp"
+					app:cardElevation="7sp"
+					>
+					
+					<LinearLayout
+						android:id="@+id/social_media_card"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="vertical"
+						android:padding="15dp"
+						>
+						
+						<TextView
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:text="@string/contact_information_title"
+							android:textColor="@color/orange"
+							android:textSize="14sp"
+							tools:ignore="TextContrastCheck"
+							/>
+						
+						<!--						<TextView-->
+						<!--							android:id="@+id/location1"-->
+						<!--							itemText="@{data.addresses[0].address}"-->
+						<!--							android:layout_width="wrap_content"-->
+						<!--							android:layout_height="wrap_content"-->
+						<!--							android:layout_gravity="end"-->
+						<!--							android:layout_margin="12dp"-->
+						<!--							android:drawablePadding="5dp"-->
+						<!--							android:fontFamily="@font/cairo_bold"-->
+						<!--							android:gravity="center"-->
+						<!--							android:textColor="@color/green"-->
+						<!--							android:textSize="12sp"-->
+						<!--							app:drawableEndCompat="@drawable/location_icon"-->
+						<!--							/>-->
+						<!--						<TextView-->
+						<!--							android:id="@+id/location"-->
+						<!--							itemText="@{data.addresses[1].address}"-->
+						<!--							android:layout_width="wrap_content"-->
+						<!--							android:layout_height="wrap_content"-->
+						<!--							android:layout_gravity="end"-->
+						<!--							android:layout_margin="12dp"-->
+						<!--							android:drawablePadding="5dp"-->
+						<!--							android:fontFamily="@font/cairo_bold"-->
+						<!--							android:gravity="center_vertical"-->
+						<!--							android:textColor="@color/green"-->
+						<!--							android:textSize="12sp"-->
+						<!--							app:drawableEndCompat="@drawable/location_icon"-->
+						<!--							/>-->
+						<TextView
+							android:id="@+id/mail"
+							itemText="@{data.emails[0].email}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/message_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/mail1"
+							itemText="@{data.emails[1].email}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/message_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/mail2"
+							itemText="@{data.emails[2].email}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/message_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/phone"
+							itemText="@{data.mobiles[0].mobile}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/phone_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/phone1"
+							itemText="@{data.mobiles[1].mobile}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/phone_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/phone2"
+							itemText="@{data.mobiles[2].mobile}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/mobile_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/phone3"
+							itemText="@{data.mobiles[3].mobile}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/mobile_icon"
+							/>
+						
+						
+						<TextView
+							android:id="@+id/fax"
+							itemText="@{data.faxs[0].fax}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center_vertical"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/fax_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/social_facebook"
+							itemText="@{facebook}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/social_facebook_icon"
+							/>
+						
+						<TextView
+							android:id="@+id/social_website"
+							itemText="@{website}"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="end"
+							android:layout_margin="12dp"
+							android:drawablePadding="5dp"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:textColor="@color/green"
+							android:textSize="12sp"
+							app:drawableEndCompat="@drawable/social_website_icon"
+							/>
+					</LinearLayout>
+				</androidx.cardview.widget.CardView>
+			
+			
+			</LinearLayout>
+		</ScrollView>
+	</RelativeLayout>
+</layout>

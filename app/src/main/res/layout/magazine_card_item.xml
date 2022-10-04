@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.guide_magazine.MagazineDaum"
+			/>
+		
+		<variable
+			name="clickListener"
+			type="com.elkenany.ClickListener"
+			/>
+	</data>
+	
+	
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="155dp"
+		android:layoutDirection="rtl"
+		android:onClick="@{()-> clickListener.onClick(data)}"
+		app:cardCornerRadius="7dp"
+		app:cardUseCompatPadding="true"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_margin="7dp"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<ImageView
+					android:id="@+id/show_imgview"
+					imageUrl="@{data.image.toString()}"
+					android:layout_width="100dp"
+					android:layout_height="match_parent"
+					android:scaleType="fitXY"
+					tools:ignore="ContentDescription,ImageContrastCheck"
+					/>
+			</androidx.cardview.widget.CardView>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginHorizontal="7dp"
+				android:layout_marginVertical="10dp"
+				tools:ignore="UselessLeaf"
+				>
+				
+				<LinearLayout
+					android:id="@+id/layout1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					>
+					
+					<TextView
+						android:id="@+id/show_name_txtview"
+						itemText="@{data.name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:ellipsize="end"
+						android:fontFamily="@font/cairo_bold"
+						android:maxWidth="150dp"
+						android:maxLines="1"
+						android:text="aaaaaaaaaaaaaaaaaaaaaaa"
+						android:textColor="@color/green"
+						android:textSize="14sp"
+						tools:ignore="HardcodedText"
+						/>
+					
+					<View
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:layout_weight="1"
+						/>
+					
+					<RatingBar
+						android:id="@+id/rating_bar"
+						style="@style/Widget.AppCompat.RatingBar.Small"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:layoutDirection="ltr"
+						android:progressTint="@color/orange"
+						android:progressBackgroundTint="@color/gray"
+						android:rating="@{data.rate.floatValue()}"
+						/>
+				</LinearLayout>
+				
+				
+				<TextView
+					android:id="@+id/show_description_txtview"
+					itemText="@{data.desc}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_above="@id/layout2"
+					android:layout_below="@id/layout1"
+					android:layout_marginTop="7dp"
+					android:ellipsize="end"
+					android:fontFamily="@font/cairo_regular"
+					android:gravity="top"
+					android:maxLines="3"
+					android:textColor="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText"
+					/>
+				
+				<LinearLayout
+					android:id="@+id/layout2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true"
+					android:gravity="center_vertical"
+					>
+					
+					<TextView
+						android:id="@+id/location_txtview"
+						itemText="@{data.address}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:fontFamily="@font/cairo_regular"
+						android:gravity="center"
+						android:maxWidth="150dp"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="12sp"
+						app:drawableStartCompat="@drawable/stroke_location"
+						tools:ignore="RelativeOverlap,SmallSp"
+						/>
+					
+					<View
+						android:layout_width="0dp"
+						android:layout_height="1dp"
+						android:layout_weight="1"
+						/>
+					
+					<androidx.appcompat.widget.AppCompatButton
+						android:id="@+id/intersted_btn"
+						android:layout_width="60dp"
+						android:layout_height="20dp"
+						android:background="@drawable/primary_btn_shape"
+						android:fontFamily="@font/cairo_regular"
+						android:text="@string/know_more_title"
+						android:textColor="@color/green"
+						android:textSize="10sp"
+						tools:ignore="SmallSp,TextContrastCheck,TouchTargetSizeCheck"
+						/>
+				</LinearLayout>
+			</RelativeLayout>
+		
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</layout>

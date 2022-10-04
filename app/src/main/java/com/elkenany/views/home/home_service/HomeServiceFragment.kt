@@ -52,6 +52,8 @@ class HomeServiceFragment : Fragment() {
                 }
                 "magazine" -> {
                     //ToDo -> Navigate to magazineFragment
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
                 }
                 "ships" -> {
                     //ToDo -> Navigate to shipsFragment
