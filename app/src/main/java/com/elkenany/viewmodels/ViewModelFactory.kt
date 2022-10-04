@@ -35,6 +35,8 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(CreateAdViewModel::class.java) -> CreateAdViewModel() as T
             modelClass.isAssignableFrom(MyAdsListViewModel::class.java) -> MyAdsListViewModel() as T
             modelClass.isAssignableFrom(ShowsViewModel::class.java) -> ShowsViewModel() as T
+            modelClass.isAssignableFrom(GuideMagazineViewModel::class.java) -> GuideMagazineViewModel() as T
+            modelClass.isAssignableFrom(GuideMagazineDetailsViewModel::class.java) -> GuideMagazineDetailsViewModel() as T
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }

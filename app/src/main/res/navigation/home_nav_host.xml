@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
+ <navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -58,6 +58,10 @@
 		<action
 			android:id="@+id/action_homeServiceFragment_to_showsFragment"
 			app:destination="@id/showsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_guideMagazineFragment"
+			app:destination="@id/guideMagazineFragment"
 			/>
 	</fragment>
 	<fragment
@@ -459,4 +463,26 @@
 		android:label="ShowsFragment"
 		tools:layout="@layout/fragment_shows"
 		/>
+	<fragment
+		android:id="@+id/guideMagazineFragment"
+		android:name="com.elkenany.views.guide_magazine.GuideMagazineFragment"
+		android:label="GuideMagazineFragment"
+		tools:layout="@layout/fragment_guide_magazine"
+		>
+		<action
+			android:id="@+id/action_guideMagazineFragment_to_guideMagazineDetailsFragment"
+			app:destination="@id/guideMagazineDetailsFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/guideMagazineDetailsFragment"
+		android:name="com.elkenany.views.guide_magazine.GuideMagazineDetailsFragment"
+		android:label="GuideMagazineDetailsFragment"
+		tools:layout="@layout/fragment_guide_magazine_details"
+		>
+		<argument
+			android:name="id"
+			app:argType="long"
+			/>
+	</fragment>
 </navigation>
