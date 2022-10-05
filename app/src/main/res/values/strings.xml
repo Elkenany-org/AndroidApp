@@ -118,4 +118,7 @@
 	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="guide_data_title">بيانات الدليل</string>
 	<string name="about_company_title">عن الشركة</string>
+	<string name="show_details_title">تفاصيل المعرض</string>
+	<string name="about_show_title">عن المعرض</string>
+	<string name="reviewes_title">المراجعات</string>
 </resources>

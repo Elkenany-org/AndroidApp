@@ -32,7 +32,8 @@ class AdsImagesViewHolder private constructor(private val binding: ImageCardItem
 
     fun bind(ads: AdsImage, sectorClickListener: ClickListener<AdsImage>) {
         binding.data = ads
-        binding.image = ads.image
+        binding.smallmage = ads.image
+        binding.bigImage = null
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }

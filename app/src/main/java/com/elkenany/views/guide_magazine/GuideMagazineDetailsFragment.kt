@@ -54,18 +54,19 @@ class GuideMagazineDetailsFragment : Fragment() {
                     data = it
                     rate = it.rate.toFloat()
                     rateUsers = "تقييم من ${it.countRate} عميل"
-                    if (it.phones.isEmpty() && it.emails.isEmpty() && it.mobiles.isEmpty() && it.faxs.isEmpty() && it.social.isEmpty()) {
+                    if (it.phones.isEmpty() && it.emails.isEmpty() && it.mobiles.isEmpty() && it.faxs.isEmpty() && it.social.isEmpty()&& it.addresses.isNullOrEmpty()) {
                         socialMediaCard.visibility = View.GONE
                     } else {
                         socialMediaCard.visibility = View.VISIBLE
-                    }
-                    it.social.map { social ->
-                        if (social!!.socialName == "الموقع") {
-                            website = social.socialLink
-                        } else if (social.socialName == "فيس بوك") {
-                            facebook = social.socialLink
+                        it.social.map { social ->
+                            if (social!!.socialName == "الموقع") {
+                                website = social.socialLink
+                            } else if (social.socialName == "فيس بوك") {
+                                facebook = social.socialLink
+                            }
                         }
                     }
+
                     if (it.gallary.isEmpty()) {
                         galleryLayout.visibility = View.GONE
                     } else {

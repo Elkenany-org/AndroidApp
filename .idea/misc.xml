@@ -163,14 +163,19 @@
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/big_recycler_item_with_details.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_ad_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_company.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_magazine.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_magazine_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.3229166666666667" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock.xml" value="0.3229166666666667" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_my_ads_list.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_shows.xml" value="0.3229166666666667" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_shows_details.xml" value="0.18" />
         <entry key="..\:/projects/app/src/main/res/layout/guide_companies_shimmer.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/image_card_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/magazine_card_item.xml" value="0.33" />
+        <entry key="..\:/projects/app/src/main/res/layout/sector_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/shows_card_item.xml" value="0.26507054296707994" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.23" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.23" />

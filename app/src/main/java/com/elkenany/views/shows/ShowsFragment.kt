@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsBinding
@@ -54,7 +55,11 @@ class ShowsFragment : Fragment() {
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
-        showsAdapter = ShowsAdapter(ClickListener { })
+        showsAdapter = ShowsAdapter(ClickListener {
+            requireView().findNavController()
+                .navigate(ShowsFragmentDirections.actionShowsFragmentToShowsDetailsFragment(it.id!!.toLong(),
+                    it.name!!))
+        })
         binding.showsListRecyclerView.apply {
             adapter = showsAdapter
         }

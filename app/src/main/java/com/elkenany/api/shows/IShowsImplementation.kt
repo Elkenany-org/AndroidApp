@@ -1,6 +1,7 @@
 package com.elkenany.api.shows
 
 import android.util.Log
+import com.elkenany.entities.shows_data.ShowsDetailsData
 import com.elkenany.entities.shows_data.ShowsListData
 import retrofit2.HttpException
 import retrofit2.await
@@ -32,6 +33,26 @@ class IShowsImplementation {
             null
         } catch (e: Exception) {
             Log.i("getAllShowsListData", e.message.toString())
+            null
+        }
+    }
+
+    suspend fun getShowsDetailsData(
+        showId: Long?,
+    ): ShowsDetailsData? {
+        return try {
+            val response =
+                IShowsHandler.singleton.getShowsDetailsData(showId)
+                    .await()
+            response.data
+        } catch (e: HttpException) {
+            Log.i("getShowsDetailsData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getShowsDetailsData", e.message.toString())
+            null
+        } catch (e: Exception) {
+            Log.i("getShowsDetailsData", e.message.toString())
             null
         }
     }
