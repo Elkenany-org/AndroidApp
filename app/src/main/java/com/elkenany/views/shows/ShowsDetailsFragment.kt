@@ -1,20 +1,28 @@
 package com.elkenany.views.shows
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsDetailsBinding
+import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.entities.shows_data.AttendanceStateData
 import com.elkenany.viewmodels.ShowsDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.shows.adapter.ShowsImageAdapter
+
 
 class ShowsDetailsFragment : Fragment() {
     private lateinit var binding: FragmentShowsDetailsBinding
@@ -22,6 +30,12 @@ class ShowsDetailsFragment : Fragment() {
     private lateinit var viewmodel: ShowsDetailsViewModel
     private lateinit var showsImageAdapter: ShowsImageAdapter
     private val args: ShowsDetailsFragmentArgs by navArgs()
+    private val _attendanceState = listOf(
+        AttendanceStateData(1, "مهتم بالذهاب", false),
+        AttendanceStateData(2, "غير مهتم بالذهاب", false)
+    )
+    private lateinit var arrayAdapter: ArrayAdapter<String?>
+    private var parent: ViewGroup? = null
 
 
     override fun onCreateView(
@@ -33,13 +47,24 @@ class ShowsDetailsFragment : Fragment() {
             R.layout.fragment_shows_details,
             container,
             false)
+        parent = container
         viewModelFactory = ViewModelFactory()
         viewmodel = ViewModelProvider(this, viewModelFactory)[ShowsDetailsViewModel::class.java]
         viewmodel.getShowDetailsData(args.id)
         binding.appBarTitle.text = args.name
-        showsImageAdapter = ShowsImageAdapter(ClickListener { })
+        showsImageAdapter = ShowsImageAdapter(ClickListener {
+            openImageDialog(it.image!!)
+        })
         binding.moreImagesRecyclerview.adapter = showsImageAdapter
-
+        binding.shareShowBtn.setOnClickListener {
+            shareSuccess(args.id.toString())
+        }
+        binding.reviewsBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(ShowsDetailsFragmentDirections.actionShowsDetailsFragmentToShowReviewFragment(
+                    args.id))
+        }
+        binding.attendanceStateAutoCompelete.setText(R.string.going_state_zero_title)
         //viewModel observers
         viewmodel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -54,7 +79,20 @@ class ShowsDetailsFragment : Fragment() {
                 }
             }
         }
-
+        val attendancelist =
+            _attendanceState.map { newList -> newList.name }.toList()
+        arrayAdapter = ArrayAdapter<String?>(
+            requireContext(),
+            R.layout.array_adapter_item,
+            attendancelist
+        )
+        binding.attendanceStateAutoCompelete.setAdapter(arrayAdapter)
+        binding.attendanceStateAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+            val id = _attendanceState[position].id
+            binding.attendanceStateAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                .toString()
+            viewmodel.postGoingState(args.id, id!!)
+        }
         viewmodel.showsDetails.observe(viewLifecycleOwner) {
             Log.i("ShowsDetailsData", args.id.toString() + it.toString())
             if (it != null) {
@@ -73,8 +111,55 @@ class ShowsDetailsFragment : Fragment() {
             }
         }
 
+        viewmodel.goingState.observe(viewLifecycleOwner) {
+            when (it) {
+                200 -> Toast.makeText(requireContext(), "تم التعديل بنجاح", Toast.LENGTH_SHORT)
+                    .show()
+                404 -> {
+                    Toast.makeText(requireContext(),
+                        "برجاء تسجيل الدخول أولا",
+                        Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(requireContext(),
+                        "تعذر تحديث حالة الحضور لديكم",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
         return binding.root
+    }
+
+    private fun onsharingdata(showLink: String?): Intent {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(
+                Intent.EXTRA_TEXT, "https://elkenany.com/one-show$showLink"
+            )
+        }
+        return shareIntent
+    }
+
+    private fun shareSuccess(showLink: String?) {
+        startActivity(onsharingdata(showLink))
+    }
+
+    private fun openImageDialog(image: String) {
+        val dialogBinding = ImageDialogItemBinding.inflate(layoutInflater)
+//        val dialogBinding: ImageDialogItemBinding =
+//            DataBindingUtil.inflate(LayoutInflater.from(context),
+//                R.layout.image_dialog_item, parent,
+//                false)
+        dialogBinding.image = image
+        val dialog = Dialog(requireActivity())
+        dialog.setCancelable(true)
+        Log.i("imageUrl", dialogBinding.image.toString())
+        dialog.setContentView(dialogBinding.root)
+
+        dialog.show()
+
     }
 
 }

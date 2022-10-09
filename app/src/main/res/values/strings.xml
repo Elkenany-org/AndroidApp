@@ -121,4 +121,6 @@
 	<string name="show_details_title">تفاصيل المعرض</string>
 	<string name="about_show_title">عن المعرض</string>
 	<string name="reviewes_title">المراجعات</string>
+	<string name="going_state_zero_title">حالة الحضور</string>
+	<string name="show_rating_title">تقييم المعرض</string>
 </resources>

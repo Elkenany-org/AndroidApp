@@ -2,12 +2,11 @@ package com.elkenany.api.shows
 
 import com.elkenany.api.retrofit_configs.retrofit
 import com.elkenany.entities.GenericEntity
+import com.elkenany.entities.shows_data.ShowReviewersData
 import com.elkenany.entities.shows_data.ShowsDetailsData
 import com.elkenany.entities.shows_data.ShowsListData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface IShows {
 
@@ -23,6 +22,23 @@ interface IShows {
 
     @GET("showes/one-show/")
     fun getShowsDetailsData(@Query("id") id: Long?): Call<GenericEntity<ShowsDetailsData>>
+
+    @FormUrlEncoded
+    @POST("showes/one-show-going")
+    fun goingState(
+        @Header("Authorization") apiToken: String?,
+        @Field("show_id") showId: Long?,
+    ): Call<GenericEntity<Any>>
+
+    @FormUrlEncoded
+    @POST("showes/one-show-notgoing")
+    fun notGoingState(
+        @Header("Authorization") apiToken: String?,
+        @Field("show_id") showId: Long?,
+    ): Call<GenericEntity<Any>>
+
+    @GET("showes/one-show-review/")
+    fun getAllShowReviewersData(@Query("id") showId: Long?): Call<GenericEntity<ShowReviewersData>>
 }
 
 object IShowsHandler {

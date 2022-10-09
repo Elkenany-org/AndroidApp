@@ -63,6 +63,14 @@
 			android:id="@+id/action_homeServiceFragment_to_guideMagazineFragment"
 			app:destination="@id/guideMagazineFragment"
 			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_showsDetailsFragment"
+			app:destination="@id/showsDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_guideMagazineDetailsFragment"
+			app:destination="@id/guideMagazineDetailsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/profileFragment"
@@ -255,6 +263,14 @@
 		<action
 			android:id="@+id/action_mainMenuFragment_to_notificationFragment2"
 			app:destination="@id/notificationFragment"
+			/>
+		<action
+			android:id="@+id/action_mainMenuFragment_to_guideMagazineFragment"
+			app:destination="@id/guideMagazineFragment"
+			/>
+		<action
+			android:id="@+id/action_mainMenuFragment_to_showsFragment"
+			app:destination="@id/showsFragment"
 			/>
 	</fragment>
 	<fragment
@@ -503,6 +519,21 @@
 		<argument
 			android:name="name"
 			app:argType="string"
+			/>
+		<action
+			android:id="@+id/action_showsDetailsFragment_to_showReviewFragment"
+			app:destination="@id/showReviewFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/showReviewFragment"
+		android:name="com.elkenany.views.shows.ShowReviewFragment"
+		android:label="ShowReviewFragment"
+		tools:layout="@layout/fragment_show_review"
+		>
+		<argument
+			android:name="showId"
+			app:argType="long"
 			/>
 	</fragment>
 </navigation>

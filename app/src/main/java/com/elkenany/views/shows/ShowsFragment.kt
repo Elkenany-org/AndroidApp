@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -45,7 +46,10 @@ class ShowsFragment : Fragment() {
         viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.adapter = bannersAdapter
-
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
+        }
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
         binding.logosRecyclerView.adapter = logosAdapter
 

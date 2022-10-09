@@ -68,13 +68,26 @@
 				/>
 		</LinearLayout>
 		
-		<ProgressBar
+		<!--		<ProgressBar-->
+		<!--			android:id="@+id/loading_progressbar"-->
+		<!--			android:layout_width="match_parent"-->
+		<!--			android:layout_height="wrap_content"-->
+		<!--			android:layout_centerInParent="true"-->
+		<!--			android:indeterminateDrawable="@drawable/custom_progress_bar"-->
+		<!--			android:visibility="gone"-->
+		<!--			/>-->
+		
+		<com.facebook.shimmer.ShimmerFrameLayout
 			android:id="@+id/loading_progressbar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerInParent="true"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/line1"
+			android:layout_marginTop="20dp"
 			android:visibility="gone"
-			/>
+			>
+			
+			<include layout="@layout/home_shimmer_loading" />
+		</com.facebook.shimmer.ShimmerFrameLayout>
 		
 		<ScrollView
 			android:layout_width="match_parent"
