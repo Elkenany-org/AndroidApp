@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsBinding
@@ -44,7 +46,10 @@ class ShowsFragment : Fragment() {
         viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
         bannersAdapter = LocalStockBannersAdapter(ClickListener { })
         binding.bannersRecyclerView.adapter = bannersAdapter
-
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
+        }
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
         binding.logosRecyclerView.adapter = logosAdapter
 
@@ -54,7 +59,11 @@ class ShowsFragment : Fragment() {
         })
         binding.sectorsRecyclerView.adapter = sectorsAdapter
 
-        showsAdapter = ShowsAdapter(ClickListener { })
+        showsAdapter = ShowsAdapter(ClickListener {
+            requireView().findNavController()
+                .navigate(ShowsFragmentDirections.actionShowsFragmentToShowsDetailsFragment(it.id!!.toLong(),
+                    it.name!!))
+        })
         binding.showsListRecyclerView.apply {
             adapter = showsAdapter
         }

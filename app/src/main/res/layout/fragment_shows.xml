@@ -74,6 +74,7 @@
 				android:layout_height="wrap_content"
 				android:layout_below="@id/logos_recycler_view"
 				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="10dp"
 				android:layoutDirection="rtl"
 				android:orientation="horizontal"
 				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -83,9 +84,9 @@
 			<RelativeLayout
 				android:id="@+id/relative_layout1"
 				android:layout_width="match_parent"
-				android:layout_height="50dp"
+				android:layout_height="wrap_content"
 				android:layout_below="@id/sectors_recycler_view"
-				android:layout_margin="5dp"
+
 				>
 				
 				<androidx.cardview.widget.CardView
@@ -94,7 +95,7 @@
 					android:layout_height="wrap_content"
 					android:layout_centerHorizontal="true"
 					android:layout_margin="10sp"
-					app:cardCornerRadius="5sp"
+					app:cardCornerRadius="7sp"
 					app:cardElevation="7dp"
 					>
 					
@@ -106,16 +107,18 @@
 						android:layout_centerHorizontal="true"
 						android:layout_gravity="center_horizontal"
 						android:background="@color/white"
-						android:drawableEnd="@drawable/ic_search_logo"
-						android:drawablePadding="10dp"
+						android:drawableEnd="@drawable/ic_baseline_search_24"
+						android:drawablePadding="20dp"
 						android:fontFamily="@font/cairo_bold"
 						android:hint="@string/homeSearch"
 						android:inputType="textLongMessage"
 						android:maxLines="1"
-						android:padding="5dp"
-						android:textColorHint="@color/green"
+						android:paddingStart="5sp"
+						android:paddingTop="5dp"
+						android:paddingEnd="5sp"
+						android:paddingBottom="5dp"
 						android:textSize="15sp"
-						tools:ignore="Autofill,TextFields,TouchTargetSizeCheck"
+						tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,DuplicateSpeakableTextCheck,TextContrastCheck"
 						/>
 				</androidx.cardview.widget.CardView>
 				

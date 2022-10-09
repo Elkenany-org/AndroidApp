@@ -1,6 +1,8 @@
 package com.elkenany.views.home.home_service
 
 //import android.util.Log
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,9 +30,11 @@ class HomeServiceFragment : Fragment() {
     private lateinit var recommendationAdapter: ServiceRecommendationAdapter
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
-    private val serviceList = listOf(HomeServiceDaum(1, "المعارض", "shows", ""),
+    private val serviceList = listOf(
+        HomeServiceDaum(1, "المعارض", "shows", ""),
         HomeServiceDaum(2, "الدلائل والمجلات", "magazine", ""),
-        HomeServiceDaum(3, "حركة السفن", "ships", ""))
+//        HomeServiceDaum(3, "حركة السفن", "ships", "")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,10 +68,32 @@ class HomeServiceFragment : Fragment() {
             }
         })
         binding.serviceRecyclerView.adapter = homeServiceAdapter
-        partnerAdapter = ServicePartnerAdapter(ClickListener { })
-        showsAdapter = ServiceShowsAdapter(ClickListener { })
-        recommendationAdapter = ServiceRecommendationAdapter(ClickListener { })
-        guideAndMagazineAdapter = ServiceGuideAndMagazineAdapter(ClickListener { })
+        partnerAdapter = ServicePartnerAdapter(ClickListener {
+            navigateToBroswerIntent(it.link)
+        })
+        showsAdapter = ServiceShowsAdapter(ClickListener {
+            requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
+                    it.id!!,
+                    it.name!!))
+        })
+        recommendationAdapter = ServiceRecommendationAdapter(ClickListener {
+            when (it.type) {
+                "show" -> requireView().findNavController()
+                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
+                        it.id!!,
+                        it.name!!))
+
+                "magazines" -> requireView().findNavController()
+                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
+                        it.id!!))
+            }
+        })
+        guideAndMagazineAdapter = ServiceGuideAndMagazineAdapter(ClickListener {
+            requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
+                    it.id!!))
+        })
 
         //assign each adapter to its own recyclerView
         binding.recommendationRecyclerView.adapter = recommendationAdapter
@@ -114,4 +140,9 @@ class HomeServiceFragment : Fragment() {
         return binding.root
     }
 
+    private fun navigateToBroswerIntent(url: String?) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
 }

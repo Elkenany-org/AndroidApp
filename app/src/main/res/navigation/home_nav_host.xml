@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation
+<navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -62,6 +62,14 @@
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideMagazineFragment"
 			app:destination="@id/guideMagazineFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_showsDetailsFragment"
+			app:destination="@id/showsDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_guideMagazineDetailsFragment"
+			app:destination="@id/guideMagazineDetailsFragment"
 			/>
 	</fragment>
 	<fragment
@@ -255,6 +263,14 @@
 		<action
 			android:id="@+id/action_mainMenuFragment_to_notificationFragment2"
 			app:destination="@id/notificationFragment"
+			/>
+		<action
+			android:id="@+id/action_mainMenuFragment_to_guideMagazineFragment"
+			app:destination="@id/guideMagazineFragment"
+			/>
+		<action
+			android:id="@+id/action_mainMenuFragment_to_showsFragment"
+			app:destination="@id/showsFragment"
 			/>
 	</fragment>
 	<fragment
@@ -462,7 +478,12 @@
 		android:name="com.elkenany.views.shows.ShowsFragment"
 		android:label="ShowsFragment"
 		tools:layout="@layout/fragment_shows"
-		/>
+		>
+		<action
+			android:id="@+id/action_showsFragment_to_showsDetailsFragment"
+			app:destination="@id/showsDetailsFragment"
+			/>
+	</fragment>
 	<fragment
 		android:id="@+id/guideMagazineFragment"
 		android:name="com.elkenany.views.guide_magazine.GuideMagazineFragment"
@@ -482,6 +503,36 @@
 		>
 		<argument
 			android:name="id"
+			app:argType="long"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/showsDetailsFragment"
+		android:name="com.elkenany.views.shows.ShowsDetailsFragment"
+		android:label="ShowsDetailsFragment"
+		tools:layout="@layout/fragment_shows_details"
+		>
+		<argument
+			android:name="id"
+			app:argType="long"
+			/>
+		<argument
+			android:name="name"
+			app:argType="string"
+			/>
+		<action
+			android:id="@+id/action_showsDetailsFragment_to_showReviewFragment"
+			app:destination="@id/showReviewFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/showReviewFragment"
+		android:name="com.elkenany.views.shows.ShowReviewFragment"
+		android:label="ShowReviewFragment"
+		tools:layout="@layout/fragment_show_review"
+		>
+		<argument
+			android:name="showId"
 			app:argType="long"
 			/>
 	</fragment>

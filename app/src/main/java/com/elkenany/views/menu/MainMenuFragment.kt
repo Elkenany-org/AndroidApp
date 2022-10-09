@@ -63,13 +63,6 @@ class MainMenuFragment : Fragment() {
             requireView().findNavController().navigate(R.id.newsFragment)
         }
 
-
-        // TODO --> impelement it in phase two
-        binding.showsBtn.visibility = View.GONE
-        // TODO --> impelement it in phase two
-        binding.magazineBtn.visibility = View.GONE
-
-
 //        binding.chatBtn.setOnClickListener {
 //            requireView().findNavController().navigate(R.id.chatsFragment)
 //        }
@@ -87,6 +80,14 @@ class MainMenuFragment : Fragment() {
         binding.notificationBtn.setOnClickListener {
             requireView().findNavController()
                 .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToNotificationFragment2())
+        }
+        binding.magazineBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToGuideMagazineFragment())
+        }
+        binding.showsBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToShowsFragment())
         }
         viewModel.userAuth.observe(viewLifecycleOwner) {
             if (it != null) {

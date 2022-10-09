@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.shows_data.ShowsDetailsData"
+			/>
+		
+		<variable
+			name="intrestedPeople"
+			type="String"
+			/>
+		
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="10dp"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center_horizontal"
+			android:maxLines="1"
+			android:text="@string/show_details_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		<ProgressBar
+			android:id="@+id/loading_progressbar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:indeterminateDrawable="@drawable/custom_progress_bar"
+			android:visibility="gone"
+			/>
+		
+		<TextView
+			android:id="@+id/error_message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center"
+			android:text="@string/failed_to_receive_data_msg"
+			android:textColor="@color/green"
+			android:textSize="18sp"
+			android:visibility="gone"
+			/>
+		
+		
+		<com.elkenany.LockableScrollView
+			android:id="@+id/scrollView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/app_bar_title"
+			android:padding="10dp"
+			>
+			
+			<LinearLayout
+				android:id="@+id/ads_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="5dp"
+				>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="15dp"
+					android:gravity="center_vertical"
+					android:layoutDirection="rtl"
+					android:paddingHorizontal="5dp"
+					>
+					
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						tools:ignore="UselessParent"
+						>
+						
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:fontFamily="@font/cairo_bold"
+							android:text="@string/about_show_title"
+							android:textColor="@color/green"
+							android:textSize="16sp"
+							/>
+						
+						<androidx.cardview.widget.CardView
+							android:id="@+id/indicator"
+							android:layout_width="match_parent"
+							android:layout_height="3dp"
+							android:layout_marginTop="1dp"
+							android:layout_marginBottom="10dp"
+							app:cardBackgroundColor="@color/orange"
+							app:cardCornerRadius="5dp"
+							/>
+					</LinearLayout>
+					
+					<View
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:layout_weight="1"
+						/>
+					
+					<ImageButton
+						android:id="@+id/share_show_btn"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@color/white"
+						android:foregroundGravity="center"
+						android:src="@drawable/ic_baseline_share_24"
+						tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+						/>
+				
+				</LinearLayout>
+				
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/more_images_recyclerview"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:orientation="horizontal"
+					app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+					app:reverseLayout="true"
+					tools:ignore="SpeakableTextPresentCheck"
+					tools:listitem="@layout/image_card_item"
+					/>
+				
+				<androidx.cardview.widget.CardView
+					android:id="@+id/card_view3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginStart="5dp"
+					android:layout_marginTop="20sp"
+					android:layout_marginEnd="5dp"
+					android:layout_marginBottom="20sp"
+					app:cardCornerRadius="7dp"
+					app:cardElevation="7sp"
+					>
+					
+					
+					<TextView
+						android:id="@+id/ad_description"
+						itemText="@{data.shortDesc}"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:textColor="@color/green"
+						android:textSize="14sp"
+						/>
+				
+				</androidx.cardview.widget.CardView>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center_vertical"
+					android:layoutDirection="rtl"
+					android:orientation="horizontal"
+					android:padding="2dp"
+					>
+					
+					<androidx.appcompat.widget.AppCompatButton
+						android:id="@+id/reviews_btn"
+						android:layout_width="80dp"
+						android:layout_height="30dp"
+						android:background="@drawable/primary_btn_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:text="@string/reviewes_title"
+						android:textSize="12sp"
+						tools:ignore="RtlSymmetry,TouchTargetSizeCheck"
+						/>
+					
+					<View
+						android:layout_width="0dp"
+						android:layout_height="0dp"
+						android:layout_weight="1"
+						/>
+					
+					<TextView
+						itemText="@{intrestedPeople}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="10dp"
+						android:layout_marginTop="10dp"
+						android:layout_marginEnd="10dp"
+						android:layout_marginBottom="10dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:gravity="center_vertical"
+						android:textColor="@color/green"
+						android:textSize="14sp"
+						/>
+				</LinearLayout>
+				
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginStart="5dp"
+					android:layout_marginTop="5dp"
+					android:layout_marginEnd="5dp"
+					android:layout_marginBottom="10sp"
+					android:gravity="center_vertical"
+					android:orientation="vertical"
+					>
+					
+					<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/attendance_state_btn"
+						style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:fontFamily="@font/cairo_bold"
+						android:layoutDirection="rtl"
+						android:textColorHint="@color/green"
+						app:boxBackgroundColor="@color/orange"
+						app:boxCornerRadiusBottomEnd="7dp"
+						app:boxCornerRadiusBottomStart="7dp"
+						app:boxCornerRadiusTopEnd="7dp"
+						app:boxCornerRadiusTopStart="7dp"
+						tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+						>
+						
+						<AutoCompleteTextView
+							android:id="@+id/attendance_state_auto_compelete"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:backgroundTint="@color/orange"
+							android:drawableTint="@color/green"
+							android:ellipsize="start"
+							android:fontFamily="@font/cairo_bold"
+							android:foregroundTint="@color/green"
+							android:inputType="none"
+							android:maxLines="1"
+							android:textColor="@color/green"
+							android:textColorHint="@color/green"
+							android:textSize="12sp"
+							tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+							/>
+					</com.google.android.material.textfield.TextInputLayout>
+					
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:baselineAligned="false"
+						android:layoutDirection="rtl"
+						android:orientation="horizontal"
+						>
+						
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:orientation="vertical"
+							android:padding="5dp"
+							>
+							
+							<TextView
+								itemText="@{data.address}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/location_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.times[0].time}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/time_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.times[1].time}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/time_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.times[2].time}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/time_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.times[3].time}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/time_icon"
+								/>
+						</LinearLayout>
+						
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:layout_weight="1"
+							android:orientation="vertical"
+							android:padding="5dp"
+							>
+							
+							<TextView
+								itemText="@{data.tickets[0].status +' '+ data.tickets[0].price}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/currency_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.dates[0].date}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/calender_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.dates[1].date}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/calender_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.dates[2].date}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/calender_icon"
+								/>
+							
+							<TextView
+								itemText="@{data.dates[3].date}"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_margin="5dp"
+								android:drawablePadding="5dp"
+								android:fontFamily="@font/cairo_bold"
+								android:maxLines="1"
+								android:textColor="@color/green"
+								android:textSize="16sp"
+								app:drawableStartCompat="@drawable/calender_icon"
+								/>
+						</LinearLayout>
+					</LinearLayout>
+				</LinearLayout>
+			
+			
+			</LinearLayout>
+		</com.elkenany.LockableScrollView>
+		
+		<RelativeLayout
+			android:id="@+id/image_pop_up_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_centerInParent="true"
+			android:background="#4B000000"
+			android:visibility="gone"
+			>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:layout_margin="5dp"
+				app:cardCornerRadius="7dp"
+				app:cardElevation="5dp"
+				>
+				
+				
+				<ImageButton
+					android:id="@+id/image_button"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:layout_margin="5dp"
+					android:background="@color/orange"
+					android:foreground="@drawable/ic_baseline_close_24"
+					android:foregroundGravity="center"
+					tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+					/>
+			</androidx.cardview.widget.CardView>
+		</RelativeLayout>
+	
+	</RelativeLayout>
+</layout>
