@@ -136,7 +136,7 @@ class ShowsDetailsFragment : Fragment() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(
-                Intent.EXTRA_TEXT, "https://elkenany.com/one-show$showLink"
+                Intent.EXTRA_TEXT, "https://admin.elkenany.com/one-show$showLink"
             )
         }
         return shareIntent
