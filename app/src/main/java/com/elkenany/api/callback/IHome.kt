@@ -13,7 +13,7 @@ interface IHome {
 
     //Retrofit homeSectors data callback
     @GET("home-sectors")
-    fun getSectorsData(): Call<GenericEntity<HomeSectorsData?>>
+    fun getSectorsData(@Header("android") isAndroid: Boolean?): Call<GenericEntity<HomeSectorsData?>>
 
     //Retrofit homeServices data callback
     @GET("home-services")

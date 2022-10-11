@@ -14,7 +14,7 @@ class IHomeImplementation {
     //getting home sectors data from database through api calling
     suspend fun getHomeSectorsData(): HomeSectorsData? {
         return try {
-            val response = IHomeHandler.singleton.getSectorsData().await()
+            val response = IHomeHandler.singleton.getSectorsData(true).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getHomeSectorsData", e.message.toString())

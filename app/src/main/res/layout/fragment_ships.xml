@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10dp"
+		>
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center_horizontal"
+			android:text="@string/ships_movment_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		<LinearLayout
+			android:id="@+id/found_data_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/app_bar_title"
+			android:orientation="vertical"
+			>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/banners_recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:ignore="SpeakableTextPresentCheck"
+				tools:listitem="@layout/banners_card_view_item"
+				/>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/logos_recycler_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:ignore="RtlHardcoded,SpeakableTextPresentCheck"
+				tools:listitem="@layout/logo_card_view_item"
+				/>
+			
+			<TextView
+				android:id="@+id/notice_tv"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="20sp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="3sp"
+				android:background="@drawable/notice_message_shape"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:textColor="@color/green"
+				android:textSize="10sp"
+				android:visibility="gone"
+				tools:ignore="SmallSp"
+				/>
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="50dp"
+				android:gravity="center"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				tools:ignore="UselessLeaf"
+				>
+				
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/statistics_btn"
+					android:layout_width="100dp"
+					android:layout_height="40dp"
+					android:background="@drawable/statistics_btn_shape"
+					android:fontFamily="@font/cairo_bold"
+					android:text="@string/statistics_title"
+					android:textColor="@color/orange"
+					android:textSize="12sp"
+					tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+					/>
+				
+				<androidx.cardview.widget.CardView
+					android:layout_width="15dp"
+					android:layout_height="44dp"
+					app:cardElevation="0dp"
+					>
+				
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/calender_btn"
+					android:layout_width="100dp"
+					android:layout_height="40dp"
+					android:background="@drawable/calender_btn_selected"
+					android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+					android:fontFamily="@font/cairo_bold"
+					android:padding="5dp"
+					android:text="@string/arrival_date_title"
+					android:textColor="@color/orange"
+					android:textSize="12sp"
+					tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+					/>
+			</LinearLayout>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				>
+				
+				<TextView
+					android:id="@+id/error_message"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:text="@string/failed_to_receive_data_msg"
+					android:textColor="@color/green"
+					android:textSize="18sp"
+					android:visibility="gone"
+					/>
+				
+				<ProgressBar
+					android:id="@+id/loading_progressbar"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:indeterminateDrawable="@drawable/custom_progress_bar"
+					android:visibility="gone"
+					/>
+				
+				<LinearLayout
+					android:id="@+id/recycler_view_layout"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					>
+					
+					<androidx.cardview.widget.CardView
+						android:id="@+id/card_view"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:elevation="7dp"
+						app:cardCornerRadius="7dp"
+						app:cardUseCompatPadding="true"
+						>
+						
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:gravity="center"
+							android:layoutDirection="rtl"
+							android:orientation="horizontal"
+							android:paddingHorizontal="10dp"
+							android:paddingVertical="2dp"
+							>
+							
+							
+							<TextView
+								android:id="@+id/prod_change"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/name_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_change_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_categorize_name"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/dir_date_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/categorize_name_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_chargin_system_name"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/weight_ton_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/chargin_system_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_weight"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/type_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_weight_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_price_status"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/made_in_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_price_status_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_age"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/arrical_date_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_age_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_type"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/exporting_agency_title"
+								android:textColor="@color/green"
+								android:textSize="6sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_type_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_chick_type"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/agency_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+							
+							<View
+								android:id="@+id/prod_chick_type_view"
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
+							<TextView
+								android:id="@+id/prod_weight_container"
+								android:layout_width="40dp"
+								android:layout_height="wrap_content"
+								android:fontFamily="@font/cairo_bold"
+								android:gravity="center"
+								android:maxLines="2"
+								android:padding="5dp"
+								android:text="@string/empty_port_title"
+								android:textColor="@color/green"
+								android:textSize="8sp"
+								tools:ignore=",SmallSp"
+								/>
+						
+						</LinearLayout>
+					</androidx.cardview.widget.CardView>
+					
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/ships_data_recycler_view"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginTop="3sp"
+						android:orientation="vertical"
+						app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+						tools:listitem="@layout/ships_details_row_item"
+						/>
+				</LinearLayout>
+			
+			</RelativeLayout>
+		
+		</LinearLayout>
+	</RelativeLayout>
+</layout>

@@ -103,6 +103,11 @@ class LocalStockFragment : Fragment() {
         }
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
+                it.sectors.map { sector ->
+                    if (sector!!.selected == 1L) {
+                        binding.sectorsRecyclerView.smoothScrollToPosition(sector.id!!.toInt())
+                    }
+                }
                 binding.apply {
 //                    changeViewBtn.visibility = View.VISIBLE
                     searchBar.visibility = View.VISIBLE

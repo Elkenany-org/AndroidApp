@@ -47,11 +47,23 @@ class HomeSectorFragment : Fragment() {
 
         //adapters initialization
         sectorsAdapter = SectorsAdapter(ClickListener {
-            requireView().findNavController()
-                .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToSectorsChoicesFragment(
-                    it.id!!,
-                    it.name,
-                    it.type))
+            when (it.type) {
+                "industrial" -> {
+                    requireView().findNavController()
+                        .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToGuideFragment(
+                            it.id!!,
+                            it.name,
+                            it.type))
+                }
+                else -> {
+                    requireView().findNavController()
+                        .navigate(HomeSectorFragmentDirections.actionHomeSectorFragmentToSectorsChoicesFragment(
+                            it.id!!,
+                            it.name,
+                            it.type))
+                }
+            }
+
         })
         recommendationAdapter = SectorRecommendationAdapter(ClickListener {
             onSectorRecommendationNavigation(it)

@@ -123,4 +123,14 @@
 	<string name="reviewes_title">المراجعات</string>
 	<string name="going_state_zero_title">حالة الحضور</string>
 	<string name="show_rating_title">تقييم المعرض</string>
+	<string name="arrival_date_title">تاريخ الوصول</string>
+	<string name="dir_date_title">تاريخ التوجيه</string>
+	<string name="weight_ton_title">الحمولة طن</string>
+	<string name="type_title">النوع</string>
+	<string name="made_in_title">المنشأ</string>
+	<string name="arrical_date_title">تاريخ الوصول</string>
+	<string name="exporting_agency_title">الجهة المستوردة</string>
+	<string name="agency_title">الوكيل الملاحي</string>
+	<string name="empty_port_title">ميناء التفريغ</string>
+	<string name="ships_movment_title">حركة السفن</string>
 </resources>

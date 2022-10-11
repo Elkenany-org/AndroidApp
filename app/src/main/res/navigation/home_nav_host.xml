@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
+ <navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -42,6 +42,10 @@
 			android:id="@+id/action_homeSectorFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_homeSectorFragment_to_guideFragment"
+			app:destination="@id/guideFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/homeServiceFragment"
@@ -70,6 +74,10 @@
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_shipsFragment"
+			app:destination="@id/shipsFragment"
 			/>
 	</fragment>
 	<fragment
@@ -536,4 +544,21 @@
 			app:argType="long"
 			/>
 	</fragment>
+	<fragment
+		android:id="@+id/shipsFragment"
+		android:name="com.elkenany.views.ships.ShipsFragment"
+		android:label="ShipsFragment"
+		tools:layout="@layout/fragment_ships"
+		>
+		<action
+			android:id="@+id/action_shipsFragment_to_shipsStatisticsFragment"
+			app:destination="@id/shipsStatisticsFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/shipsStatisticsFragment"
+		android:name="com.elkenany.views.ships.ShipsStatisticsFragment"
+		android:label="fragment_ships_statistics"
+		tools:layout="@layout/fragment_ships_statistics"
+		/>
 </navigation>

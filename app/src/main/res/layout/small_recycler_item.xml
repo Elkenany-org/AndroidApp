@@ -33,15 +33,16 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:onClick="@{()->clickListener.onClick(data)}">
-
-
+    
+    
             <ImageView
                 android:id="@+id/item_img"
                 imageUrl="@{image}"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:scaleType="fitXY"
-                tools:ignore="ContentDescription,ImageContrastCheck" />
+                tools:ignore="ContentDescription,ImageContrastCheck"
+                />
 
             <TextView
                 android:id="@+id/item_title"

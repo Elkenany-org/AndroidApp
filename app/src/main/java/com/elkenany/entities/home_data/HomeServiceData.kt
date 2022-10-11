@@ -20,7 +20,7 @@ data class HomeServiceDaum(
     val id: Long?,
     val name: String?,
     val type: String?,
-    val image: String?,
+    val image: Int?,
 )
 
 data class ServiceLogo(

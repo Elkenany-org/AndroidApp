@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
+import com.elkenany.databinding.ServiceItemCardBinding
 import com.elkenany.databinding.SmallRecyclerItemBinding
 import com.elkenany.entities.home_data.HomeServiceDaum
 
@@ -26,7 +27,7 @@ class HomeServiceAdapter(private val partnerClickListener: ClickListener<HomeSer
 
 }
 
-class HomeServiceViewHolder private constructor(private val binding: SmallRecyclerItemBinding) :
+class HomeServiceViewHolder private constructor(private val binding: ServiceItemCardBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
@@ -34,8 +35,7 @@ class HomeServiceViewHolder private constructor(private val binding: SmallRecycl
         partnerClickListener: ClickListener<HomeServiceDaum>,
     ) {
         binding.data = magazine
-        binding.image = magazine.image
-        binding.name = magazine.name
+        binding.itemImg.setImageResource(magazine.image!!)
         binding.clickListener = partnerClickListener
         binding.executePendingBindings()
     }
@@ -43,7 +43,7 @@ class HomeServiceViewHolder private constructor(private val binding: SmallRecycl
     companion object {
         fun from(parent: ViewGroup): HomeServiceViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = SmallRecyclerItemBinding.inflate(layoutInflater, parent, false)
+            val binding = ServiceItemCardBinding.inflate(layoutInflater, parent, false)
             return HomeServiceViewHolder(binding)
         }
     }
