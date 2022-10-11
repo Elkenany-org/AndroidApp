@@ -31,9 +31,9 @@ class HomeServiceFragment : Fragment() {
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
     private val serviceList = listOf(
-        HomeServiceDaum(1, "المعارض", "shows", ""),
-        HomeServiceDaum(2, "الدلائل والمجلات", "magazine", ""),
-//        HomeServiceDaum(3, "حركة السفن", "ships", "")
+        HomeServiceDaum(1, "المعارض", "shows", R.drawable.shows),
+        HomeServiceDaum(2, "الدلائل والمجلات", "magazine", R.drawable.magazine),
+        HomeServiceDaum(3, "حركة السفن", "ships", R.drawable.ships)
     )
 
     override fun onCreateView(
@@ -60,6 +60,8 @@ class HomeServiceFragment : Fragment() {
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
                 }
                 "ships" -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
                     //ToDo -> Navigate to shipsFragment
                 }
                 else -> {

@@ -28,8 +28,8 @@ class SectorViewHolder private constructor(private val binding: SmallRecyclerIte
 
     fun bind(sector: Sector, sectorClickListener: ClickListener<Sector>) {
         binding.data = sector
-        binding.name = sector.name
-        binding.image = ""
+//        binding.name = sector.name
+        binding.image = sector.image
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }

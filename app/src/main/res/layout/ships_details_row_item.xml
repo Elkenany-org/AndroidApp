@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+		
+		<variable
+			name="data"
+			type="com.elkenany.entities.ships.Ship"
+			/>
+		
+		<variable
+			name="clickListener"
+			type="com.elkenany.ClickListener"
+			/>
+	
+	</data>
+	
+	<androidx.cardview.widget.CardView
+		android:id="@+id/card_view"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:elevation="7dp"
+		android:onClick="@{()-> clickListener.onClick(data)}"
+		app:cardCornerRadius="7dp"
+		app:cardUseCompatPadding="true"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layoutDirection="rtl"
+			android:orientation="horizontal"
+			android:paddingHorizontal="10dp"
+			android:paddingVertical="2dp"
+			>
+			
+			
+			<TextView
+				android:id="@+id/prod_change"
+				itemText="@{data.name}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_change_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_categorize_name"
+				itemText="@{data.dirDate}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/categorize_name_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_chargin_system_name"
+				itemText="@{data.load.toString()}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/chargin_system_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_weight"
+				itemText="@{data.product}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_weight_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_price_status"
+				itemText="@{data.country}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_price_status_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_age"
+				itemText="@{data.date}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_age_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_type"
+				itemText="@{data.company}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_type_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_chick_type"
+				itemText="@{data.agent}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+			
+			<View
+				android:id="@+id/prod_chick_type_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				/>
+			
+			<TextView
+				android:id="@+id/prod_weight_container"
+				itemText="@{data.port}"
+				android:layout_width="40dp"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/cairo_bold"
+				android:gravity="center"
+				android:maxLines="2"
+				android:padding="5dp"
+				android:textColor="@color/green"
+				android:textSize="7sp"
+				tools:ignore=",SmallSp"
+				/>
+		
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</layout>
