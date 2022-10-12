@@ -2,6 +2,7 @@ package com.elkenany.views.ships
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,12 +33,18 @@ class ShipsFragment : Fragment() {
     private lateinit var logoAdapter: LocalStockLogosAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
     private var date: String? = null
+    @SuppressLint("SourceLockedOrientationActivity")
+    override fun onPause() {
+        super.onPause()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
 
     @SuppressLint("PrivateResource")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ships, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ShipsViewModel::class.java]
@@ -124,6 +131,7 @@ class ShipsFragment : Fragment() {
     private fun updateLabel() {
         val myFormat = "YYYY-MM-d"
         date = SimpleDateFormat(myFormat, Locale.US).format(myCalendar.time)
+        binding.calenderBtn.text = date.toString()
         viewModel.getAllSearchData(date)
     }
 }

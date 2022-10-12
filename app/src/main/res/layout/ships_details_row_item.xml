@@ -43,7 +43,7 @@
 			<TextView
 				android:id="@+id/prod_change"
 				itemText="@{data.name}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -64,7 +64,7 @@
 			<TextView
 				android:id="@+id/prod_categorize_name"
 				itemText="@{data.dirDate}"
-				android:layout_width="40dp"
+				android:layout_width="50dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -85,7 +85,7 @@
 			<TextView
 				android:id="@+id/prod_chargin_system_name"
 				itemText="@{data.load.toString()}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -106,7 +106,7 @@
 			<TextView
 				android:id="@+id/prod_weight"
 				itemText="@{data.product}"
-				android:layout_width="40dp"
+				android:layout_width="35dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -127,7 +127,7 @@
 			<TextView
 				android:id="@+id/prod_price_status"
 				itemText="@{data.country}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -148,7 +148,7 @@
 			<TextView
 				android:id="@+id/prod_age"
 				itemText="@{data.date}"
-				android:layout_width="40dp"
+				android:layout_width="50dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -169,7 +169,7 @@
 			<TextView
 				android:id="@+id/prod_type"
 				itemText="@{data.company}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -190,7 +190,7 @@
 			<TextView
 				android:id="@+id/prod_chick_type"
 				itemText="@{data.agent}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"
@@ -211,7 +211,7 @@
 			<TextView
 				android:id="@+id/prod_weight_container"
 				itemText="@{data.port}"
-				android:layout_width="40dp"
+				android:layout_width="45dp"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/cairo_bold"
 				android:gravity="center"

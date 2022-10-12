@@ -42,13 +42,13 @@ class GuideMagazineDetailsFragment : Fragment() {
 
         //clickListeners
         binding.mail.setOnClickListener {
-            callThisNumber(binding.mail.text.toString())
+            emailThisEmail(binding.mail.text.toString())
         }
         binding.mail1.setOnClickListener {
-            callThisNumber(binding.mail1.text.toString())
+            emailThisEmail(binding.mail1.text.toString())
         }
         binding.mail2.setOnClickListener {
-            callThisNumber(binding.mail2.text.toString())
+            emailThisEmail(binding.mail2.text.toString())
         }
         binding.phone.setOnClickListener {
             callThisNumber(binding.phone.text.toString())
@@ -141,12 +141,13 @@ class GuideMagazineDetailsFragment : Fragment() {
         intent.data = Uri.parse(url)
         startActivity(intent)
     }
-//    private fun emailThisEmail(email: String?) {
-//        val emailIntent = Intent(Intent.ACTION_SEND)
-//        emailIntent.type = "plain/text"
-//        emailIntent.putExtra(Intent.EXTRA_EMAIL, email)
-//        startActivity(emailIntent)
-//    }
+
+    private fun emailThisEmail(email: String?) {
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+        emailIntent.type = "message/rfc822"
+        startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"))
+    }
 //
 //    private fun locateThisLocation(latid: String, longtid: String) {
 //        val gmmIntentUri = Uri.parse("google.navigation:q=${latid},${longtid}")

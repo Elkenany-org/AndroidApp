@@ -1,5 +1,6 @@
 package com.elkenany.views.store.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -10,6 +11,7 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.StoreCardViewItemBinding
 import com.elkenany.entities.store.AdsStoreDaum
+import java.text.SimpleDateFormat
 
 class AdsStoreAdapter(private val sectorClickListener: ClickListener<AdsStoreDaum>) :
     ListAdapter<AdsStoreDaum, AdsStoreDaumViewHolder>(
@@ -30,10 +32,14 @@ class AdsStoreAdapter(private val sectorClickListener: ClickListener<AdsStoreDau
 class AdsStoreDaumViewHolder private constructor(private val binding: StoreCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
+    @SuppressLint("SimpleDateFormat")
     fun bind(ads: AdsStoreDaum, sectorClickListener: ClickListener<AdsStoreDaum>) {
         binding.data = ads
         binding.title = ads.title
-        binding.createdAt = ads.createdAt
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val text = ads.createdAt
+        val date = text?.let { formatter.parse(it) }
+        binding.createdAt = date?.let { formatter.format(it).toString() }
         binding.location = ads.address
         binding.url = ads.image
         binding.price = ads.salary.toString()

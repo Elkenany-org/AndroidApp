@@ -103,6 +103,14 @@ class SearchFragment : Fragment() {
                     result.id,
                     "",
                     "fodder"))
+            "showes" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToShowsDetailsFragment(
+                    result.id,
+                    result.name,
+                ))
+            "magazines" -> requireView().findNavController()
+                .navigate(SearchFragmentDirections.actionSearchFragmentToGuideMagazineDetailsFragment(
+                    result.id))
             else -> Toast.makeText(requireContext(), "حدوث خطأ في عملية العرض", Toast.LENGTH_SHORT)
                 .show()
 

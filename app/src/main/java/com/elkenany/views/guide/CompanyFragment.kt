@@ -196,9 +196,9 @@ class CompanyFragment : Fragment() {
 
     private fun emailThisEmail(email: String?) {
         val emailIntent = Intent(Intent.ACTION_SEND)
-        emailIntent.type = "plain/text"
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, email)
-        startActivity(emailIntent)
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+        emailIntent.type = "message/rfc822"
+        startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"))
     }
 
     private fun locateThisLocation(latid: String, longtid: String) {
