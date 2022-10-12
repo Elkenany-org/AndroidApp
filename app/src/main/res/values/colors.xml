@@ -11,5 +11,6 @@
     <color name="google_color">#E1432E</color>
     <color name="facebook_color">#3B5998</color>
     <color name="gray">#B0B0B0</color>
+    <color name="transparent_color">#00FFFFFF</color>
 
 </resources>

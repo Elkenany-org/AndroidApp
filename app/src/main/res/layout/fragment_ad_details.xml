@@ -13,9 +13,6 @@
             name="image"
             type="String" />
 
-        <variable
-            name="clickable"
-            type="Boolean" />
     </data>
 
     <RelativeLayout
@@ -66,7 +63,6 @@
                 android:id="@+id/ads_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="@{clickable}"
                 android:orientation="vertical"
                 android:padding="5dp">
 
@@ -203,7 +199,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="12dp"
-                            android:clickable="@{clickable}"
                             android:drawablePadding="5dp"
                             android:fontFamily="@font/cairo_bold"
                             android:textAlignment="textEnd"
@@ -230,7 +225,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/primary_btn_shape"
-                            android:clickable="@{clickable}"
                             android:drawableStart="@drawable/phone_icon"
                             android:fontFamily="@font/cairo_bold"
                             android:paddingStart="10dp"
