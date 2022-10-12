@@ -261,6 +261,14 @@
 			android:id="@+id/action_searchFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_searchFragment_to_guideMagazineDetailsFragment"
+			app:destination="@id/guideMagazineDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_searchFragment_to_showsDetailsFragment"
+			app:destination="@id/showsDetailsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/mainMenuFragment"

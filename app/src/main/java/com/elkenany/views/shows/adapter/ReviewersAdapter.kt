@@ -1,5 +1,6 @@
 package com.elkenany.views.shows.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -10,6 +11,7 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.ShowReviewersCardItemBinding
 import com.elkenany.entities.shows_data.Review
+import java.text.SimpleDateFormat
 
 
 class ReviewersAdapter(private val clickListener: ClickListener<Review>) :
@@ -28,11 +30,15 @@ class ReviewersAdapter(private val clickListener: ClickListener<Review>) :
 
 }
 
+@SuppressLint("SimpleDateFormat")
 class ReviewAdapterViewHolder private constructor(private val binding: ShowReviewersCardItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(ads: Review, clickListener: ClickListener<Review>) {
-        binding.data = ads
+    fun bind(data: Review, clickListener: ClickListener<Review>) {
+        binding.data = data
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val text = data.createdAt
+        val date = text?.let { formatter.parse(it) }
+        binding.date = date?.let { formatter.format(it).toString() }
         binding.clickListener = clickListener
         binding.executePendingBindings()
     }

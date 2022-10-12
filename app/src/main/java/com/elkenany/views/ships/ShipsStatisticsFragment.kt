@@ -117,8 +117,8 @@ class ShipsStatisticsFragment : Fragment() {
                     productList)
                 binding.productAutoCompelete.setAdapter(productAdapter)
                 binding.productAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-//                    val itemId = it.products[position]!!.id
-//                    country = it.countries[position]!!.country
+                    val itemId = it.products[position]!!.id
+                    type = itemId.toString()
                     binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
                     viewModel.getAllStatisticsData(type, from, to, country)

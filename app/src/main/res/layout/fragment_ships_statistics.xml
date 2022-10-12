@@ -149,76 +149,161 @@
 				/>
 		</LinearLayout>
 		
-		<com.google.android.material.textfield.TextInputLayout
-			android:id="@+id/country_btn"
-			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+		<LinearLayout
+			android:id="@+id/fodder_external_layout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@id/layout3"
-			android:layout_marginStart="40sp"
-			android:layout_marginEnd="40dp"
-			android:fontFamily="@font/cairo_bold"
-			android:textColor="@color/green"
-			app:boxBackgroundColor="@color/orange"
-			app:boxCornerRadiusBottomEnd="7dp"
-			app:boxCornerRadiusBottomStart="7dp"
-			app:boxCornerRadiusTopEnd="7dp"
-			app:boxCornerRadiusTopStart="7dp"
-			tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+			android:baselineAligned="false"
+			android:gravity="center_vertical"
+			android:layoutDirection="rtl"
+			android:orientation="vertical"
+			android:paddingHorizontal="12dp"
+			tools:ignore="UselessLeaf"
 			>
 			
-			<AutoCompleteTextView
-				android:id="@+id/country_auto_compelete"
+			<androidx.cardview.widget.CardView
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:backgroundTint="@color/orange"
-				android:fontFamily="@font/cairo_bold"
-				android:foregroundTint="@color/orange"
-				android:inputType="none"
-				android:textColorHint="@color/green"
-				android:textSize="12sp"
-				tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
-				/>
-		</com.google.android.material.textfield.TextInputLayout>
-		
-		<com.google.android.material.textfield.TextInputLayout
-			android:id="@+id/product_btn"
-			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/country_btn"
-			android:layout_marginStart="40sp"
-			android:layout_marginEnd="40dp"
-			android:fontFamily="@font/cairo_bold"
-			android:textColor="@color/green"
-			app:boxBackgroundColor="@color/orange"
-			app:boxCornerRadiusBottomEnd="7dp"
-			app:boxCornerRadiusBottomStart="7dp"
-			app:boxCornerRadiusTopEnd="7dp"
-			app:boxCornerRadiusTopStart="7dp"
-			tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
-			>
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				app:cardBackgroundColor="@color/orange"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					>
+					
+					<TextView
+						android:id="@+id/country_btn_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:paddingTop="5dp"
+						android:text="@string/select_country_title"
+						android:textAlignment="center"
+						android:textColor="@color/green"
+						android:textSize="13sp"
+						app:drawableStartCompat="@drawable/ic_company"
+						tools:ignore="TextContrastCheck"
+						/>
+					
+					<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/country_btn"
+						style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_below="@id/country_btn_tv"
+						android:layout_marginHorizontal="5dp"
+						app:boxBackgroundColor="@color/orange"
+						app:boxCornerRadiusBottomEnd="20dp"
+						app:boxCornerRadiusBottomStart="20dp"
+						app:boxCornerRadiusTopEnd="20dp"
+						app:boxCornerRadiusTopStart="20dp"
+						app:boxStrokeWidth="0dp"
+						app:boxStrokeWidthFocused="0dp"
+						>
+						
+						<AutoCompleteTextView
+							android:id="@+id/country_auto_compelete"
+							android:layout_width="match_parent"
+							android:layout_height="25sp"
+							android:ellipsize="end"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:inputType="none"
+							android:maxLines="1"
+							android:paddingTop="1dp"
+							android:paddingBottom="5dp"
+							android:singleLine="true"
+							android:textColor="@color/green"
+							android:textSize="10sp"
+							tools:ignore="LabelFor,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+							/>
+					</com.google.android.material.textfield.TextInputLayout>
+				</RelativeLayout>
+			</androidx.cardview.widget.CardView>
 			
-			<AutoCompleteTextView
-				android:id="@+id/product_auto_compelete"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:backgroundTint="@color/orange"
-				android:fontFamily="@font/cairo_bold"
-				android:foregroundTint="@color/orange"
-				android:inputType="none"
-				android:textColorHint="@color/green"
-				android:textSize="12sp"
-				tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+			<View
+				android:layout_width="0dp"
+				android:layout_height="10dp"
 				/>
-		</com.google.android.material.textfield.TextInputLayout>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				app:cardBackgroundColor="@color/orange"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					>
+					
+					<TextView
+						android:id="@+id/select_product_tv"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:gravity="center_vertical"
+						android:paddingTop="5dp"
+						android:text="@string/select_product_title"
+						android:textColor="@color/green"
+						android:textSize="13sp"
+						app:drawableStartCompat="@drawable/ic_baseline_format_list_bulleted_24"
+						tools:ignore="TextContrastCheck"
+						/>
+					
+					<com.google.android.material.textfield.TextInputLayout
+						android:id="@+id/product_btn"
+						style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_below="@id/select_product_tv"
+						android:layout_marginHorizontal="5dp"
+						app:boxBackgroundColor="@color/orange"
+						app:boxCornerRadiusBottomEnd="20dp"
+						app:boxCornerRadiusBottomStart="20dp"
+						app:boxCornerRadiusTopEnd="20dp"
+						app:boxCornerRadiusTopStart="20dp"
+						app:boxStrokeWidth="0dp"
+						app:boxStrokeWidthFocused="0dp"
+						>
+						
+						<AutoCompleteTextView
+							android:id="@+id/product_auto_compelete"
+							android:layout_width="match_parent"
+							android:layout_height="25sp"
+							android:ellipsize="end"
+							android:fontFamily="@font/cairo_bold"
+							android:gravity="center"
+							android:inputType="none"
+							android:maxLines="1"
+							android:paddingTop="1dp"
+							android:paddingBottom="5dp"
+							android:singleLine="true"
+							android:textColor="@color/green"
+							android:textSize="10sp"
+							tools:ignore="LabelFor,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+							/>
+					</com.google.android.material.textfield.TextInputLayout>
+				</RelativeLayout>
+			</androidx.cardview.widget.CardView>
+		</LinearLayout>
 		
 		
 		<RelativeLayout
 			android:id="@+id/found_data_layout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_below="@id/product_btn"
+			android:layout_below="@id/fodder_external_layout"
 			android:layout_margin="15dp"
 			>
 			

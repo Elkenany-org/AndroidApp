@@ -82,6 +82,7 @@
 				android:layoutDirection="rtl"
 				android:orientation="horizontal"
 				tools:ignore="UselessLeaf"
+				android:layout_marginTop="5dp"
 				>
 				
 				<androidx.appcompat.widget.AppCompatButton
