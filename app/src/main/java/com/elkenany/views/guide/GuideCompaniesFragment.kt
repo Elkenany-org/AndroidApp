@@ -15,19 +15,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
+import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideCompaniesBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.entities.guide.CompaniesData
 import com.elkenany.viewmodels.GuideCompaniesViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.CompaniesAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class GuideCompaniesFragment : Fragment() {
@@ -37,6 +35,8 @@ class GuideCompaniesFragment : Fragment() {
     private var search: String? = ""
     private var countryId: Long? = null
     private var cityId: Long? = null
+    private var country: String? = "الدول"
+    private var city: String? = "البلاد"
     private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var companiesAdapter: CompaniesAdapter
@@ -45,8 +45,8 @@ class GuideCompaniesFragment : Fragment() {
     private val args: GuideCompaniesFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
-        binding.companyAutoCompelete.setText("البلاد")
-        binding.productAutoCompelete.setText("الدول")
+        binding.companyAutoCompelete.setText(city)
+        binding.productAutoCompelete.setText(country)
         viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
     }
 
@@ -60,6 +60,8 @@ class GuideCompaniesFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideCompaniesViewModel::class.java]
         binding.appBarTitle.text = args.name
+        binding.companyAutoCompelete.setText(city)
+        binding.productAutoCompelete.setText(country)
 //        viewModel.getCompaniesGuideData(args.id, search)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
@@ -68,7 +70,7 @@ class GuideCompaniesFragment : Fragment() {
         bannersAdapter = LocalStockBannersAdapter(ClickListener {
             navigateToBroswerIntent(it.link)
         })
-        binding.bannersRecyclerView.adapter = bannersAdapter
+//        binding.bannersRecyclerView.adapter = bannersAdapter
         logosAdapter = LocalStockLogosAdapter(ClickListener {
             navigateToBroswerIntent(it.link)
         })
@@ -103,6 +105,7 @@ class GuideCompaniesFragment : Fragment() {
                         it.countries[position]!!.name,
                         Toast.LENGTH_SHORT).show()
                     countryId = it.countries[position]!!.id
+                    country = it.countries[position]!!.name
                     binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
                     viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
@@ -121,6 +124,7 @@ class GuideCompaniesFragment : Fragment() {
                         it.cities[position]!!.name,
                         Toast.LENGTH_SHORT).show()
                     cityId = it.cities[position]!!.id
+                    city = it.cities[position]!!.name
                     binding.productAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
                     viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
@@ -139,7 +143,7 @@ class GuideCompaniesFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
-                scrollRecyclerView(it.banners)
+                enableImageSlider(it)
                 logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
 
@@ -150,7 +154,7 @@ class GuideCompaniesFragment : Fragment() {
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
-                binding.fodderExternalLayout.visibility = View.GONE
+//                binding.fodderExternalLayout.visibility = View.GONE
                 binding.loadingProgressbar.visibility = View.VISIBLE
                 binding.companyListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.GONE
@@ -161,21 +165,42 @@ class GuideCompaniesFragment : Fragment() {
         return binding.root
     }
 
-    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-        CoroutineScope(Dispatchers.Main).launch {
-            var counter = 0
-            while (counter < banners.size) {
-                delay(3000L).apply {
-                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-                }
-                if (counter == banners.size - 1) {
-                    counter = 0
-                } else {
-                    counter += 1
-                }
+    private fun enableImageSlider(list: CompaniesData) {
+        if (list.banners.isEmpty()) {
+            binding.bannersRecyclerView.visibility = View.GONE
+        } else {
+            val arrayList = ArrayList<SlideModel>()
+            list.banners.map { images ->
+                arrayList.add(SlideModel(images!!.image))
+            }.toList()
+            binding.bannersRecyclerView.apply {
+                binding.bannersRecyclerView.visibility = View.VISIBLE
+                setImageList(arrayList)
+                setItemClickListener(object : ItemClickListener {
+                    override fun onItemSelected(position: Int) {
+                        navigateToBroswerIntent(list.banners[position]!!.link)
+                    }
+
+                })
             }
         }
     }
+
+//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            var counter = 0
+//            while (counter < banners.size) {
+//                delay(3000L).apply {
+//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
+//                }
+//                if (counter == banners.size - 1) {
+//                    counter = 0
+//                } else {
+//                    counter += 1
+//                }
+//            }
+//        }
+//    }
 
     private fun navigateToBroswerIntent(url: String?) {
         val intent = Intent(Intent.ACTION_VIEW)

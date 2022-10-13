@@ -45,15 +45,18 @@
 			<!-- TODO: Update blank fragment layout -->
 			
 			
-			<androidx.recyclerview.widget.RecyclerView
+			<com.denzcoskun.imageslider.ImageSlider
 				android:id="@+id/banners_recycler_view"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="90dp"
+				android:elevation="10dp"
 				android:layoutDirection="rtl"
-				android:orientation="horizontal"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-				tools:ignore="SpeakableTextPresentCheck"
-				tools:listitem="@layout/banners_card_view_item"
+				android:visibility="gone"
+				app:iss_auto_cycle="true"
+				app:iss_corner_radius="20"
+				app:iss_selected_dot="@color/transparent_color"
+				app:iss_unselected_dot="@color/transparent_color"
+				tools:visibility="visible"
 				/>
 			
 			<androidx.recyclerview.widget.RecyclerView

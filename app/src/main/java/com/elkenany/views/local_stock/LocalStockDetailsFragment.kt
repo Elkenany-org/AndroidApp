@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
+import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockDetailsBinding
@@ -27,10 +29,6 @@ import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -82,8 +80,6 @@ class LocalStockDetailsFragment : Fragment() {
             navigateToBroswerIntent(it.link)
         })
         binding.bannersRecyclerView.apply {
-
-            adapter = bannersAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
@@ -218,12 +214,14 @@ class LocalStockDetailsFragment : Fragment() {
                     }
 
                 }
+
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE
                 binding.stockDataRecyclerView.visibility = View.VISIBLE
                 logosAdapter.submitList(it.logos)
                 bannersAdapter.submitList(it.banners)
-                scrollRecyclerView(it.banners)
+//                scrollRecyclerView(it.banners)
+                enableImageSlider(it.banners)
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
                 if (args.sectorType == "fodder") {
                     binding.apply {
@@ -248,6 +246,27 @@ class LocalStockDetailsFragment : Fragment() {
         return binding.root
     }
 
+    private fun enableImageSlider(list: List<LocalStockBanner?>) {
+        if (list.isEmpty()) {
+            binding.bannersRecyclerView.visibility = View.GONE
+        } else {
+            val arrayList = ArrayList<SlideModel>()
+            list.map { images ->
+                arrayList.add(SlideModel(images!!.image))
+            }.toList()
+            binding.bannersRecyclerView.apply {
+                binding.bannersRecyclerView.visibility = View.VISIBLE
+                setImageList(arrayList)
+                setItemClickListener(object : ItemClickListener {
+                    override fun onItemSelected(position: Int) {
+                        navigateToBroswerIntent(list[position]!!.link)
+                    }
+
+                })
+            }
+        }
+    }
+
     @SuppressLint("NewApi", "WeekBasedYear")
     private fun updateLabel() {
         val myFormat = "YYYY-MM-d"
@@ -260,21 +279,21 @@ class LocalStockDetailsFragment : Fragment() {
         )
     }
 
-    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-        CoroutineScope(Dispatchers.Main).launch {
-            var counter = 0
-            while (counter < banners.size) {
-                delay(3000L).apply {
-                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-                }
-                if (counter == banners.size - 1) {
-                    counter = 0
-                } else {
-                    counter += 1
-                }
-            }
-        }
-    }
+//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            var counter = 0
+//            while (counter < banners.size) {
+//                delay(3000L).apply {
+//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
+//                }
+//                if (counter == banners.size - 1) {
+//                    counter = 0
+//                } else {
+//                    counter += 1
+//                }
+//            }
+//        }
+//    }
 
     private fun navigateToBroswerIntent(url: String?) {
         val intent = Intent(Intent.ACTION_VIEW)
