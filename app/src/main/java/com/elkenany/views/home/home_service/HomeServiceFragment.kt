@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +16,6 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
-import com.elkenany.entities.home_data.HomeServiceDaum
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.home_service.adapter.*
@@ -30,11 +30,6 @@ class HomeServiceFragment : Fragment() {
     private lateinit var recommendationAdapter: ServiceRecommendationAdapter
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
-    private val serviceList = listOf(
-        HomeServiceDaum(1, "المعارض", "shows", R.drawable.shows),
-        HomeServiceDaum(2, "الدلائل والمجلات", "magazine", R.drawable.magazine),
-        HomeServiceDaum(3, "حركة السفن", "ships", R.drawable.ships)
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,22 +45,20 @@ class HomeServiceFragment : Fragment() {
         homeServiceAdapter = HomeServiceAdapter(ClickListener {
             when (it.type) {
                 "shows" -> {
-                    //ToDo -> Navigate to showsFragment
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsFragment())
                 }
                 "magazine" -> {
-                    //ToDo -> Navigate to magazineFragment
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
                 }
                 "ships" -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
-                    //ToDo -> Navigate to shipsFragment
                 }
                 else -> {
-                    throw  IllegalArgumentException("Uknow direction to navigate to")
+                    Toast.makeText(requireContext(), "سيتم توفير الخدمة قريبا!", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })
@@ -124,7 +117,7 @@ class HomeServiceFragment : Fragment() {
         //submitting all the recyclerAdapter lists to it value
         viewModel.homeServiceData.observe(viewLifecycleOwner) {
             if (it != null) {
-                homeServiceAdapter.submitList(serviceList)
+                homeServiceAdapter.submitList(it.services)
                 partnerAdapter.submitList(it.serviceLogos)
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
@@ -135,7 +128,7 @@ class HomeServiceFragment : Fragment() {
                 binding.errorMessage.visibility = View.VISIBLE
                 binding.line2.visibility = View.GONE
                 binding.line2.visibility = View.GONE
-                Log.i("list", "Have no data to load")
+                Log.i("list", "Have no data to load + $it")
             }
         }
 

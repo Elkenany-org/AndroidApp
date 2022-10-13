@@ -30,7 +30,7 @@ class IHomeImplementation {
 
     suspend fun getHomeServiceData(): HomeServiceData? {
         return try {
-            val response = IHomeHandler.singleton.getServicesData().await()
+            val response = IHomeHandler.singleton.getServicesData(true).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getHomeServiceData", e.message.toString())

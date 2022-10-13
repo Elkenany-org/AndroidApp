@@ -23,7 +23,7 @@ import com.elkenany.viewmodels.MainMenuViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.HomeFragmentDirections
 
-const val SHARE_LINK = "https://play.google.com/store/apps/details?id=com.Elkenany"
+const val SHARE_LINK = "https://play.google.com/store/apps/details?id=com.elkenany"
 
 class MainMenuFragment : Fragment() {
     private lateinit var binding: FragmentMainMenuBinding
