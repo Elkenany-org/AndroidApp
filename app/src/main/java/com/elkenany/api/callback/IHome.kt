@@ -17,7 +17,7 @@ interface IHome {
 
     //Retrofit homeServices data callback
     @GET("home-services")
-    fun getServicesData(): Call<GenericEntity<HomeServiceData?>>
+    fun getServicesData(@Header("android") isAndroid: Boolean?): Call<GenericEntity<HomeServiceData?>>
 
     @GET("v2/notifications")
     fun getAllNotificationData(@Header("Authorization") apiToken: String): Call<GenericEntity<NotificationsData?>>

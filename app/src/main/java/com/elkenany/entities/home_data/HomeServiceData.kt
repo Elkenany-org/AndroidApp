@@ -3,7 +3,8 @@ package com.elkenany.entities.home_data
 import com.squareup.moshi.Json
 
 data class HomeServiceData(
-
+    @Json(name = "services")
+    val services: List<HomeServiceDaum>?,
     @Json(name = "logos")
     val serviceLogos: List<ServiceLogo>?,
     @Json(name = "type")
@@ -20,7 +21,7 @@ data class HomeServiceDaum(
     val id: Long?,
     val name: String?,
     val type: String?,
-    val image: Int?,
+    val image: String?,
 )
 
 data class ServiceLogo(

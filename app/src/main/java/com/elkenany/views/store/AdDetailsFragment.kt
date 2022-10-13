@@ -1,14 +1,15 @@
 package com.elkenany.views.store
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentAdDetailsBinding
+import com.elkenany.databinding.ImageDialogItemBinding
 import com.elkenany.viewmodels.AdDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.store.adapter.AdsImagesAdapter
@@ -34,7 +36,6 @@ class AdDetailsFragment : Fragment() {
     private val args: AdDetailsFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
-        binding.clickable = true
         viewModel.getAdDetailsData(args.id)
     }
 
@@ -47,7 +48,6 @@ class AdDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AdDetailsViewModel::class.java]
 //        viewModel.getAdDetailsData(args.id)
-        binding.clickable = true
         binding.chattingBtn.setOnClickListener {
 //            viewModel.startChat(args.id)
             callThisNumber(binding.adPhone.text.toString())
@@ -61,17 +61,11 @@ class AdDetailsFragment : Fragment() {
             }
         }
         adsImagesAdapter = AdsImagesAdapter(ClickListener {
-            binding.clickable = false
-            binding.imagePopUpLayout.layoutAnimation =
-                AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
-            binding.imagePopUpLayout.visibility = View.VISIBLE
-            binding.scrollView.setScrollingEnabled(false)
-            binding.image = it.image
+            openImageDialog(it.image.toString())
         })
         binding.imageButton.setOnClickListener {
             binding.imagePopUpLayout.visibility = View.GONE
             binding.scrollView.setScrollingEnabled(true)
-            binding.clickable = true
         }
         binding.moreImagesRecyclerview.adapter = adsImagesAdapter
         binding.adPhone.setOnClickListener { callThisNumber(binding.adPhone.text.toString()) }
@@ -96,35 +90,57 @@ class AdDetailsFragment : Fragment() {
         {
             if (it != null) {
                 requireView().findNavController()
-                    .navigate(AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
-                        it.id!!,
-                        null))
+                    .navigate(
+                        AdDetailsFragmentDirections.actionAdDetailsFragmentToMessagesFragment(
+                            it.id!!,
+                            null
+                        )
+                    )
             } else {
                 binding.chattingBtn.text = "كلم البائع"
             }
         }
         viewModel.exception.observe(viewLifecycleOwner)
         {
-            if (it == 401) {
-                Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (it == 100) {
-                binding.chattingBtn.text = "برجاء الانتظار"
-            } else {
-                binding.chattingBtn.text = "كلم البائع"
+            when (it) {
+                401 -> {
+                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                100 -> {
+                    binding.chattingBtn.text = "برجاء الانتظار"
+                }
+                else -> {
+                    binding.chattingBtn.text = "كلم البائع"
+                }
             }
         }
         return binding.root
     }
 
+    private fun openImageDialog(image: String) {
+        val dialogBinding = ImageDialogItemBinding.inflate(layoutInflater)
+        dialogBinding.image = image
+        val dialog = Dialog(requireActivity())
+        dialog.setCancelable(true)
+        Log.i("imageUrl", dialogBinding.image.toString())
+        dialog.setContentView(dialogBinding.root)
+        dialog.show()
+
+    }
+
     private fun callThisNumber(phone: String?) {
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:$phone")
-        if (ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(Manifest.permission.CALL_PHONE), 1)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.CALL_PHONE), 1
+            )
         } else {
             startActivity(callIntent)
         }

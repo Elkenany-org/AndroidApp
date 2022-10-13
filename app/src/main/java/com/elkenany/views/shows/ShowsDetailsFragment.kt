@@ -148,16 +148,11 @@ class ShowsDetailsFragment : Fragment() {
 
     private fun openImageDialog(image: String) {
         val dialogBinding = ImageDialogItemBinding.inflate(layoutInflater)
-//        val dialogBinding: ImageDialogItemBinding =
-//            DataBindingUtil.inflate(LayoutInflater.from(context),
-//                R.layout.image_dialog_item, parent,
-//                false)
         dialogBinding.image = image
         val dialog = Dialog(requireActivity())
         dialog.setCancelable(true)
         Log.i("imageUrl", dialogBinding.image.toString())
         dialog.setContentView(dialogBinding.root)
-
         dialog.show()
 
     }
