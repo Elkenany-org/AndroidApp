@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
+import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockBinding
@@ -24,10 +26,7 @@ import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSubSectionsAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 class LocalStockFragment : Fragment() {
     private lateinit var binding: FragmentLocalStockBinding
@@ -63,7 +62,7 @@ class LocalStockFragment : Fragment() {
             navigateToBroswerIntent(it.link)
         })
         binding.bannersRecyclerView.apply {
-            adapter = bannersAdapter
+//            adapter = bannersAdapter
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
@@ -124,7 +123,7 @@ class LocalStockFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 bannersAdapter.submitList(it.banners)
-                scrollRecyclerView(it.banners)
+                enableImageSlider(it.banners)
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
                 subSection.submitList(list)
@@ -153,21 +152,41 @@ class LocalStockFragment : Fragment() {
         return binding.root
     }
 
-    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-        CoroutineScope(Dispatchers.Main).launch {
-            var counter = 0
-            while (counter < banners.size) {
-                delay(3000L).apply {
-                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-                }
-                if (counter == banners.size - 1) {
-                    counter = 0
-                } else {
-                    counter += 1
-                }
+    private fun enableImageSlider(list: List<LocalStockBanner?>) {
+        if (list.isEmpty()) {
+            binding.bannersRecyclerView.visibility = View.GONE
+        } else {
+            val arrayList = ArrayList<SlideModel>()
+            list.map { images ->
+                arrayList.add(SlideModel(images!!.image))
+            }.toList()
+            binding.bannersRecyclerView.apply {
+                binding.bannersRecyclerView.visibility = View.VISIBLE
+                setImageList(arrayList)
+                setItemClickListener(object : ItemClickListener {
+                    override fun onItemSelected(position: Int) {
+                        navigateToBroswerIntent(list[position]!!.link)
+                    }
+
+                })
             }
         }
     }
+//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            var counter = 0
+//            while (counter < banners.size) {
+//                delay(3000L).apply {
+//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
+//                }
+//                if (counter == banners.size - 1) {
+//                    counter = 0
+//                } else {
+//                    counter += 1
+//                }
+//            }
+//        }
+//    }
 
     private fun navigateToBroswerIntent(url: String?) {
         val intent = Intent(Intent.ACTION_VIEW)
