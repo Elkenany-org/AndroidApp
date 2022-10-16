@@ -70,8 +70,8 @@
 					
 					<ImageView
 						imageUrl="@{data.image}"
-						android:layout_width="20dp"
-						android:layout_height="20dp"
+						android:layout_width="25dp"
+						android:layout_height="25dp"
 						tools:ignore="ContentDescription"
 						android:onClick="@{()-> companyListener.onClick(data)}"
 						/>
@@ -320,7 +320,7 @@
 				android:maxLines="2"
 				android:padding="5dp"
 				android:textColor="@color/green"
-				android:textSize="8sp"
+				android:textSize="6.7sp"
 				tools:ignore=",SmallSp"
 				/>
 			

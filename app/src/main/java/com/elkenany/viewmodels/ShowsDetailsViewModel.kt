@@ -43,10 +43,10 @@ class ShowsDetailsViewModel : ViewModel() {
             uiScope.launch {
                 _goingState.value = when (stateId) {
                     1 -> {
-                        api.onGoingState(userApiToken, showId)
+                        api.onGoingState("Bearer $userApiToken", showId)
                     }
                     2 -> {
-                        api.onNotGoingState(userApiToken, showId)
+                        api.onNotGoingState("Bearer $userApiToken", showId)
                     }
                     else -> {
                         throw IllegalArgumentException("Unknown state")
@@ -55,7 +55,7 @@ class ShowsDetailsViewModel : ViewModel() {
 
             }
         } else {
-            _goingState.value = 404
+            _goingState.value = 401
         }
 
     }

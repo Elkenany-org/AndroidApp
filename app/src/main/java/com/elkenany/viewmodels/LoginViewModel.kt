@@ -3,6 +3,7 @@
 package com.elkenany.viewmodels
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import org.json.JSONException
+
 
 
 class LoginViewModel : ViewModel() {
@@ -142,8 +144,10 @@ class LoginViewModel : ViewModel() {
 
     }
 
+    @SuppressLint("PackageManagerGetSignatures")
     @Suppress("DEPRECATION")
     fun signInWithFaceBook(fragment: Fragment, facebookCallbackManager: CallbackManager) {
+
         val loginManager = LoginManager.getInstance()
         loginManager.logInWithReadPermissions(fragment,
             listOf("public_profile", "email"))

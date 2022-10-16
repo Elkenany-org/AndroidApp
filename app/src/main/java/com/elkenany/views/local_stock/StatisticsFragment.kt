@@ -31,8 +31,10 @@ class StatisticsFragment : Fragment() {
     private val args: StatisticsFragmentArgs by navArgs()
     private val myCalendar: Calendar = Calendar.getInstance()
 
-    private var dataFrom: String = ""
-    private var dataTo: String = ""
+    private lateinit var myFormat: String
+    private lateinit var dateFormat: SimpleDateFormat
+    private var dataFrom: String? = null
+    private var dataTo: String? = null
 
     private var itemId: Long? = null
     private var companyId: Long? = null
@@ -58,9 +60,10 @@ class StatisticsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[StatisticsViewModel::class.java]
+        myFormat = "YYYY-MM-d"
+        dateFormat = SimpleDateFormat(myFormat, Locale.US)
+//        initializeCalender()
         Log.i("statistics args", args.toString())
-
-
         binding.dateFromTv.setOnClickListener {
             updateLabel(it)
         }
@@ -188,41 +191,43 @@ class StatisticsFragment : Fragment() {
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, day)
-                val myFormat = "YYYY-MM-d"
-                val dateFormat = SimpleDateFormat(myFormat, Locale.US)
                 Log.i("dataFormant", dateFormat.format(myCalendar.time))
                 when (view.id) {
                     R.id.date_from_tv -> {
                         dataFrom = dateFormat.format(myCalendar.time)
                         binding.dateFromTv.text = dataFrom
-                        if (args.type == "local") {
-                            viewModel.getLocalStockDetailsData(args.id,
-                                args.type,
-                                dataFrom,
-                                dataTo,
-                                itemId)
-                        } else if (args.type == "fodder") {
-                            viewModel.getFodderStockDetailsData(dataFrom,
-                                dataTo,
-                                args.id,
-                                companyId)
-                        }
+                        if (!dataTo.isNullOrEmpty()) {
+                            if (args.type == "local") {
+                                viewModel.getLocalStockDetailsData(args.id,
+                                    args.type,
+                                    dataFrom,
+                                    dataTo,
+                                    itemId)
+                            } else if (args.type == "fodder") {
+                                viewModel.getFodderStockDetailsData(dataFrom,
+                                    dataTo,
+                                    args.id,
+                                    companyId)
+                            }
 
+                        }
                     }
                     R.id.date_to_tv -> {
                         dataTo = dateFormat.format(myCalendar.time)
                         binding.dateToTv.text = dataTo
-                        if (args.type == "local") {
-                            viewModel.getLocalStockDetailsData(args.id,
-                                args.type,
-                                dataFrom,
-                                dataTo,
-                                itemId)
-                        } else if (args.type == "fodder") {
-                            viewModel.getFodderStockDetailsData(dataFrom,
-                                dataTo,
-                                args.id,
-                                companyId)
+                        if (!dataFrom.isNullOrEmpty()) {
+                            if (args.type == "local") {
+                                viewModel.getLocalStockDetailsData(args.id,
+                                    args.type,
+                                    dataFrom,
+                                    dataTo,
+                                    itemId)
+                            } else if (args.type == "fodder") {
+                                viewModel.getFodderStockDetailsData(dataFrom,
+                                    dataTo,
+                                    args.id,
+                                    companyId)
+                            }
                         }
                     }
                     else -> Log.i("nocomment", "no comment")
@@ -235,4 +240,21 @@ class StatisticsFragment : Fragment() {
             myCalendar.get(Calendar.DAY_OF_MONTH)).show()
 
     }
+
+//    private fun initializeCalender() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            myCalendar.set(Calendar.YEAR, LocalDateTime.now().year)
+//            myCalendar.set(Calendar.MONTH, LocalDateTime.now().monthValue)
+//            myCalendar.set(Calendar.DAY_OF_MONTH, LocalDateTime.now().dayOfMonth)
+//            dataFrom = dateFormat.format(myCalendar.time)
+//            dataTo = dateFormat.format(myCalendar.time)
+//            binding.dateFromTv.text = dataFrom
+//            binding.dateToTv.text = dataTo
+//            viewModel.getLocalStockDetailsData(args.id,
+//                args.type,
+//                dataFrom,
+//                dataTo,
+//                itemId)
+//        }
+//    }
 }
