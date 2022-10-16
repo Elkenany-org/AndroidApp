@@ -2,10 +2,14 @@
 
 package com.elkenany.views.auth
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +28,8 @@ import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.tasks.Task
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 const val SHARED_PREFRENCES = "user_credentials"
 
@@ -37,6 +43,7 @@ class LoginFragment : Fragment() {
     private var password: String? = null
 
 
+    @SuppressLint("PackageManagerGetSignatures")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -50,6 +57,19 @@ class LoginFragment : Fragment() {
 //        viewModel.initViewModel(requireContext(), requireActivity())
         loadSavedData()
         facebookCallbackManager = CallbackManager.Factory.create()
+        try {
+            val info: PackageInfo = requireContext().packageManager.getPackageInfo(
+                "com.elkenany",
+                PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            Log.d("KeyHash:", "NameNotFoundException")
+        } catch (e: NoSuchAlgorithmException) {
+            Log.d("KeyHash:", "NoSuchAlgorithmException")
+        }
         binding.lifecycleOwner = viewLifecycleOwner
         // showing app logo inside ImageView
         binding.signInBtn.setOnClickListener {

@@ -51,6 +51,11 @@ class LocalStockDetailsFragment : Fragment() {
         super.onResume()
         binding.companyAutoCompelete.setText("الشركات")
         binding.productAutoCompelete.setText("الأصناف")
+        if (!dateFormat.isNullOrEmpty()) {
+            binding.calenderBtn.text = dateFormat
+        } else {
+            binding.calenderBtn.setText(R.string.today_title)
+        }
         Log.i("args.id", args.id.toString())
         viewModel.getLocalStockDetailsData(
             args.id,
@@ -82,7 +87,6 @@ class LocalStockDetailsFragment : Fragment() {
         binding.bannersRecyclerView.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
-
         val date =
             DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, day: Int ->
                 myCalendar.set(Calendar.YEAR, year)
@@ -109,7 +113,6 @@ class LocalStockDetailsFragment : Fragment() {
                     )
                 )
         }
-
         logosAdapter = LocalStockLogosAdapter(ClickListener {
             navigateToBroswerIntent(it.link)
         })
@@ -136,7 +139,6 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
-
         viewModel.feedsItem.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.productBtn.visibility = View.VISIBLE
@@ -169,7 +171,6 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.productBtn.visibility = View.GONE
                 Log.i("feedList", "failed to load feed data in it $it")
             }
-
         }
         viewModel.companyItem.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -212,9 +213,7 @@ class LocalStockDetailsFragment : Fragment() {
                         visibility = View.VISIBLE
                         text = it.message
                     }
-
                 }
-
                 binding.errorMessage.visibility = View.GONE
                 binding.foundDataLayout.visibility = View.VISIBLE
                 binding.stockDataRecyclerView.visibility = View.VISIBLE
@@ -232,7 +231,6 @@ class LocalStockDetailsFragment : Fragment() {
                         fodderExternalLayout.visibility = View.GONE
                     }
                 }
-
             } else {
                 binding.errorMessage.apply {
                     text = "تعذر الحصول علي اي بيانات"
@@ -241,8 +239,6 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.stockDataRecyclerView.visibility = View.GONE
             }
         }
-
-
         return binding.root
     }
 
@@ -261,7 +257,6 @@ class LocalStockDetailsFragment : Fragment() {
                     override fun onItemSelected(position: Int) {
                         navigateToBroswerIntent(list[position]!!.link)
                     }
-
                 })
             }
         }
@@ -271,6 +266,7 @@ class LocalStockDetailsFragment : Fragment() {
     private fun updateLabel() {
         val myFormat = "YYYY-MM-d"
         dateFormat = SimpleDateFormat(myFormat, Locale.US).format(myCalendar.time)
+        binding.calenderBtn.text = dateFormat
         viewModel.getLocalStockDetailsData(
             args.id,
             dateFormat,
@@ -279,21 +275,6 @@ class LocalStockDetailsFragment : Fragment() {
         )
     }
 
-//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            var counter = 0
-//            while (counter < banners.size) {
-//                delay(3000L).apply {
-//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-//                }
-//                if (counter == banners.size - 1) {
-//                    counter = 0
-//                } else {
-//                    counter += 1
-//                }
-//            }
-//        }
-//    }
 
     private fun navigateToBroswerIntent(url: String?) {
         val intent = Intent(Intent.ACTION_VIEW)

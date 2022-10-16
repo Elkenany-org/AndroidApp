@@ -115,7 +115,7 @@ class ShowsDetailsFragment : Fragment() {
             when (it) {
                 200 -> Toast.makeText(requireContext(), "تم التعديل بنجاح", Toast.LENGTH_SHORT)
                     .show()
-                404 -> {
+                401 -> {
                     Toast.makeText(requireContext(),
                         "برجاء تسجيل الدخول أولا",
                         Toast.LENGTH_SHORT).show()
