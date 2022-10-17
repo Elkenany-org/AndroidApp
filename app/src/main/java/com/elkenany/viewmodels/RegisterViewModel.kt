@@ -28,7 +28,7 @@ class RegisterViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _exception = MutableLiveData<Int>()
     private val _loading = MutableLiveData(false)
-    private val _token = MainActivity.getToken().toString()
+    private val _token = MainActivity.getFCMToken().toString()
 
     private val api = AuthImplementation()
     val loading: LiveData<Boolean> get() = _loading

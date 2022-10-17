@@ -38,7 +38,7 @@ class LoginViewModel : ViewModel() {
     private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
-    private val _token = MainActivity.getToken().toString()
+    private val _token = MainActivity.getFCMToken().toString()
 
 
     val loading: LiveData<Boolean> get() = _loading
