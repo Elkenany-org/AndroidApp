@@ -51,7 +51,8 @@ interface ILocalStock {
         @Header("Authorization") authorization: String?,
     ): Call<GenericEntity<StatisticsLocalData?>>
 
-    @GET("fodderstock/statistics-Fodderstock-members")
+    // old fodderStatistics endpoint -> ("fodderstock/statistics-Fodderstock-members")
+    @GET("fodderstock/statistics-Fodderstock-members-android")
     fun getAllStatisticsFodderData(
         @Header("Authorization") authorization: String?,
         @Query("from") from: String?,

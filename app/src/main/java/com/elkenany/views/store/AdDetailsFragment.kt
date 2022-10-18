@@ -1,24 +1,19 @@
 package com.elkenany.views.store
 
-import android.Manifest
 import android.app.Dialog
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
+import com.elkenany.MainActivity.Companion.callThisNumber
 import com.elkenany.R
 import com.elkenany.databinding.FragmentAdDetailsBinding
 import com.elkenany.databinding.ImageDialogItemBinding
@@ -50,7 +45,7 @@ class AdDetailsFragment : Fragment() {
 //        viewModel.getAdDetailsData(args.id)
         binding.chattingBtn.setOnClickListener {
 //            viewModel.startChat(args.id)
-            callThisNumber(binding.adPhone.text.toString())
+            callThisNumber(binding.adPhone.text.toString(), requireContext(), requireActivity())
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -68,7 +63,11 @@ class AdDetailsFragment : Fragment() {
             binding.scrollView.setScrollingEnabled(true)
         }
         binding.moreImagesRecyclerview.adapter = adsImagesAdapter
-        binding.adPhone.setOnClickListener { callThisNumber(binding.adPhone.text.toString()) }
+        binding.adPhone.setOnClickListener {
+            callThisNumber(binding.adPhone.text.toString(),
+                requireContext(),
+                requireActivity())
+        }
         viewModel.adDetailsData.observe(viewLifecycleOwner)
         {
             if (it != null) {
@@ -128,23 +127,4 @@ class AdDetailsFragment : Fragment() {
         dialog.show()
 
     }
-
-    private fun callThisNumber(phone: String?) {
-        val callIntent = Intent(Intent.ACTION_CALL)
-        callIntent.data = Uri.parse("tel:$phone")
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.CALL_PHONE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CALL_PHONE), 1
-            )
-        } else {
-            startActivity(callIntent)
-        }
-
-    }
-
 }

@@ -2,11 +2,19 @@
 
 package com.elkenany
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.elkenany.databinding.ActivityMainBinding
 import com.facebook.FacebookSdk
 import com.facebook.LoggingBehavior
@@ -27,11 +35,12 @@ class MainActivity : AppCompatActivity() {
         FacebookSdk.fullyInitialize()
         FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
         AppEventsLogger.activateApp(this.application)
-        getToken()
+        getFCMToken()
     }
 
     companion object {
-        fun getToken(): String? {
+        // get Firebase cloud messaging token
+        fun getFCMToken(): String? {
             var token: String? = null
             FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
                 token = if (!task.isSuccessful) {
@@ -43,6 +52,41 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             return token
+        }
+
+        // send mail to specific email
+        fun emailThisEmail(email: String?, activity: Activity) {
+            val emailIntent = Intent(Intent.ACTION_SEND)
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+            emailIntent.type = "message/rfc822"
+            activity.startActivity(Intent.createChooser(emailIntent, "Choose an Email client :"))
+        }
+
+        // make a phone call to specific number
+        fun callThisNumber(phone: String?, context: Context, activity: Activity) {
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:$phone")
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.CALL_PHONE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    activity,
+                    arrayOf(Manifest.permission.CALL_PHONE), 1
+                )
+            } else {
+                activity.startActivity(callIntent)
+            }
+
+        }
+
+        // navigate to gps to locate a specific location
+        fun locateThisLocation(latid: String, longtid: String, activity: Activity) {
+            val gmmIntentUri = Uri.parse("google.navigation:q=${latid},${longtid}")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            mapIntent.setPackage("com.google.android.apps.maps")
+            activity.startActivity(mapIntent)
         }
     }
 

@@ -62,7 +62,6 @@ class StatisticsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[StatisticsViewModel::class.java]
         myFormat = "YYYY-MM-d"
         dateFormat = SimpleDateFormat(myFormat, Locale.US)
-//        initializeCalender()
         Log.i("statistics args", args.toString())
         binding.dateFromTv.setOnClickListener {
             updateLabel(it)
@@ -240,21 +239,4 @@ class StatisticsFragment : Fragment() {
             myCalendar.get(Calendar.DAY_OF_MONTH)).show()
 
     }
-
-//    private fun initializeCalender() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            myCalendar.set(Calendar.YEAR, LocalDateTime.now().year)
-//            myCalendar.set(Calendar.MONTH, LocalDateTime.now().monthValue)
-//            myCalendar.set(Calendar.DAY_OF_MONTH, LocalDateTime.now().dayOfMonth)
-//            dataFrom = dateFormat.format(myCalendar.time)
-//            dataTo = dateFormat.format(myCalendar.time)
-//            binding.dateFromTv.text = dataFrom
-//            binding.dateToTv.text = dataTo
-//            viewModel.getLocalStockDetailsData(args.id,
-//                args.type,
-//                dataFrom,
-//                dataTo,
-//                itemId)
-//        }
-//    }
 }
