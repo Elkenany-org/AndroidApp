@@ -1,7 +1,5 @@
 package com.elkenany.views.shows
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,15 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.ShowsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.elkenany.views.shows.adapter.ShowsAdapter
@@ -29,7 +24,6 @@ class ShowsFragment : Fragment() {
     private lateinit var binding: FragmentShowsBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ShowsViewModel
-    private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var showsAdapter: ShowsAdapter
@@ -49,8 +43,6 @@ class ShowsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ShowsViewModel::class.java]
         viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
-        bannersAdapter = LocalStockBannersAdapter(ClickListener { })
-//        binding.bannersRecyclerView.adapter = bannersAdapter
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
@@ -93,7 +85,7 @@ class ShowsFragment : Fragment() {
                     showsListRecyclerView.visibility = View.VISIBLE
                 }
 //                bannersAdapter.submitList(it.banners)
-                enableImageSlider(it.banners)
+                enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
                 showsAdapter.submitList(it.data)
@@ -108,30 +100,5 @@ class ShowsFragment : Fragment() {
         return binding.root
     }
 
-    private fun enableImageSlider(list: List<LocalStockBanner?>) {
-        if (list.isEmpty()) {
-            binding.bannersRecyclerView.visibility = View.GONE
-        } else {
-            val arrayList = ArrayList<SlideModel>()
-            list.map { images ->
-                arrayList.add(SlideModel(images!!.image))
-            }.toList()
-            binding.bannersRecyclerView.apply {
-                binding.bannersRecyclerView.visibility = View.VISIBLE
-                setImageList(arrayList)
-                setItemClickListener(object : ItemClickListener {
-                    override fun onItemSelected(position: Int) {
-                        navigateToBroswerIntent(list[position]!!.link)
-                    }
 
-                })
-            }
-        }
-    }
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
 }

@@ -1,7 +1,5 @@
 package com.elkenany.views.guide_magazine
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.elkenany.MainActivity.Companion.callThisNumber
-import com.elkenany.MainActivity.Companion.emailThisEmail
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideMagazineDetailsBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
+import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.GuideMagazineDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 
@@ -64,10 +63,10 @@ class GuideMagazineDetailsFragment : Fragment() {
             callThisNumber(binding.fax.text.toString(), requireContext(), requireActivity())
         }
         binding.socialFacebook.setOnClickListener {
-            navigateToBroswerIntent(binding.socialFacebook.text.toString())
+            navigateToBroswerIntent(binding.socialFacebook.text.toString(), requireActivity())
         }
         binding.socialWebsite.setOnClickListener {
-            navigateToBroswerIntent(binding.socialWebsite.text.toString())
+            navigateToBroswerIntent(binding.socialWebsite.text.toString(), requireActivity())
         }
 
         //viewModel observers
@@ -115,12 +114,6 @@ class GuideMagazineDetailsFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
     }
 
 }

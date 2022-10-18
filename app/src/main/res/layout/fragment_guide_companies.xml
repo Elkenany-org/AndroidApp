@@ -84,7 +84,7 @@
 			/>
 		
 		<com.denzcoskun.imageslider.ImageSlider
-			android:id="@+id/banners_recycler_view"
+			android:id="@+id/banners_image_slider"
 			android:layout_width="match_parent"
 			android:layout_height="90dp"
 			android:layout_below="@id/search_bar_card"
@@ -103,7 +103,7 @@
 			android:id="@+id/logos_recycler_view"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_below="@id/banners_recycler_view"
+			android:layout_below="@id/banners_image_slider"
 			android:layout_gravity="start"
 			android:layoutDirection="rtl"
 			android:orientation="horizontal"

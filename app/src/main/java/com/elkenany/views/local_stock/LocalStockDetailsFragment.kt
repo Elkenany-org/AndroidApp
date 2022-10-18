@@ -2,8 +2,6 @@ package com.elkenany.views.local_stock
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,15 +16,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockDetailsBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.LocalStockDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import java.text.SimpleDateFormat
@@ -38,7 +34,6 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LocalStockDetailsViewModel
     private val args: LocalStockDetailsFragmentArgs by navArgs()
-    private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     private var companyId: String? = null
@@ -81,10 +76,7 @@ class LocalStockDetailsFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, viewModelFactory)[LocalStockDetailsViewModel::class.java]
         binding.appBarTitle.text = args.sectorName
-        bannersAdapter = LocalStockBannersAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
-        })
-        binding.bannersRecyclerView.apply {
+        binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
         val date =
@@ -114,7 +106,7 @@ class LocalStockDetailsFragment : Fragment() {
                 )
         }
         logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
+            navigateToBroswerIntent(it.link, requireActivity())
         })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
@@ -218,9 +210,7 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.foundDataLayout.visibility = View.VISIBLE
                 binding.stockDataRecyclerView.visibility = View.VISIBLE
                 logosAdapter.submitList(it.logos)
-                bannersAdapter.submitList(it.banners)
-//                scrollRecyclerView(it.banners)
-                enableImageSlider(it.banners)
+                enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
                 if (args.sectorType == "fodder") {
                     binding.apply {
@@ -242,26 +232,6 @@ class LocalStockDetailsFragment : Fragment() {
         return binding.root
     }
 
-    private fun enableImageSlider(list: List<LocalStockBanner?>) {
-        if (list.isEmpty()) {
-            binding.bannersRecyclerView.visibility = View.GONE
-        } else {
-            val arrayList = ArrayList<SlideModel>()
-            list.map { images ->
-                arrayList.add(SlideModel(images!!.image))
-            }.toList()
-            binding.bannersRecyclerView.apply {
-                binding.bannersRecyclerView.visibility = View.VISIBLE
-                setImageList(arrayList)
-                setItemClickListener(object : ItemClickListener {
-                    override fun onItemSelected(position: Int) {
-                        navigateToBroswerIntent(list[position]!!.link)
-                    }
-                })
-            }
-        }
-    }
-
     @SuppressLint("NewApi", "WeekBasedYear")
     private fun updateLabel() {
         val myFormat = "YYYY-MM-d"
@@ -275,10 +245,4 @@ class LocalStockDetailsFragment : Fragment() {
         )
     }
 
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
 }

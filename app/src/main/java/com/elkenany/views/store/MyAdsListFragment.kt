@@ -30,7 +30,6 @@ class MyAdsListFragment : Fragment() {
     private lateinit var viewModel: MyAdsListViewModel
     private lateinit var myAdsAdapter: MyAdsAdapter
 
-    //    private lateinit var localStockSectorAdapter: MyAdsSectorsAdapter
     private lateinit var sectorList: List<LocalStockSector>
     private var sectorType: String = "poultry"
     private var sectorName: String? = null
@@ -148,8 +147,6 @@ class MyAdsListFragment : Fragment() {
                     Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
                         .show()
                 }
-            } else {
-//                Log.i("null", "null")
             }
         }
         return binding.root
@@ -171,11 +168,3 @@ class MyAdsListFragment : Fragment() {
         }
     }
 }
-
-
-//        localStockSectorAdapter = MyAdsSectorsAdapter(ClickListener {
-//            sectorType = it.type.toString()
-//            viewModel.getAllNewsData(sectorType)
-//        })
-//        binding.sectorsRecyclerView.adapter = localStockSectorAdapter
-//        localStockSectorAdapter.submitList(sectorList)

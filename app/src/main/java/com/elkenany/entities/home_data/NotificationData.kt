@@ -18,4 +18,5 @@ data class Nots(
     val keyName: String?,
     @Json(name = "key_id")
     val keyId: Long?,
+    val type: String?,
 )

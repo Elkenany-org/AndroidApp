@@ -12,11 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
-import com.elkenany.MainActivity.Companion.callThisNumber
-import com.elkenany.MainActivity.Companion.emailThisEmail
-import com.elkenany.MainActivity.Companion.locateThisLocation
 import com.elkenany.R
 import com.elkenany.databinding.FragmentCompanyBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
+import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
+import com.elkenany.utilities.GlobalUiFunctions.Companion.locateThisLocation
 import com.elkenany.viewmodels.CompanyViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.CompanyLocalStockAdapter
