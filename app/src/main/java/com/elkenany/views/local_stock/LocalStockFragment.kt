@@ -1,7 +1,5 @@
 package com.elkenany.views.local_stock
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.LocalStockViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSubSectionsAdapter
@@ -32,7 +28,6 @@ class LocalStockFragment : Fragment() {
     private lateinit var binding: FragmentLocalStockBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LocalStockViewModel
-    private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
@@ -57,12 +52,8 @@ class LocalStockFragment : Fragment() {
         }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-//        viewModel.getHomeStockData(sectorType!!, search)
-        bannersAdapter = LocalStockBannersAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
-        })
-        binding.bannersRecyclerView.apply {
-//            adapter = bannersAdapter
+
+        binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
@@ -71,7 +62,7 @@ class LocalStockFragment : Fragment() {
             viewModel.getHomeStockData(sectorType!!, search)
         }
         logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
+            navigateToBroswerIntent(it.link, requireActivity())
         })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
@@ -108,7 +99,6 @@ class LocalStockFragment : Fragment() {
                     }
                 }
                 binding.apply {
-//                    changeViewBtn.visibility = View.VISIBLE
                     searchBar.visibility = View.VISIBLE
                 }
                 val list = it.fodSections + it.subSections
@@ -121,16 +111,13 @@ class LocalStockFragment : Fragment() {
                     binding.errorMessage.visibility = View.GONE
                 }
                 binding.errorMessage.visibility = View.GONE
-                //submitting lists to its own adapters
-                bannersAdapter.submitList(it.banners)
-                enableImageSlider(it.banners)
+                enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
                 subSection.submitList(list)
 
             } else {
                 binding.apply {
-//                    changeViewBtn.visibility = View.GONE
                     stockListRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.VISIBLE
                 }
@@ -143,7 +130,6 @@ class LocalStockFragment : Fragment() {
                     loadingProgressbar.visibility = View.VISIBLE
                     stockListRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.GONE
-//                    changeViewBtn.visibility = View.GONE
                 }
             } else {
                 binding.loadingProgressbar.visibility = View.GONE
@@ -152,45 +138,5 @@ class LocalStockFragment : Fragment() {
         return binding.root
     }
 
-    private fun enableImageSlider(list: List<LocalStockBanner?>) {
-        if (list.isEmpty()) {
-            binding.bannersRecyclerView.visibility = View.GONE
-        } else {
-            val arrayList = ArrayList<SlideModel>()
-            list.map { images ->
-                arrayList.add(SlideModel(images!!.image))
-            }.toList()
-            binding.bannersRecyclerView.apply {
-                binding.bannersRecyclerView.visibility = View.VISIBLE
-                setImageList(arrayList)
-                setItemClickListener(object : ItemClickListener {
-                    override fun onItemSelected(position: Int) {
-                        navigateToBroswerIntent(list[position]!!.link)
-                    }
 
-                })
-            }
-        }
-    }
-//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            var counter = 0
-//            while (counter < banners.size) {
-//                delay(3000L).apply {
-//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-//                }
-//                if (counter == banners.size - 1) {
-//                    counter = 0
-//                } else {
-//                    counter += 1
-//                }
-//            }
-//        }
-//    }
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
 }

@@ -18,7 +18,6 @@ import com.elkenany.R
 import com.elkenany.databinding.FragmentShipsBinding
 import com.elkenany.viewmodels.ShipsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.ships.adapter.ShipsAdapter
 import java.text.SimpleDateFormat
@@ -29,7 +28,6 @@ class ShipsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ShipsViewModel
     private lateinit var shipsAdapter: ShipsAdapter
-    private lateinit var bannerAdapter: LocalStockBannersAdapter
     private lateinit var logoAdapter: LocalStockLogosAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
     private var date: String? = null
@@ -49,8 +47,6 @@ class ShipsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ShipsViewModel::class.java]
         viewModel.getAllSearchData(date)
-        bannerAdapter = LocalStockBannersAdapter(ClickListener { })
-        binding.bannersRecyclerView.adapter = bannerAdapter
         logoAdapter = LocalStockLogosAdapter(ClickListener { })
         binding.logosRecyclerView.adapter = logoAdapter
         shipsAdapter = ShipsAdapter(ClickListener { })
@@ -113,7 +109,6 @@ class ShipsFragment : Fragment() {
                 binding.apply {
                     recyclerViewLayout.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
-                    bannerAdapter.submitList(it.banners)
                     logoAdapter.submitList(it.logos)
                     shipsAdapter.submitList(it.ships)
                     Log.i("shipsData", it.ships.toString())

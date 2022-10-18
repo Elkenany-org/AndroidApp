@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elkenany.MainActivity
 import com.elkenany.api.auth.AuthImplementation
+import com.elkenany.utilities.GlobalLogicFunctions.Companion.getFCMToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -28,7 +28,7 @@ class RegisterViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _exception = MutableLiveData<Int>()
     private val _loading = MutableLiveData(false)
-    private val _token = MainActivity.getFCMToken().toString()
+    private val _token = getFCMToken().toString()
 
     private val api = AuthImplementation()
     val loading: LiveData<Boolean> get() = _loading

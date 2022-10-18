@@ -1,7 +1,5 @@
 package com.elkenany.views.guide_magazine
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.denzcoskun.imageslider.interfaces.ItemClickListener
-import com.denzcoskun.imageslider.models.SlideModel
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideMagazineBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.GuideMagazineViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide_magazine.adapter.GuideMagazineAdapter
-import com.elkenany.views.local_stock.adapter.LocalStockBannersAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 
@@ -31,7 +27,6 @@ class GuideMagazineFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: GuideMagazineViewModel
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
-    private lateinit var bannersAdapter: LocalStockBannersAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var magazineAdapter: GuideMagazineAdapter
     private var sectorType: String = "poultry"
@@ -49,11 +44,7 @@ class GuideMagazineFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideMagazineViewModel::class.java]
         viewModel.getGuideData(sectorType, sort, cityId, search)
-        bannersAdapter = LocalStockBannersAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
-        })
-        binding.bannersRecyclerView.apply {
-//            adapter = bannersAdapter
+        binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
@@ -62,7 +53,7 @@ class GuideMagazineFragment : Fragment() {
             viewModel.getGuideData(sectorType, sort, cityId, search)
         }
         logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
+            navigateToBroswerIntent(it.link, requireActivity())
         })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
@@ -90,13 +81,12 @@ class GuideMagazineFragment : Fragment() {
                 binding.apply {
                     magazineListRecyclerView.visibility = View.VISIBLE
                     errorMessage.visibility = View.GONE
-                    bannersAdapter.submitList(it.banners)
                     logosAdapter.submitList(it.logos)
                     sectorsAdapter.submitList(it.sectors)
                     magazineAdapter.submitList(it.data)
                     magazineListRecyclerView.smoothScrollToPosition(0)
 //                    bannersRecyclerView.smoothScrollToPosition(0)
-                    enableImageSlider(it.banners)
+                    enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 }
             } else {
                 binding.apply {
@@ -119,48 +109,5 @@ class GuideMagazineFragment : Fragment() {
         }
         return binding.root
     }
-
-    private fun enableImageSlider(list: List<LocalStockBanner?>) {
-        if (list.isEmpty()) {
-            binding.bannersRecyclerView.visibility = View.GONE
-        } else {
-            val arrayList = ArrayList<SlideModel>()
-            list.map { images ->
-                arrayList.add(SlideModel(images!!.image))
-            }.toList()
-            binding.bannersRecyclerView.apply {
-                binding.bannersRecyclerView.visibility = View.VISIBLE
-                setImageList(arrayList)
-                setItemClickListener(object : ItemClickListener {
-                    override fun onItemSelected(position: Int) {
-                        navigateToBroswerIntent(list[position]!!.link)
-                    }
-
-                })
-            }
-        }
-    }
-//    private fun scrollRecyclerView(banners: List<LocalStockBanner?>) {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            var counter = 0
-//            while (counter < banners.size) {
-//                delay(3000L).apply {
-//                    binding.bannersRecyclerView.smoothScrollToPosition(counter)
-//                }
-//                if (counter == banners.size - 1) {
-//                    counter = 0
-//                } else {
-//                    counter += 1
-//                }
-//            }
-//        }
-//    }
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
-
 
 }

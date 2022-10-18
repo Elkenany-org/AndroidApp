@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
-import com.elkenany.MainActivity.Companion.callThisNumber
 import com.elkenany.R
 import com.elkenany.databinding.FragmentAdDetailsBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
 import com.elkenany.viewmodels.AdDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.store.adapter.AdsImagesAdapter

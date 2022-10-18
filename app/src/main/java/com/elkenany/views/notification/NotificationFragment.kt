@@ -112,10 +112,16 @@ class NotificationFragment : Fragment() {
                     )
                 )
             }
-            "showes" -> {
-                Toast.makeText(requireContext(), "هذه الخدمة لم تتوفر بعد", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            "showes" -> requireView().findNavController()
+                .navigate(NotificationFragmentDirections.actionNotificationFragmentToShowsDetailsFragment(
+                    it.keyId!!,
+                    it.keyName
+                ))
+            "magazines" -> requireView().findNavController()
+                .navigate(NotificationFragmentDirections.actionNotificationFragmentToGuideMagazineDetailsFragment(
+                    it.keyId!!))
+            else -> Toast.makeText(requireContext(), "حدوث خطأ في عملية العرض", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }

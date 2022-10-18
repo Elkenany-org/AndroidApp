@@ -49,7 +49,6 @@ class StoreFragment : Fragment() {
         } catch (e: Exception) {
             "poultry"
         }
-//        viewModel.getAllAdsStoreData(sectorType, search)
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
@@ -97,20 +96,7 @@ class StoreFragment : Fragment() {
             }
 
         }
-//        viewModel.googeToNavigate.observe(viewLifecycleOwner) {
-//            if (it != null) {
-//                if (it == true) {
-//                    requireView().findNavController()
-//                        .navigate(StoreFragmentDirections.actionStoreFragmentToCreateAdFragment())
-//                    viewModel.onDoneNavigating()
-//                } else if (it == false) {
-//                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            } else {
-////                Log.i("null", "null")
-//            }
-//        }
+
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE

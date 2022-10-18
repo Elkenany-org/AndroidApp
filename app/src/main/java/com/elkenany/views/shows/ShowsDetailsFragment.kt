@@ -1,7 +1,6 @@
 package com.elkenany.views.shows
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +18,7 @@ import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsDetailsBinding
 import com.elkenany.databinding.ImageDialogItemBinding
 import com.elkenany.entities.shows_data.AttendanceStateData
+import com.elkenany.utilities.GlobalUiFunctions.Companion.onsharingdata
 import com.elkenany.viewmodels.ShowsDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.shows.adapter.ShowsImageAdapter
@@ -34,7 +34,7 @@ class ShowsDetailsFragment : Fragment() {
         AttendanceStateData(1, "مهتم بالذهاب", false),
         AttendanceStateData(2, "غير مهتم بالذهاب", false)
     )
-    private lateinit var arrayAdapter: ArrayAdapter<String?>
+    private lateinit var arrayAdapter: ArrayAdapter<String>
     private var parent: ViewGroup? = null
 
 
@@ -57,7 +57,8 @@ class ShowsDetailsFragment : Fragment() {
         })
         binding.moreImagesRecyclerview.adapter = showsImageAdapter
         binding.shareShowBtn.setOnClickListener {
-            shareSuccess(args.id.toString())
+            onsharingdata("https://elkenany.com/#/gallery/showes/${args.id}/about",
+                requireActivity())
         }
         binding.reviewsBtn.setOnClickListener {
             requireView().findNavController()
@@ -79,21 +80,21 @@ class ShowsDetailsFragment : Fragment() {
                 }
             }
         }
-        val attendancelist =
-            _attendanceState.map { newList -> newList.name }.toList()
-        arrayAdapter = ArrayAdapter<String?>(
-            requireContext(),
-            R.layout.array_adapter_item,
-            attendancelist
-        )
-        binding.attendanceStateAutoCompelete.setAdapter(arrayAdapter)
-        binding.attendanceStateAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-            val id = _attendanceState[position].id
-            binding.attendanceStateAutoCompelete.hint = adapterView.getItemAtPosition(position)
-                .toString()
-            viewmodel.postGoingState(args.id, id!!)
-        }
         viewmodel.showsDetails.observe(viewLifecycleOwner) {
+            val attendancelist =
+                _attendanceState.map { newList -> newList.name }.toList()
+            arrayAdapter = ArrayAdapter<String>(
+                requireContext(),
+                R.layout.array_adapter_item,
+                attendancelist
+            )
+            binding.attendanceStateAutoCompelete.setAdapter(arrayAdapter)
+            binding.attendanceStateAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                val id = _attendanceState[position].id
+                binding.attendanceStateAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                    .toString()
+                viewmodel.postGoingState(args.id, id!!)
+            }
             Log.i("ShowsDetailsData", args.id.toString() + it.toString())
             if (it != null) {
                 binding.apply {
@@ -130,20 +131,6 @@ class ShowsDetailsFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    private fun onsharingdata(showLink: String?): Intent {
-        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(
-                Intent.EXTRA_TEXT, "https://admin.elkenany.com/one-show$showLink"
-            )
-        }
-        return shareIntent
-    }
-
-    private fun shareSuccess(showLink: String?) {
-        startActivity(onsharingdata(showLink))
     }
 
     private fun openImageDialog(image: String) {
