@@ -91,6 +91,30 @@ class LocalStockFragment : Fragment() {
             adapter = subSection
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
+        viewModel.exception.observe(viewLifecycleOwner) { exception ->
+            binding.errorMessage.apply {
+                when (exception) {
+                    null -> {}
+                    200 -> {
+                        text = ""
+                        visibility = View.GONE
+                    }
+                    400 -> {
+                        text = "حدث خطا في عملية البحث"
+                        visibility = View.VISIBLE
+                    }
+                    404 -> {
+                        text = "لا توجد بيانات"
+                        visibility = View.VISIBLE
+                    }
+                    else -> {
+                        text = "تعذر الحصول علي اي معلومات نتيجة لضعف شبكة الأنترنت"
+                        visibility = View.VISIBLE
+                    }
+                }
+            }
+
+        }
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
                 it.sectors.map { sector ->
@@ -110,7 +134,6 @@ class LocalStockFragment : Fragment() {
                     binding.stockListRecyclerView.scrollToPosition(0)
                     binding.errorMessage.visibility = View.GONE
                 }
-                binding.errorMessage.visibility = View.GONE
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
@@ -119,7 +142,6 @@ class LocalStockFragment : Fragment() {
             } else {
                 binding.apply {
                     stockListRecyclerView.visibility = View.GONE
-                    errorMessage.visibility = View.VISIBLE
                 }
 
             }

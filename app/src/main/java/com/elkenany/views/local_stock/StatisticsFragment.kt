@@ -91,26 +91,32 @@ class StatisticsFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            when (it) {
-                200 -> {
-                    binding.errorMessage.visibility = View.GONE
-                }
-                401 -> {
-                    binding.errorMessage.text =
-                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل البورصة"
-                    binding.errorMessage.visibility = View.VISIBLE
-                }
-                402 -> {
-                    binding.errorMessage.text =
-                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
-                    binding.errorMessage.visibility = View.VISIBLE
-                }
-                else -> {
-                    binding.errorMessage.text =
-                        "تعذر الحصول علي المعلومات"
-                    binding.errorMessage.visibility = View.VISIBLE
+            binding.errorMessage.apply {
+                when (it) {
+                    200 -> {
+                        visibility = View.GONE
+                    }
+                    401 -> {
+                        text =
+                            "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل البورصة"
+                        visibility = View.VISIBLE
+                    }
+                    402 -> {
+                        text =
+                            "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
+                        visibility = View.VISIBLE
+                    }
+                    404 -> {
+                        text = "لا توجد بيانات"
+                        visibility = View.VISIBLE
+                    }
+                    else -> {
+                        text = "تعذر الحصول علي اي معلومات نتيجة لضعف شبكة الأنترنت"
+                        visibility = View.VISIBLE
+                    }
                 }
             }
+
         }
         viewModel.statisticsLocalData.observe(viewLifecycleOwner)
         {
@@ -120,7 +126,6 @@ class StatisticsFragment : Fragment() {
                     localRecyclerView.visibility = View.VISIBLE
                     statiscsAdapter.submitList(it.localChangesMembers)
                     fodderRecyclerView.visibility = View.GONE
-                    errorMessage.visibility = View.GONE
                 }
                 val productList = it.listMembers.map { list -> list!!.name }.toList()
                 adapter = ArrayAdapter<String>(requireContext(),
@@ -144,7 +149,6 @@ class StatisticsFragment : Fragment() {
                 binding.apply {
                     companyBtn.isClickable = true
                     localRecyclerView.visibility = View.GONE
-                    errorMessage.visibility = View.VISIBLE
                 }
             }
         }
@@ -156,7 +160,6 @@ class StatisticsFragment : Fragment() {
                     localRecyclerView.visibility = View.GONE
                     fodderAdapter.submitList(it.changesMembers)
                     fodderRecyclerView.visibility = View.VISIBLE
-                    errorMessage.visibility = View.GONE
                 }
                 val companiesList = it.listMembers.map { list -> list!!.name }.toList()
                 adapter = ArrayAdapter<String>(requireContext(),
@@ -176,7 +179,6 @@ class StatisticsFragment : Fragment() {
                 binding.apply {
                     companyBtn.isClickable = true
                     localRecyclerView.visibility = View.GONE
-                    errorMessage.visibility = View.VISIBLE
                 }
             }
         }

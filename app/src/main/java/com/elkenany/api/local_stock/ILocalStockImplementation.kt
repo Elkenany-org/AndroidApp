@@ -9,20 +9,23 @@ import java.net.SocketTimeoutException
 
 class ILocalStockImplementation {
 
-    suspend fun getLocalStockSectionsData(sectorType: String, search: String?): LocalStockData? {
+    suspend fun getLocalStockSectionsData(
+        sectorType: String,
+        search: String?,
+    ): GenericEntity<LocalStockData?> {
         return try {
             val response =
                 ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search).await()
-            response.data
+            response
         } catch (e: HttpException) {
             Log.i("getLocalStockSectionsData", e.message.toString())
-            null
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getLocalStockSectionsData", e.message.toString())
-            null
-        }catch (e: Exception) {
+            GenericEntity(null, "408", null) // 408 means request timed out
+        } catch (e: Exception) {
             Log.i("getLocalStockSectionsData", e.message.toString())
-            null
+            GenericEntity(null, "500", null)
         }
     }
 
@@ -32,7 +35,7 @@ class ILocalStockImplementation {
         type: String,
         feedId: String?,
         companyId: String?,
-    ): LocalStockDetailsData? {
+    ): GenericEntity<LocalStockDetailsData?> {
         Log.i("sectionType", type)
         return try {
             val response = if (type == "local") {
@@ -46,51 +49,51 @@ class ILocalStockImplementation {
                     companyId
                 ).await()
             }
-            response.data
+            response
         } catch (e: HttpException) {
             Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
-            null
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
-            null
-        }catch (e: Exception) {
+            GenericEntity(null, "408", null) // 408 means request timed out
+        } catch (e: Exception) {
             Log.i("getLocalStockDetailsByIdAndType", e.message.toString())
-            null
+            GenericEntity(null, "500", null)
         }
     }
 
-    suspend fun getLocalStockFeedsItems(stockId: Long?): FeedsData? {
+    suspend fun getLocalStockFeedsItems(stockId: Long?): GenericEntity<FeedsData?> {
         return try {
             val response =
                 ILocalStockHandler.singleton.getLocalStockFeedItems("web", stockId).await()
             Log.i("getLocalStockCompanyItems", response.data.toString())
-            response.data
+            response
         } catch (e: HttpException) {
             Log.i("getLocalStockFeedsItems", e.message.toString())
-            null
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getLocalStockFeedsItems", e.message.toString())
-            null
-        }catch (e: Exception) {
+            GenericEntity(null, "408", null) // 408 means request timed out
+        } catch (e: Exception) {
             Log.i("getGuideFilterData", e.message.toString())
-            null
+            GenericEntity(null, "500", null)
         }
     }
 
-    suspend fun getLocalStockCompanyItems(stockId: Long?): List<LocalStockCompanyDaum?>? {
+    suspend fun getLocalStockCompanyItems(stockId: Long?): GenericEntity<List<LocalStockCompanyDaum?>?> {
         return try {
             val response =
                 ILocalStockHandler.singleton.getLocalStockCompanyItems(stockId).await()
-            response.data
+            response
         } catch (e: HttpException) {
             Log.i("getLocalStockCompanyItems", e.message.toString())
-            null
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getLocalStockCompanyItems", e.message.toString())
-            null
-        }catch (e: Exception) {
+            GenericEntity(null, "408", null) // 408 means request timed out
+        } catch (e: Exception) {
             Log.i("getLocalStockCompanyItems", e.message.toString())
-            null
+            GenericEntity(null, "500", null)
         }
     }
 
@@ -114,20 +117,13 @@ class ILocalStockImplementation {
                 ).await()
             response
         } catch (e: HttpException) {
-            if (e.code() == 402) {
-                GenericEntity(null, e.code().toString(), null)
-            } else {
-                GenericEntity(null, null, null)
-            }
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsLocalData", e.message.toString())
-            GenericEntity(null, "socket time out", null)
-        }catch (e: SocketTimeoutException) {
-            Log.i("getAllStatisticsLocalData", e.message.toString())
-            GenericEntity(null, "socket time out", null)
+            GenericEntity(null, "408", null) // 408 means request timed out
         } catch (e: Exception) {
             Log.i("getAllStatisticsLocalData", e.message.toString())
-            GenericEntity(null, "Exception : ${e.message}", null)
+            GenericEntity(null, "500", null)
         }
     }
 
@@ -149,17 +145,13 @@ class ILocalStockImplementation {
                 ).await()
             response
         } catch (e: HttpException) {
-            if (e.code() == 402) {
-                GenericEntity(null, "402", null)
-            } else {
-                GenericEntity(null, "400", null)
-            }
+            GenericEntity(null, e.code().toString(), null)
         } catch (e: SocketTimeoutException) {
             Log.i("getAllStatisticsFodderData", e.message.toString())
-            GenericEntity(null, "socket time out", null)
+            GenericEntity(null, "408", null) // 408 means request timed out
         } catch (e: Exception) {
             Log.i("getAllStatisticsFodderData", e.message.toString())
-            GenericEntity(null, "Exception ${e.message}", null)
+            GenericEntity(null, "500", null)
         }
     }
 }
