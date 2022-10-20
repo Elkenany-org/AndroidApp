@@ -72,8 +72,8 @@
 						imageUrl="@{data.image}"
 						android:layout_width="25dp"
 						android:layout_height="25dp"
-						tools:ignore="ContentDescription"
 						android:onClick="@{()-> companyListener.onClick(data)}"
+						tools:ignore="ContentDescription"
 						/>
 				</androidx.cardview.widget.CardView>
 				
@@ -310,26 +310,6 @@
 				android:layout_weight="1"
 				/>
 			
-			<TextView
-				android:id="@+id/prod_change_date"
-				itemText="@{data.changeDate}"
-				android:layout_width="50dp"
-				android:layout_height="wrap_content"
-				android:fontFamily="@font/cairo_bold"
-				android:gravity="center"
-				android:maxLines="2"
-				android:padding="5dp"
-				android:textColor="@color/green"
-				android:textSize="6.7sp"
-				tools:ignore=",SmallSp"
-				/>
-			
-			<View
-				android:id="@+id/prod_change_date_view"
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				/>
 			
 			<TextView
 				android:id="@+id/prod_feed_date"
@@ -352,13 +332,36 @@
 				android:layout_weight="1"
 				/>
 			
-			<ImageView
-				android:id="@+id/statistics"
-				imageUrl="@{image}"
-				android:layout_width="50dp"
-				android:layout_height="50dp"
-				tools:ignore="ContentDescription"
-				/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:orientation="vertical"
+				tools:ignore="UseCompoundDrawables"
+				>
+				
+				<ImageView
+					android:id="@+id/statistics"
+					imageUrl="@{image}"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					tools:ignore="ContentDescription"
+					/>
+				
+				<TextView
+					android:id="@+id/prod_change_date"
+					itemText="@{data.changeDate}"
+					android:layout_width="50dp"
+					android:layout_height="wrap_content"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:maxLines="2"
+					android:padding="5dp"
+					android:textColor="@color/green"
+					android:textSize="6.7sp"
+					tools:ignore=",SmallSp"
+					/>
+			</LinearLayout>
 			
 			<TextView
 				android:id="@+id/statistics_title"

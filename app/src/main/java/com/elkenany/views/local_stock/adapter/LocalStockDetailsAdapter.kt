@@ -116,11 +116,6 @@ class ColumnsDataViewHolder private constructor(private val binding: TableRowIte
         } else {
             binding.prodWeightContainerView.visibility = View.VISIBLE
         }
-        if (columnsData.changeDate.isNullOrEmpty()) {
-            binding.prodChangeDateView.visibility = View.GONE
-        } else {
-            binding.prodChangeDateView.visibility = View.VISIBLE
-        }
         if (columnsData.feed.isNullOrEmpty()) {
             binding.prodFeedDateView.visibility = View.GONE
         } else {
