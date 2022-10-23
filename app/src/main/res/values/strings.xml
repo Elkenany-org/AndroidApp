@@ -134,4 +134,5 @@
 	<string name="empty_port_title">ميناء التفريغ</string>
 	<string name="ships_movment_title">حركة السفن</string>
 	<string name="select_country_title">اختر البلد</string>
+	<string name="explore_jobs_title">تصفح الوظائف</string>
 </resources>

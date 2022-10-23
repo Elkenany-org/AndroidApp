@@ -79,6 +79,10 @@
 			android:id="@+id/action_homeServiceFragment_to_shipsFragment"
 			app:destination="@id/shipsFragment"
 			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_jobsFragment"
+			app:destination="@id/jobsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/profileFragment"
@@ -576,5 +580,11 @@
 		android:name="com.elkenany.views.ships.ShipsStatisticsFragment"
 		android:label="fragment_ships_statistics"
 		tools:layout="@layout/fragment_ships_statistics"
+		/>
+	<fragment
+		android:id="@+id/jobsFragment"
+		android:name="com.elkenany.views.recruitment.adapter.JobsFragment"
+		android:label="JobsFragment"
+		tools:layout="@layout/fragment_jobs"
 		/>
 </navigation>
