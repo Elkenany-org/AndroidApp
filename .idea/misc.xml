@@ -160,12 +160,14 @@
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/statistics_row_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/store_card_view_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/table_row_item.xml" value="0.35572916666666665" />
+        <entry key="..\:/projects/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/banners_card_view_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/big_recycler_item_with_details.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/category_item.xml" value="0.26421547669944423" />
         <entry key="..\:/projects/app/src/main/res/layout/company_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_about.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_ad_details.xml" value="0.26507054296707994" />
@@ -180,6 +182,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_sector.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.3229166666666667" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_job_details.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_jobs.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock.xml" value="0.3229166666666667" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock_details.xml" value="0.26507054296707994" />

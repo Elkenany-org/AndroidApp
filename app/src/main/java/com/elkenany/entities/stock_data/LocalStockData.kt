@@ -6,9 +6,9 @@ data class LocalStockData(
     @Json(name = "sectors")
     val sectors: List<LocalStockSector?>,
     @Json(name = "banners")
-    val banners: List<LocalStockBanner?>,
+    val banners: List<GeneralBannerData?>,
     @Json(name = "logos")
-    val logos: List<LocalStockLogo?>,
+    val logos: List<GeneralLogoData?>,
     @Json(name = "sub_sections")
     val subSections: List<LocalStockSubSection?>,
     @Json(name = "fod_sections")
@@ -22,13 +22,13 @@ data class LocalStockSector(
     val selected: Long?,
 )
 
-data class LocalStockBanner(
+data class GeneralBannerData(
     val id: Long?,
     val link: String?,
     val image: String?,
 )
 
-data class LocalStockLogo(
+data class GeneralLogoData(
     val id: Long?,
     val link: String?,
     val image: String?,

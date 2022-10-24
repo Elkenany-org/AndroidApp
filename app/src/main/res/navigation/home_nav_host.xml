@@ -583,7 +583,7 @@
 		/>
 	<fragment
 		android:id="@+id/jobsFragment"
-		android:name="com.elkenany.views.recruitment.adapter.JobsFragment"
+		android:name="com.elkenany.views.recruitment.JobsFragment"
 		android:label="JobsFragment"
 		tools:layout="@layout/fragment_jobs"
 		/>

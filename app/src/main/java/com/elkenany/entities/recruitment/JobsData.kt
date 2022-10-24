@@ -1,9 +1,12 @@
 package com.elkenany.entities.recruitment
 
+import com.elkenany.entities.stock_data.GeneralBannerData
 import com.squareup.moshi.Json
 
 data class JobsData(
+    val banners: List<GeneralBannerData?>,
     val jobs: List<JobDaum?>,
+    val categories: List<Category?>,
 )
 
 data class JobDaum(
@@ -32,4 +35,10 @@ data class JobDaum(
     @Json(name = "created_at")
     val createdAt: String?,
     val type: String?,
+)
+
+data class Category(
+    val id: Long?,
+    val selected: Long?,
+    val name: String?,
 )

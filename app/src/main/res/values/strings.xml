@@ -135,4 +135,8 @@
 	<string name="ships_movment_title">حركة السفن</string>
 	<string name="select_country_title">اختر البلد</string>
 	<string name="explore_jobs_title">تصفح الوظائف</string>
+	<string name="job_title_title">نوع الوظيفة</string>
+	<string name="company_title">الشركة</string>
+	<string name="expected_salary_title">الراتب المتوقع</string>
+	<string name="experience_title">الخبرة</string>
 </resources>

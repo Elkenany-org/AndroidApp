@@ -1,4 +1,4 @@
-package com.elkenany.views.recruitment
+package com.elkenany.views.recruitment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,6 +36,7 @@ class JobsDaumAdapterViewHolder private constructor(private val binding: JobCard
     ) {
         binding.data = data
         binding.clickListener = clickListener
+        binding.local = "L.E"
         binding.bookMarkIt = bookMarkListener
         binding.executePendingBindings()
     }

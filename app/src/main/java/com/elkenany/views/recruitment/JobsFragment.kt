@@ -1,4 +1,4 @@
-package com.elkenany.views.recruitment.adapter
+package com.elkenany.views.recruitment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,12 +14,14 @@ import com.elkenany.databinding.FragmentJobsBinding
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.JobsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.recruitment.JobsListAdapter
+import com.elkenany.views.recruitment.adapter.JobCategoriesAdapter
+import com.elkenany.views.recruitment.adapter.JobsListAdapter
 
 class JobsFragment : Fragment() {
     private lateinit var binding: FragmentJobsBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: JobsViewModel
+    private lateinit var jobCategoriesAdapter: JobCategoriesAdapter
     private lateinit var jobListAdapter: JobsListAdapter
     private var sort: Int? = null
     private var category: String? = null
@@ -38,6 +40,8 @@ class JobsFragment : Fragment() {
             search = it.toString()
             viewModel.getHomeStockData(sort, category, search)
         }
+        jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { })
+        binding.sectorsRecyclerView.adapter = jobCategoriesAdapter
         jobListAdapter = JobsListAdapter(ClickListener { }, ClickListener { })
         binding.jobsListRecyclerView.adapter = jobListAdapter
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -81,7 +85,8 @@ class JobsFragment : Fragment() {
         }
         viewModel.responseData.observe(viewLifecycleOwner) { jobsData ->
             if (jobsData != null) {
-                enableImageSlider(listOf(), binding.bannersImageSlider, requireActivity())
+                enableImageSlider(jobsData.banners, binding.bannersImageSlider, requireActivity())
+                jobCategoriesAdapter.submitList(jobsData.categories)
                 jobListAdapter.submitList(jobsData.jobs)
             }
         }

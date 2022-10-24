@@ -6,8 +6,8 @@ data class LocalStockDetailsData(
     val message: String?,
     val status: String?,
     val columns: ColumnsData?,
-    val banners: List<LocalStockBanner?>,
-    val logos: List<LocalStockLogo?>,
+    val banners: List<GeneralBannerData?>,
+    val logos: List<GeneralLogoData?>,
     val members: List<ColumnsData?>,
 )
 

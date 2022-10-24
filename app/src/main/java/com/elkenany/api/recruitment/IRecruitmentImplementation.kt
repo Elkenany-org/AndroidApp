@@ -2,7 +2,9 @@ package com.elkenany.api.recruitment
 
 import com.elkenany.api.retrofit_configs.onHandelingResponseStates
 import com.elkenany.entities.GenericEntity
+import com.elkenany.entities.recruitment.JobDetailsData
 import com.elkenany.entities.recruitment.JobsData
+import com.elkenany.entities.recruitment.MyJobsData
 
 class IRecruitmentImplementation {
 
@@ -12,7 +14,21 @@ class IRecruitmentImplementation {
         search: String?,
     ): GenericEntity<JobsData?> {
         return onHandelingResponseStates("getAllJobsData") {
-            IRecruitmentHandler.singleton.getAllJobsData(sort, category, search)
+            IRecruitmentHandler.singleton.getAllJobsData(true, sort, category, search)
+        }
+    }
+
+    suspend fun getJobDetailsData(jobId: Int?): GenericEntity<JobDetailsData?> {
+        return onHandelingResponseStates("getJobDetailsData") {
+            IRecruitmentHandler.singleton.getJobDetailsData(jobId)
+        }
+    }
+
+    suspend fun getMyJobsData(
+        apiToken: String?,
+    ): GenericEntity<MyJobsData?> {
+        return onHandelingResponseStates("getMyJobsData") {
+            IRecruitmentHandler.singleton.getMyJobsList(true, apiToken)
         }
     }
 }
