@@ -2,13 +2,12 @@ package com.elkenany.api.recruitment
 
 import com.elkenany.api.retrofit_configs.retrofit
 import com.elkenany.entities.GenericEntity
+import com.elkenany.entities.recruitment.AddToFavoriteData
 import com.elkenany.entities.recruitment.JobDetailsData
 import com.elkenany.entities.recruitment.JobsData
 import com.elkenany.entities.recruitment.MyJobsData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface IRecruitment {
     @GET("recruitment/jobs-store")
@@ -27,6 +26,13 @@ interface IRecruitment {
         @Header("android") isAndroid: Boolean?,
         @Header("Authorization") apiToken: String?,
     ): Call<GenericEntity<MyJobsData?>>
+
+    @FormUrlEncoded
+    @POST("recruitment/add-to-job-favorites")
+    fun addJobToMyFavorites(
+        @Header("Authorization") apiToken: String?,
+        @Field("job_id") jobId: Int?,
+    ): Call<GenericEntity<AddToFavoriteData?>>
 }
 
 object IRecruitmentHandler {

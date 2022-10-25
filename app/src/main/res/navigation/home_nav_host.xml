@@ -586,5 +586,21 @@
 		android:name="com.elkenany.views.recruitment.JobsFragment"
 		android:label="JobsFragment"
 		tools:layout="@layout/fragment_jobs"
-		/>
+		>
+		<action
+			android:id="@+id/action_jobsFragment_to_jobDetailsFragment"
+			app:destination="@id/jobDetailsFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/jobDetailsFragment"
+		android:name="com.elkenany.views.recruitment.JobDetailsFragment"
+		android:label="JobDetailsFragment"
+		tools:layout="@layout/fragment_job_details"
+		>
+		<argument
+			android:name="id"
+			app:argType="integer"
+			/>
+	</fragment>
 </navigation>

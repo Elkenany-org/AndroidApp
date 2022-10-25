@@ -9,6 +9,8 @@ data class JobDetailsData(
     val phone: String?,
     @Json(name = "view_count")
     val viewCount: Long?,
+    @Json(name = "work_hours")
+    val workHours: String?,
     val address: String?,
     val desc: String?,
     val email: String?,

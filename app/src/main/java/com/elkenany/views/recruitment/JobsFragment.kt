@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentJobsBinding
@@ -42,7 +44,12 @@ class JobsFragment : Fragment() {
         }
         jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { })
         binding.sectorsRecyclerView.adapter = jobCategoriesAdapter
-        jobListAdapter = JobsListAdapter(ClickListener { }, ClickListener { })
+        jobListAdapter = JobsListAdapter(ClickListener {
+            requireView().findNavController()
+                .navigate(JobsFragmentDirections.actionJobsFragmentToJobDetailsFragment(it.id!!.toInt()))
+        }, ClickListener {
+            viewModel.addToFavorite(it.id!!.toInt())
+        })
         binding.jobsListRecyclerView.adapter = jobListAdapter
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -58,13 +65,16 @@ class JobsFragment : Fragment() {
         }
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
+                201 -> {
+                    Toast.makeText(requireContext(), "تمت الإضافة الي المفضلة", Toast.LENGTH_SHORT)
+                        .show()
+                }
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
                 }
                 401 -> {
-                    binding.errorMessage.text =
-                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف"
-                    binding.errorMessage.visibility = View.VISIBLE
+                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف\"", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 402 -> {
                     binding.errorMessage.text =

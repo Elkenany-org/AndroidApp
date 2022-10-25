@@ -139,4 +139,7 @@
 	<string name="company_title">الشركة</string>
 	<string name="expected_salary_title">الراتب المتوقع</string>
 	<string name="experience_title">الخبرة</string>
+	<string name="job_title">الوظيفة</string>
+	<string name="job_description_title">الوصف الوظيفي</string>
+	<string name="apply_now_title">قدم الأن</string>
 </resources>

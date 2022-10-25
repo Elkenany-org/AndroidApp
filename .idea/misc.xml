@@ -163,6 +163,7 @@
         <entry key="..\:/projects/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/banners_card_view_item.xml" value="0.26507054296707994" />
@@ -182,7 +183,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_sector.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.3229166666666667" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_job_details.xml" value="0.25" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_job_details.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_jobs.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock.xml" value="0.3229166666666667" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock_details.xml" value="0.26507054296707994" />

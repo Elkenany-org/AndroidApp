@@ -3,6 +3,7 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.recruitment.IRecruitmentImplementation
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.recruitment.JobsData
@@ -35,6 +36,26 @@ class JobsViewModel : ViewModel() {
             exceptionChecker(response)
             _loading.value = false
         }
+    }
+
+    fun addToFavorite(jobId: Int?) {
+        if (AuthImplementation.userApiToken.isNullOrEmpty()) {
+            _exception.value = 401
+        } else {
+            uiScope.launch {
+                val response = api.addJobToFavorite("Bearer ${AuthImplementation.userApiToken}", jobId)
+                if (response.error != null) {
+                    _exception.value = response.error.toInt()
+                } else {
+                    if (response.data == null) {
+                        _exception.value = 404
+                    } else {
+                        _exception.value = 201
+                    }
+                }
+            }
+        }
+
     }
 
     private fun exceptionChecker(response: GenericEntity<JobsData?>) {
