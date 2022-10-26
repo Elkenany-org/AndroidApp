@@ -113,8 +113,6 @@
 						android:layout_marginBottom="2dp"
 						android:background="@color/transparent_color"
 						android:foregroundGravity="center"
-						android:onClick="@{()-> bookMarkIt.onClick(data)}"
-						android:padding="3sp"
 						android:src="@drawable/ic_baseline_bookmark_border_24"
 						tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"
 						/>

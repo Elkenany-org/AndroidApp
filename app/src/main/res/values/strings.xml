@@ -142,4 +142,6 @@
 	<string name="job_title">الوظيفة</string>
 	<string name="job_description_title">الوصف الوظيفي</string>
 	<string name="apply_now_title">قدم الأن</string>
+	<string name="most_common_title">الأكثر تداولا</string>
+	<string name="latest_title">الأحدث</string>
 </resources>

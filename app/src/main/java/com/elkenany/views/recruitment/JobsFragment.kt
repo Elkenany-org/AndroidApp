@@ -1,9 +1,11 @@
 package com.elkenany.views.recruitment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -42,6 +44,9 @@ class JobsFragment : Fragment() {
             search = it.toString()
             viewModel.getHomeStockData(sort, category, search)
         }
+        binding.sortBtn.setOnClickListener {
+            enableMenuItems(requireContext())
+        }
         jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { })
         binding.sectorsRecyclerView.adapter = jobCategoriesAdapter
         jobListAdapter = JobsListAdapter(ClickListener {
@@ -73,7 +78,9 @@ class JobsFragment : Fragment() {
                     binding.errorMessage.visibility = View.GONE
                 }
                 401 -> {
-                    Toast.makeText(requireContext(), "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف\"", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(),
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف\"",
+                        Toast.LENGTH_SHORT)
                         .show()
                 }
                 402 -> {
@@ -101,5 +108,28 @@ class JobsFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun enableMenuItems(context: Context?) {
+        val menu = PopupMenu(context, binding.sortBtn)
+        menu.menuInflater.inflate(R.menu.job_sort_menu, menu.menu)
+        menu.setOnMenuItemClickListener {
+            when (it.itemId.toString()) {
+                "latest" -> {
+                    sort = null
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
+                }
+                "common" -> {
+                    sort = 1
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+        menu.show()
     }
 }

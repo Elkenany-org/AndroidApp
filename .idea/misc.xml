@@ -164,6 +164,8 @@
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_book_mark_fill.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/banners_card_view_item.xml" value="0.26507054296707994" />
@@ -221,6 +223,8 @@
         <entry key="..\:/projects/app/src/main/res/layout/small_recycler_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/statistics_row_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/table_row_item.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/menu/job_sort_menu.xml" value="0.26421547669944423" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.23" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.23" />
         <entry key="app/src/main/res/layout/about_branch_item_card.xml" value="0.2864471996579735" />
