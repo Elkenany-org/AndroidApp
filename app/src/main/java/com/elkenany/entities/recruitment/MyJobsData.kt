@@ -17,4 +17,6 @@ data class MyJobDaum(
     @Json(name = "created_at")
     val createdAt: String?,
     val status: String?,
+    @Json(name = "application_status")
+    val applicationStatus: String?,
 )

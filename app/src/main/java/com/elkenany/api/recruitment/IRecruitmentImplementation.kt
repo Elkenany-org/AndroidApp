@@ -2,10 +2,7 @@ package com.elkenany.api.recruitment
 
 import com.elkenany.api.retrofit_configs.onHandelingResponseStates
 import com.elkenany.entities.GenericEntity
-import com.elkenany.entities.recruitment.AddToFavoriteData
-import com.elkenany.entities.recruitment.JobDetailsData
-import com.elkenany.entities.recruitment.JobsData
-import com.elkenany.entities.recruitment.MyJobsData
+import com.elkenany.entities.recruitment.*
 
 class IRecruitmentImplementation {
 
@@ -36,6 +33,13 @@ class IRecruitmentImplementation {
     ): GenericEntity<MyJobsData?> {
         return onHandelingResponseStates("getMyJobsData") {
             IRecruitmentHandler.singleton.getMyJobsList(true, apiToken)
+        }
+    }
+    suspend fun getFavoriteJobsListData(
+        apiToken: String?,
+    ): GenericEntity<MyFavoriteJobsListData?> {
+        return onHandelingResponseStates("getMyJobsData") {
+            IRecruitmentHandler.singleton.getMyFavoriteJobsListData(true, apiToken)
         }
     }
 }
