@@ -30,7 +30,6 @@ import kotlinx.coroutines.launch
 import org.json.JSONException
 
 
-
 class LoginViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
@@ -38,7 +37,6 @@ class LoginViewModel : ViewModel() {
     private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
     private val api = AuthImplementation()
-    private val _token = getFCMToken().toString()
 
 
     val loading: LiveData<Boolean> get() = _loading
@@ -90,7 +88,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithGoogle(name, email, _token, google_id)
+                    api.reLogSocialWithGoogle(name, email, getFCMToken(), google_id)
                 if (response != null) {
                     _login.value = true
                 } else {
@@ -111,7 +109,7 @@ class LoginViewModel : ViewModel() {
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithFaceBook(name, email, _token, facebook_id)
+                    api.reLogSocialWithFaceBook(name, email, getFCMToken(), facebook_id)
                 if (response != null) {
                     _login.value = true
                     _exception.value = 200

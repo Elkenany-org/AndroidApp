@@ -11,6 +11,9 @@ import com.elkenany.utilities.GlobalLogicFunctions.Companion.getFCMToken
 import com.facebook.FacebookSdk
 import com.facebook.LoggingBehavior
 import com.facebook.appevents.AppEventsLogger
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 const val SHARED_PREFRENCES = "user_credentials"
 
@@ -26,7 +29,9 @@ class MainActivity : AppCompatActivity() {
         FacebookSdk.fullyInitialize()
         FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
         AppEventsLogger.activateApp(this.application)
-        getFCMToken()
+        CoroutineScope(Dispatchers.IO).launch {
+            getFCMToken()
+        }
     }
 
 }
