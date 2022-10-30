@@ -16,7 +16,7 @@
 			name="intrestedPeople"
 			type="String"
 			/>
-		
+	
 	
 	</data>
 	
@@ -166,8 +166,10 @@
 						android:layout_height="wrap_content"
 						android:layout_margin="5dp"
 						android:fontFamily="@font/cairo_bold"
+						android:justificationMode="inter_word"
 						android:textColor="@color/green"
 						android:textSize="14sp"
+						tools:ignore="UnusedAttribute"
 						/>
 				
 				</androidx.cardview.widget.CardView>
@@ -269,9 +271,11 @@
 						>
 						
 						<LinearLayout
+							android:id="@+id/organizers_head_line"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
 							android:layout_weight="1"
+							
 							android:orientation="vertical"
 							android:padding="5dp"
 							>
@@ -417,42 +421,113 @@
 						</LinearLayout>
 					</LinearLayout>
 				</LinearLayout>
-			
+				
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="end"
+					android:layout_marginHorizontal="5dp"
+					android:orientation="vertical"
+					tools:ignore="UselessParent"
+					>
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:fontFamily="@font/cairo_bold"
+						android:text="@string/orgnizers_title"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						/>
+					
+					<androidx.cardview.widget.CardView
+						android:layout_width="match_parent"
+						android:layout_height="3dp"
+						android:layout_marginTop="1dp"
+						android:layout_marginBottom="10dp"
+						app:cardBackgroundColor="@color/orange"
+						app:cardCornerRadius="5dp"
+						/>
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_margin="5dp"
+					android:layout_weight="1"
+					android:layoutDirection="rtl"
+					android:orientation="vertical"
+					android:padding="5dp"
+					>
+					
+					<TextView
+						itemText="@{data.organisers[0].name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						app:drawableStartCompat="@drawable/shows_icon"
+						/>
+					
+					<TextView
+						itemText="@{data.organisers[1].name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						app:drawableStartCompat="@drawable/shows_icon"
+						/>
+					
+					<TextView
+						itemText="@{data.organisers[2].name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						app:drawableStartCompat="@drawable/shows_icon"
+						/>
+					
+					<TextView
+						itemText="@{data.organisers[3].name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						app:drawableStartCompat="@drawable/shows_icon"
+						/>
+					
+					<TextView
+						itemText="@{data.organisers[4].name}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:drawablePadding="5dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/green"
+						android:textSize="16sp"
+						app:drawableStartCompat="@drawable/shows_icon"
+						/>
+				</LinearLayout>
 			
 			</LinearLayout>
 		</com.elkenany.LockableScrollView>
-		
-		<RelativeLayout
-			android:id="@+id/image_pop_up_layout"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_centerInParent="true"
-			android:background="#4B000000"
-			android:visibility="gone"
-			>
-			
-			<androidx.cardview.widget.CardView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				android:layout_margin="5dp"
-				app:cardCornerRadius="7dp"
-				app:cardElevation="5dp"
-				>
-				
-				
-				<ImageButton
-					android:id="@+id/image_button"
-					android:layout_width="30dp"
-					android:layout_height="30dp"
-					android:layout_margin="5dp"
-					android:background="@color/orange"
-					android:foreground="@drawable/ic_baseline_close_24"
-					android:foregroundGravity="center"
-					tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"
-					/>
-			</androidx.cardview.widget.CardView>
-		</RelativeLayout>
 	
 	</RelativeLayout>
 </layout>

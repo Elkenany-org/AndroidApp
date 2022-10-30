@@ -31,6 +31,7 @@ class ShipsFragment : Fragment() {
     private lateinit var logoAdapter: LocalStockLogosAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
     private var date: String? = null
+
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onPause() {
         super.onPause()
@@ -87,6 +88,12 @@ class ShipsFragment : Fragment() {
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
                 }
+                400 -> {
+                    binding.apply {
+                        errorMessage.visibility = View.VISIBLE
+                        errorMessage.text = "عفوا لا توجد بيانات"
+                    }
+                }
                 404 -> {
                     binding.apply {
                         errorMessage.visibility = View.VISIBLE
@@ -96,8 +103,7 @@ class ShipsFragment : Fragment() {
                 else -> {
                     binding.apply {
                         errorMessage.visibility = View.VISIBLE
-                        errorMessage.text =
-                            androidx.compose.ui.R.string.default_error_message.toString()
+                        errorMessage.text = "تعذر الحصول علي اي معلومات بسبب ضعف شبكة الأنترنت"
                     }
 
                 }

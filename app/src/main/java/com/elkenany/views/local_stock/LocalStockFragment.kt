@@ -33,10 +33,10 @@ class LocalStockFragment : Fragment() {
     private lateinit var subSection: LocalStockSubSectionsAdapter
     private var sectorType: String? = null
     private var search: String? = null
-    override fun onResume() {
-        super.onResume()
-        viewModel.getHomeStockData(sectorType!!, search)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        viewModel.getHomeStockData(sectorType!!, search)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +52,7 @@ class LocalStockFragment : Fragment() {
         }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-
+        viewModel.getHomeStockData(sectorType!!, search)
         binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }

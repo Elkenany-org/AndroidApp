@@ -313,8 +313,10 @@
 							android:layout_marginBottom="5dp"
 							android:fontFamily="@font/cairo_bold"
 							android:gravity="center_vertical"
+							android:justificationMode="inter_word"
 							android:textColor="@color/green"
 							android:textSize="13sp"
+							tools:ignore="UnusedAttribute"
 							/>
 					</LinearLayout>
 				

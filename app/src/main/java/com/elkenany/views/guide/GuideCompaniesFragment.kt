@@ -31,8 +31,8 @@ class GuideCompaniesFragment : Fragment() {
     private var search: String? = ""
     private var countryId: Long? = null
     private var cityId: Long? = null
-    private var country: String? = "الدول"
-    private var city: String? = "البلاد"
+    private var country: String? = "الدوله"
+    private var city: String? = "المدينه"
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var companiesAdapter: CompaniesAdapter
     private lateinit var countryAdapter: ArrayAdapter<String?>

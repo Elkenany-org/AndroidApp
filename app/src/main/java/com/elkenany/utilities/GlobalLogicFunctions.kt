@@ -9,7 +9,7 @@ class GlobalLogicFunctions {
         // get Firebase cloud messaging token
         suspend fun getFCMToken(): String {
             val token: String? = FirebaseMessaging.getInstance().token.await()
-            Log.i("tokennnnnnnnnnnnnnnnnnn", token.toString())
+            Log.i("token", token.toString())
             return token.toString()
         }
     }

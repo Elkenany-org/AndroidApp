@@ -1,8 +1,6 @@
 package com.elkenany.views.store
 
-import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentAdDetailsBinding
-import com.elkenany.databinding.ImageDialogItemBinding
 import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
+import com.elkenany.utilities.GlobalUiFunctions.Companion.openPopUpImage
 import com.elkenany.viewmodels.AdDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.store.adapter.AdsImagesAdapter
@@ -56,7 +54,7 @@ class AdDetailsFragment : Fragment() {
             }
         }
         adsImagesAdapter = AdsImagesAdapter(ClickListener {
-            openImageDialog(it.image.toString())
+            openPopUpImage(it.image.toString(), requireActivity(), layoutInflater)
         })
         binding.imageButton.setOnClickListener {
             binding.imagePopUpLayout.visibility = View.GONE
@@ -115,16 +113,5 @@ class AdDetailsFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    private fun openImageDialog(image: String) {
-        val dialogBinding = ImageDialogItemBinding.inflate(layoutInflater)
-        dialogBinding.image = image
-        val dialog = Dialog(requireActivity())
-        dialog.setCancelable(true)
-        Log.i("imageUrl", dialogBinding.image.toString())
-        dialog.setContentView(dialogBinding.root)
-        dialog.show()
-
     }
 }
