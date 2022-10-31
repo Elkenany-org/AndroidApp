@@ -47,7 +47,27 @@ class JobsFragment : Fragment() {
         binding.sortBtn.setOnClickListener {
             enableMenuItems(requireContext())
         }
-        jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { })
+        jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { category ->
+            when (category.id) {
+                "1".toLong() -> { // This id represent my favorite jobs
+                    // ToDo -> navigate to MyFavoriteJobsFragment
+                    requireView().findNavController()
+                        .navigate(JobsFragmentDirections.actionJobsFragmentToMyFavoriteJobsFragment())
+                }
+                "2".toLong() -> { // This id represent My jobs that i added as a recruiter
+                    // ToDo -> navigate to
+                }
+                "3".toLong() -> { // This id represent my Jobs that i applied for
+                    // ToDo -> navigate to MyAppliedJobsFragment
+                    requireView().findNavController()
+                        .navigate(JobsFragmentDirections.actionJobsFragmentToMyAppliedJobsFragment())
+                }
+                "4".toLong() -> { // This id represent the entire job list which means this fragment
+                    viewModel.getHomeStockData(sort, this.category, search)
+                }
+                else -> {}
+            }
+        })
         binding.sectorsRecyclerView.adapter = jobCategoriesAdapter
         jobListAdapter = JobsListAdapter(ClickListener {
             requireView().findNavController()

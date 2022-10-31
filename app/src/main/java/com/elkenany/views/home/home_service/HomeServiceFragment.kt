@@ -56,10 +56,10 @@ class HomeServiceFragment : Fragment() {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
                 }
-//                "jobs" -> {
-//                    requireView().findNavController()
-//                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToJobsFragment())
-//                }
+                "jobs" -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToJobsFragment())
+                }
                 else -> {
                     Toast.makeText(requireContext(), "سيتم توفير الخدمة قريبا!", Toast.LENGTH_SHORT)
                         .show()

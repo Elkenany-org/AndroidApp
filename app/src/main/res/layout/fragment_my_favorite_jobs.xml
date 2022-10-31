@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10dp"
+		>
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:text="@string/favorite_jobs_title"
+			android:textColor="@color/green"
+			android:textColorHint="#78909C"
+			android:textSize="20sp"
+			/>
+		
+		<TextView
+			android:id="@+id/error_message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center"
+			android:text="@string/failed_to_receive_data_msg"
+			android:textColor="@color/green"
+			android:textSize="18sp"
+			android:visibility="gone"
+			/>
+		
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/app_bar_title"
+			android:layout_marginTop="15dp"
+			>
+			
+			<ProgressBar
+				android:id="@+id/loading_progressbar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:indeterminateDrawable="@drawable/custom_progress_bar"
+				android:visibility="gone"
+				/>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/jobs_list_recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_centerHorizontal="true"
+				android:layout_gravity="center_horizontal"
+				android:layoutDirection="rtl"
+				android:paddingHorizontal="5dp"
+				app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+				app:spanCount="1"
+				tools:listitem="@layout/favorite_job_card_item"
+				/>
+		</RelativeLayout>
+	
+	
+	</RelativeLayout>
+</layout>

@@ -126,4 +126,7 @@
 	<string name="most_common_title">الأكثر تداولا</string>
 	<string name="latest_title">الأحدث</string>
 	<string name="orgnizers_title">الجهات المنظمة</string>
+	<string name="favorite_jobs_title">وظائفي المفضلة</string>
+	<string name="cv_title">السيرة الذاتية</string>
+	<string name="notice_period_title">فترة الإشعار</string>
 </resources>

@@ -3,14 +3,10 @@ package com.elkenany.entities.recruitment
 import com.squareup.moshi.Json
 
 data class MyFavoriteJobsListData(
-    val jobs: List<Job?>,
-    @Json(name = "current_page")
-    val currentPage: Long?,
-    @Json(name = "last_page")
-    val lastPage: Long?,
+    val jobs: List<FavoriteJob?>,
 )
 
-data class Job(
+data class FavoriteJob(
     val id: Long?,
     val title: String?,
     val salary: Long?,

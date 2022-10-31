@@ -35,6 +35,7 @@ data class JobDaum(
     @Json(name = "created_at")
     val createdAt: String?,
     val type: String?,
+    val favorite: Int?,
 )
 
 data class Category(

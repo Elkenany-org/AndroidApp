@@ -591,6 +591,14 @@
 			android:id="@+id/action_jobsFragment_to_jobDetailsFragment"
 			app:destination="@id/jobDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_jobsFragment_to_myFavoriteJobsFragment"
+			app:destination="@id/myFavoriteJobsFragment"
+			/>
+		<action
+			android:id="@+id/action_jobsFragment_to_myAppliedJobsFragment"
+			app:destination="@id/myAppliedJobsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/jobDetailsFragment"
@@ -601,6 +609,23 @@
 		<argument
 			android:name="id"
 			app:argType="integer"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/myAppliedJobsFragment"
+		android:name="com.elkenany.views.recruitment.MyAppliedJobsFragment"
+		android:label="fragment_my_applied_jobs"
+		tools:layout="@layout/fragment_my_applied_jobs"
+		/>
+	<fragment
+		android:id="@+id/myFavoriteJobsFragment"
+		android:name="com.elkenany.views.recruitment.MyFavoriteJobsFragment"
+		android:label="fragment_my_favorite_jobs"
+		tools:layout="@layout/fragment_my_favorite_jobs"
+		>
+		<action
+			android:id="@+id/action_myFavoriteJobsFragment_to_jobDetailsFragment"
+			app:destination="@id/jobDetailsFragment"
 			/>
 	</fragment>
 </navigation>

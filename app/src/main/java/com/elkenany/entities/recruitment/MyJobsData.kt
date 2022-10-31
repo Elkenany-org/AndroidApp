@@ -19,4 +19,5 @@ data class MyJobDaum(
     val status: String?,
     @Json(name = "application_status")
     val applicationStatus: String?,
+    val favorite: Int?,
 )

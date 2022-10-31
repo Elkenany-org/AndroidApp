@@ -9,7 +9,7 @@
 		
 		<variable
 			name="data"
-			type="com.elkenany.entities.recruitment.JobDaum"
+			type="com.elkenany.entities.recruitment.FavoriteJob"
 			/>
 		
 		<variable
@@ -17,10 +17,6 @@
 			type="String"
 			/>
 		
-		<variable
-			name="bookMarkIt"
-			type="com.elkenany.ClickListener"
-			/>
 		
 		<variable
 			name="clickListener"
@@ -97,26 +93,10 @@
 					<View
 						android:layout_width="wrap_content"
 						android:layout_height="0dp"
-						android:layout_toStartOf="@id/book_mark_btn"
 						android:layout_toEndOf="@id/job_name_tv"
 						/>
-					
-					<ImageView
-						android:id="@+id/book_mark_btn"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_alignParentEnd="true"
-						android:layout_centerVertical="true"
-						android:layout_marginStart="2dp"
-						android:layout_marginTop="2dp"
-						android:layout_marginEnd="2dp"
-						android:layout_marginBottom="2dp"
-						android:background="@color/transparent_color"
-						android:foregroundGravity="center"
-						android:onClick="@{()-> bookMarkIt.onClick(data)}"
-						android:src="@drawable/ic_baseline_bookmark_border_24"
-						tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"
-						/>
+				
+				
 				</RelativeLayout>
 				
 				<RelativeLayout
@@ -138,7 +118,7 @@
 						android:layout_marginTop="2dp"
 						android:layout_marginEnd="2dp"
 						android:layout_marginBottom="2dp"
-						android:layout_toStartOf="@id/job_salary_tv"
+						android:layout_toStartOf="@id/apply_now_btn"
 						android:fontFamily="@font/cairo_bold"
 						android:maxLines="1"
 						android:textColor="@color/green"
@@ -148,25 +128,25 @@
 					<View
 						android:layout_width="wrap_content"
 						android:layout_height="0dp"
-						android:layout_toStartOf="@id/job_salary_tv"
+						android:layout_toStartOf="@id/apply_now_btn"
 						android:layout_toEndOf="@id/job_desc_tv"
 						/>
 					
-					<TextView
-						android:id="@+id/job_salary_tv"
-						itemText="@{data.salary.toString()+local}"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+					<androidx.appcompat.widget.AppCompatButton
+						android:id="@+id/apply_now_btn"
+						android:layout_width="50dp"
+						android:layout_height="25sp"
 						android:layout_alignParentEnd="true"
 						android:layout_centerVertical="true"
-						android:layout_marginStart="2dp"
-						android:layout_marginTop="2dp"
-						android:layout_marginEnd="2dp"
-						android:layout_marginBottom="2dp"
-						android:fontFamily="@font/cairo_regular"
-						android:maxLines="1"
-						android:textColor="@color/orange"
-						android:textSize="12sp"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginVertical="5dp"
+						android:background="@drawable/primary_btn_shape"
+						android:fontFamily="@font/cairo_black"
+						android:onClick="@{() -> clickListener.onClick(data)}"
+						android:text="@string/apply_now_title"
+						android:textColor="@color/green"
+						android:textSize="7sp"
+						tools:ignore="DuplicateSpeakableTextCheck,SmallSp,TouchTargetSizeCheck,TextContrastCheck"
 						/>
 				</RelativeLayout>
 			</LinearLayout>
