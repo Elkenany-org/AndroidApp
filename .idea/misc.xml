@@ -166,6 +166,8 @@
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_book_mark_fill.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/secondary_btn_shape.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/secondry_btn_shape_orange.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/banners_card_view_item.xml" value="0.26507054296707994" />
@@ -176,7 +178,8 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_about.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_ad_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_for_jobe.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_to_job.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_job.xml" value="0.5" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_to_job.xml" value="0.22" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_chats.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_company.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_create_ad.xml" value="0.26507054296707994" />

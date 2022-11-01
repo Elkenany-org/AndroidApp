@@ -43,14 +43,19 @@ class JobsViewModel : ViewModel() {
             _exception.value = 401
         } else {
             uiScope.launch {
-                val response = api.addJobToFavorite("Bearer ${AuthImplementation.userApiToken}", jobId)
+                val response =
+                    api.addJobToFavorite("Bearer ${AuthImplementation.userApiToken}", jobId)
                 if (response.error != null) {
                     _exception.value = response.error.toInt()
                 } else {
-                    if (response.data == null) {
-                        _exception.value = 404
+                    if (!response.message.isNullOrEmpty()) {
+                        _exception.value = 202
                     } else {
-                        _exception.value = 201
+                        if (response.data == null) {
+                            _exception.value = 404
+                        } else {
+                            _exception.value = 201
+                        }
                     }
                 }
             }
@@ -69,6 +74,10 @@ class JobsViewModel : ViewModel() {
             }
             _responseData.value = response.data
         }
+    }
+
+    fun onChangeFavoriteState() {
+        _exception.value = null
     }
 
     override fun onCleared() {

@@ -41,7 +41,7 @@ class JobsDaumAdapterViewHolder private constructor(private val binding: JobCard
         bookMarkListener: ClickListener<JobDaum>,
     ) {
         Log.i("favoriteTag", data.favorite.toString())
-        if (data.favorite == 1) {
+        if (data.favorite == "1".toLong()) {
             binding.bookMarkBtn.setBackgroundResource(R.drawable.ic_book_mark_fill)
         } else {
             binding.bookMarkBtn.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24)

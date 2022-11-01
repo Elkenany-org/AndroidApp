@@ -610,6 +610,10 @@
 			android:name="id"
 			app:argType="integer"
 			/>
+		<action
+			android:id="@+id/action_jobDetailsFragment_to_applyToJobFragment"
+			app:destination="@id/applyToJobFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/myAppliedJobsFragment"
@@ -626,6 +630,47 @@
 		<action
 			android:id="@+id/action_myFavoriteJobsFragment_to_jobDetailsFragment"
 			app:destination="@id/jobDetailsFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/applyToJobFragment"
+		android:name="com.elkenany.views.recruitment.ApplyToJobFragment"
+		android:label="ApplyToJobFragment"
+		tools:layout="@layout/fragment_apply_job"
+		>
+		<argument
+			android:name="job_id"
+			app:argType="long"
+			/>
+		<argument
+			android:name="job_image"
+			app:argType="string"
+			app:nullable="true"
+			/>
+		<argument
+			android:name="job_title"
+			app:argType="string"
+			app:nullable="true"
+			/>
+		<argument
+			android:name="job_work_hours"
+			app:argType="string"
+			app:nullable="true"
+			/>
+		<argument
+			android:name="company_name"
+			app:argType="string"
+			app:nullable="true"
+			/>
+		<argument
+			android:name="salary"
+			app:argType="string"
+			app:nullable="true"
+			/>
+		<argument
+			android:name="experience"
+			app:argType="string"
+			app:nullable="true"
 			/>
 	</fragment>
 </navigation>

@@ -27,4 +27,6 @@ data class JobDetailsData(
     val type: String?,
     @Json(name = "created_at")
     val createdAt: String?,
+    @Json(name = "category_id")
+    val categoryId:Long?,
 )

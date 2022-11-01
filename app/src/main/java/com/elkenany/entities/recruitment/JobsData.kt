@@ -17,7 +17,7 @@ data class JobDaum(
     val desc: String?,
     val phone: String?,
     val email: String?,
-    val experience: Long?,
+    val experience: String?,
     val category: String?,
     @Json(name = "recruiter_name")
     val recruiterName: String?,
@@ -26,17 +26,12 @@ data class JobDaum(
     @Json(name = "company_name")
     val companyName: String?,
     val image: String?,
-    @Json(name = "sector_id")
-    val sectorId: Long?,
-    @Json(name = "sector_name")
-    val sectorName: String?,
-    @Json(name = "sector_type")
-    val sectorType: String?,
     @Json(name = "created_at")
     val createdAt: String?,
     val type: String?,
-    val favorite: Int?,
+    val favorite: Long?,
 )
+
 
 data class Category(
     val id: Long?,

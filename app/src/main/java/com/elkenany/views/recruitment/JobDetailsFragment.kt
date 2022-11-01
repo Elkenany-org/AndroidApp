@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.R
 import com.elkenany.databinding.FragmentJobDetailsBinding
+import com.elkenany.entities.recruitment.JobDetailsData
 import com.elkenany.viewmodels.JobDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 
@@ -20,6 +22,7 @@ class JobDetailsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: JobDetailsViewModel
     private val args: JobDetailsFragmentArgs by navArgs()
+    private var jobDetailsData: JobDetailsData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +33,19 @@ class JobDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[JobDetailsViewModel::class.java]
         binding.applyNowBtn.setOnClickListener {
-            viewModel.applyToThisJob(args.id)
+            if (jobDetailsData != null) {
+                requireView().findNavController().navigate(
+                    JobDetailsFragmentDirections.actionJobDetailsFragmentToApplyToJobFragment(
+                        args.id.toLong(),
+                        jobDetailsData!!.images,
+                        jobDetailsData!!.title,
+                        jobDetailsData!!.workHours,
+                        jobDetailsData!!.companyName,
+                        jobDetailsData!!.salary.toString(),
+                        jobDetailsData!!.experience
+                    )
+                )
+            }
         }
         viewModel.getJobDetailsData(args.id)
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -83,6 +98,7 @@ class JobDetailsFragment : Fragment() {
         }
         viewModel.responseData.observe(viewLifecycleOwner) { jobsData ->
             if (jobsData != null) {
+                jobDetailsData = jobsData
                 binding.data = jobsData
             }
         }

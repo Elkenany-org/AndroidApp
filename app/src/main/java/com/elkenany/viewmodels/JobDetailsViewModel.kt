@@ -36,13 +36,6 @@ class JobDetailsViewModel : ViewModel() {
         }
     }
 
-    fun applyToThisJob(jobId: Int) {
-        if (userApiToken.isNullOrEmpty()) {
-            _exception.value = 401
-        } else {
-            uiScope.launch { }
-        }
-    }
 
     private fun exceptionChecker(response: GenericEntity<JobDetailsData?>) {
         if (response.error != null) {

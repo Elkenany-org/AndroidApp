@@ -2,6 +2,7 @@ package com.elkenany.views.recruitment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -90,9 +91,18 @@ class JobsFragment : Fragment() {
         }
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
+                null -> {}
                 201 -> {
                     Toast.makeText(requireContext(), "تمت الإضافة الي المفضلة", Toast.LENGTH_SHORT)
                         .show()
+                    viewModel.getHomeStockData(sort, category, search)
+                    viewModel.onChangeFavoriteState()
+                }
+                202 -> {
+                    Toast.makeText(requireContext(), "تمت الإزالة من المفضلة", Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.getHomeStockData(sort, category, search)
+                    viewModel.onChangeFavoriteState()
                 }
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
@@ -134,16 +144,15 @@ class JobsFragment : Fragment() {
         val menu = PopupMenu(context, binding.sortBtn)
         menu.menuInflater.inflate(R.menu.job_sort_menu, menu.menu)
         menu.setOnMenuItemClickListener {
-            when (it.itemId.toString()) {
-                "latest" -> {
+            Log.i("menuId", it.toString())
+            when (it.toString()) {
+                "الأحدث" -> {
                     sort = null
-                    viewModel.getHomeStockData(sort, category, search)
-                    true
+                    viewModel.getHomeStockData(sort, category, search).equals(true)
                 }
-                "common" -> {
+                "الأكثر تداولا" -> {
                     sort = 1
-                    viewModel.getHomeStockData(sort, category, search)
-                    true
+                    viewModel.getHomeStockData(sort, category, search).equals(true)
                 }
                 else -> {
                     false
