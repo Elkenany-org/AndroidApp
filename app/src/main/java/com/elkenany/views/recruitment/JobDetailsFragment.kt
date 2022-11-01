@@ -34,17 +34,7 @@ class JobDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[JobDetailsViewModel::class.java]
         binding.applyNowBtn.setOnClickListener {
             if (jobDetailsData != null) {
-                requireView().findNavController().navigate(
-                    JobDetailsFragmentDirections.actionJobDetailsFragmentToApplyToJobFragment(
-                        args.id.toLong(),
-                        jobDetailsData!!.images,
-                        jobDetailsData!!.title,
-                        jobDetailsData!!.workHours,
-                        jobDetailsData!!.companyName,
-                        jobDetailsData!!.salary.toString(),
-                        jobDetailsData!!.experience
-                    )
-                )
+                viewModel.applyForJob()
             }
         }
         viewModel.getJobDetailsData(args.id)
@@ -63,6 +53,19 @@ class JobDetailsFragment : Fragment() {
         }
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
+                1 -> {
+                    requireView().findNavController().navigate(
+                        JobDetailsFragmentDirections.actionJobDetailsFragmentToApplyToJobFragment(
+                            args.id.toLong(),
+                            jobDetailsData!!.images,
+                            jobDetailsData!!.title,
+                            jobDetailsData!!.workHours,
+                            jobDetailsData!!.companyName,
+                            jobDetailsData!!.salary.toString(),
+                            jobDetailsData!!.experience
+                        )
+                    )
+                }
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
                     binding.layout.visibility = View.VISIBLE
@@ -70,9 +73,11 @@ class JobDetailsFragment : Fragment() {
                 401 -> {
 //                    binding.errorMessage.text =
 //                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف"
-                    Toast.makeText(requireContext(),
+                    Toast.makeText(
+                        requireContext(),
                         "برجاء تسجيل الدخول أولا حتي تتمكن من التقديم علي الوظيفة",
-                        Toast.LENGTH_SHORT).show()
+                        Toast.LENGTH_SHORT
+                    ).show()
                     binding.errorMessage.visibility = View.GONE
 //                    binding.layout.visibility = View.GONE
                 }

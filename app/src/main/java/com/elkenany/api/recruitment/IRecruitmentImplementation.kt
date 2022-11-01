@@ -3,7 +3,9 @@ package com.elkenany.api.recruitment
 import com.elkenany.api.retrofit_configs.onHandelingResponseStates
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.recruitment.*
+import okhttp3.MediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 class IRecruitmentImplementation {
 
@@ -32,6 +34,7 @@ class IRecruitmentImplementation {
         }
     }
 
+    @Suppress("unused")
     suspend fun getMyJobsData(
         apiToken: String?,
     ): GenericEntity<MyJobsData?> {
@@ -61,16 +64,19 @@ class IRecruitmentImplementation {
         noticePeriod: String?,
     ): GenericEntity<ApplyData?> {
         return onHandelingResponseStates("applyToJob") {
-            IRecruitmentHandler.singleton.applyToJob(apiToken,
-                education,
-                experience,
-                jobId,
-                expectedSalary,
-                otherInfo,
+            // turning all params to requestbody to send the types text/plain instead of jsonObjects
+            IRecruitmentHandler.singleton.applyToJob(
+                apiToken,
+                RequestBody.create(MediaType.parse("text/plain"), education.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), experience.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), jobId.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), expectedSalary.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), otherInfo.toString()),
                 cv_file,
-                fullName,
-                phone,
-                noticePeriod)
+                RequestBody.create(MediaType.parse("text/plain"), fullName.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), phone.toString()),
+                RequestBody.create(MediaType.parse("text/plain"), noticePeriod.toString())
+            )
         }
     }
 }

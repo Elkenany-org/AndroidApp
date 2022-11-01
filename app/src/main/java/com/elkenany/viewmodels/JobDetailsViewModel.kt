@@ -3,7 +3,7 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elkenany.api.auth.AuthImplementation.Companion.userApiToken
+import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.recruitment.IRecruitmentImplementation
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.recruitment.JobDetailsData
@@ -36,7 +36,6 @@ class JobDetailsViewModel : ViewModel() {
         }
     }
 
-
     private fun exceptionChecker(response: GenericEntity<JobDetailsData?>) {
         if (response.error != null) {
             _exception.value = response.error.toInt()
@@ -55,4 +54,11 @@ class JobDetailsViewModel : ViewModel() {
         job.cancel()
     }
 
+    fun applyForJob() {
+        if (AuthImplementation.userApiToken == null) {
+            _exception.value = 401
+        } else {
+            _exception.value = 1
+        }
+    }
 }

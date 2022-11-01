@@ -4,6 +4,7 @@ import com.elkenany.api.retrofit_configs.retrofit
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.recruitment.*
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -43,15 +44,15 @@ interface IRecruitment {
     @POST("recruitment/apply-job")
     fun applyToJob(
         @Header("Authorization") apiToken: String?,
-        @Part("education") education: String?,
-        @Part("experience") experience: String?,
-        @Part("job_id") jobId: Int?,
-        @Part("expected_salary") expectedSalary: String?,
-        @Part("other_info") otherInfo: String?,
-        @Part("cv_link") cv_file: MultipartBody.Part,
-        @Part("full_name") fullName: String?,
-        @Part("phone") phone: String?,
-        @Part("notice_period") noticePeriod: String?,
+        @Part("education") education: RequestBody?,
+        @Part("experience") experience: RequestBody?,
+        @Part("job_id") jobId: RequestBody?,
+        @Part("expected_salary") expectedSalary: RequestBody?,
+        @Part("other_info") otherInfo: RequestBody?,
+        @Part cvLink: MultipartBody.Part,
+        @Part("full_name") fullName: RequestBody?,
+        @Part("phone") phone: RequestBody?,
+        @Part("notice_period") noticePeriod: RequestBody?,
     ): Call<GenericEntity<ApplyData?>>
 }
 

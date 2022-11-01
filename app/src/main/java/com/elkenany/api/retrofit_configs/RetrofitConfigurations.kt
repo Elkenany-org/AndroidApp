@@ -5,6 +5,8 @@ import com.elkenany.entities.GenericEntity
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -24,8 +26,15 @@ private val moshi by lazy {
         .build()
 }
 
+private val intercepter by lazy {
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level = HttpLoggingInterceptor.Level.BODY
+    OkHttpClient.Builder().addInterceptor(interceptor).build()
+}
+
 val retrofit: Retrofit by lazy {
     Retrofit.Builder()
+//        .client(intercepter)//Make sure to comment this section before publshing any versions
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
