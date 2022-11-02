@@ -129,4 +129,7 @@
 	<string name="favorite_jobs_title">وظائفي المفضلة</string>
 	<string name="cv_title">السيرة الذاتية</string>
 	<string name="notice_period_title">فترة الإشعار</string>
+	<string name="job_applied_title">تم تقديم الطلب بنجاح</string>
+	<string name="job_applied_thanks_title">شكراً لك سيتم ابلاغك بأي تحديثات تخص الوظيفة</string>
+	<string name="continue_searching_title">اكمل البحث عن وظائف مماثلة</string>
 </resources>

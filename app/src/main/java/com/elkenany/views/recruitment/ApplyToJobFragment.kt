@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.R
 import com.elkenany.databinding.FragmentApplyJobBinding
@@ -73,7 +74,9 @@ class ApplyToJobFragment : Fragment() {
             Log.i("exceptionValue", it.toString())
             when (it) {
                 200 -> {
-                    Toast.makeText(requireContext(), "تم التقديم بنجاح", Toast.LENGTH_SHORT).show()
+                    requireView().findNavController()
+                        .navigate(ApplyToJobFragmentDirections.actionApplyToJobFragmentToApplySuccessfullyFragment())
+//                    Toast.makeText(requireContext(), "تم التقديم بنجاح", Toast.LENGTH_SHORT).show()
                 }
                 401 -> {
                     Toast.makeText(

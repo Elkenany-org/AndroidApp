@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="30dp"
+		tools:context=".views.auth.LoginFragment"
+		>
+		
+		
+		<ImageView
+			android:id="@+id/app_image"
+			android:layout_width="260dp"
+			android:layout_height="260dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="30dp"
+			android:src="@drawable/applied_logo"
+			tools:ignore="ContentDescription"
+			/>
+		
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="50dp"
+			android:fontFamily="@font/cairo_bold"
+			android:text="@string/job_applied_title"
+			android:textColor="@color/green"
+			android:textSize="30sp"
+			/>
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="5dp"
+			android:fontFamily="@font/cairo_bold"
+			android:text="@string/job_applied_thanks_title"
+			android:textColor="@color/gray"
+			tools:ignore="TextContrastCheck"
+			/>
+		
+		<androidx.appcompat.widget.AppCompatButton
+			android:id="@+id/explore_more_btn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="60dp"
+			android:background="@drawable/primary_btn_shape"
+			android:fontFamily="@font/cairo_regular"
+			android:paddingHorizontal="30dp"
+			android:text="@string/continue_searching_title"
+			android:textColor="@color/green"
+			tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,TextContrastCheck"
+			/>
+	
+	</LinearLayout>
+
+</layout>
