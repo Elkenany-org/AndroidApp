@@ -87,7 +87,7 @@
 		</RelativeLayout>
 		
 		<androidx.appcompat.widget.AppCompatButton
-			android:id="@+id/apply_now_btn"
+			android:id="@+id/add_job_btn"
 			android:layout_width="match_parent"
 			android:layout_height="45dp"
 			android:layout_alignParentBottom="true"
