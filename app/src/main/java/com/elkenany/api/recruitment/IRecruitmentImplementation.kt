@@ -34,7 +34,6 @@ class IRecruitmentImplementation {
         }
     }
 
-    @Suppress("unused")
     suspend fun getMyJobsData(
         apiToken: String?,
     ): GenericEntity<MyJobsData?> {
@@ -77,6 +76,34 @@ class IRecruitmentImplementation {
                 RequestBody.create(MediaType.parse("text/plain"), phone.toString()),
                 RequestBody.create(MediaType.parse("text/plain"), noticePeriod.toString())
             )
+        }
+    }
+
+    suspend fun addNewJob(
+        apiToken: String?,
+        jobTitle: String?,
+        jobDescription: String?,
+        jobSalary: String?,
+        jobPhone: String?,
+        jobEmail: String?,
+        jobAdress: String?,
+        requiredExperience: String?,
+        categoryId: Long?,
+        companyId: Long?,
+        workHours: String?,
+    ): GenericEntity<AddNewJobData?> {
+        return onHandelingResponseStates("addNewJob") {
+            IRecruitmentHandler.singleton.addNewJob(apiToken,
+                jobTitle,
+                jobDescription,
+                jobSalary,
+                jobPhone,
+                jobEmail,
+                jobAdress,
+                requiredExperience,
+                categoryId,
+                companyId,
+                workHours)
         }
     }
 }

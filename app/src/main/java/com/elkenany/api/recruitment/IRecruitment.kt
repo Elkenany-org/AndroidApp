@@ -54,6 +54,22 @@ interface IRecruitment {
         @Part("phone") phone: RequestBody?,
         @Part("notice_period") noticePeriod: RequestBody?,
     ): Call<GenericEntity<ApplyData?>>
+
+    @FormUrlEncoded
+    @POST("recruitment/add-job")
+    fun addNewJob(
+        @Header("Authorization") apiToken: String?,
+        @Field("title") jobTitle: String?,
+        @Field("desc") jobDescription: String?,
+        @Field("salary") jobSalary: String?,
+        @Field("phone") jobPhone: String?,
+        @Field("email") jobEmail: String?,
+        @Field("address") jobAdress: String?,
+        @Field("experience") requiredExperience: String?,
+        @Field("category_id") categoryId: Long?,
+        @Field("company_id") companyId: Long?,
+        @Field("work_hours") workHours: String?,
+    ): Call<GenericEntity<AddNewJobData?>>
 }
 
 object IRecruitmentHandler {

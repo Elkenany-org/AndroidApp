@@ -132,4 +132,6 @@
 	<string name="job_applied_title">تم تقديم الطلب بنجاح</string>
 	<string name="job_applied_thanks_title">شكراً لك سيتم ابلاغك بأي تحديثات تخص الوظيفة</string>
 	<string name="continue_searching_title">اكمل البحث عن وظائف مماثلة</string>
+	<string name="my_jobs_title">وظائفي</string>
+	<string name="add_job_title">أضف وظيفة جديدة</string>
 </resources>

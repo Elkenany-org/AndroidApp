@@ -9,7 +9,7 @@
 		
 		<variable
 			name="data"
-			type="com.elkenany.entities.recruitment.FavoriteJob"
+			type="com.elkenany.entities.recruitment.MyJobDaum"
 			/>
 		
 		<variable
@@ -18,8 +18,8 @@
 			/>
 		
 		<variable
-			name="bookMarkIt"
-			type="com.elkenany.ClickListener"
+			name="status"
+			type="String"
 			/>
 		
 		<variable
@@ -32,14 +32,11 @@
 		android:id="@+id/card_view"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="5dp"
-		android:layout_marginStart="5dp"
-		android:layout_marginTop="5dp"
-		android:layout_marginEnd="5dp"
-		android:layout_marginBottom="5dp"
+		android:layout_marginHorizontal="11dp"
+		android:layout_marginVertical="5dp"
 		android:layoutDirection="rtl"
 		card_view:cardCornerRadius="7dp"
-		card_view:cardElevation="5dp"
+		card_view:cardElevation="6dp"
 		>
 		
 		<LinearLayout
@@ -94,32 +91,16 @@
 						android:textSize="16sp"
 						/>
 					
-					<!--					<View-->
-					<!--						android:layout_width="wrap_content"-->
-					<!--						android:layout_height="0dp"-->
-					<!--						android:layout_toStartOf="@id/book_mark_btn"-->
-					<!--						android:layout_toEndOf="@id/job_name_tv"-->
-					<!--						/>-->
-					
-					<!--					<ImageView-->
-					<!--						android:id="@+id/book_mark_btn"-->
-					<!--						android:layout_width="wrap_content"-->
-					<!--						android:layout_height="wrap_content"-->
-					<!--						android:layout_alignParentEnd="true"-->
-					<!--						android:layout_centerVertical="true"-->
-					<!--						android:layout_marginStart="2dp"-->
-					<!--						android:layout_marginTop="2dp"-->
-					<!--						android:layout_marginEnd="2dp"-->
-					<!--						android:layout_marginBottom="2dp"-->
-					<!--						android:background="@color/transparent_color"-->
-					<!--						android:foregroundGravity="center"-->
-					<!--						android:onClick="@{()-> bookMarkIt.onClick(data)}"-->
-					<!--						android:src="@drawable/ic_baseline_bookmark_border_24"-->
-					<!--						tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck"-->
-					<!--						/>-->
+					<View
+						android:layout_width="wrap_content"
+						android:layout_height="0dp"
+						android:layout_toEndOf="@id/job_name_tv"
+						/>
+				
+				
 				</RelativeLayout>
 				
-				<RelativeLayout
+				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
@@ -129,16 +110,13 @@
 					
 					<TextView
 						android:id="@+id/job_desc_tv"
-						itemText="@{data.companyName}"
+						itemText="@{data.address}"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_alignParentStart="true"
-						android:layout_centerVertical="true"
 						android:layout_marginStart="2dp"
 						android:layout_marginTop="2dp"
 						android:layout_marginEnd="2dp"
 						android:layout_marginBottom="2dp"
-						android:layout_toStartOf="@id/apply_now_btn"
 						android:fontFamily="@font/cairo_bold"
 						android:maxLines="1"
 						android:textColor="@color/green"
@@ -146,29 +124,29 @@
 						/>
 					
 					<View
-						android:layout_width="wrap_content"
+						android:id="@+id/view"
+						android:layout_width="0dp"
 						android:layout_height="0dp"
-						android:layout_toStartOf="@id/apply_now_btn"
-						android:layout_toEndOf="@id/job_desc_tv"
+						android:layout_weight="1"
+						tools:ignore="NestedWeights"
 						/>
 					
-					<androidx.appcompat.widget.AppCompatButton
-						android:id="@+id/apply_now_btn"
-						android:layout_width="50dp"
-						android:layout_height="25sp"
-						android:layout_alignParentEnd="true"
-						android:layout_centerVertical="true"
-						android:layout_gravity="center_horizontal"
-						android:layout_marginVertical="5dp"
-						android:background="@drawable/primary_btn_shape"
-						android:fontFamily="@font/cairo_black"
-						android:onClick="@{() -> clickListener.onClick(data)}"
-						android:text="@string/apply_now_title"
-						android:textColor="@color/green"
-						android:textSize="7sp"
-						tools:ignore="DuplicateSpeakableTextCheck,SmallSp,TouchTargetSizeCheck,TextContrastCheck"
+					<TextView
+						android:id="@+id/job_status_tv"
+						itemText="@{status}"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginStart="2dp"
+						android:layout_marginTop="2dp"
+						android:layout_marginEnd="2dp"
+						android:layout_marginBottom="2dp"
+						android:fontFamily="@font/cairo_bold"
+						android:maxLines="1"
+						android:textColor="@color/orange"
+						android:textSize="12sp"
 						/>
-				</RelativeLayout>
+				
+				</LinearLayout>
 			</LinearLayout>
 		
 		</LinearLayout>

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.elkenany.api.retrofit_configs
 
 import android.util.Log
