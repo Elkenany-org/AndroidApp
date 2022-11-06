@@ -32,11 +32,21 @@ class JobsViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            val response = api.getAllJobsData(sort, category, search)
+            val apiToken =
+                if (AuthImplementation.userApiToken.isNullOrEmpty()) {
+                    null
+                } else {
+                    "Bearer ${AuthImplementation.userApiToken}"
+                }
+            val response = api.getAllJobsData(apiToken,
+                sort,
+                category,
+                search)
             exceptionChecker(response)
             _loading.value = false
         }
     }
+
 
     fun addToFavorite(jobId: Int?) {
         if (AuthImplementation.userApiToken.isNullOrEmpty()) {

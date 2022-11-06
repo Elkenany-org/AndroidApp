@@ -41,6 +41,14 @@ class MyAppliedJobsFragment : Fragment() {
             requireParentFragment().requireParentFragment().findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
+        binding.swiperefresh.apply {
+            setColorSchemeColors(requireContext().getColor(R.color.orange))
+            setOnRefreshListener {
+                viewModel.getMyJobsData()
+                binding.swiperefresh.isRefreshing = false
+            }
+        }
+
         binding.addJobBtn.setOnClickListener {
             viewModel.navigateToAddJob()
         }

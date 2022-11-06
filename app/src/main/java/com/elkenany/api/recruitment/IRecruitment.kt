@@ -12,6 +12,7 @@ interface IRecruitment {
     @GET("recruitment/jobs-store")
     fun getAllJobsData(
         @Header("android") isAndroid: Boolean?,
+        @Header("Authorization") apiToken: String?,
         @Query("sort") sort: Int?,
         @Query("cate") category: String?,
         @Query("search") search: String?,

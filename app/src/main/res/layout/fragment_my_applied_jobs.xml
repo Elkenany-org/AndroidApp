@@ -71,19 +71,27 @@
 			android:layout_below="@id/app_bar_title"
 			>
 			
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/jobs_list_recycler_view"
+			<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+				android:id="@+id/swiperefresh"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_centerHorizontal="true"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="15dp"
-				android:layoutDirection="rtl"
-				android:paddingHorizontal="5dp"
-				app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-				app:spanCount="1"
-				tools:listitem="@layout/my_job_card_item"
-				/>
+				>
+				
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/jobs_list_recycler_view"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_centerHorizontal="true"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="15dp"
+					android:layoutDirection="rtl"
+					android:paddingHorizontal="5dp"
+					app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+					app:spanCount="1"
+					tools:listitem="@layout/my_job_card_item"
+					/>
+			</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+		
 		</RelativeLayout>
 		
 		<androidx.appcompat.widget.AppCompatButton

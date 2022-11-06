@@ -10,12 +10,13 @@ import okhttp3.RequestBody
 class IRecruitmentImplementation {
 
     suspend fun getAllJobsData(
+        apiToken: String?,
         sort: Int?,
         category: String?,
         search: String?,
     ): GenericEntity<JobsData?> {
         return onHandelingResponseStates("getAllJobsData") {
-            IRecruitmentHandler.singleton.getAllJobsData(true, sort, category, search)
+            IRecruitmentHandler.singleton.getAllJobsData(true, apiToken, sort, category, search)
         }
     }
 
