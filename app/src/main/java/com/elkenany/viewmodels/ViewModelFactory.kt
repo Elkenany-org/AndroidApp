@@ -46,6 +46,8 @@ class ViewModelFactory : ViewModelProvider.Factory {
             modelClass.isAssignableFrom(MyFavoriteJobsViewModel::class.java) -> MyFavoriteJobsViewModel() as T
             modelClass.isAssignableFrom(MyAppliedJobsViewModel::class.java) -> MyAppliedJobsViewModel() as T
             modelClass.isAssignableFrom(ApplyToJobViewModel::class.java) -> ApplyToJobViewModel() as T
+            modelClass.isAssignableFrom(AddNewJobViewModel::class.java) -> AddNewJobViewModel() as T
+
             else -> throw IllegalArgumentException("Unknown ViewModel")
         }
     }

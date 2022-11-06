@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
@@ -40,6 +41,9 @@ class MyAppliedJobsFragment : Fragment() {
             requireParentFragment().requireParentFragment().findNavController()
                 .navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
+        binding.addJobBtn.setOnClickListener {
+            viewModel.navigateToAddJob()
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
@@ -57,10 +61,18 @@ class MyAppliedJobsFragment : Fragment() {
         viewModel.exception.observe(viewLifecycleOwner) {
             Log.i("exceptionValue", it.toString())
             when (it) {
+                null -> {
+
+                }
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
                     binding.loginBtn.visibility = View.GONE
                     binding.addJobBtn.visibility = View.VISIBLE
+                }
+                201 -> {
+                    requireView().findNavController()
+                        .navigate(MyAppliedJobsFragmentDirections.actionMyAppliedJobsFragmentToAddNewJobFragment())
+                    viewModel.onDoneNavigating()
                 }
                 401 -> {
                     binding.errorMessage.text =

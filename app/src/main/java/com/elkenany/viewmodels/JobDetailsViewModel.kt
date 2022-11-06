@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.elkenany.api.auth.AuthImplementation
+import com.elkenany.api.auth.AuthImplementation.Companion.auth
 import com.elkenany.api.recruitment.IRecruitmentImplementation
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.recruitment.JobDetailsData
@@ -18,12 +19,14 @@ class JobDetailsViewModel : ViewModel() {
     private val _responseData = MutableLiveData<JobDetailsData?>()
     private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
+    private val _isRecruiter = MutableLiveData<Boolean?>(null)
     private val api = IRecruitmentImplementation()
 
 
     val responseData: LiveData<JobDetailsData?> get() = _responseData
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
+    val isRecruiter: LiveData<Boolean?> get() = _isRecruiter
 
     fun getJobDetailsData(
         jobId: Int?,
@@ -37,6 +40,11 @@ class JobDetailsViewModel : ViewModel() {
     }
 
     private fun exceptionChecker(response: GenericEntity<JobDetailsData?>) {
+        if (auth != null) {
+            _isRecruiter.value = auth!!.userType.equals("recruiter")
+        } else {
+            _isRecruiter.value = false
+        }
         if (response.error != null) {
             _exception.value = response.error.toInt()
         } else {

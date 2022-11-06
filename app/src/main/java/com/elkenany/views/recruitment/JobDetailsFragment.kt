@@ -51,6 +51,17 @@ class JobDetailsFragment : Fragment() {
                 }
             }
         }
+        viewModel.isRecruiter.observe(viewLifecycleOwner) { isRecruiter ->
+            if (isRecruiter != null) {
+                if (isRecruiter) {
+                    binding.applyNowBtn.visibility = View.GONE
+                } else {
+                    binding.applyNowBtn.visibility = View.VISIBLE
+                }
+            } else {
+                binding.applyNowBtn.visibility = View.VISIBLE
+            }
+        }
         viewModel.exception.observe(viewLifecycleOwner) {
             when (it) {
                 1 -> {
