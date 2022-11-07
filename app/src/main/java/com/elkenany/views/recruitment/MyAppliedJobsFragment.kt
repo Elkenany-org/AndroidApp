@@ -24,6 +24,7 @@ class MyAppliedJobsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MyAppliedJobsViewModel
     private lateinit var myJobsAdapter: MyJobsAdapter
+    private var jobId: Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +36,10 @@ class MyAppliedJobsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[MyAppliedJobsViewModel::class.java]
         viewModel.getMyJobsData()
-        myJobsAdapter = MyJobsAdapter(ClickListener { })
+        myJobsAdapter = MyJobsAdapter(ClickListener {
+            jobId = it.id
+            viewModel.navigateToSpecificPage()
+        })
         binding.jobsListRecyclerView.adapter = myJobsAdapter
         binding.loginBtn.setOnClickListener {
             requireParentFragment().requireParentFragment().findNavController()
@@ -109,6 +113,31 @@ class MyAppliedJobsFragment : Fragment() {
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.loginBtn.visibility = View.GONE
                     binding.addJobBtn.visibility = View.GONE
+                }
+            }
+        }
+        viewModel.isRecruiter.observe(viewLifecycleOwner) {
+            when (it) {
+                true -> {
+                    binding.jobsListRecyclerView.visibility = View.GONE
+                }
+                else -> {
+                    binding.jobsListRecyclerView.visibility = View.VISIBLE
+                }
+            }
+        }
+        viewModel.whereToNavigate.observe(viewLifecycleOwner) {
+            when (it) {
+                null -> {}
+                1 -> {
+                    requireView().findNavController()
+                        .navigate(MyAppliedJobsFragmentDirections.actionMyAppliedJobsFragmentToApplicantsFragment(
+                            jobId!!))
+                }
+                2 -> {
+                    requireView().findNavController()
+                        .navigate(MyAppliedJobsFragmentDirections.actionMyAppliedJobsFragmentToJobDetailsFragment(
+                            jobId!!.toInt()))
                 }
             }
         }

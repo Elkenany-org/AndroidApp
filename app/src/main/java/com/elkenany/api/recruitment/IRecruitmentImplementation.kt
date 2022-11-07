@@ -107,4 +107,24 @@ class IRecruitmentImplementation {
                 workHours)
         }
     }
+
+    suspend fun getJobApplicanstListData(
+        apiToken: String?,
+        jobId: Long?,
+        select: Long?,
+        search: String?,
+    ): GenericEntity<JobApplicantsListData?> {
+        return onHandelingResponseStates("getJobApplicanstListData") {
+            IRecruitmentHandler.singleton.getAllApplicants(true, apiToken, jobId, select, search)
+        }
+    }
+
+    suspend fun getApplicationDetailsData(
+        apiToken: String?,
+        appId: Long?,
+    ): GenericEntity<ApplicationDetailsData?> {
+        return onHandelingResponseStates("getApplicationDetailsData") {
+            IRecruitmentHandler.singleton.getApplicationDetailsData(true, apiToken, appId)
+        }
+    }
 }

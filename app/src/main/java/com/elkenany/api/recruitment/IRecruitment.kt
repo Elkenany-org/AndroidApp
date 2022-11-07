@@ -33,6 +33,22 @@ interface IRecruitment {
         @Header("Authorization") apiToken: String?,
     ): Call<GenericEntity<MyFavoriteJobsListData?>>
 
+    @GET("recruitment/job-applicants")
+    fun getAllApplicants(
+        @Header("android") isAndroid: Boolean?,
+        @Header("Authorization") apiToken: String?,
+        @Query("job_id") jobId: Long?,
+        @Query("select") select: Long?,
+        @Query("search") search: String?,
+    ): Call<GenericEntity<JobApplicantsListData?>>
+
+    @GET("recruitment/application-details")
+    fun getApplicationDetailsData(
+        @Header("android") isAndroid: Boolean?,
+        @Header("Authorization") apiToken: String?,
+        @Query("app_id") appId: Long?,
+    ): Call<GenericEntity<ApplicationDetailsData?>>
+
 
     @FormUrlEncoded
     @POST("recruitment/add-to-job-favorites")

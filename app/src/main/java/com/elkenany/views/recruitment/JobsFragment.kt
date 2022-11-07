@@ -56,7 +56,8 @@ class JobsFragment : Fragment() {
                         .navigate(JobsFragmentDirections.actionJobsFragmentToMyFavoriteJobsFragment())
                 }
                 "2".toLong() -> { // This id represent My jobs that i added as a recruiter
-                    // ToDo -> navigate to
+                    requireView().findNavController()
+                        .navigate(JobsFragmentDirections.actionJobsFragmentToMyAppliedJobsFragment())
                 }
                 "3".toLong() -> { // This id represent my Jobs that i applied for
                     // ToDo -> navigate to MyAppliedJobsFragment
