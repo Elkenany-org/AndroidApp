@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.elkenany.R
 import com.elkenany.databinding.FragmentApplicantDetailsBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
+import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.ApplicantDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 
@@ -19,6 +22,7 @@ class ApplicantDetailsFragment : Fragment() {
     private lateinit var binding: FragmentApplicantDetailsBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ApplicantDetailsViewModel
+    private var cv: String? = ""
     private val args: ApplicantDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +33,36 @@ class ApplicantDetailsFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_applicant_details, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ApplicantDetailsViewModel::class.java]
+        binding.acceptedBtn.setOnClickListener {
+            viewModel.addQualifiedApplicants("1",
+                args.id.toString())
+        }
+        binding.rejectedBtn.setOnClickListener {
+            viewModel.addQualifiedApplicants("0",
+                args.id.toString())
+        }
+        binding.consideringBtn.setOnClickListener {
+            viewModel.addQualifiedApplicants(null,
+                args.id.toString())
+        }
+        binding.phoneTv.setOnClickListener {
+            callThisNumber(binding.phoneTv.text.toString().trim(),
+                requireContext(),
+                requireActivity())
+        }
+        binding.emailTv.setOnClickListener {
+            emailThisEmail(binding.emailTv.text.toString().trim(),
+                requireActivity())
+        }
+        binding.attachCvBtn.setOnClickListener {
+            navigateToBroswerIntent(cv, requireActivity())
+        }
         viewModel.getApplicationData(args.id)
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
                     loadingProgressbar.visibility = View.VISIBLE
+                    layout.visibility = View.GONE
                     errorMessage.visibility = View.GONE
                 }
             } else {
@@ -80,7 +109,12 @@ class ApplicantDetailsFragment : Fragment() {
 
         viewModel.responseData.observe(viewLifecycleOwner) { jobsData ->
             if (jobsData != null) {
-                binding.data = jobsData.application
+                binding.apply {
+                    layout.visibility = View.VISIBLE
+                    data = jobsData.application
+                    cv = jobsData.application!!.cv!!
+                }
+
             }
         }
         return binding.root

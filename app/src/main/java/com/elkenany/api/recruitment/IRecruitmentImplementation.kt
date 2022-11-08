@@ -85,8 +85,6 @@ class IRecruitmentImplementation {
         jobTitle: String?,
         jobDescription: String?,
         jobSalary: String?,
-        jobPhone: String?,
-        jobEmail: String?,
         jobAdress: String?,
         requiredExperience: String?,
         categoryId: Long?,
@@ -98,8 +96,6 @@ class IRecruitmentImplementation {
                 jobTitle,
                 jobDescription,
                 jobSalary,
-                jobPhone,
-                jobEmail,
                 jobAdress,
                 requiredExperience,
                 categoryId,
@@ -125,6 +121,30 @@ class IRecruitmentImplementation {
     ): GenericEntity<ApplicationDetailsData?> {
         return onHandelingResponseStates("getApplicationDetailsData") {
             IRecruitmentHandler.singleton.getApplicationDetailsData(true, apiToken, appId)
+        }
+    }
+
+    suspend fun getAllCompaniesListData(): GenericEntity<CompaniesListData?> {
+        return onHandelingResponseStates("getAllCompaniesListData") {
+            IRecruitmentHandler.singleton.getAllCompaniesData()
+        }
+    }
+
+    suspend fun getAllCategoriesData(): GenericEntity<JobDepartmentsData?> {
+        return onHandelingResponseStates("getAllCategoriesData") {
+            IRecruitmentHandler.singleton.getAllCategoriesData()
+        }
+    }
+
+    suspend fun addQualifiedApplicant(
+        apiToken: String?,
+        qualifiedValue: String?,
+        applicationId: String?,
+    ): GenericEntity<Any?> {
+        return onHandelingResponseStates("addQualifiedApplicant") {
+            IRecruitmentHandler.singleton.addQualifiedApplicant(apiToken,
+                qualifiedValue,
+                applicationId)
         }
     }
 }

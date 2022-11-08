@@ -16,7 +16,7 @@ data class ApplicationDaum(
     val education: String?,
     val experience: String?,
     @Json(name = "expected_salary")
-    val expectedSalary: Long?,
+    val expectedSalary: String?,
     @Json(name = "created_at")
     val createdAt: String?,
     val cv: String?,

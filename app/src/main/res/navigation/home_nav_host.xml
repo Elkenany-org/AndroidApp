@@ -628,8 +628,6 @@
 		<action
 			android:id="@+id/action_myAppliedJobsFragment_to_applicantsFragment"
 			app:destination="@id/applicantsFragment"
-			app:popUpTo="@id/applicantsFragment"
-			app:popUpToInclusive="true"
 			/>
 		<action
 			android:id="@+id/action_myAppliedJobsFragment_to_jobDetailsFragment"

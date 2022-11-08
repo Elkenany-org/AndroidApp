@@ -49,6 +49,20 @@ interface IRecruitment {
         @Query("app_id") appId: Long?,
     ): Call<GenericEntity<ApplicationDetailsData?>>
 
+    @GET("search-companies")
+    fun getAllCompaniesData(): Call<GenericEntity<CompaniesListData?>>
+
+    @GET("recruitment/jobs-store-categories")
+    fun getAllCategoriesData(): Call<GenericEntity<JobDepartmentsData?>>
+
+    @FormUrlEncoded
+    @POST("recruitment/add-to-qualified-applicants")
+    fun addQualifiedApplicant(
+        @Header("Authorization") apiToken: String?,
+        @Field("qualified_value") qualifiedValue: String?,
+        @Field("app_id") applicationId: String?,
+    ): Call<GenericEntity<Any?>>
+
 
     @FormUrlEncoded
     @POST("recruitment/add-to-job-favorites")
@@ -79,14 +93,13 @@ interface IRecruitment {
         @Field("title") jobTitle: String?,
         @Field("desc") jobDescription: String?,
         @Field("salary") jobSalary: String?,
-        @Field("phone") jobPhone: String?,
-        @Field("email") jobEmail: String?,
         @Field("address") jobAdress: String?,
         @Field("experience") requiredExperience: String?,
         @Field("category_id") categoryId: Long?,
         @Field("company_id") companyId: Long?,
         @Field("work_hours") workHours: String?,
     ): Call<GenericEntity<AddNewJobData?>>
+
 }
 
 object IRecruitmentHandler {

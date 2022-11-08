@@ -26,6 +26,26 @@ class ApplicantDetailsViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
 
+    fun addQualifiedApplicants(qualifiedValue: String?, applicationId: String?) {
+        if (AuthImplementation.userApiToken.isNullOrEmpty()) {
+            _exception.value = 401
+        } else {
+            _loading.value = true
+            uiScope.launch {
+                val response =
+                    api.addQualifiedApplicant("Bearer ${AuthImplementation.userApiToken}",
+                        qualifiedValue,
+                        applicationId)
+                if (!response.message.isNullOrEmpty() && response.error.isNullOrEmpty()) {
+                    _exception.value = 200
+                } else {
+                    _exception.value = 500
+                }
+                _loading.value = false
+            }
+        }
+    }
+
     fun getApplicationData(
         jobId: Long?,
     ) {

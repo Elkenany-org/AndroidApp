@@ -140,7 +140,8 @@
 	<string name="working_hours_title">دوام العمل</string>
 	<string name="salary_title">الراتب</string>
 	<string name="applicants_title">المتقدمون</string>
-	<string name="accepted_title">مقبول</string>
-	<string name="rejected_title">مرفوض</string>
+	<string name="accepted_title">مؤهل</string>
+	<string name="rejected_title">غير مؤهل</string>
 	<string name="under_considration_title">تحت المراجعة</string>
+	<string name="show_cv_title">إعرض السيرة الذاتية</string>
 </resources>

@@ -160,10 +160,14 @@
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/statistics_row_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/store_card_view_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/table_row_item.xml" value="0.35572916666666665" />
+        <entry key="..\:/projects/app/src/main/res/drawable/accepted_btn_shape.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/add_favorite_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/considering_btn_shape.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/facebook_btn_shape.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/drawable/home_icon_selector.xml" value="0.2905" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.2885" />
@@ -172,6 +176,7 @@
         <entry key="..\:/projects/app/src/main/res/drawable/notification_icon.xml" value="0.291" />
         <entry key="..\:/projects/app/src/main/res/drawable/notification_icon_selector.xml" value="0.291" />
         <entry key="..\:/projects/app/src/main/res/drawable/profile_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/rejected_btn_shape.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/search.xml" value="0.2905" />
         <entry key="..\:/projects/app/src/main/res/drawable/search_icon_selector.xml" value="0.2905" />
         <entry key="..\:/projects/app/src/main/res/drawable/secondary_btn_shape.xml" value="0.2885" />
@@ -186,6 +191,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/favorite_job_card_item.xml" value="0.5" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_about.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_ad_details.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_add_new_job.xml" value="0.29200513039760584" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_applicant_details.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_applicants.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_for_jobe.xml" value="0.26507054296707994" />
