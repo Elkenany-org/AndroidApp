@@ -69,8 +69,12 @@ class GlobalUiFunctions {
                 val emailIntent = Intent(Intent.ACTION_SEND)
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
                 emailIntent.type = "message/rfc822"
-                activity.startActivity(Intent.createChooser(emailIntent,
-                    "Choose an Email client :"))
+                activity.startActivity(
+                    Intent.createChooser(
+                        emailIntent,
+                        "Choose an Email client :"
+                    )
+                )
             }
         }
 
@@ -149,5 +153,19 @@ class GlobalUiFunctions {
                 }
             }
         }
+        //        private fun openFilterDialog(
+        //            requireActivity: Activity,
+        //            inflater: LayoutInflater
+        //        ) {
+        //            val bottomSheetDialog = BottomSheetDialog(
+        //                requireActivity
+        //            )
+        //            val binding = BottomSheetFilterLayoutBinding.inflate(inflater)
+        //            binding.signInBtn.setOnClickListener {
+        //                bottomSheetDialog.cancel()
+        //            }
+        //            bottomSheetDialog.setContentView(binding.root)
+        //            bottomSheetDialog.show()
+        //        }
     }
 }
