@@ -9,10 +9,10 @@ import java.net.SocketTimeoutException
 
 class ILocalStockImplementation {
 
-    suspend fun getLocalStockSectionsData(sectorType: String, search: String?): LocalStockData? {
+    suspend fun getLocalStockSectionsData(sectionId: Long?, search: String?): LocalStockData? {
         return try {
             val response =
-                ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search).await()
+                ILocalStockHandler.singleton.getLocalStockSectionsData(sectionId, search).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getLocalStockSectionsData", e.message.toString())

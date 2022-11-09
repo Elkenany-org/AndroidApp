@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
-import com.elkenany.databinding.BigRecyclerItemWithDetailsBinding
+import com.elkenany.databinding.NewRecommendationCardItemBinding
 import com.elkenany.entities.home_data.ServiceRecomandtion
 
 class ServiceRecommendationAdapter(private val partnerClickListener: ClickListener<ServiceRecomandtion>) :
@@ -26,7 +26,7 @@ class ServiceRecommendationAdapter(private val partnerClickListener: ClickListen
 
 }
 
-class ServiceRecommendationViewHolder private constructor(private val binding: BigRecyclerItemWithDetailsBinding) :
+class ServiceRecommendationViewHolder private constructor(private val binding: NewRecommendationCardItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
@@ -34,8 +34,8 @@ class ServiceRecommendationViewHolder private constructor(private val binding: B
         partnerClickListener: ClickListener<ServiceRecomandtion>,
     ) {
         binding.data = recommendation
-        binding.title = recommendation.name
-        binding.url = recommendation.image
+        binding.name = recommendation.name
+        binding.image = recommendation.image
         binding.clickListener = partnerClickListener
         binding.executePendingBindings()
     }
@@ -43,7 +43,7 @@ class ServiceRecommendationViewHolder private constructor(private val binding: B
     companion object {
         fun from(parent: ViewGroup): ServiceRecommendationViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = BigRecyclerItemWithDetailsBinding.inflate(layoutInflater, parent, false)
+            val binding = NewRecommendationCardItemBinding.inflate(layoutInflater, parent, false)
             return ServiceRecommendationViewHolder(binding)
         }
     }

@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.home_service.adapter.*
@@ -96,15 +97,15 @@ class HomeServiceFragment : Fragment() {
 
         //assign each adapter to its own recyclerView
         binding.recommendationRecyclerView.adapter = recommendationAdapter
-        binding.partnersRecyclerView.adapter = partnerAdapter
-        binding.showsRecyclerView.adapter = showsAdapter
-        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
+//        binding.partnersRecyclerView.adapter = partnerAdapter
+//        binding.showsRecyclerView.adapter = showsAdapter
+//        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
 
 //        //navigate to sectorsFragment
-        binding.sectorsBtn.setOnClickListener {
-            requireView().findNavController()
-                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
-        }
+//        binding.sectorsBtn.setOnClickListener {
+//            requireView().findNavController()
+//                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
+//        }
 //
         // Loading progressbar
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -126,6 +127,11 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
+                if (!it.banners.isNullOrEmpty()) {
+                    enableImageSlider(it.banners,
+                        binding.bannersImageSlider,
+                        requireActivity())
+                }
                 binding.errorMessage.visibility = View.GONE
                 binding.line2.visibility = View.VISIBLE
             } else {

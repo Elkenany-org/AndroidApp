@@ -208,7 +208,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_magazine_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_sector.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.3229166666666667" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.14" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_job_details.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_jobs.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock.xml" value="0.3229166666666667" />
@@ -239,6 +239,8 @@
         <entry key="..\:/projects/app/src/main/res/layout/job_card_item.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/magazine_card_item.xml" value="0.75" />
         <entry key="..\:/projects/app/src/main/res/layout/my_job_card_item.xml" value="0.26421547669944423" />
+        <entry key="..\:/projects/app/src/main/res/layout/new_recommendation_card_item.xml" value="0.14450619923044036" />
+        <entry key="..\:/projects/app/src/main/res/layout/new_services_card_item.xml" value="0.1453612654980761" />
         <entry key="..\:/projects/app/src/main/res/layout/news_card_view_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/search_result_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/sector_item.xml" value="0.26507054296707994" />

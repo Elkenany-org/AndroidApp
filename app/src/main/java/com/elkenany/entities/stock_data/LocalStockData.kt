@@ -10,9 +10,9 @@ data class LocalStockData(
     @Json(name = "logos")
     val logos: List<GeneralLogoData?>,
     @Json(name = "sub_sections")
-    val subSections: List<LocalStockSubSection?>,
+    val subSections: List<LocalStockSubSection?>?,
     @Json(name = "fod_sections")
-    val fodSections: List<LocalStockSubSection?>,
+    val fodSections: List<LocalStockSubSection?>?,
 )
 
 data class LocalStockSector(

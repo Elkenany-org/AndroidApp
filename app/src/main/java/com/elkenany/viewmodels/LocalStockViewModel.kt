@@ -21,11 +21,11 @@ class LocalStockViewModel : ViewModel() {
     val homeStockData: LiveData<LocalStockData?> get() = _homeStockData
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getHomeStockData(sectorType: String, search: String?) {
+    fun getHomeStockData(sectionId: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
             // ToDo --> implementing getHomeStockData(sectorType) function here
-            _homeStockData.value = api.getLocalStockSectionsData(sectorType, search)
+            _homeStockData.value = api.getLocalStockSectionsData(sectionId, search)
             _loading.value = false
         }
     }

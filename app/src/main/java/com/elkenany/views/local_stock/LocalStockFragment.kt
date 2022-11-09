@@ -31,12 +31,9 @@ class LocalStockFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
-    private var sectorType: String? = null
+    private val args: LocalStockFragmentArgs by navArgs()
+    private var sectorType: Long? = null
     private var search: String? = null
-//    override fun onResume() {
-//        super.onResume()
-//        viewModel.getHomeStockData(sectorType!!, search)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,22 +41,16 @@ class LocalStockFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_local_stock, container, false)
-        sectorType = try {
-            val args: LocalStockFragmentArgs by navArgs()
-            args.sectorType.toString()
-        } catch (e: Exception) {
-            "poultry"
-        }
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-        viewModel.getHomeStockData(sectorType!!, search)
+        viewModel.getHomeStockData(sectorType, search)
         binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getHomeStockData(sectorType!!, search)
+            viewModel.getHomeStockData(sectorType, search)
         }
         logosAdapter = LocalStockLogosAdapter(ClickListener {
             navigateToBroswerIntent(it.link, requireActivity())
@@ -70,8 +61,8 @@ class LocalStockFragment : Fragment() {
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            sectorType = it.type.toString()
-            viewModel.getHomeStockData(sectorType!!, search)
+            sectorType = it.id
+            viewModel.getHomeStockData(sectorType, search)
         })
         binding.sectorsRecyclerView.apply {
             adapter = sectorsAdapter
@@ -93,16 +84,11 @@ class LocalStockFragment : Fragment() {
         }
         viewModel.homeStockData.observe(viewLifecycleOwner) {
             if (it != null) {
-                it.sectors.map { sector ->
-                    if (sector!!.selected == 1L) {
-                        binding.sectorsRecyclerView.smoothScrollToPosition(sector.id!!.toInt())
-                    }
-                }
                 binding.apply {
                     searchBar.visibility = View.VISIBLE
                 }
-                val list = it.fodSections + it.subSections
-                if (list.isEmpty()) {
+                val list = it.subSections
+                if (list!!.isEmpty()) {
                     binding.stockListRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
                 } else {
