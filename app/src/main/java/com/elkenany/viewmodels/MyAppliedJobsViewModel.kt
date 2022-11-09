@@ -77,6 +77,7 @@ class MyAppliedJobsViewModel : ViewModel() {
 
     fun onDoneNavigating() {
         _exception.value = null
+        _whereToNavigate.value = null
     }
 
     fun navigateToSpecificPage() {

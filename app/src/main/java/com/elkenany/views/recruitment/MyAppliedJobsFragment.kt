@@ -133,11 +133,13 @@ class MyAppliedJobsFragment : Fragment() {
                     requireView().findNavController()
                         .navigate(MyAppliedJobsFragmentDirections.actionMyAppliedJobsFragmentToApplicantsFragment(
                             jobId!!))
+                    viewModel.onDoneNavigating()
                 }
                 2 -> {
                     requireView().findNavController()
                         .navigate(MyAppliedJobsFragmentDirections.actionMyAppliedJobsFragmentToJobDetailsFragment(
                             jobId!!.toInt()))
+                    viewModel.onDoneNavigating()
                 }
             }
         }
