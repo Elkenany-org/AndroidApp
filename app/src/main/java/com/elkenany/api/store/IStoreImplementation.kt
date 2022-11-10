@@ -9,7 +9,7 @@ import java.net.SocketTimeoutException
 
 class IStoreImplementation {
 
-    suspend fun getAllAdsStoreData(type: String?, search: String?, header: String?): AdsStoreData? {
+    suspend fun getAllAdsStoreData(type: Long?, search: String?, header: String?): AdsStoreData? {
         return try {
             val response = IStoreHandler.singleton.getAdsStoreData(type, search, header).await()
             response.data

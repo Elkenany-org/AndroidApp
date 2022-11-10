@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideBinding
@@ -30,9 +29,8 @@ class GuideFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: GuideSubSectionAdapter
-    private lateinit var sectorType: String
+    private var sectorType: Int? = null
     private var search: String? = null
-    private val args: GuideFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
         viewModel.getGuideData(sectorType, search)
@@ -46,11 +44,6 @@ class GuideFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_guide, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideViewModel::class.java]
-        sectorType = try {
-            args.sectorType.toString()
-        } catch (e: Exception) {
-            "poultry"
-        }
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
@@ -69,7 +62,7 @@ class GuideFragment : Fragment() {
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            sectorType = it.type.toString()
+            sectorType = it.id?.toInt()
             viewModel.getGuideData(sectorType, search)
         })
         binding.sectorsRecyclerView.apply {
@@ -81,7 +74,7 @@ class GuideFragment : Fragment() {
             requireView().findNavController()
                 .navigate(GuideFragmentDirections.actionGuideFragmentToGuideCompaniesFragment(it.id!!,
                     it.name,
-                    sectorType))
+                    sectorType.toString()))
         })
         binding.guideListRecyclerView.apply {
             adapter = subSection

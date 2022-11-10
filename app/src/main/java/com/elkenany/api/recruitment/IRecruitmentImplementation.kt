@@ -124,9 +124,9 @@ class IRecruitmentImplementation {
         }
     }
 
-    suspend fun getAllCompaniesListData(): GenericEntity<CompaniesListData?> {
+    suspend fun getAllCompaniesListData(apiToken: String?): GenericEntity<CompaniesListData?> {
         return onHandelingResponseStates("getAllCompaniesListData") {
-            IRecruitmentHandler.singleton.getAllCompaniesData()
+            IRecruitmentHandler.singleton.getAllCompaniesData(apiToken)
         }
     }
 

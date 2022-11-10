@@ -31,7 +31,6 @@ class LocalStockFragment : Fragment() {
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var subSection: LocalStockSubSectionsAdapter
-    private val args: LocalStockFragmentArgs by navArgs()
     private var sectorType: Long? = null
     private var search: String? = null
 

@@ -35,8 +35,12 @@ class AddNewJobViewModel : ViewModel() {
 
     init {
         uiScope.launch {
-            val response = api.getAllCompaniesListData()
-            _companiesList.value = response.data
+            if (userApiToken == null) {
+                _exception.value = 401
+            } else {
+                val response = api.getAllCompaniesListData("Bearer $userApiToken")
+                _companiesList.value = response.data
+            }
             val deparments = api.getAllCategoriesData()
             _departmentList.value = deparments.data
             _workingHours.value = listOf<String?>("دوام كلي", "دوام جزئي", "عن بعد", "مرن")

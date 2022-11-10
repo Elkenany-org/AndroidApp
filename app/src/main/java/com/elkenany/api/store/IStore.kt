@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface IStore {
     @GET("store/ads-store")
     fun getAdsStoreData(
-        @Query("type") type: String?,
+        @Query("section_id") type: Long?,
         @Query("search") search: String?,
         @Header("android") device: String?,
     ): Call<GenericEntity<AdsStoreData?>>

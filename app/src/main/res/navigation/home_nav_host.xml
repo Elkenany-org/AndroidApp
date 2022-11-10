@@ -6,59 +6,59 @@
 	app:startDestination="@id/homeServiceFragment"
 	>
 	
-	<fragment
-		android:id="@+id/homeSectorFragment"
-		android:name="com.elkenany.views.home.home_sector.HomeSectorFragment"
-		android:label="fragment_home_sector"
-		tools:layout="@layout/fragment_home_sector"
-		>
-		<action
-			android:id="@+id/action_homeSectorFragment2_to_homeServiceFragment2"
-			app:destination="@id/homeServiceFragment"
-			app:launchSingleTop="true"
-			app:popUpTo="@id/homeSectorFragment"
-			app:popUpToInclusive="true"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_sectorsChoicesFragment"
-			app:destination="@id/sectorsChoicesFragment"
-			app:launchSingleTop="true"
-			app:popUpTo="@id/sectorsChoicesFragment"
-			app:popUpToInclusive="true"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_newsDetailsFragment"
-			app:destination="@id/newsDetailsFragment"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_guideCompaniesFragment"
-			app:destination="@id/guideCompaniesFragment"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_adDetailsFragment"
-			app:destination="@id/adDetailsFragment"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_localStockDetailsFragment"
-			app:destination="@id/localStockDetailsFragment"
-			/>
-		<action
-			android:id="@+id/action_homeSectorFragment_to_guideFragment"
-			app:destination="@id/guideFragment"
-			/>
-	</fragment>
+	<!--	<fragment-->
+	<!--		android:id="@+id/homeSectorFragment"-->
+	<!--		android:name="com.elkenany.views.home.home_sector.HomeSectorFragment"-->
+	<!--		android:label="fragment_home_sector"-->
+	<!--		tools:layout="@layout/fragment_home_sector"-->
+	<!--		>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment2_to_homeServiceFragment2"-->
+	<!--			app:destination="@id/homeServiceFragment"-->
+	<!--			app:launchSingleTop="true"-->
+	<!--			app:popUpTo="@id/homeSectorFragment"-->
+	<!--			app:popUpToInclusive="true"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_sectorsChoicesFragment"-->
+	<!--			app:destination="@id/sectorsChoicesFragment"-->
+	<!--			app:launchSingleTop="true"-->
+	<!--			app:popUpTo="@id/sectorsChoicesFragment"-->
+	<!--			app:popUpToInclusive="true"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_newsDetailsFragment"-->
+	<!--			app:destination="@id/newsDetailsFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_guideCompaniesFragment"-->
+	<!--			app:destination="@id/guideCompaniesFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_adDetailsFragment"-->
+	<!--			app:destination="@id/adDetailsFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_localStockDetailsFragment"-->
+	<!--			app:destination="@id/localStockDetailsFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_homeSectorFragment_to_guideFragment"-->
+	<!--			app:destination="@id/guideFragment"-->
+	<!--			/>-->
+	<!--	</fragment>-->
 	<fragment
 		android:id="@+id/homeServiceFragment"
 		android:name="com.elkenany.views.home.home_service.HomeServiceFragment"
 		android:label="fragment_home_service"
 		tools:layout="@layout/fragment_home_service"
 		>
-		<action
-			android:id="@+id/action_homeServiceFragment2_to_homeSectorFragment2"
-			app:destination="@id/homeSectorFragment"
-			app:popUpTo="@id/homeServiceFragment"
-			app:popUpToInclusive="true"
-			/>
+		<!--		<action-->
+		<!--			android:id="@+id/action_homeServiceFragment2_to_homeSectorFragment2"-->
+		<!--			app:destination="@id/homeSectorFragment"-->
+		<!--			app:popUpTo="@id/homeServiceFragment"-->
+		<!--			app:popUpToInclusive="true"-->
+		<!--			/>-->
 		<action
 			android:id="@+id/action_homeServiceFragment_to_showsFragment"
 			app:destination="@id/showsFragment"
@@ -83,6 +83,22 @@
 			android:id="@+id/action_homeServiceFragment_to_jobsFragment"
 			app:destination="@id/jobsFragment"
 			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_localStockFragment"
+			app:destination="@id/localStockFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_storeFragment"
+			app:destination="@id/storeFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_guideFragment"
+			app:destination="@id/guideFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_newsFragment"
+			app:destination="@id/newsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/profileFragment"
@@ -95,64 +111,64 @@
 			app:destination="@id/myAdsListFragment"
 			/>
 	</fragment>
-	<fragment
-		android:id="@+id/sectorsChoicesFragment"
-		android:name="com.elkenany.views.home.home_sector.SectorsChoicesFragment"
-		android:label="SectorsChoicesFragment"
-		tools:layout="@layout/fragment_sectors_choices"
-		>
-		<argument
-			android:name="sector_id"
-			app:argType="long"
-			/>
-		<argument
-			android:name="sector_name"
-			app:argType="string"
-			app:nullable="true"
-			/>
-		<argument
-			android:name="sector_type"
-			app:argType="string"
-			app:nullable="true"
-			/>
-		<action
-			android:id="@+id/action_sectorsChoicesFragment_to_localStockFragment"
-			app:destination="@id/localStockFragment"
-			/>
-		<action
-			android:id="@+id/action_sectorsChoicesFragment_to_newsFragment"
-			app:destination="@id/newsFragment"
-			/>
-		<action
-			android:id="@+id/action_sectorsChoicesFragment_to_storeFragment"
-			app:destination="@id/storeFragment"
-			/>
-		<action
-			android:id="@+id/action_sectorsChoicesFragment_to_guideFragment"
-			app:destination="@id/guideFragment"
-			/>
-	</fragment>
+	<!--	<fragment-->
+	<!--		android:id="@+id/sectorsChoicesFragment"-->
+	<!--		android:name="com.elkenany.views.home.home_sector.SectorsChoicesFragment"-->
+	<!--		android:label="SectorsChoicesFragment"-->
+	<!--		tools:layout="@layout/fragment_sectors_choices"-->
+	<!--		>-->
+	<!--		<argument-->
+	<!--			android:name="sector_id"-->
+	<!--			app:argType="long"-->
+	<!--			/>-->
+	<!--		<argument-->
+	<!--			android:name="sector_name"-->
+	<!--			app:argType="string"-->
+	<!--			app:nullable="true"-->
+	<!--			/>-->
+	<!--		<argument-->
+	<!--			android:name="sector_type"-->
+	<!--			app:argType="string"-->
+	<!--			app:nullable="true"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_sectorsChoicesFragment_to_localStockFragment"-->
+	<!--			app:destination="@id/localStockFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_sectorsChoicesFragment_to_newsFragment"-->
+	<!--			app:destination="@id/newsFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_sectorsChoicesFragment_to_storeFragment"-->
+	<!--			app:destination="@id/storeFragment"-->
+	<!--			/>-->
+	<!--		<action-->
+	<!--			android:id="@+id/action_sectorsChoicesFragment_to_guideFragment"-->
+	<!--			app:destination="@id/guideFragment"-->
+	<!--			/>-->
+	<!--	</fragment>-->
 	<fragment
 		android:id="@+id/localStockFragment"
 		android:name="com.elkenany.views.local_stock.LocalStockFragment"
 		android:label="LocalStockFragment"
 		tools:layout="@layout/fragment_local_stock"
 		>
-		<argument
-			android:name="sector_id"
-			app:argType="long"
-			/>
-		<argument
-			android:name="sector_name"
-			app:argType="string"
-			app:nullable="true"
-			/>
-		
-		<argument
-			android:name="sector_type"
-			app:argType="string"
-			app:nullable="true"
-			/>
+<!--		<argument-->
+<!--			android:name="sector_id"-->
+<!--			app:argType="long"-->
+<!--			/>-->
+<!--		<argument-->
+<!--			android:name="sector_name"-->
+<!--			app:argType="string"-->
+<!--			app:nullable="true"-->
+<!--			/>-->
+<!--		-->
+<!--		<argument-->
+<!--			android:name="sector_type"-->
+<!--			app:argType="string"-->
+<!--			app:nullable="true"-->
+<!--			/>-->
 		<action
 			android:id="@+id/action_localStockFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
@@ -165,20 +181,20 @@
 		android:label="NewsFragment"
 		tools:layout="@layout/fragment_news"
 		>
-		<argument
-			android:name="sector_id"
-			app:argType="long"
-			/>
-		<argument
-			android:name="sector_name"
-			app:argType="string"
-			app:nullable="true"
-			/>
-		<argument
-			android:name="sector_type"
-			app:argType="string"
-			app:nullable="true"
-			/>
+<!--		<argument-->
+<!--			android:name="sector_id"-->
+<!--			app:argType="long"-->
+<!--			/>-->
+<!--		<argument-->
+<!--			android:name="sector_name"-->
+<!--			app:argType="string"-->
+<!--			app:nullable="true"-->
+<!--			/>-->
+<!--		<argument-->
+<!--			android:name="sector_type"-->
+<!--			app:argType="string"-->
+<!--			app:nullable="true"-->
+<!--			/>-->
 		<action
 			android:id="@+id/action_newsFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
@@ -190,20 +206,7 @@
 		android:label="StoreFragment"
 		tools:layout="@layout/fragment_store"
 		>
-		<argument
-			android:name="sector_id"
-			app:argType="long"
-			/>
-		<argument
-			android:name="sector_name"
-			app:argType="string"
-			app:nullable="true"
-			/>
-		<argument
-			android:name="sector_type"
-			app:argType="string"
-			app:nullable="true"
-			/>
+<!-- -->
 		<action
 			android:id="@+id/action_storeFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
@@ -219,21 +222,17 @@
 		android:label="GuideFragment"
 		tools:layout="@layout/fragment_guide"
 		>
-		<argument
-			android:name="sector_id"
-			app:argType="long"
-			/>
-		<argument
-			android:name="sector_name"
-			app:argType="string"
-			app:nullable="true"
-			/>
+<!--		<argument-->
+		<!--			android:name="sector_id"-->
+		<!--			app:argType="long"-->
+		<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_name"-->
+		<!--			app:argType="string"-->
+		<!--			app:nullable="true"-->
+		<!--			/>-->
 		
-		<argument
-			android:name="sector_type"
-			app:argType="string"
-			app:nullable="true"
-			/>
+<!-- -->
 		<action
 			android:id="@+id/action_guideFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
@@ -645,7 +644,7 @@
 			app:destination="@id/jobDetailsFragment"
 			/>
 	</fragment>
-	 <fragment
+	<fragment
 		android:id="@+id/applyToJobFragment"
 		android:name="com.elkenany.views.recruitment.ApplyToJobFragment"
 		android:label="ApplyToJobFragment"

@@ -24,6 +24,9 @@ class AddNewJobFragment : Fragment() {
     private lateinit var departmentsAdapter: ArrayAdapter<String?>
     private lateinit var workingHoursAdapter: ArrayAdapter<String?>
 
+    private var companyTitle: String = "الشركة"
+    private var departmentTitle: String = "القسم"
+    private var workHoursTitle: String = "الدوام"
     private var name: String = ""
     private var departmentId: String = ""
     private var jobNaming: String = ""
@@ -42,6 +45,9 @@ class AddNewJobFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_new_job, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AddNewJobViewModel::class.java]
+        binding.companyAutoCompelete.setText(companyTitle)
+        binding.departmentAutoCompelete.setText(departmentTitle)
+        binding.workHoursCompelete.setText(workHoursTitle)
         viewModel.companiesListData.observe(viewLifecycleOwner) {
             if (it != null) {
                 val companies = it.result?.map { company ->
@@ -176,39 +182,39 @@ class AddNewJobFragment : Fragment() {
         } else if (departmentId.isEmpty()) {
             binding.departmentAutoCompelete.apply {
                 requestFocus()
-                error("برجاء ادخال القسم")
+                error = "برجاء ادخال القسم"
             }
 
         } else if (jobNaming.isEmpty()) {
             binding.jobNameingEt.apply {
                 requestFocus()
-                error("برجاء ادخال المسمي الوظيفي")
+                error = "برجاء ادخال المسمي الوظيفي"
             }
         } else if (salary.isEmpty()) {
             binding.salaryEt.apply {
                 requestFocus()
-                error("برجاء ادخال الراتب")
+                error = "برجاء ادخال الراتب"
             }
         } else if (experience.isEmpty()) {
             binding.experienceTv.apply {
                 requestFocus()
-                error("برجاء ادخال الخبرة")
+                error = "برجاء ادخال الخبرة"
             }
         } else if (description.isEmpty()) {
             binding.jobDescEt.apply {
                 requestFocus()
-                error("برجاء ارفاق الوصف الوظيفي")
+                error = "برجاء ارفاق الوصف الوظيفي"
             }
 
         } else if (place.isEmpty()) {
             binding.placeEt.apply {
                 requestFocus()
-                error("برجاء ارفاق العنوان")
+                error = "برجاء ارفاق العنوان"
             }
         } else if (workHours.isEmpty()) {
             binding.workHoursCompelete.apply {
                 requestFocus()
-                error("برجاء ادخال الدوام")
+                error = "برجاء ادخال الدوام"
             }
         } else {
             viewModel.addNewJob(jobNaming,

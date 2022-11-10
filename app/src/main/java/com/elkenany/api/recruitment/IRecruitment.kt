@@ -49,8 +49,8 @@ interface IRecruitment {
         @Query("app_id") appId: Long?,
     ): Call<GenericEntity<ApplicationDetailsData?>>
 
-    @GET("search-companies")
-    fun getAllCompaniesData(): Call<GenericEntity<CompaniesListData?>>
+    @GET("recruitment/Companies")
+    fun getAllCompaniesData(@Header("Authorization") apiToken: String?): Call<GenericEntity<CompaniesListData?>>
 
     @GET("recruitment/jobs-store-categories")
     fun getAllCategoriesData(): Call<GenericEntity<JobDepartmentsData?>>

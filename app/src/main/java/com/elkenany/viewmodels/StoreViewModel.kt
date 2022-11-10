@@ -23,7 +23,7 @@ class StoreViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val googeToNavigate: LiveData<Boolean?> get() = _goodToNavigate
 
-    fun getAllAdsStoreData(sectorType: String, search: String?) {
+    fun getAllAdsStoreData(sectorType: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
             // ToDo --> implementing getHomeStockData(sectorType) function here

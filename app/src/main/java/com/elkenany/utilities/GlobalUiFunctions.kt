@@ -49,7 +49,7 @@ class GlobalUiFunctions {
                     arrayList.add(SlideModel(images!!.image))
                 }.toList()
                 imageSlider.apply {
-                    imageSlider.visibility = View.VISIBLE
+                    visibility = View.VISIBLE
                     startSliding(3000)
                     setImageList(arrayList, ScaleTypes.FIT)
                     setItemClickListener(object : ItemClickListener {

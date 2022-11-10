@@ -21,7 +21,7 @@ class GuideViewModel : ViewModel() {
     val guideData: LiveData<GuideData?> get() = _guideData
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getGuideData(sectorType: String?, search: String?) {
+    fun getGuideData(sectorType: Int?, search: String?) {
         _loading.value = true
         uiScope.launch {
             // ToDo --> implementing getHomeStockData(sectorType) function here

@@ -13,7 +13,7 @@ import retrofit2.http.*
 interface IGuide {
     @GET("guide/section")
     fun getAllGuideData(
-        @Query("type") sectorType: String?,
+        @Query("section_id") sectorType: Int?,
         @Query("search") search: String?,
     ): Call<GenericEntity<GuideData?>>
 
@@ -41,7 +41,7 @@ interface IGuide {
     ): Call<GenericEntity<RatingData?>>
 
     @GET("guide/filter-guide-companies")
-    fun getGuideFilterData(@Query("sector_id") sectorId: Long?): Call<GenericEntity<GuideFiltersData?>>
+    fun getGuideFilterData(@Query("section_id") sectorId: Long?): Call<GenericEntity<GuideFiltersData?>>
 }
 
 object IGuideHandler {

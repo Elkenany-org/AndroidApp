@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	>
 	<item
-		android:id="@+id/homeSectorFragment"
+		android:id="@+id/homeServiceFragment"
 		android:icon="@drawable/home_icon_selector"
 		android:title="@string/homeBtn"
 		/>

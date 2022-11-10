@@ -34,7 +34,7 @@
 		android:onClick="@{()->clickListener.onClick(data)}"
 		android:layout_margin="2dp"
 		card_view:cardCornerRadius="5dp"
-		card_view:cardElevation="5dp"
+		card_view:cardElevation="0dp"
 		>
 		
 		<ImageView

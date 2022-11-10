@@ -44,23 +44,43 @@ class HomeServiceFragment : Fragment() {
 
         //Adapters initialization
         homeServiceAdapter = HomeServiceAdapter(ClickListener {
-            when (it.type) {
-                "shows" -> {
+            when (it.id) {
+                1L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToLocalStockFragment())
+                }
+                2L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToStoreFragment())
+                }
+                3L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideFragment())
+                }
+                4L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToNewsFragment())
+                }
+                5L -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsFragment())
                 }
-                "magazine" -> {
-                    requireView().findNavController()
-                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
-                }
-                "ships" -> {
+                6L -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
                 }
-                "jobs" -> {
+                7L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
+                }
+                8L -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToJobsFragment())
                 }
+//                9L -> {
+//                    requireView().findNavController()
+//                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToJobsFragment())
+//                }
                 else -> {
                     Toast.makeText(requireContext(), "سيتم توفير الخدمة قريبا!", Toast.LENGTH_SHORT)
                         .show()

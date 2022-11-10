@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentNewsBinding
@@ -27,9 +26,8 @@ class NewsFragment : Fragment() {
     private lateinit var newsSectionAdapter: NewsSectionAdapter
     private lateinit var viewModel: NewViewModel
     private var search: String? = null
-    private var sectorType: String = ""
+    private var sectorType: Long? = null
     private var sort: String? = "1"
-    private val args: NewsFragmentArgs by navArgs()
     override fun onResume() {
         super.onResume()
         viewModel.getAllNewsData(sectorType, search, sort)
@@ -43,11 +41,6 @@ class NewsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NewViewModel::class.java]
-        sectorType = try {
-            args.sectorType.toString()
-        } catch (e: Exception) {
-            "poultry"
-        }
 
 //        viewModel.getAllNewsData(sectorType, search, sort)
         binding.filterLayout.layoutAnimation =
@@ -87,7 +80,7 @@ class NewsFragment : Fragment() {
         }
 
         newsSectionAdapter = NewsSectionAdapter(ClickListener {
-            sectorType = it.type.toString()
+            sectorType = it.id
             viewModel.getAllNewsData(sectorType, search, sort)
             newsDaumAdapter.submitList(listOf())
         })
