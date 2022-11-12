@@ -46,11 +46,14 @@ class StatisticsViewModel : ViewModel() {
                     fodderId,
                     companyId
                 )
-                if (response.error == "402") {
-                    _exception.value = 402
-                    _statisticsFodderData.value = null
+                if (response.error != null) {
+                    _exception.value = response.error.toInt()
                 } else {
-                    _exception.value = 200
+                    if (response.data!!.changesMembers.isEmpty()) {
+                        _exception.value = 404
+                    } else {
+                        _exception.value = 200
+                    }
                     _statisticsFodderData.value = response.data
                 }
             }
@@ -79,17 +82,21 @@ class StatisticsViewModel : ViewModel() {
                         to,
                         memId,
                         "Bearer $userApiToken")
-                if (response.error == "402") {
-                    _exception.value = 402
-                    _statisticsFodderData.value = null
+                if (response.error != null) {
+                    _exception.value = response.error.toInt()
                 } else {
-                    _exception.value = 200
+                    if (response.data!!.localChangesMembers.isEmpty()) {
+                        _exception.value = 404
+                    } else {
+                        _exception.value = 200
+                    }
                     _statisticsLocalData.value = response.data
                 }
                 _loading.value = false
             }
         }
     }
+
 
     override fun onCleared() {
         super.onCleared()

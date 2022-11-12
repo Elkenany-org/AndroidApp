@@ -43,6 +43,7 @@ val retrofit: Retrofit by lazy {
         .build()
 }
 
+
 // Generic function to handle all Api Request exceptions
 suspend fun <T> onHandelingResponseStates(
     funName: String,
@@ -61,3 +62,4 @@ suspend fun <T> onHandelingResponseStates(
         GenericEntity(null, "500", null)
     }
 }
+

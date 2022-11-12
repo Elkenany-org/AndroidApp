@@ -17,12 +17,14 @@ interface ILocalStock {
 
     @GET("v2/local-android/tables")
     fun getLocalStockDetailsByIdAndTypeLocal(
+        @Header("android") isAndroid: Boolean?,
         @Query("id") id: Long,
         @Query("date") date: String?,
     ): Call<GenericEntity<LocalStockDetailsData?>>
 
     @GET("v2/fodder-android/tables")
     fun getLocalStockDetailsByIdAndTypeFodder(
+        @Header("android") isAndroid: Boolean?,
         @Header("device") device: String?,
         @Query("id") id: Long,
         @Query("date") date: String?,
