@@ -9,7 +9,6 @@ import android.content.SharedPreferences
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -60,7 +59,8 @@ class LoginFragment : Fragment() {
         try {
             val info: PackageInfo = requireContext().packageManager.getPackageInfo(
                 "com.elkenany",
-                PackageManager.GET_SIGNATURES)
+                PackageManager.GET_SIGNATURES
+            )
             for (signature in info.signatures) {
                 val md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
@@ -121,7 +121,7 @@ class LoginFragment : Fragment() {
                     // navigation to Home screen
                     saveUserCredentials()
                     requireView().findNavController()
-                        .navigate(R.id.action_loginFragment_to_homeFragment)
+                        .navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 }
             }
         }

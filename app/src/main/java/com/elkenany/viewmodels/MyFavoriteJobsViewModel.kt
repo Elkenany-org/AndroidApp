@@ -3,6 +3,7 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.auth.AuthImplementation.Companion.userApiToken
 import com.elkenany.api.recruitment.IRecruitmentImplementation
 import com.elkenany.entities.GenericEntity
@@ -25,11 +26,7 @@ class MyFavoriteJobsViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
 
-    init {
-        getFavoritJobsListData()
-    }
-
-    private fun getFavoritJobsListData() {
+    fun getFavoritJobsListData() {
         if (userApiToken.isNullOrEmpty()) {
             _exception.value = 401
         } else {
@@ -40,6 +37,31 @@ class MyFavoriteJobsViewModel : ViewModel() {
                 _loading.value = false
             }
         }
+    }
+
+    fun addToFavorite(jobId: Int?) {
+        if (AuthImplementation.userApiToken.isNullOrEmpty()) {
+            _exception.value = 401
+        } else {
+            uiScope.launch {
+                val response =
+                    api.addJobToFavorite("Bearer ${AuthImplementation.userApiToken}", jobId)
+                if (response.error != null) {
+                    _exception.value = response.error.toInt()
+                } else {
+                    if (!response.message.isNullOrEmpty()) {
+                        _exception.value = 202
+                    } else {
+                        if (response.data == null) {
+                            _exception.value = 404
+                        } else {
+                            _exception.value = 201
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun exceptionChecker(response: GenericEntity<MyFavoriteJobsListData?>) {

@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.elkenany.R
 import com.elkenany.databinding.FragmentApplicantDetailsBinding
@@ -34,25 +36,35 @@ class ApplicantDetailsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ApplicantDetailsViewModel::class.java]
         binding.acceptedBtn.setOnClickListener {
-            viewModel.addQualifiedApplicants("1",
-                args.id.toString())
+            viewModel.addQualifiedApplicants(
+                "1",
+                args.id.toString()
+            )
         }
         binding.rejectedBtn.setOnClickListener {
-            viewModel.addQualifiedApplicants("0",
-                args.id.toString())
+            viewModel.addQualifiedApplicants(
+                "0",
+                args.id.toString()
+            )
         }
         binding.consideringBtn.setOnClickListener {
-            viewModel.addQualifiedApplicants(null,
-                args.id.toString())
+            viewModel.addQualifiedApplicants(
+                null,
+                args.id.toString()
+            )
         }
         binding.phoneTv.setOnClickListener {
-            callThisNumber(binding.phoneTv.text.toString().trim(),
+            callThisNumber(
+                binding.phoneTv.text.toString().trim(),
                 requireContext(),
-                requireActivity())
+                requireActivity()
+            )
         }
         binding.emailTv.setOnClickListener {
-            emailThisEmail(binding.emailTv.text.toString().trim(),
-                requireActivity())
+            emailThisEmail(
+                binding.emailTv.text.toString().trim(),
+                requireActivity()
+            )
         }
         binding.attachCvBtn.setOnClickListener {
             navigateToBroswerIntent(cv, requireActivity())
@@ -78,7 +90,13 @@ class ApplicantDetailsFragment : Fragment() {
 
                 }
                 200 -> {
-                    binding.errorMessage.visibility = View.GONE
+                }
+                201 -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "تم التحديد بنجاح", Toast.LENGTH_SHORT
+                    ).show()
+                    requireView().findNavController().popBackStack()
 
                 }
                 401 -> {
@@ -88,21 +106,35 @@ class ApplicantDetailsFragment : Fragment() {
 
                 }
                 402 -> {
-                    binding.errorMessage.text =
-                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
-                    binding.errorMessage.visibility = View.VISIBLE
+//                    binding.errorMessage.text =
+//                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
+//                    binding.errorMessage.visibility = View.VISIBLE
+                    Toast.makeText(
+                        requireContext(),
+                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر", Toast.LENGTH_SHORT
+                    ).show()
 
                 }
                 404 -> {
-                    binding.errorMessage.text =
-                        "لا توجد متقدمين للتوظيف بعد"
-                    binding.errorMessage.visibility = View.VISIBLE
+
+                    Toast.makeText(
+                        requireContext(),
+                        "لا توجد متقدمين للتوظيف بعد", Toast.LENGTH_SHORT
+                    ).show()
+//                    binding.errorMessage.text =
+//                        "لا توجد متقدمين للتوظيف بعد"
+//                    binding.errorMessage.visibility = View.VISIBLE
 
                 }
                 else -> {
-                    binding.errorMessage.text =
-                        "تعذر الحصول علي المعلومات"
-                    binding.errorMessage.visibility = View.VISIBLE
+//                    binding.errorMessage.text =
+//                        "تعذر الحصول علي المعلومات"
+//                    binding.errorMessage.visibility = View.VISIBLE
+                    Toast.makeText(
+                        requireContext(),
+                        "تعذر تحديد أختيارك", Toast.LENGTH_SHORT
+                    ).show()
+
                 }
             }
         }

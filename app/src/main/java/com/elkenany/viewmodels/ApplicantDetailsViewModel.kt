@@ -30,18 +30,16 @@ class ApplicantDetailsViewModel : ViewModel() {
         if (AuthImplementation.userApiToken.isNullOrEmpty()) {
             _exception.value = 401
         } else {
-            _loading.value = true
             uiScope.launch {
                 val response =
                     api.addQualifiedApplicant("Bearer ${AuthImplementation.userApiToken}",
                         qualifiedValue,
                         applicationId)
                 if (!response.message.isNullOrEmpty() && response.error.isNullOrEmpty()) {
-                    _exception.value = 200
+                    _exception.value = 201
                 } else {
                     _exception.value = 500
                 }
-                _loading.value = false
             }
         }
     }

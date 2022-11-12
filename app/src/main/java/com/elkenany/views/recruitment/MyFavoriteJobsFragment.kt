@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,12 +33,18 @@ class MyFavoriteJobsFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_my_favorite_jobs, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[MyFavoriteJobsViewModel::class.java]
-
+        viewModel.getFavoritJobsListData()
         jobsAdapter = FavoriteJobsAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(MyFavoriteJobsFragmentDirections.actionMyFavoriteJobsFragmentToJobDetailsFragment(
-                    it.id!!.toInt()))
-        })
+                .navigate(
+                    MyFavoriteJobsFragmentDirections.actionMyFavoriteJobsFragmentToJobDetailsFragment(
+                        it.id!!.toInt()
+                    )
+                )
+        },
+            ClickListener {
+                viewModel.addToFavorite(it.id!!.toInt())
+            })
         binding.jobsListRecyclerView.adapter = jobsAdapter
 
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -57,6 +64,11 @@ class MyFavoriteJobsFragment : Fragment() {
             when (it) {
                 200 -> {
                     binding.errorMessage.visibility = View.GONE
+                }
+                202 -> {
+                    Toast.makeText(requireContext(), "تم الإزالة من المفضلة", Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.getFavoritJobsListData()
                 }
                 401 -> {
                     binding.errorMessage.text =

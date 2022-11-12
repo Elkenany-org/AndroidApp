@@ -101,7 +101,7 @@
 			</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 		
 		</RelativeLayout>
-		
+
 		<androidx.appcompat.widget.AppCompatButton
 			android:id="@+id/add_job_btn"
 			android:layout_width="match_parent"
@@ -113,8 +113,7 @@
 			android:fontFamily="@font/cairo_black"
 			android:text="@string/add_job_title"
 			android:textColor="@color/green"
-			tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
-			/>
+			tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 	
 	</RelativeLayout>
 </layout>

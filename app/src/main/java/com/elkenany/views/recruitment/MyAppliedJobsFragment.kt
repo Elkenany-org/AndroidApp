@@ -98,21 +98,18 @@ class MyAppliedJobsFragment : Fragment() {
                         "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.loginBtn.visibility = View.GONE
-                    binding.addJobBtn.visibility = View.GONE
                 }
                 404 -> {
                     binding.errorMessage.text =
                         "لا توجد أعلانات توظيف بعد"
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.loginBtn.visibility = View.GONE
-                    binding.addJobBtn.visibility = View.GONE
                 }
                 else -> {
                     binding.errorMessage.text =
                         "تعذر الحصول علي المعلومات"
                     binding.errorMessage.visibility = View.VISIBLE
                     binding.loginBtn.visibility = View.GONE
-                    binding.addJobBtn.visibility = View.GONE
                 }
             }
         }

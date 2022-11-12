@@ -12,6 +12,7 @@ import com.elkenany.entities.recruitment.FavoriteJob
 
 class FavoriteJobsAdapter(
     private val clickListener: ClickListener<FavoriteJob>,
+    private val bookMartIt: ClickListener<FavoriteJob>,
 ) :
     ListAdapter<FavoriteJob, FavoriteJobsAdapterViewHolder>(
         FavoriteJobsAdapterDiffUtil()
@@ -24,7 +25,7 @@ class FavoriteJobsAdapter(
     }
 
     override fun onBindViewHolder(holder: FavoriteJobsAdapterViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, clickListener)
+        holder.bind(getItem(position)!!, clickListener, bookMartIt)
     }
 
 }
@@ -35,10 +36,12 @@ class FavoriteJobsAdapterViewHolder private constructor(private val binding: Fav
     fun bind(
         data: FavoriteJob,
         clickListener: ClickListener<FavoriteJob>,
+        bookMartIt: ClickListener<FavoriteJob>,
     ) {
         binding.data = data
         binding.clickListener = clickListener
         binding.local = "L.E"
+        binding.bookMarkIt = bookMartIt
         binding.executePendingBindings()
     }
 
