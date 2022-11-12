@@ -27,7 +27,7 @@ class LocalStockViewModel : ViewModel() {
     fun getHomeStockData(sectionId: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
-            val response = api.getLocalStockSectionsData(sectorType, search)
+            val response = api.getLocalStockSectionsData(sectionId, search)
             exceptionChecker(response)
             _loading.value = false
         }
@@ -37,7 +37,7 @@ class LocalStockViewModel : ViewModel() {
         if (response.error != null) {
             _exception.value = response.error.toInt()
         } else {
-            if (response.data!!.subSections.isEmpty()) {
+            if (response.data!!.subSections.isNullOrEmpty()) {
                 _exception.value = 404
             } else {
                 _exception.value = 200
