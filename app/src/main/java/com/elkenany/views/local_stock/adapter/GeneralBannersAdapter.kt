@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
 import com.elkenany.databinding.BannersCardViewItemBinding
-import com.elkenany.entities.stock_data.LocalStockBanner
+import com.elkenany.entities.stock_data.GeneralBannerData
 
-class LocalStockBannersAdapter(private val sectorClickListener: ClickListener<LocalStockBanner>) :
-    ListAdapter<LocalStockBanner, LocalStockBannerViewHolder>(
+class GeneralBannersAdapter(private val sectorClickListener: ClickListener<GeneralBannerData>) :
+    ListAdapter<GeneralBannerData, LocalStockBannerViewHolder>(
         LocalStockBannerAdapterDiffUtil()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocalStockBannerViewHolder {
@@ -29,7 +29,7 @@ class LocalStockBannersAdapter(private val sectorClickListener: ClickListener<Lo
 class LocalStockBannerViewHolder private constructor(private val binding: BannersCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(banner: LocalStockBanner, sectorClickListener: ClickListener<LocalStockBanner>) {
+    fun bind(banner: GeneralBannerData, sectorClickListener: ClickListener<GeneralBannerData>) {
         binding.data = banner
         binding.url = banner.image
         binding.clickListener = sectorClickListener
@@ -46,12 +46,12 @@ class LocalStockBannerViewHolder private constructor(private val binding: Banner
 }
 
 
-class LocalStockBannerAdapterDiffUtil : DiffUtil.ItemCallback<LocalStockBanner>() {
-    override fun areItemsTheSame(oldItem: LocalStockBanner, newItem: LocalStockBanner): Boolean {
+class LocalStockBannerAdapterDiffUtil : DiffUtil.ItemCallback<GeneralBannerData>() {
+    override fun areItemsTheSame(oldItem: GeneralBannerData, newItem: GeneralBannerData): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: LocalStockBanner, newItem: LocalStockBanner): Boolean {
+    override fun areContentsTheSame(oldItem: GeneralBannerData, newItem: GeneralBannerData): Boolean {
         return oldItem == newItem
     }
 }

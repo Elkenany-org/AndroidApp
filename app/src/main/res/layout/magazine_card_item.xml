@@ -150,6 +150,7 @@
 						android:layout_marginVertical="5dp"
 						android:background="@drawable/primary_btn_shape"
 						android:fontFamily="@font/cairo_regular"
+						android:onClick="@{()-> clickListener.onClick(data)}"
 						android:text="@string/know_more_title"
 						android:textColor="@color/green"
 						android:textSize="10sp"

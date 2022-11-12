@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface ILocalStock {
     @GET("localstock/local-stock-sections")
     fun getLocalStockSectionsData(
-        @Query("type") type: String,
+        @Query("section_id") sectionId: Long?,
         @Query("search") search: String?,
     ): Call<GenericEntity<LocalStockData?>>
 

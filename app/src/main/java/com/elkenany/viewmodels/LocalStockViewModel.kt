@@ -24,7 +24,7 @@ class LocalStockViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
 
-    fun getHomeStockData(sectorType: String, search: String?) {
+    fun getHomeStockData(sectionId: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
             val response = api.getLocalStockSectionsData(sectorType, search)

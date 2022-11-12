@@ -17,6 +17,7 @@ import com.elkenany.databinding.FragmentCompanyBinding
 import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
 import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
 import com.elkenany.utilities.GlobalUiFunctions.Companion.locateThisLocation
+import com.elkenany.utilities.GlobalUiFunctions.Companion.openPopUpImage
 import com.elkenany.viewmodels.CompanyViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.CompanyLocalStockAdapter
@@ -106,7 +107,9 @@ class CompanyFragment : Fragment() {
             viewmodel.rateThisCompany(rating.rating.toLong(), args.companyId)
             Log.i("rating", rating.rating.toString() + args.companyId.toString())
         }
-        galleryAdapter = GalleryAdapter(ClickListener { })
+        galleryAdapter = GalleryAdapter(ClickListener {
+            openPopUpImage(it.image, requireActivity(), layoutInflater)
+        })
         binding.companyGallerysRecyclerview.adapter = galleryAdapter
         viewmodel.exception.observe(viewLifecycleOwner) {
             when (it) {

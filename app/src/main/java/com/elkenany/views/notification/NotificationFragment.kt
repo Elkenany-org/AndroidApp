@@ -68,7 +68,7 @@ class NotificationFragment : Fragment() {
 
             } else {
                 binding.notificationRecyclerView.visibility = View.GONE
-                binding.errorMessage.text = R.string.failed_to_receive_data_msg.toString()
+                binding.errorMessage.setText(R.string.failed_to_receive_data_msg)
                 binding.errorMessage.visibility = View.VISIBLE
             }
         }

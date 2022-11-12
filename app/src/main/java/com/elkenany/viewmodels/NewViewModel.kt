@@ -20,7 +20,7 @@ class NewViewModel : ViewModel() {
     val newsData: LiveData<NewsData?> get() = _newsData
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getAllNewsData(sectorType: String, search: String?,sort:String?) {
+    fun getAllNewsData(sectorType: Long?, search: String?,sort:String?) {
         _loading.value = true
         uiScope.launch {
             // ToDo --> implementing getHomeStockData(sectorType) function here

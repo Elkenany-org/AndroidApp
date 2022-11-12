@@ -1,6 +1,7 @@
 package com.elkenany.api.ships
 
 import android.util.Log
+import com.elkenany.api.retrofit_configs.onHandelingResponseStates
 import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.ships.ShipsListData
 import com.elkenany.entities.ships.ShipsStatisticsData
@@ -13,19 +14,8 @@ class IShipsImplementation {
     suspend fun getAllShipsData(
         date: String?,
     ): GenericEntity<ShipsListData> {
-        return try {
-            val response = IShipsHandler.singleton.getAllShipsData(date)
-                .await()
-            response
-        } catch (e: HttpException) {
-            Log.i("getAllShipsData", e.code().toString())
-            GenericEntity(message = null, error = e.code().toString(), null)
-        } catch (e: SocketTimeoutException) {
-            Log.i("getAllShipsData", e.message.toString())
-            GenericEntity(message = null, error = "500", null)
-        } catch (e: Exception) {
-            Log.i("getAllShipsData", e.message.toString())
-            GenericEntity(message = null, error = "500", null)
+        return onHandelingResponseStates("getAllShipsData") {
+            IShipsHandler.singleton.getAllShipsData(date)
         }
     }
 

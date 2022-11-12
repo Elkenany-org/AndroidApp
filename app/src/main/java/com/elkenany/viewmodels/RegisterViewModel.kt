@@ -28,7 +28,7 @@ class RegisterViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _exception = MutableLiveData<Int>()
     private val _loading = MutableLiveData(false)
-    private val _token = getFCMToken().toString()
+
 
     private val api = AuthImplementation()
     val loading: LiveData<Boolean> get() = _loading
@@ -41,9 +41,14 @@ class RegisterViewModel : ViewModel() {
         password: String,
     ) {
         uiScope.launch {
+            Log.i("deviceToken", getFCMToken())
             _loading.value = true
             _exception.value =
-                api.registerWithEmailAndPassword(name, email, password, phone, _token)
+                api.registerWithEmailAndPassword(name,
+                    email,
+                    password,
+                    phone,
+                    getFCMToken())
             _loading.value = false
         }
     }
@@ -70,12 +75,15 @@ class RegisterViewModel : ViewModel() {
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            signUpWithGoogle(account.givenName + account.familyName,
-                account.email,
-                _token,
-                account.id)
-            Log.i("account", account.id + account.givenName + account.familyName + account.email)
-            _exception.value = 200
+            uiScope.launch {
+                signUpWithGoogle(account.givenName + account.familyName,
+                    account.email,
+                    getFCMToken(),
+                    account.id)
+                Log.i("account",
+                    account.id + account.givenName + account.familyName + account.email)
+                _exception.value = 200
+            }
         } catch (e: ApiException) {
             Log.i("googleFailed", e.message.toString())
             _exception.value = 400
@@ -132,7 +140,7 @@ class RegisterViewModel : ViewModel() {
         uiScope.launch {
             try {
                 val response =
-                    api.reLogSocialWithFaceBook(name, email, _token, facebook_id)
+                    api.reLogSocialWithFaceBook(name, email, getFCMToken(), facebook_id)
                 if (response != null) {
                     _exception.value = 200
                 } else {

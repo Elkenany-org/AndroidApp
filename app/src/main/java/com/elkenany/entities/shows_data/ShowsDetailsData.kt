@@ -1,12 +1,12 @@
 package com.elkenany.entities.shows_data
 
-import com.elkenany.entities.stock_data.LocalStockBanner
-import com.elkenany.entities.stock_data.LocalStockLogo
+import com.elkenany.entities.stock_data.GeneralBannerData
+import com.elkenany.entities.stock_data.GeneralLogoData
 import com.squareup.moshi.Json
 
 data class ShowsDetailsData(
-    val banners: List<LocalStockBanner?>,
-    val logos: List<LocalStockLogo?>,
+    val banners: List<GeneralBannerData?>,
+    val logos: List<GeneralLogoData?>,
     val id: Long?,
     val name: String?,
     @Json(name = "short_desc")

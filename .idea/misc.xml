@@ -160,14 +160,44 @@
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/statistics_row_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/store_card_view_item.xml" value="0.35572916666666665" />
         <entry key="..\:/Users/10/StudioProjects/Elkenany_official/app/src/main/res/layout/table_row_item.xml" value="0.35572916666666665" />
+        <entry key="..\:/projects/app/src/main/res/drawable/accepted_btn_shape.xml" value="0.1585" />
+        <entry key="..\:/projects/app/src/main/res/drawable/add_favorite_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/considering_btn_shape.xml" value="0.1585" />
+        <entry key="..\:/projects/app/src/main/res/drawable/custom_progress_bar.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/facebook_btn_shape.xml" value="0.1585" />
         <entry key="..\:/projects/app/src/main/res/drawable/goup_people.xml" value="0.199" />
+        <entry key="..\:/projects/app/src/main/res/drawable/home_icon_selector.xml" value="0.2905" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_attach_file_24.xml" value="0.1585" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_book_mark_fill.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/menu_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/notification_icon.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/notification_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/profile_icon_selector.xml" value="0.291" />
+        <entry key="..\:/projects/app/src/main/res/drawable/rejected_btn_shape.xml" value="0.1585" />
+        <entry key="..\:/projects/app/src/main/res/drawable/search.xml" value="0.2905" />
+        <entry key="..\:/projects/app/src/main/res/drawable/search_icon_selector.xml" value="0.2905" />
+        <entry key="..\:/projects/app/src/main/res/drawable/secondary_btn_shape.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/secondry_btn_shape_orange.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/applicants_card_item.xml" value="0.2911500641299701" />
         <entry key="..\:/projects/app/src/main/res/layout/banners_card_view_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/big_recycler_item_with_details.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/category_item.xml" value="0.26421547669944423" />
         <entry key="..\:/projects/app/src/main/res/layout/company_item.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/favorite_job_card_item.xml" value="0.5" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_about.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_ad_details.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_add_new_job.xml" value="0.29200513039760584" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_applicant_details.xml" value="0.25" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_applicants.xml" value="0.25" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_for_jobe.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_job.xml" value="0.5" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_successfully.xml" value="0.25" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_to_job.xml" value="0.22" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_chats.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_company.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_create_ad.xml" value="0.26507054296707994" />
@@ -176,15 +206,19 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_companies.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_magazine.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_magazine_details.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_home.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_home_sector.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.3229166666666667" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_home_service.xml" value="0.14" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_job_details.xml" value="0.33" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_jobs.xml" value="0.25" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock.xml" value="0.3229166666666667" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_local_stock_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_login.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_main_menu.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_main_menu.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_messages.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_my_ads_list.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_my_applied_jobs.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_my_favorite_jobs.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_notification.xml" value="0.26507054296707994" />
@@ -196,13 +230,20 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_ships_statistics.xml" value="0.23675213675213674" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_show_review.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_shows.xml" value="0.3229166666666667" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_shows_details.xml" value="0.25" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_shows_details.xml" value="0.4864612511671335" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_statistics.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_store.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_tender_details.xml" value="0.2804617357845233" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_tenders.xml" value="0.29200513039760584" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_tenders_sub_sections.xml" value="0.29200513039760584" />
         <entry key="..\:/projects/app/src/main/res/layout/guide_companies_shimmer.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/image_card_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/image_dialog_item.xml" value="0.17828131680205217" />
+        <entry key="..\:/projects/app/src/main/res/layout/job_card_item.xml" value="0.33" />
         <entry key="..\:/projects/app/src/main/res/layout/magazine_card_item.xml" value="0.75" />
+        <entry key="..\:/projects/app/src/main/res/layout/my_job_card_item.xml" value="0.26421547669944423" />
+        <entry key="..\:/projects/app/src/main/res/layout/new_recommendation_card_item.xml" value="0.14450619923044036" />
+        <entry key="..\:/projects/app/src/main/res/layout/new_services_card_item.xml" value="0.1453612654980761" />
         <entry key="..\:/projects/app/src/main/res/layout/news_card_view_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/search_result_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/sector_item.xml" value="0.26507054296707994" />
@@ -214,6 +255,8 @@
         <entry key="..\:/projects/app/src/main/res/layout/small_recycler_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/statistics_row_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/table_row_item.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/menu/job_sort_menu.xml" value="0.26421547669944423" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.23" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.23" />
         <entry key="app/src/main/res/layout/about_branch_item_card.xml" value="0.2864471996579735" />
@@ -225,23 +268,29 @@
         <entry key="app/src/main/res/layout/chat_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/company_item.xml" value="0.2828197551709582" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/favorite_job_card_item.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_ad_details.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_add_new_job.xml" value="0.24930491195551435" />
+        <entry key="app/src/main/res/layout/fragment_apply_job.xml" value="0.24930491195551435" />
         <entry key="app/src/main/res/layout/fragment_chats.xml" value="0.2864471996579735" />
-        <entry key="app/src/main/res/layout/fragment_company.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_company.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_create_ad.xml" value="0.2864471996579735" />
-        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.2860196665241556" />
         <entry key="app/src/main/res/layout/fragment_guide.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_guide_companies.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_home_sector.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_home_service.xml" value="0.2860196665241556" />
+        <entry key="app/src/main/res/layout/fragment_job_details.xml" value="0.3484375" />
+        <entry key="app/src/main/res/layout/fragment_jobs.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_local_stock.xml" value="0.2860196665241556" />
         <entry key="app/src/main/res/layout/fragment_local_stock_details.xml" value="0.2860196665241556" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.2907225309961522" />
         <entry key="app/src/main/res/layout/fragment_main_menu.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_my_ads_list.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_my_applied_jobs.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_news.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_news_details.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.2864471996579735" />
@@ -249,8 +298,11 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_sectors_choices.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_shows_details.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/fragment_store.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_tender_details.xml" value="0.2864471996579735" />
+        <entry key="app/src/main/res/layout/fragment_tenders.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/general_shimmer_loading.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/guide_companies_shimmer.xml" value="0.2864471996579735" />
         <entry key="app/src/main/res/layout/home_shimmer_loading.xml" value="0.2864471996579735" />

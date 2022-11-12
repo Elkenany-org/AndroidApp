@@ -74,25 +74,6 @@
 "القطاع ( الداجني والحيواني والزراعي والسمكي والخيول العربية الأصيلة )\n"
 "في مصر والوطن العربي"
 </string>
-	<!--    <string name="about_company_data">  "نحن نشرف بمرور خمسة عشرة عاماً على تأسيس مجموعة الكناني ، فمنذ أن تأسست الشركة في عام 2008 في مدينة المنصورة بمحافظة الدقهلية ، ونحن نسعى إلي توفير احتياجات العملاء وأفضل الخدمات للوصول إلى إرضائهم  لنتمكن من تكوين أكبر قاعدة داخل وخارج السوق المصرى في مجالات متنوعة تخدم المجال البيطري والزراعي ( القطاع الداجني - الحيواني - الزراعى - السمكي - الخيول العربية ).\n"-->
-	<!--                                "\n"-->
-	<!--                                " مجموعة الكناني دائماً تعمل على التميز والنجاح من خلال أعضاء فريق عمل مؤهل ومدرب على أحدث التقنيات لخدمة السادة العملاء والموردين والمساهمين والمجتمع الذي تخدمه.\n"-->
-	<!--                                "\n"-->
-	<!--                                "ولأننا نبحث عن تطوير الشركة والإرتقاء بها فنحن نتلقى ونرحب بإقتراحاتكم ولا نطرحها جانبا بل نجاهد إلى تلبيتها ، لأن هدفنا جميعاَ الوصول إلى الرفع من الشأن الإقتصادي المصري بشكل خاص والعربي بشكل عام \n"-->
-	<!--                                "\n"-->
-	<!--                                "\n"-->
-	<!--                                "بعد البحث لفترات طويلة عن قاعدة بيانات حقيقية  وواضحة لكل من يعمل في المجال بالسوق المحلى ( البيطري - الزراعي ) وبالتزامن مع بدء إنتشار عمليات الإستغلال من قبل الوسطاء نبتت فكرة أول وأكبر تطبيق خدمي في المجال البيطري والزراعي لجميع أنواع الهواتف المحمولة في عام 2018 .\n"-->
-	<!--                                "\n"-->
-	<!--                                "ولحرص مجموعة الكناني الدائم على مصلحة جميع العاملين بالمجال ونقل التطور التكنولوجى إلى المجال البيطري والزراعي بجميع قطاعاته بشكل متكامل ، قامت الشركه بإطلاق وتطويرالموقع الإلكتروني والتطبيق ليكون شامل لخدمة جميع العاملين في القطاعات ( الإنتاج الداجنى  - والحيواني  - والزراعي - والسمكي - والخيول العربية الأصيلة ) فى مصر بشكل خاص والوطن العربى بشكل عام .\n"-->
-	<!--                                "\n"-->
-	<!--                                "وبذلك فقد تمكنا من فعل أول سبق وثورة تكنولوجية في جميع قطاعات المجال البيطري والزراعي ، بدمج التكنولوجيا والبيانات لتسهيل الوصول على العاملين بالقطاعات .\n"-->
-	<!--                                "\n"-->
-	<!--                                "المهمة : \n"-->
-	<!--                                "نسعى دائماً لتطوير خدمات الشركة والارتقاء بمستوى الأداء المؤسسي لتلبية احتياجات العملاء الحاليين والوصول إلى كل العملاء المتوقعين باستخدام أحدث الأساليب التكنولوجية لتوفير قاعدة بيانات شاملة ومتكاملة لكل مايخص المجال البيطري والزراعي .\n"-->
-	<!--                                "\n"-->
-	<!--                                "الرؤية :\n"-->
-	<!--                                "تتطلع مجموعة الكناني أن تصبح الاختيار الأول لأى عامل ومستثمر في جميع قطاعات المجال البيطري والزراعي من خلال تقديم خدمات إستثنائية قبل وبعد البيع لعملائنا وتوفير حلول إقتصادية مبتكرة ."</string>-->
-	<!--    -->
 	<string name="enter_verification_code_message">برجاء ادخال الكود المرسل اليك علي البريد الالكتروني</string>
 	<string name="enter_code_title">ادخل الكود</string>
 	<string name="change_passcode_title">تغيير كلمة المرور</string>
@@ -134,4 +115,35 @@
 	<string name="empty_port_title">ميناء التفريغ</string>
 	<string name="ships_movment_title">حركة السفن</string>
 	<string name="select_country_title">اختر البلد</string>
+	<string name="explore_jobs_title">تصفح الوظائف</string>
+	<string name="job_title_title">نوع الوظيفة</string>
+	<string name="company_title">الشركة</string>
+	<string name="expected_salary_title">الراتب المتوقع</string>
+	<string name="experience_title">الخبرة</string>
+	<string name="job_title">الوظيفة</string>
+	<string name="job_description_title">الوصف الوظيفي</string>
+	<string name="apply_now_title">قدم الأن</string>
+	<string name="most_common_title">الأكثر تداولا</string>
+	<string name="latest_title">الأحدث</string>
+	<string name="orgnizers_title">الجهات المنظمة</string>
+	<string name="favorite_jobs_title">وظائفي المفضلة</string>
+	<string name="cv_title">السيرة الذاتية</string>
+	<string name="notice_period_title">فترة الإشعار</string>
+	<string name="job_applied_title">تم تقديم الطلب بنجاح</string>
+	<string name="job_applied_thanks_title">شكراً لك سيتم ابلاغك بأي تحديثات تخص الوظيفة</string>
+	<string name="continue_searching_title">اكمل البحث عن وظائف مماثلة</string>
+	<string name="my_jobs_title">وظائفي</string>
+	<string name="add_job_title">أضف وظيفة جديدة</string>
+	<string name="department_title">القسم</string>
+	<string name="job_naming_title">المسمي الوظيفي</string>
+	<string name="place_title">المكان</string>
+	<string name="working_hours_title">دوام العمل</string>
+	<string name="salary_title">الراتب</string>
+	<string name="applicants_title">المتقدمون</string>
+	<string name="accepted_title">مؤهل</string>
+	<string name="rejected_title">غير مؤهل</string>
+	<string name="under_considration_title">تحت المراجعة</string>
+	<string name="show_cv_title">إعرض السيرة الذاتية</string>
+	<string name="home_title">الرئيسية</string>
+	<string name="tenders_title">المناقصات</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.elkenany.views.shows
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,9 +15,9 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsDetailsBinding
-import com.elkenany.databinding.ImageDialogItemBinding
 import com.elkenany.entities.shows_data.AttendanceStateData
 import com.elkenany.utilities.GlobalUiFunctions.Companion.onsharingdata
+import com.elkenany.utilities.GlobalUiFunctions.Companion.openPopUpImage
 import com.elkenany.viewmodels.ShowsDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.shows.adapter.ShowsImageAdapter
@@ -53,7 +52,7 @@ class ShowsDetailsFragment : Fragment() {
         viewmodel.getShowDetailsData(args.id)
         binding.appBarTitle.text = args.name
         showsImageAdapter = ShowsImageAdapter(ClickListener {
-            openImageDialog(it.image!!)
+            openPopUpImage(it.image!!, requireActivity(), layoutInflater)
         })
         binding.moreImagesRecyclerview.adapter = showsImageAdapter
         binding.shareShowBtn.setOnClickListener {
@@ -131,17 +130,6 @@ class ShowsDetailsFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    private fun openImageDialog(image: String) {
-        val dialogBinding = ImageDialogItemBinding.inflate(layoutInflater)
-        dialogBinding.image = image
-        val dialog = Dialog(requireActivity())
-        dialog.setCancelable(true)
-        Log.i("imageUrl", dialogBinding.image.toString())
-        dialog.setContentView(dialogBinding.root)
-        dialog.show()
-
     }
 
 }

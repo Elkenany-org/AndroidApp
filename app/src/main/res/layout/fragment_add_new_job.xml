@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10sp"
+		>
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center_horizontal"
+			android:text="@string/add_job_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/app_bar_title"
+			>
+			
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="15sp"
+				android:layout_marginTop="10dp"
+				android:layoutDirection="rtl"
+				android:orientation="vertical"
+				>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:orientation="horizontal"
+					>
+					
+					<androidx.cardview.widget.CardView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:layout_weight="1"
+						app:cardCornerRadius="7dp"
+						>
+						
+						<com.google.android.material.textfield.TextInputLayout
+							android:id="@+id/country_btn"
+							style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@id/select_company_tv"
+							android:layout_weight="1"
+							app:boxBackgroundColor="@color/white"
+							app:boxCornerRadiusBottomEnd="7dp"
+							app:boxCornerRadiusBottomStart="7dp"
+							app:boxCornerRadiusTopEnd="7dp"
+							app:boxCornerRadiusTopStart="7dp"
+							app:boxStrokeWidth="0dp"
+							app:boxStrokeWidthFocused="0dp"
+							>
+							
+							<AutoCompleteTextView
+								android:id="@+id/company_auto_compelete"
+								android:layout_width="match_parent"
+								android:layout_height="50dp"
+								android:ellipsize="end"
+								android:fontFamily="@font/cairo_bold"
+								android:inputType="text"
+								android:maxLines="1"
+								android:paddingTop="1dp"
+								android:paddingBottom="5dp"
+								android:singleLine="true"
+								android:textColor="@color/green"
+								android:textSize="14sp"
+								tools:ignore="LabelFor,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+								/>
+						</com.google.android.material.textfield.TextInputLayout>
+					</androidx.cardview.widget.CardView>
+					
+					<androidx.cardview.widget.CardView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:layout_weight="1"
+						app:cardCornerRadius="7dp"
+						>
+						
+						<com.google.android.material.textfield.TextInputLayout
+							android:id="@+id/department_btn"
+							style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@id/select_company_tv"
+							android:layout_weight="1"
+							app:boxBackgroundColor="@color/white"
+							app:boxCornerRadiusBottomEnd="7dp"
+							app:boxCornerRadiusBottomStart="7dp"
+							app:boxCornerRadiusTopEnd="7dp"
+							app:boxCornerRadiusTopStart="7dp"
+							app:boxStrokeWidth="0dp"
+							app:boxStrokeWidthFocused="0dp"
+							>
+							
+							<AutoCompleteTextView
+								android:id="@+id/department_auto_compelete"
+								android:layout_width="match_parent"
+								android:layout_height="50dp"
+								android:ellipsize="end"
+								android:fontFamily="@font/cairo_bold"
+								android:inputType="text"
+								android:maxLines="1"
+								android:paddingTop="1dp"
+								android:paddingBottom="5dp"
+								android:singleLine="true"
+								android:textColor="@color/green"
+								android:textSize="14sp"
+								tools:ignore="LabelFor,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+								/>
+						</com.google.android.material.textfield.TextInputLayout>
+					</androidx.cardview.widget.CardView>
+				</LinearLayout>
+				
+				<androidx.cardview.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="5dp"
+					app:cardCornerRadius="7dp"
+					>
+					
+					<EditText
+						android:id="@+id/job_nameing_et"
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:background="@drawable/primary_edit_text_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/job_naming_title"
+						android:inputType="textLongMessage"
+						android:maxLines="1"
+						android:padding="10dp"
+						android:textAlignment="textEnd"
+						android:textDirection="ltr"
+						android:textSize="14sp"
+						tools:ignore="Autofill,TextFields,TextContrastCheck"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="5dp"
+					app:cardCornerRadius="7dp"
+					>
+					
+					<EditText
+						android:id="@+id/place_et"
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:background="@drawable/primary_edit_text_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/place_title"
+						android:inputType="textLongMessage"
+						android:maxLines="1"
+						android:padding="10dp"
+						android:textAlignment="textEnd"
+						android:textDirection="ltr"
+						android:textSize="14sp"
+						tools:ignore="Autofill,TextFields,TextContrastCheck"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:orientation="horizontal"
+					>
+					
+					<androidx.cardview.widget.CardView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:layout_weight="1"
+						app:cardCornerRadius="7dp"
+						>
+						
+						
+						<com.google.android.material.textfield.TextInputLayout
+							android:id="@+id/work_hours_btn"
+							style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_below="@id/select_company_tv"
+							android:layout_weight="1"
+							app:boxBackgroundColor="@color/white"
+							app:boxCornerRadiusBottomEnd="7dp"
+							app:boxCornerRadiusBottomStart="7dp"
+							app:boxCornerRadiusTopEnd="7dp"
+							app:boxCornerRadiusTopStart="7dp"
+							app:boxStrokeWidth="0dp"
+							app:boxStrokeWidthFocused="0dp"
+							>
+							
+							<AutoCompleteTextView
+								android:id="@+id/work_hours_compelete"
+								android:layout_width="match_parent"
+								android:layout_height="50dp"
+								android:ellipsize="end"
+								android:fontFamily="@font/cairo_bold"
+								android:inputType="text"
+								android:maxLines="1"
+								android:paddingTop="1dp"
+								android:paddingBottom="5dp"
+								android:singleLine="true"
+								android:textColor="@color/green"
+								android:textSize="14sp"
+								tools:ignore="LabelFor,SmallSp,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+								/>
+						</com.google.android.material.textfield.TextInputLayout>
+					</androidx.cardview.widget.CardView>
+					
+					<androidx.cardview.widget.CardView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_margin="5dp"
+						android:layout_weight="1"
+						app:cardCornerRadius="7dp"
+						>
+						
+						<EditText
+							android:id="@+id/salary_et"
+							android:layout_width="match_parent"
+							android:layout_height="50dp"
+							android:background="@drawable/primary_edit_text_shape"
+							android:fontFamily="@font/cairo_bold"
+							android:hint="@string/salary_title"
+							android:inputType="textLongMessage"
+							android:maxLines="1"
+							android:padding="10dp"
+							android:textAlignment="textEnd"
+							android:textDirection="ltr"
+							android:textSize="14sp"
+							tools:ignore="Autofill,TextFields,TextContrastCheck,DuplicateSpeakableTextCheck"
+							/>
+					</androidx.cardview.widget.CardView>
+				</LinearLayout>
+				
+				<androidx.cardview.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="5dp"
+					app:cardCornerRadius="7dp"
+					>
+					
+					<EditText
+						android:id="@+id/experience_tv"
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:background="@drawable/primary_edit_text_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/experience_title"
+						android:inputType="textLongMessage"
+						android:maxLines="1"
+						android:padding="10dp"
+						android:textAlignment="textEnd"
+						android:textDirection="ltr"
+						android:textSize="14sp"
+						tools:ignore="Autofill,TextFields,TextContrastCheck"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.cardview.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_margin="5dp"
+					app:cardCornerRadius="7dp"
+					>
+					
+					<EditText
+						android:id="@+id/job_desc_et"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:background="@drawable/primary_edit_text_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/job_description_title"
+						android:minHeight="50dp"
+						android:padding="10dp"
+						android:textAlignment="textEnd"
+						android:textDirection="ltr"
+						android:textSize="14sp"
+						tools:ignore="Autofill,TextFields,TextContrastCheck"
+						/>
+				</androidx.cardview.widget.CardView>
+				
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/add_job_btn"
+					android:layout_width="match_parent"
+					android:layout_height="45dp"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginHorizontal="4dp"
+					android:layout_marginVertical="10dp"
+					android:background="@drawable/primary_btn_shape"
+					android:fontFamily="@font/cairo_black"
+					android:text="@string/add_job_title"
+					android:textColor="@color/green"
+					tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+					/>
+				
+				<ProgressBar
+					android:id="@+id/loading_progressbar"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:indeterminateDrawable="@drawable/custom_progress_bar"
+					android:visibility="gone"
+					/>
+			</LinearLayout>
+			<!--			-->
+		</ScrollView>
+	
+	</RelativeLayout>
+</layout>

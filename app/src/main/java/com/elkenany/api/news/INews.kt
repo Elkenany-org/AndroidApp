@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface INews {
     @GET("news/news")
     fun getAllNews(
-        @Query("type") type: String?,
+        @Query("section_id") type: Long?,
         @Query("search") search: String?,
         @Query("sort") sort: String?,
     ): Call<GenericEntity<NewsData?>>

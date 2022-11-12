@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="view_model"
+			type="com.elkenany.viewmodels.NewViewModel" />
+	
+	</data>
+	
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="10dp"
+		tools:context=".views.news.NewsFragment">
+		
+		<TextView
+			android:id="@+id/app_bar_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:layout_gravity="center_horizontal"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center_horizontal"
+			android:text="@string/tenders_title"
+			android:textColor="@color/green"
+			android:textSize="20sp"
+			/>
+		
+		<androidx.cardview.widget.CardView
+			android:id="@+id/search_bar_card"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/app_bar_title"
+			android:layout_centerHorizontal="true"
+			android:layout_margin="10sp"
+			app:cardCornerRadius="10sp"
+			app:cardElevation="7dp">
+			
+			<EditText
+				android:id="@+id/search_bar"
+				android:layout_width="250dp"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/app_bar_title"
+				android:layout_centerHorizontal="true"
+				android:layout_gravity="center_horizontal"
+				android:background="@color/white"
+				android:drawableEnd="@drawable/ic_baseline_search_24"
+				android:drawablePadding="20dp"
+				android:fontFamily="@font/cairo_bold"
+				android:hint="@string/homeSearch"
+				android:inputType="textLongMessage"
+				android:maxLines="1"
+				android:paddingStart="20sp"
+				android:paddingTop="5dp"
+				android:paddingEnd="20sp"
+				android:paddingBottom="5dp"
+				android:textSize="15sp"
+				tools:ignore="Autofill,TextFields,TouchTargetSizeCheck,TextContrastCheck" />
+		</androidx.cardview.widget.CardView>
+		
+		<!--        <ProgressBar-->
+		<!--            android:id="@+id/loading_progressbar"-->
+		<!--            android:layout_width="wrap_content"-->
+		<!--            android:layout_height="wrap_content"-->
+		<!--            android:layout_centerInParent="true"-->
+		<!--            android:visibility="gone" />-->
+		
+		<com.facebook.shimmer.ShimmerFrameLayout
+			android:id="@+id/loading_progressbar"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/search_bar_card"
+			android:layout_marginStart="5dp"
+			android:layout_marginTop="100dp"
+			android:layout_marginEnd="5dp">
+			
+			<include layout="@layout/news_shimmer_loading" />
+		</com.facebook.shimmer.ShimmerFrameLayout>
+		
+		<TextView
+			android:id="@+id/error_message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:fontFamily="@font/cairo_bold"
+			android:gravity="center"
+			android:text="@string/failed_to_receive_data_msg"
+			android:textColor="@color/green"
+			android:textSize="18sp"
+			android:visibility="gone" />
+		
+		
+		<LinearLayout
+			android:id="@+id/news_layout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/search_bar_card"
+			android:orientation="vertical"
+			android:paddingTop="15dp"
+			tools:ignore="UselessLeaf">
+			
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/sectors_recycler_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layoutDirection="rtl"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:listitem="@layout/sector_item" />
+			
+			<RelativeLayout
+				android:id="@+id/filter_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="15dp">
+				
+				<TextView
+					android:id="@+id/latest_news_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentStart="true"
+					android:fontFamily="@font/cairo_regular"
+					android:gravity="center"
+					android:maxLines="1"
+					android:text="@string/latest_news_title"
+					android:textColor="@color/green"
+					android:textStyle="bold" />
+				
+				<TextView
+					android:id="@+id/urgent_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true"
+					android:fontFamily="@font/cairo_regular"
+					android:gravity="center"
+					android:maxLines="1"
+					android:text="@string/urgent_title"
+					android:textColor="@color/orange"
+					android:textStyle="bold"
+					tools:ignore="TextContrastCheck" />
+				
+				<TextView
+					android:id="@+id/most_readable_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentEnd="true"
+					android:fontFamily="@font/cairo_regular"
+					android:maxLines="1"
+					android:text="@string/alphapetical_title"
+					android:textColor="@color/green"
+					android:textStyle="bold"
+					tools:ignore="RelativeOverlap" />
+			</RelativeLayout>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/news_recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:layoutDirection="rtl"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				tools:listitem="@layout/news_card_view_item" />
+		</LinearLayout>
+	</RelativeLayout>
+</layout>

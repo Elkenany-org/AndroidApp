@@ -7,12 +7,20 @@ import com.elkenany.entities.stock_data.*
 
 class ILocalStockImplementation {
 
-    suspend fun getLocalStockSectionsData(
-        sectorType: String,
-        search: String?,
-    ): GenericEntity<LocalStockData?> {
-        return onHandelingResponseStates("getLocalStockSectionsData") {
-            ILocalStockHandler.singleton.getLocalStockSectionsData(sectorType, search)
+    suspend fun getLocalStockSectionsData(sectionId: Long?, search: String?): LocalStockData? {
+        return try {
+            val response =
+                ILocalStockHandler.singleton.getLocalStockSectionsData(sectionId, search).await()
+            response.data
+        } catch (e: HttpException) {
+            Log.i("getLocalStockSectionsData", e.message.toString())
+            null
+        } catch (e: SocketTimeoutException) {
+            Log.i("getLocalStockSectionsData", e.message.toString())
+            null
+        }catch (e: Exception) {
+            Log.i("getLocalStockSectionsData", e.message.toString())
+            null
         }
     }
 

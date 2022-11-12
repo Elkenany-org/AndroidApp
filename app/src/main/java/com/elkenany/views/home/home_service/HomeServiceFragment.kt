@@ -16,6 +16,7 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
+import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.home_service.adapter.*
@@ -43,18 +44,42 @@ class HomeServiceFragment : Fragment() {
 
         //Adapters initialization
         homeServiceAdapter = HomeServiceAdapter(ClickListener {
-            when (it.type) {
-                "shows" -> {
+            when (it.id) {
+                1L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToLocalStockFragment())
+                }
+                2L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToStoreFragment())
+                }
+                3L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideFragment())
+                }
+                4L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToNewsFragment())
+                }
+                5L -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsFragment())
                 }
-                "magazine" -> {
+                6L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
+                }
+                7L -> {
                     requireView().findNavController()
                         .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineFragment())
                 }
-                "ships" -> {
+                8L -> {
                     requireView().findNavController()
-                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShipsFragment())
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToJobsFragment())
+                }
+                9L -> {
+                    requireView().findNavController()
+                        .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToTendersFragment())
                 }
                 else -> {
                     Toast.makeText(requireContext(), "سيتم توفير الخدمة قريبا!", Toast.LENGTH_SHORT)
@@ -68,39 +93,51 @@ class HomeServiceFragment : Fragment() {
         })
         showsAdapter = ServiceShowsAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
-                    it.id!!,
-                    it.name!!))
+                .navigate(
+                    HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
+                        it.id!!,
+                        it.name!!
+                    )
+                )
         })
         recommendationAdapter = ServiceRecommendationAdapter(ClickListener {
             when (it.type) {
                 "show" -> requireView().findNavController()
-                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
-                        it.id!!,
-                        it.name!!))
+                    .navigate(
+                        HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
+                            it.id!!,
+                            it.name!!
+                        )
+                    )
 
                 "magazines" -> requireView().findNavController()
-                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
-                        it.id!!))
+                    .navigate(
+                        HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
+                            it.id!!
+                        )
+                    )
             }
         })
         guideAndMagazineAdapter = ServiceGuideAndMagazineAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
-                    it.id!!))
+                .navigate(
+                    HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
+                        it.id!!
+                    )
+                )
         })
 
         //assign each adapter to its own recyclerView
         binding.recommendationRecyclerView.adapter = recommendationAdapter
-        binding.partnersRecyclerView.adapter = partnerAdapter
-        binding.showsRecyclerView.adapter = showsAdapter
-        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
+//        binding.partnersRecyclerView.adapter = partnerAdapter
+//        binding.showsRecyclerView.adapter = showsAdapter
+//        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
 
 //        //navigate to sectorsFragment
-        binding.sectorsBtn.setOnClickListener {
-            requireView().findNavController()
-                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
-        }
+//        binding.sectorsBtn.setOnClickListener {
+//            requireView().findNavController()
+//                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
+//        }
 //
         // Loading progressbar
         viewModel.loading.observe(viewLifecycleOwner) {
@@ -122,6 +159,13 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
+                if (!it.banners.isNullOrEmpty()) {
+                    enableImageSlider(
+                        it.banners,
+                        binding.bannersImageSlider,
+                        requireActivity()
+                    )
+                }
                 binding.errorMessage.visibility = View.GONE
                 binding.line2.visibility = View.VISIBLE
             } else {

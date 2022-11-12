@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentStoreBinding
@@ -27,8 +26,7 @@ class StoreFragment : Fragment() {
     private lateinit var viewModel: StoreViewModel
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var adsStoreAdapter: AdsStoreAdapter
-    private var sectorType: String = ""
-    private val args: StoreFragmentArgs by navArgs()
+    private var sectorType: Long? = null
     private var search: String? = null
 
     override fun onResume() {
@@ -44,12 +42,6 @@ class StoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[StoreViewModel::class.java]
-        sectorType = try {
-            args.sectorType.toString()
-        } catch (e: Exception) {
-            "poultry"
-        }
-
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             adsStoreAdapter.submitList(listOf())
@@ -57,7 +49,7 @@ class StoreFragment : Fragment() {
         }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
-            sectorType = it.type.toString()
+            sectorType = it.id
             adsStoreAdapter.submitList(listOf())
             viewModel.getAllAdsStoreData(sectorType, search)
         })

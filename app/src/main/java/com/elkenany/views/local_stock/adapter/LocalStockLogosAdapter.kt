@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
 import com.elkenany.databinding.LogoCardViewItemBinding
 
-import com.elkenany.entities.stock_data.LocalStockLogo
+import com.elkenany.entities.stock_data.GeneralLogoData
 
-class LocalStockLogosAdapter (private val partnerClickListener: ClickListener<LocalStockLogo>) :
-    ListAdapter<LocalStockLogo, LocalStockLogoViewHolder>(
+class LocalStockLogosAdapter (private val partnerClickListener: ClickListener<GeneralLogoData>) :
+    ListAdapter<GeneralLogoData, LocalStockLogoViewHolder>(
         LocalStockLogoDiffUtil()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocalStockLogoViewHolder {
@@ -27,7 +27,7 @@ class LocalStockLogosAdapter (private val partnerClickListener: ClickListener<Lo
 class LocalStockLogoViewHolder private constructor(private val binding: LogoCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(logo: LocalStockLogo, partnerClickListener: ClickListener<LocalStockLogo>) {
+    fun bind(logo: GeneralLogoData, partnerClickListener: ClickListener<GeneralLogoData>) {
         binding.data = logo
         binding.name = ""
         binding.image = logo.image
@@ -45,12 +45,12 @@ class LocalStockLogoViewHolder private constructor(private val binding: LogoCard
 }
 
 
-class LocalStockLogoDiffUtil : DiffUtil.ItemCallback<LocalStockLogo>() {
-    override fun areItemsTheSame(oldItem: LocalStockLogo, newItem: LocalStockLogo): Boolean {
+class LocalStockLogoDiffUtil : DiffUtil.ItemCallback<GeneralLogoData>() {
+    override fun areItemsTheSame(oldItem: GeneralLogoData, newItem: GeneralLogoData): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: LocalStockLogo, newItem: LocalStockLogo): Boolean {
+    override fun areContentsTheSame(oldItem: GeneralLogoData, newItem: GeneralLogoData): Boolean {
         return oldItem == newItem
     }
 }

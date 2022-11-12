@@ -1,14 +1,14 @@
 package com.elkenany.entities.guide_magazine
 
-import com.elkenany.entities.stock_data.LocalStockBanner
-import com.elkenany.entities.stock_data.LocalStockLogo
+import com.elkenany.entities.stock_data.GeneralBannerData
+import com.elkenany.entities.stock_data.GeneralLogoData
 import com.elkenany.entities.stock_data.LocalStockSector
 import com.squareup.moshi.Json
 
 data class MagazineData(
     val sectors: List<LocalStockSector?>,
-    val banners: List<LocalStockBanner?>,
-    val logos: List<LocalStockLogo?>,
+    val banners: List<GeneralBannerData?>,
+    val logos: List<GeneralLogoData?>,
     val data: List<MagazineDaum?>,
     @Json(name = "current_page")
     val currentPage: Long?,

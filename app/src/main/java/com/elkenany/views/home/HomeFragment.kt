@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
 
         binding.bottomNavigation.apply {
-            selectedItemId = R.id.homeSectorFragment
+            selectedItemId = R.id.homeServiceFragment
             setupWithNavController(childFragmentManager.findFragmentById(R.id.container)!!
                 .findNavController())
             setOnItemSelectedListener {
@@ -40,14 +40,14 @@ class HomeFragment : Fragment() {
                             .findNavController().navigate(R.id.searchFragment)
                         true
                     }
-                    R.id.localStockFragment -> {
+                    R.id.notificationFragment -> {
                         childFragmentManager.findFragmentById(R.id.container)!!
-                            .findNavController().navigate(R.id.localStockFragment)
+                            .findNavController().navigate(R.id.notificationFragment)
                         true
                     }
-                    R.id.homeSectorFragment -> {
+                    R.id.homeServiceFragment -> {
                         childFragmentManager.findFragmentById(R.id.container)!!
-                            .findNavController().navigate(R.id.homeSectorFragment)
+                            .findNavController().navigate(R.id.homeServiceFragment)
                         true
                     }
                     R.id.profileFragment -> {

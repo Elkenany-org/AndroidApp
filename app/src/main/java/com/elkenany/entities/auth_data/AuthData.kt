@@ -17,4 +17,6 @@ data class UserAuthData(
     val email: String?,
     val image: String?,
     val state: String?,
+    @Json(name = "user_type")
+    val userType: String?,
 )
