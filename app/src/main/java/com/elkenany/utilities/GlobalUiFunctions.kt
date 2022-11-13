@@ -11,14 +11,23 @@ import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
+import com.elkenany.ClickListener
+import com.elkenany.R
+import com.elkenany.databinding.GeneralFilterLayoutBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.entities.guide.City
+import com.elkenany.entities.guide.Country
+import com.elkenany.entities.guide.Sector
+import com.elkenany.entities.guide.Sort
 import com.elkenany.entities.stock_data.GeneralBannerData
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class GlobalUiFunctions {
     companion object {
@@ -153,19 +162,88 @@ class GlobalUiFunctions {
                 }
             }
         }
-        //        private fun openFilterDialog(
-        //            requireActivity: Activity,
-        //            inflater: LayoutInflater
-        //        ) {
-        //            val bottomSheetDialog = BottomSheetDialog(
-        //                requireActivity
-        //            )
-        //            val binding = BottomSheetFilterLayoutBinding.inflate(inflater)
-        //            binding.signInBtn.setOnClickListener {
-        //                bottomSheetDialog.cancel()
-        //            }
-        //            bottomSheetDialog.setContentView(binding.root)
-        //            bottomSheetDialog.show()
-        //        }
+
+        fun openFilterDialog(
+            requireActivity: Activity,
+            inflater: LayoutInflater,
+            sectionsList: List<Sector>?,
+            sortList: List<Sort>?,
+            countriesList: List<Country>?,
+            citiesList: List<City>?,
+            clickListener: ClickListener<Any>,
+        ) {
+            val bottomSheetDialog = BottomSheetDialog(requireActivity)
+            val binding = GeneralFilterLayoutBinding.inflate(inflater)
+            binding.apply {
+                sectionsBtn.visibility = if (sectionsList.isNullOrEmpty()) {
+                    View.GONE
+                } else {
+
+                    View.VISIBLE
+
+                }
+                val sections =
+                    sectionsList?.map { newList -> newList.name }?.toList()
+                val feedAdapter = ArrayAdapter<String?>(
+                    requireActivity.applicationContext,
+                    R.layout.array_adapter_item,
+                    sections!!
+                )
+                binding.sectionsAutoCompelete.setAdapter(feedAdapter)
+                binding.sectionsAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                    val id = sectionsList[position].id
+                    binding.sectionsAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    sortBtn.visibility = if (sortList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                    countriesBtn.visibility = if (countriesList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                    citiesBtn.visibility = if (citiesList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                }
+
+                val sortsList =
+                    sortList?.map { newList -> newList.name }?.toList()
+                val sortAdapter = ArrayAdapter<String?>(
+                    requireActivity.applicationContext,
+                    R.layout.array_adapter_item,
+                    sortsList!!
+                )
+                binding.sortAutoCompelete.setAdapter(sortAdapter)
+                binding.sortAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                    val id = sortList[position].id
+                    binding.sortAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                        .toString()
+                    sortBtn.visibility = if (sortList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                    countriesBtn.visibility = if (countriesList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                    citiesBtn.visibility = if (citiesList.isNullOrEmpty()) {
+                        View.GONE
+                    } else {
+                        View.VISIBLE
+                    }
+                }
+
+                bottomSheetDialog.setContentView(binding.root)
+                bottomSheetDialog.show()
+            }
+        }
+
     }
 }

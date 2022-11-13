@@ -146,4 +146,6 @@
 	<string name="show_cv_title">إعرض السيرة الذاتية</string>
 	<string name="home_title">الرئيسية</string>
 	<string name="tenders_title">المناقصات</string>
+	<string name="filter_title">التصنيف</string>
+	<string name="clear_all_title">مسح الكل</string>
 </resources>
