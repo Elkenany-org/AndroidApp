@@ -196,6 +196,35 @@ class LocalStockDetailsFragment : Fragment() {
                 )
             }
         }
+        viewModel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                null -> {}
+                200 -> {
+                    binding.errorMessage.visibility = View.GONE
+                }
+                401 -> {
+                    Toast.makeText(requireContext(),
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل البورصة",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+                402 -> {
+                    binding.errorMessage.text =
+                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+                404 -> {
+                    binding.errorMessage.text =
+                        "لا توجد بيانات"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.errorMessage.text =
+                        "تعذر الحصول علي المعلومات"
+                    binding.errorMessage.visibility = View.VISIBLE
+                }
+            }
+        }
         viewModel.localStockDetailsData.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.message.isNullOrEmpty()) {
@@ -221,12 +250,6 @@ class LocalStockDetailsFragment : Fragment() {
                         fodderExternalLayout.visibility = View.GONE
                     }
                 }
-            } else {
-                binding.errorMessage.apply {
-                    text = "تعذر الحصول علي اي بيانات"
-                    visibility = View.VISIBLE
-                }
-                binding.stockDataRecyclerView.visibility = View.GONE
             }
         }
         return binding.root
