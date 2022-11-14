@@ -13,8 +13,10 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideBinding
+import com.elkenany.entities.guide.Sector
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
+import com.elkenany.utilities.GlobalUiFunctions.Companion.openFilterDialog
 import com.elkenany.viewmodels.GuideViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.GuideSubSectionAdapter
@@ -45,6 +47,9 @@ class GuideFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideViewModel::class.java]
 
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getGuideData(sectorType, search)
@@ -87,6 +92,19 @@ class GuideFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
+                val sectosList =
+                    it.sectors.map { sector ->
+                        Sector(sector!!.id,
+                            sector.name,
+                            sector.type,
+                            sector.selected)
+                    }.toList()
+                binding.filtersBtn.setOnClickListener {
+                    openFilterDialog(requireActivity(), inflater, sectosList, null, null, null,
+                        ClickListener { filterData ->
+                            viewModel.getGuideData(filterData.section!!.toInt(), search)
+                        })
+                }
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
                 subSection.submitList(it.subSections)
@@ -94,6 +112,15 @@ class GuideFragment : Fragment() {
             } else {
                 binding.guideListRecyclerView.visibility = View.GONE
                 binding.errorMessage.visibility = View.VISIBLE
+            }
+        }
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
