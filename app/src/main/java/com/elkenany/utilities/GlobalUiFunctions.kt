@@ -166,10 +166,10 @@ class GlobalUiFunctions {
         fun openFilterDialog(
             requireActivity: Activity,
             inflater: LayoutInflater,
-            sectionsList: List<Sector>?,
-            sortList: List<Sort>?,
-            countriesList: List<Country>?,
-            citiesList: List<City>?,
+            sectionsList: List<Sector?>?,
+            sortList: List<Sort?>?,
+            countriesList: List<Country?>?,
+            citiesList: List<City?>?,
             clickListener: ClickListener<FiltersData>,
         ) {
             val bottomSheetDialog = BottomSheetDialog(requireActivity)
@@ -192,7 +192,7 @@ class GlobalUiFunctions {
                 } else {
                     sectionsBtn.visibility = View.VISIBLE
                     val sections =
-                        sectionsList.map { newList -> newList.name }.toList()
+                        sectionsList.map { newList -> newList!!.name }.toList()
                     val adapter = ArrayAdapter<String?>(
                         requireActivity.applicationContext,
                         R.layout.array_adapter_item,
@@ -200,7 +200,7 @@ class GlobalUiFunctions {
                     )
                     binding.sectionsAutoCompelete.setAdapter(adapter)
                     binding.sectionsAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-                        section = sectionsList[position].id.toString()
+                        section = sectionsList[position]!!.id.toString()
                         binding.sectionsAutoCompelete.hint = adapterView.getItemAtPosition(position)
                             .toString()
                     }
@@ -210,7 +210,7 @@ class GlobalUiFunctions {
                 } else {
                     sortBtn.visibility = View.VISIBLE
                     val sorts =
-                        sortList.map { newList -> newList.name }.toList()
+                        sortList.map { newList -> newList!!.name }.toList()
                     val adapter = ArrayAdapter<String?>(
                         requireActivity.applicationContext,
                         R.layout.array_adapter_item,
@@ -218,7 +218,7 @@ class GlobalUiFunctions {
                     )
                     binding.sortAutoCompelete.setAdapter(adapter)
                     binding.sortAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-                        sort = sortList[position].id.toString()
+                        sort = sortList[position]!!.id.toString()
                         binding.sortAutoCompelete.hint = adapterView.getItemAtPosition(position)
                             .toString()
                     }
@@ -228,7 +228,7 @@ class GlobalUiFunctions {
                 } else {
                     countriesBtn.visibility = View.VISIBLE
                     val countries =
-                        countriesList.map { newList -> newList.name }.toList()
+                        countriesList.map { newList -> newList!!.name }.toList()
                     val adapter = ArrayAdapter<String?>(
                         requireActivity.applicationContext,
                         R.layout.array_adapter_item,
@@ -236,7 +236,7 @@ class GlobalUiFunctions {
                     )
                     binding.countriesAutoCompelete.setAdapter(adapter)
                     binding.countriesAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-                        country = countriesList[position].id.toString()
+                        country = countriesList[position]!!.id.toString()
                         binding.countriesAutoCompelete.hint =
                             adapterView.getItemAtPosition(position)
                                 .toString()
@@ -247,7 +247,7 @@ class GlobalUiFunctions {
                 } else {
                     citiesBtn.visibility = View.VISIBLE
                     val cities =
-                        citiesList.map { newList -> newList.name }.toList()
+                        citiesList.map { newList -> newList!!.name }.toList()
                     val adapter = ArrayAdapter<String?>(
                         requireActivity.applicationContext,
                         R.layout.array_adapter_item,
@@ -255,14 +255,16 @@ class GlobalUiFunctions {
                     )
                     binding.citiesAutoComplete.setAdapter(adapter)
                     binding.citiesAutoComplete.setOnItemClickListener { adapterView, _, position, _ ->
-                        city = citiesList[position].id.toString()
+                        city = citiesList[position]!!.id.toString()
                         binding.citiesAutoComplete.hint =
                             adapterView.getItemAtPosition(position)
                                 .toString()
                     }
                 }
                 activateBtn.setOnClickListener {
-                    clickListener.onClick(FiltersData(section, sort, country, city))
+                    if (!section.isNullOrEmpty()) {
+                        clickListener.onClick(FiltersData(section, sort, country, city))
+                    }
                     bottomSheetDialog.cancel()
                 }
                 clearText.setOnClickListener {

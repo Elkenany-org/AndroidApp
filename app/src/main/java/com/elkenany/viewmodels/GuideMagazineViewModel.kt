@@ -14,12 +14,16 @@ class GuideMagazineViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _magazineData = MutableLiveData<MagazineData?>()
+    private val _openCloseSearch = MutableLiveData(false)
     private val _loading = MutableLiveData(false)
     private val api = IMagazineImplementation()
 
 
     val magazineData: LiveData<MagazineData?> get() = _magazineData
     val loading: LiveData<Boolean> get() = _loading
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
+
+    private var isOpened = false
 
     fun getGuideData(
         sectorType: String?,
@@ -29,10 +33,14 @@ class GuideMagazineViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             _magazineData.value = api.getAllMagazineData(sectorType, sort, cityId, search)
             _loading.value = false
         }
+    }
+
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
     }
 
     override fun onCleared() {

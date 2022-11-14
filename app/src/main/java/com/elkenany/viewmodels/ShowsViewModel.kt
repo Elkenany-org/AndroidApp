@@ -14,12 +14,15 @@ class ShowsViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _showsStoreData = MutableLiveData<ShowsListData?>()
+    private val _openCloseSearch = MutableLiveData(false)
     private val _loading = MutableLiveData(false)
     private val api = IShowsImplementation()
 
     val showsStoreData: LiveData<ShowsListData?> get() = _showsStoreData
     val loading: LiveData<Boolean> get() = _loading
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
 
+    private var isOpened = false
 
     fun getAllAdsStoreData(
         sectorType: String?,
@@ -30,13 +33,15 @@ class ShowsViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             _showsStoreData.value =
                 api.getAllShowsListData(sectorType, search, sort, cityId, countryId)
             _loading.value = false
         }
     }
-
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
+    }
     override fun onCleared() {
         super.onCleared()
         job.cancel()

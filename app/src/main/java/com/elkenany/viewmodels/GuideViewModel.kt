@@ -23,7 +23,7 @@ class GuideViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
 
-    var isOpened = false
+    private var isOpened = false
 
     fun getGuideData(sectorType: Int?, search: String?) {
         _loading.value = true

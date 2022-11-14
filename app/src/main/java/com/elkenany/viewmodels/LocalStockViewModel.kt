@@ -16,6 +16,7 @@ class LocalStockViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _homeStockData = MutableLiveData<LocalStockData?>()
     private val _exception = MutableLiveData<Int?>()
+    private val _openCloseSearch = MutableLiveData(false)
     private val _loading = MutableLiveData(false)
     private val api = ILocalStockImplementation()
 
@@ -23,7 +24,9 @@ class LocalStockViewModel : ViewModel() {
     val homeStockData: LiveData<LocalStockData?> get() = _homeStockData
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
 
+    private var isOpened = false
     fun getHomeStockData(sectionId: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
@@ -44,6 +47,11 @@ class LocalStockViewModel : ViewModel() {
             }
             _homeStockData.value = response.data
         }
+    }
+
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
     }
 
     override fun onCleared() {

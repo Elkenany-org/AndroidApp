@@ -27,7 +27,6 @@ class GuideMagazineDetailsViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             Log.i("Magazine id", id.toString())
             _magazineData.value = api.getMagazineDetailsData(id)
             _loading.value = false

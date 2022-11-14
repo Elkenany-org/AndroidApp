@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.ShowsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
@@ -28,7 +31,7 @@ class ShowsFragment : Fragment() {
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var showsAdapter: ShowsAdapter
 
-    private var sectorType: String = "poultry"
+    private var sectorType: String? = null
     private var search: String? = null
     private var sort: Long? = null
     private var cityId: Long? = null
@@ -47,6 +50,9 @@ class ShowsFragment : Fragment() {
             search = it.toString()
             viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
         }
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
         logosAdapter = LocalStockLogosAdapter(ClickListener { })
         binding.logosRecyclerView.adapter = logosAdapter
 
@@ -58,8 +64,12 @@ class ShowsFragment : Fragment() {
 
         showsAdapter = ShowsAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(ShowsFragmentDirections.actionShowsFragmentToShowsDetailsFragment(it.id!!.toLong(),
-                    it.name!!))
+                .navigate(
+                    ShowsFragmentDirections.actionShowsFragmentToShowsDetailsFragment(
+                        it.id!!.toLong(),
+                        it.name!!
+                    )
+                )
         })
         binding.showsListRecyclerView.apply {
             adapter = showsAdapter
@@ -77,6 +87,15 @@ class ShowsFragment : Fragment() {
                 }
             }
         }
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
+            }
+        }
         viewModel.showsStoreData.observe(viewLifecycleOwner) {
 
             if (it != null) {
@@ -88,6 +107,32 @@ class ShowsFragment : Fragment() {
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
+                val sectosList =
+                    it.sectors.map { sector ->
+                        Sector(
+                            sector!!.id,
+                            sector.name,
+                            sector.type,
+                            sector.selected
+                        )
+                    }.toList()
+                binding.filtersBtn.setOnClickListener {
+                    GlobalUiFunctions.openFilterDialog(requireActivity(),
+                        inflater,
+                        sectosList,
+                        null,
+                        null,
+                        null,
+                        ClickListener { filterData ->
+                            viewModel.getAllAdsStoreData(
+                                filterData.section!!,
+                                search,
+                                filterData.sort?.toLong(),
+                                filterData.city?.toLong(),
+                                filterData.country?.toLong()
+                            )
+                        })
+                }
                 showsAdapter.submitList(it.data)
             } else {
                 binding.apply {

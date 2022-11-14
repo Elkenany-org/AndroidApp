@@ -3,7 +3,6 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elkenany.api.auth.AuthImplementation.Companion.userApiToken
 import com.elkenany.api.store.IStoreImplementation
 import com.elkenany.entities.store.AdsStoreData
 import kotlinx.coroutines.CoroutineScope
@@ -15,14 +14,15 @@ class StoreViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _adsStoreData = MutableLiveData<AdsStoreData?>()
+    private val _openCloseSearch = MutableLiveData(false)
     private val _loading = MutableLiveData(false)
-    private val _goodToNavigate = MutableLiveData<Boolean?>(null)
     private val api = IStoreImplementation()
 
     val adsStoreData: LiveData<AdsStoreData?> get() = _adsStoreData
     val loading: LiveData<Boolean> get() = _loading
-    val googeToNavigate: LiveData<Boolean?> get() = _goodToNavigate
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
 
+    private var isOpened = false
     fun getAllAdsStoreData(sectorType: Long?, search: String?) {
         _loading.value = true
         uiScope.launch {
@@ -32,16 +32,16 @@ class StoreViewModel : ViewModel() {
         }
     }
 
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
+    }
+
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()
     }
 
-    fun navigateToCreateAdFragment() {
-        _goodToNavigate.value = userApiToken != null
-    }
 
-    fun onDoneNavigating() {
-        _goodToNavigate.value = null
-    }
 }

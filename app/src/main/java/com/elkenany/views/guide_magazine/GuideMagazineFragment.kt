@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideMagazineBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.GuideMagazineViewModel
@@ -29,7 +31,7 @@ class GuideMagazineFragment : Fragment() {
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var logosAdapter: LocalStockLogosAdapter
     private lateinit var magazineAdapter: GuideMagazineAdapter
-    private var sectorType: String = "poultry"
+    private var sectorType: String? = null
     private var sort: Long? = 2
     private var cityId: Long? = null
     private var search: String? = null
@@ -52,6 +54,9 @@ class GuideMagazineFragment : Fragment() {
             search = it.toString()
             viewModel.getGuideData(sectorType, sort, cityId, search)
         }
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
         logosAdapter = LocalStockLogosAdapter(ClickListener {
             navigateToBroswerIntent(it.link, requireActivity())
         })
@@ -70,12 +75,23 @@ class GuideMagazineFragment : Fragment() {
         }
         magazineAdapter = GuideMagazineAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(GuideMagazineFragmentDirections.actionGuideMagazineFragmentToGuideMagazineDetailsFragment(
-                    it.id!!))
+                .navigate(
+                    GuideMagazineFragmentDirections.actionGuideMagazineFragmentToGuideMagazineDetailsFragment(
+                        it.id!!
+                    )
+                )
         })
         binding.magazineListRecyclerView.adapter = magazineAdapter
 
-
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
+            }
+        }
         viewModel.magazineData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.apply {
@@ -85,8 +101,32 @@ class GuideMagazineFragment : Fragment() {
                     sectorsAdapter.submitList(it.sectors)
                     magazineAdapter.submitList(it.data)
                     magazineListRecyclerView.smoothScrollToPosition(0)
-//                    bannersRecyclerView.smoothScrollToPosition(0)
                     enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
+                    binding.filtersBtn.setOnClickListener { view ->
+                        val sectosList =
+                            it.sectors.map { sector ->
+                                Sector(
+                                    sector!!.id,
+                                    sector.name,
+                                    sector.type,
+                                    sector.selected
+                                )
+                            }.toList()
+                        GlobalUiFunctions.openFilterDialog(requireActivity(),
+                            inflater,
+                            sectosList,
+                            null,
+                            null,
+                            null,
+                            ClickListener { filterData ->
+                                viewModel.getGuideData(
+                                    filterData.section,
+                                    filterData.sort?.toLong(),
+                                    filterData.city?.toLong(),
+                                    search
+                                )
+                            })
+                    }
                 }
             } else {
                 binding.apply {

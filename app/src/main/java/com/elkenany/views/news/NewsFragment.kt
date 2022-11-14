@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentNewsBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.viewmodels.NewViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.news.adapter.NewsDaumAdapter
@@ -48,6 +50,9 @@ class NewsFragment : Fragment() {
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getAllNewsData(sectorType, search, sort)
+        }
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
         }
         binding.mostReadableBtn.setOnClickListener {
             sort = "2"
@@ -98,6 +103,30 @@ class NewsFragment : Fragment() {
                     binding.errorMessage.visibility = View.GONE
                     //submitting lists to its own adapters
                     newsDaumAdapter.submitList(it.data)
+                    val sectosList =
+                        it.sections.map { sector ->
+                            Sector(
+                                sector!!.id,
+                                sector.name,
+                                sector.type,
+                                sector.selected
+                            )
+                        }.toList()
+                    binding.filtersBtn.setOnClickListener {
+                        GlobalUiFunctions.openFilterDialog(requireActivity(),
+                            inflater,
+                            sectosList,
+                            null,
+                            null,
+                            null,
+                            ClickListener { filterData ->
+                                viewModel.getAllNewsData(
+                                    filterData.section!!.toLong(),
+                                    search,
+                                    sort
+                                )
+                            })
+                    }
                 } else {
                     binding.newsRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
@@ -109,6 +138,15 @@ class NewsFragment : Fragment() {
                 binding.filterLayout.visibility = View.GONE
             }
 
+        }
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
+            }
         }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
