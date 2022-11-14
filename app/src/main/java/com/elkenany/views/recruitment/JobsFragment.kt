@@ -16,10 +16,7 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentJobsBinding
-import com.elkenany.entities.guide.Sector
-import com.elkenany.entities.guide.Sort
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
-import com.elkenany.utilities.GlobalUiFunctions.Companion.openFilterDialog
 import com.elkenany.viewmodels.JobsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.recruitment.adapter.JobCategoriesAdapter
@@ -49,23 +46,7 @@ class JobsFragment : Fragment() {
             viewModel.getHomeStockData(sort, category, search)
         }
         binding.sortBtn.setOnClickListener {
-//            enableMenuItems(requireContext())
-            openFilterDialog(requireActivity(),
-                inflater,
-                listOf<Sector>(
-                    Sector(1, "صناعي", "industry", 0),
-                    Sector(1, "صناعي", "industry", 0),
-                    Sector(1, "صناعي", "industry", 0)
-                ),
-                listOf<Sort>(Sort(1, "A~z", 1),
-                    Sort(1, "A~z", 1),
-                    Sort(1, "A~z", 1),
-                    Sort(1, "A~z", 1)),
-                null,
-                null,
-                ClickListener {
-
-                })
+            enableMenuItems(requireContext())
         }
         jobCategoriesAdapter = JobCategoriesAdapter(ClickListener { category ->
             when (category.id) {
@@ -129,7 +110,7 @@ class JobsFragment : Fragment() {
                 }
                 401 -> {
                     Toast.makeText(requireContext(),
-                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف\"",
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف",
                         Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -168,11 +149,13 @@ class JobsFragment : Fragment() {
             when (it.toString()) {
                 "الأحدث" -> {
                     sort = null
-                    viewModel.getHomeStockData(sort, category, search).equals(true)
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
                 }
                 "الأكثر تداولا" -> {
                     sort = 1
-                    viewModel.getHomeStockData(sort, category, search).equals(true)
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
                 }
                 else -> {
                     false

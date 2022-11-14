@@ -148,4 +148,5 @@
 	<string name="tenders_title">المناقصات</string>
 	<string name="filter_title">التصنيف</string>
 	<string name="clear_all_title">مسح الكل</string>
+	<string name="activate_title">تطبيق</string>
 </resources>
