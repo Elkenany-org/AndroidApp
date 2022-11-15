@@ -87,6 +87,7 @@ class SearchFragment : Fragment() {
             "guide_sub_sections" -> requireView().findNavController()
                 .navigate(SearchFragmentDirections.actionSearchFragmentToGuideCompaniesFragment(
                     result.id,
+                    result.id,
                     result.name,
                     ""))
             "news" -> requireView().findNavController()

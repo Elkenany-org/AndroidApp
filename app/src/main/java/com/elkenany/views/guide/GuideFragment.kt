@@ -77,7 +77,9 @@ class GuideFragment : Fragment() {
 
         subSection = GuideSubSectionAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(GuideFragmentDirections.actionGuideFragmentToGuideCompaniesFragment(it.id!!,
+                .navigate(GuideFragmentDirections.actionGuideFragmentToGuideCompaniesFragment(
+                    sectorType!!.toLong(),
+                    it.id!!,
                     it.name,
                     sectorType.toString()))
         })
@@ -91,6 +93,11 @@ class GuideFragment : Fragment() {
                 binding.guideListRecyclerView.scrollToPosition(0)
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
+                it.sectors.map { sector ->
+                    if (sector!!.selected == 1L) {
+                        sectorType = sector.id!!.toInt()
+                    }
+                }.toList()
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 val sectosList =
                     it.sectors.map { sector ->

@@ -101,7 +101,8 @@
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_tendersFragment"
-			app:destination="@id/tendersFragment" />
+			app:destination="@id/tendersFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/profileFragment"
@@ -157,21 +158,21 @@
 		android:label="LocalStockFragment"
 		tools:layout="@layout/fragment_local_stock"
 		>
-<!--		<argument-->
-<!--			android:name="sector_id"-->
-<!--			app:argType="long"-->
-<!--			/>-->
-<!--		<argument-->
-<!--			android:name="sector_name"-->
-<!--			app:argType="string"-->
-<!--			app:nullable="true"-->
-<!--			/>-->
-<!--		-->
-<!--		<argument-->
-<!--			android:name="sector_type"-->
-<!--			app:argType="string"-->
-<!--			app:nullable="true"-->
-<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_id"-->
+		<!--			app:argType="long"-->
+		<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_name"-->
+		<!--			app:argType="string"-->
+		<!--			app:nullable="true"-->
+		<!--			/>-->
+		<!--		-->
+		<!--		<argument-->
+		<!--			android:name="sector_type"-->
+		<!--			app:argType="string"-->
+		<!--			app:nullable="true"-->
+		<!--			/>-->
 		<action
 			android:id="@+id/action_localStockFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
@@ -184,20 +185,20 @@
 		android:label="NewsFragment"
 		tools:layout="@layout/fragment_news"
 		>
-<!--		<argument-->
-<!--			android:name="sector_id"-->
-<!--			app:argType="long"-->
-<!--			/>-->
-<!--		<argument-->
-<!--			android:name="sector_name"-->
-<!--			app:argType="string"-->
-<!--			app:nullable="true"-->
-<!--			/>-->
-<!--		<argument-->
-<!--			android:name="sector_type"-->
-<!--			app:argType="string"-->
-<!--			app:nullable="true"-->
-<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_id"-->
+		<!--			app:argType="long"-->
+		<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_name"-->
+		<!--			app:argType="string"-->
+		<!--			app:nullable="true"-->
+		<!--			/>-->
+		<!--		<argument-->
+		<!--			android:name="sector_type"-->
+		<!--			app:argType="string"-->
+		<!--			app:nullable="true"-->
+		<!--			/>-->
 		<action
 			android:id="@+id/action_newsFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
@@ -209,7 +210,7 @@
 		android:label="StoreFragment"
 		tools:layout="@layout/fragment_store"
 		>
-<!-- -->
+		<!-- -->
 		<action
 			android:id="@+id/action_storeFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
@@ -225,7 +226,7 @@
 		android:label="GuideFragment"
 		tools:layout="@layout/fragment_guide"
 		>
-<!--		<argument-->
+		<!--		<argument-->
 		<!--			android:name="sector_id"-->
 		<!--			app:argType="long"-->
 		<!--			/>-->
@@ -235,7 +236,7 @@
 		<!--			app:nullable="true"-->
 		<!--			/>-->
 		
-<!-- -->
+		<!-- -->
 		<action
 			android:id="@+id/action_guideFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
@@ -346,13 +347,17 @@
 		tools:layout="@layout/fragment_guide_companies"
 		>
 		<argument
+			android:name="section_id"
+			app:argType="long"
+			/>
+		<argument
 			android:name="id"
 			app:argType="long"
 			/>
 		<argument
 			android:name="name"
 			app:argType="string"
- 			app:nullable="true"
+			app:nullable="true"
 			/>
 		<argument
 			android:name="sector"
@@ -742,31 +747,39 @@
 	<fragment
 		android:id="@+id/tendersFragment"
 		android:name="com.elkenany.views.tenders.TendersFragment"
-		android:label="TendersFragment" >
+		android:label="TendersFragment"
+		>
 		<action
 			android:id="@+id/action_tendersFragment_to_tendersSubSectionsFragment"
-			app:destination="@id/tendersSubSectionsFragment" />
+			app:destination="@id/tendersSubSectionsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/tendersSubSectionsFragment"
 		android:name="com.elkenany.views.tenders.TendersSubSectionsFragment"
-		android:label="TendersSubSectionsFragment" >
+		android:label="TendersSubSectionsFragment"
+		>
 		<action
 			android:id="@+id/action_tendersSubSectionsFragment_to_tenderDetailsFragment"
-			app:destination="@id/tenderDetailsFragment" />
+			app:destination="@id/tenderDetailsFragment"
+			/>
 		<argument
 			android:name="sectionId"
-			app:argType="long" />
+			app:argType="long"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/tenderDetailsFragment"
 		android:name="com.elkenany.views.tenders.TenderDetailsFragment"
-		android:label="TenderDetailsFragment" >
+		android:label="TenderDetailsFragment"
+		>
 		<argument
 			android:name="tenderId"
-			app:argType="long" />
+			app:argType="long"
+			/>
 		<action
 			android:id="@+id/action_tenderDetailsFragment_self"
-			app:destination="@id/tenderDetailsFragment" />
+			app:destination="@id/tenderDetailsFragment"
+			/>
 	</fragment>
 </navigation>

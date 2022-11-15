@@ -28,11 +28,11 @@ class GuideCompaniesViewModel : ViewModel() {
 
     private var isOpened = false
 
-    fun getCompaniesGuideData(sectionId: Long, search: String?, countryId: Long?, cityId: Long?) {
+    fun getCompaniesGuideData(sectionId: Long,subSectionId: Long, search: String?, countryId: Long?, cityId: Long?) {
         _loading.value = true
         uiScope.launch {
             _guideFilter.value = api.getGuideFilterData(sectionId)
-            _companiesData.value = api.getAllCompaniesData(sectionId, search, countryId, cityId)
+            _companiesData.value = api.getAllCompaniesData(subSectionId, search, countryId, cityId)
             _loading.value = false
         }
     }

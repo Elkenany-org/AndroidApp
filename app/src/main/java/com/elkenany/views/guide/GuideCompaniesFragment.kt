@@ -1,6 +1,7 @@
 package com.elkenany.views.guide
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class GuideCompaniesFragment : Fragment() {
         super.onResume()
         binding.companyAutoCompelete.setText(city)
         binding.productAutoCompelete.setText(country)
-        viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
+        viewModel.getCompaniesGuideData(args.sectionId, args.id, search, countryId, cityId)
     }
 
     override fun onCreateView(
@@ -59,7 +60,7 @@ class GuideCompaniesFragment : Fragment() {
 //        viewModel.getCompaniesGuideData(args.id, search)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
-            viewModel.getCompaniesGuideData(args.id, search, countryId, cityId)
+            viewModel.getCompaniesGuideData(args.sectionId, args.id, search, countryId, cityId)
         }
         binding.searchBtn.setOnClickListener {
             viewModel.openCloseSearchBar()
@@ -101,22 +102,23 @@ class GuideCompaniesFragment : Fragment() {
         }
         viewModel.companiesDataData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.fodderExternalLayout.visibility = View.VISIBLE
                 binding.companyListRecyclerView.visibility = View.VISIBLE
                 binding.errorMessage.visibility = View.GONE
                 //submitting lists to its own adapters
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
-                binding.filtersBtn.setOnClickListener {
+                binding.filtersBtn.setOnClickListener { view ->
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
-                        null,
+                        it.sectors,
                         null,
                         guideFilters?.countries,
                         guideFilters?.cities,
                         ClickListener { filterData ->
+                            Log.i("filterData", filterData.toString())
                             viewModel.getCompaniesGuideData(
+                                args.sectionId,
                                 filterData.section!!.toLong(),
                                 search,
                                 filterData.country?.toLong(),
