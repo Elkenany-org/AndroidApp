@@ -108,9 +108,14 @@ class GuideCompaniesFragment : Fragment() {
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
+                var defaultSector : Long? = null
                 binding.filtersBtn.setOnClickListener { view ->
+                    it.sectors.map { sector -> if (sector?.selected == 1L){
+                        defaultSector = sector.id
+                    } }
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
+                        defaultSector,
                         it.sectors,
                         null,
                         guideFilters?.countries,

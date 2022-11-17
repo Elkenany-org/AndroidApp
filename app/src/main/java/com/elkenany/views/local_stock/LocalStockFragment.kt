@@ -137,9 +137,14 @@ class LocalStockFragment : Fragment() {
                             sector.selected
                         )
                     }.toList()
-                binding.filtersBtn.setOnClickListener {
+                var defaultSector : Long? = null
+                binding.filtersBtn.setOnClickListener { view ->
+                    it.sectors.map { sector -> if (sector?.selected == 1L){
+                        defaultSector = sector.id
+                    } }
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
+                        defaultSector,
                         sectosList,
                         null,
                         null,

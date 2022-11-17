@@ -65,14 +65,6 @@
 			android:layout_below="@id/search_bar_card"
 			>
 			
-			<ProgressBar
-				android:id="@+id/loading_progressbar"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				android:indeterminateDrawable="@drawable/custom_progress_bar"
-				android:visibility="gone"
-				/>
 			
 			<TextView
 				android:id="@+id/error_message"
@@ -141,6 +133,15 @@
 					/>
 			
 			</LinearLayout>
+			
+			<ProgressBar
+				android:id="@+id/loading_progressbar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:indeterminateDrawable="@drawable/custom_progress_bar"
+				android:visibility="gone"
+				/>
 		</RelativeLayout>
 	</RelativeLayout>
 </layout>

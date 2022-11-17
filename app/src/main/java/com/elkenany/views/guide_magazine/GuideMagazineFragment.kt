@@ -112,20 +112,29 @@ class GuideMagazineFragment : Fragment() {
                                     sector.selected
                                 )
                             }.toList()
-                        GlobalUiFunctions.openFilterDialog(requireActivity(),
-                            inflater,
-                            sectosList,
-                            null,
-                            null,
-                            null,
-                            ClickListener { filterData ->
-                                viewModel.getGuideData(
-                                    filterData.section,
-                                    filterData.sort?.toLong(),
-                                    filterData.city?.toLong(),
-                                    search
-                                )
-                            })
+                        var defaultSector: Long? = null
+                        binding.filtersBtn.setOnClickListener { view ->
+                            it.sectors.map { sector ->
+                                if (sector?.selected == 1L) {
+                                    defaultSector = sector.id
+                                }
+                            }
+                            GlobalUiFunctions.openFilterDialog(requireActivity(),
+                                inflater,
+                                defaultSector,
+                                sectosList,
+                                null,
+                                null,
+                                null,
+                                ClickListener { filterData ->
+                                    viewModel.getGuideData(
+                                        filterData.section,
+                                        filterData.sort?.toLong(),
+                                        filterData.city?.toLong(),
+                                        search
+                                    )
+                                })
+                        }
                     }
                 }
             } else {

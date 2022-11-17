@@ -166,6 +166,7 @@ class GlobalUiFunctions {
         fun openFilterDialog(
             requireActivity: Activity,
             inflater: LayoutInflater,
+            defaultSection: Long?,
             sectionsList: List<Sector?>?,
             sortList: List<Sort?>?,
             countriesList: List<Country?>?,
@@ -262,9 +263,10 @@ class GlobalUiFunctions {
                     }
                 }
                 activateBtn.setOnClickListener {
-                    if (!section.isNullOrEmpty()) {
-                        clickListener.onClick(FiltersData(section, sort, country, city))
+                    if (section.isNullOrEmpty()) {
+                        section = defaultSection.toString()
                     }
+                    clickListener.onClick(FiltersData(section, sort, country, city))
                     bottomSheetDialog.cancel()
                 }
                 clearText.setOnClickListener {

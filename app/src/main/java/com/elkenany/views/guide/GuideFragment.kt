@@ -14,9 +14,9 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
-import com.elkenany.utilities.GlobalUiFunctions.Companion.openFilterDialog
 import com.elkenany.viewmodels.GuideViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.GuideSubSectionAdapter
@@ -106,8 +106,16 @@ class GuideFragment : Fragment() {
                             sector.type,
                             sector.selected)
                     }.toList()
-                binding.filtersBtn.setOnClickListener {
-                    openFilterDialog(requireActivity(), inflater, sectosList, null, null, null,
+                var defaultSector: Long? = null
+                binding.filtersBtn.setOnClickListener { view ->
+                    it.sectors.map { sector ->
+                        if (sector?.selected == 1L) {
+                            defaultSector = sector.id
+                        }
+                    }
+                    GlobalUiFunctions.openFilterDialog(requireActivity(),
+                        inflater,
+                        defaultSector, sectosList, null, null, null,
                         ClickListener { filterData ->
                             viewModel.getGuideData(filterData.section!!.toInt(), search)
                         })
