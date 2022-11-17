@@ -110,7 +110,7 @@ class JobsFragment : Fragment() {
                 }
                 401 -> {
                     Toast.makeText(requireContext(),
-                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف\"",
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل الوظائف",
                         Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -149,11 +149,13 @@ class JobsFragment : Fragment() {
             when (it.toString()) {
                 "الأحدث" -> {
                     sort = null
-                    viewModel.getHomeStockData(sort, category, search).equals(true)
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
                 }
                 "الأكثر تداولا" -> {
                     sort = 1
-                    viewModel.getHomeStockData(sort, category, search).equals(true)
+                    viewModel.getHomeStockData(sort, category, search)
+                    true
                 }
                 else -> {
                     false

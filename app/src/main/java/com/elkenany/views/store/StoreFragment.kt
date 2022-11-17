@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.navigation.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentStoreBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.viewmodels.StoreViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
@@ -47,6 +50,9 @@ class StoreFragment : Fragment() {
             adsStoreAdapter.submitList(listOf())
             viewModel.getAllAdsStoreData(sectorType, search)
         }
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
             sectorType = it.id
@@ -75,6 +81,31 @@ class StoreFragment : Fragment() {
                     binding.errorMessage.visibility = View.GONE
                     //submitting lists to its own adapters
                     adsStoreAdapter.submitList(it.data)
+                    val sectosList =
+                        it.sectors.map { sector ->
+                            Sector(
+                                sector!!.id,
+                                sector.name,
+                                sector.type,
+                                sector.selected
+                            )
+                        }.toList()
+                    var defaultSector : Long? = null
+                    binding.filtersBtn.setOnClickListener { view ->
+                        it.sectors.map { sector -> if (sector?.selected == 1L){
+                            defaultSector = sector.id
+                        } }
+                        GlobalUiFunctions.openFilterDialog(requireActivity(),
+                            inflater,
+                            defaultSector,
+                            sectosList,
+                            null,
+                            null,
+                            null,
+                            ClickListener { filterData ->
+                                viewModel.getAllAdsStoreData(filterData.section!!.toLong(), search)
+                            })
+                    }
 
                 } else {
                     binding.storeRecyclerView.visibility = View.GONE
@@ -88,7 +119,15 @@ class StoreFragment : Fragment() {
             }
 
         }
-
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
+            }
+        }
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE

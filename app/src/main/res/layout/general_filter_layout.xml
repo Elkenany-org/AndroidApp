@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:cardCornerRadius="7dp"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:padding="10dp"
+			>
+			
+			<TextView
+				android:id="@+id/app_bar_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:fontFamily="@font/cairo_bold"
+				android:text="@string/filter_title"
+				android:textColor="@color/green"
+				android:textColorHint="#78909C"
+				android:textSize="20sp"
+				/>
+			
+			<TextView
+				android:id="@+id/clear_text"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start"
+				android:layout_marginVertical="12sp"
+				android:fontFamily="@font/cairo_regular"
+				android:text="@string/clear_all_title"
+				android:textColor="@color/green"
+				android:textColorHint="#78909C"
+				android:textSize="12sp"
+				/>
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/sections_btn"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="1dp"
+				android:fontFamily="@font/cairo_bold"
+				android:layoutDirection="rtl"
+				android:textColorHint="@color/green"
+				app:boxBackgroundColor="@color/white"
+				tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+				>
+				
+				<AutoCompleteTextView
+					android:id="@+id/sections_auto_compelete"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_margin="10dp"
+					android:backgroundTint="@color/white"
+					android:drawableTint="@color/green"
+					android:ellipsize="start"
+					android:fontFamily="@font/cairo_bold"
+					android:foregroundTint="@color/green"
+					android:inputType="none"
+					android:maxLines="1"
+					android:textColor="@color/green"
+					android:textColorHint="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+					/>
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/sort_btn"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="1dp"
+				android:fontFamily="@font/cairo_bold"
+				android:layoutDirection="rtl"
+				android:textColorHint="@color/green"
+				app:boxBackgroundColor="@color/white"
+				tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+				>
+				
+				<AutoCompleteTextView
+					android:id="@+id/sort_auto_compelete"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_margin="10dp"
+					android:backgroundTint="@color/white"
+					android:drawableTint="@color/green"
+					android:ellipsize="start"
+					android:fontFamily="@font/cairo_bold"
+					android:foregroundTint="@color/green"
+					android:inputType="none"
+					android:maxLines="1"
+					android:textColor="@color/green"
+					android:textColorHint="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+					/>
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/countries_btn"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="1dp"
+				android:fontFamily="@font/cairo_bold"
+				android:layoutDirection="rtl"
+				android:textColorHint="@color/green"
+				app:boxBackgroundColor="@color/white"
+				tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+				>
+				
+				<AutoCompleteTextView
+					android:id="@+id/countries_auto_compelete"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_margin="10dp"
+					android:backgroundTint="@color/white"
+					android:drawableTint="@color/green"
+					android:ellipsize="start"
+					android:fontFamily="@font/cairo_bold"
+					android:foregroundTint="@color/green"
+					android:inputType="none"
+					android:maxLines="1"
+					android:textColor="@color/green"
+					android:textColorHint="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+					/>
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<com.google.android.material.textfield.TextInputLayout
+				android:id="@+id/cities_btn"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="1dp"
+				android:fontFamily="@font/cairo_bold"
+				android:layoutDirection="rtl"
+				android:textColorHint="@color/green"
+				app:boxBackgroundColor="@color/white"
+				tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck,TextContrastCheck"
+				>
+				
+				<AutoCompleteTextView
+					android:id="@+id/cities_auto_complete"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_margin="10dp"
+					android:backgroundTint="@color/white"
+					android:drawableTint="@color/green"
+					android:ellipsize="start"
+					android:fontFamily="@font/cairo_bold"
+					android:foregroundTint="@color/green"
+					android:inputType="none"
+					android:maxLines="1"
+					android:textColor="@color/green"
+					android:textColorHint="@color/green"
+					android:textSize="12sp"
+					tools:ignore="HardcodedText,LabelFor,TextContrastCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck"
+					/>
+			</com.google.android.material.textfield.TextInputLayout>
+			
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/activate_btn"
+				android:layout_width="300dp"
+				android:layout_height="45dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:background="@drawable/primary_btn_shape"
+				android:fontFamily="@font/cairo_black"
+				android:text="@string/activate_title"
+				android:textColor="@color/green"
+				tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+				/>
+		
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</layout>

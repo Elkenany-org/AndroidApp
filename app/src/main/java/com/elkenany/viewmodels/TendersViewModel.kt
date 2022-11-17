@@ -24,15 +24,13 @@ class TendersViewModel : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
 
-    init {
-        getAllTendersData()
-    }
 
-    private fun getAllTendersData(
+    fun getAllTendersData(
+        search: String?,
     ) {
         _loading.value = true
         uiScope.launch {
-            val response = api.getAllTendersMainSectionsData()
+            val response = api.getAllTendersMainSectionsData(search)
             exceptionChecker(response)
             _loading.value = false
         }

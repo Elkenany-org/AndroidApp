@@ -13,7 +13,7 @@ interface IShows {
     @GET("showes/all-showes")
     fun getAllShowsData(
         @Header("android") android: Boolean?,
-        @Query("type") sectorType: String?,
+        @Query("section_id") sectorType: String?,
         @Query("search") search: String?,
         @Query("sort") sort: Long?,
         @Query("city_id") cityId: Long?,

@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class GuideViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
+    private val _openCloseSearch = MutableLiveData(false)
     private val _guideData = MutableLiveData<GuideData?>()
     private val _loading = MutableLiveData(false)
     private val api = IGuideImplementation()
@@ -20,6 +21,9 @@ class GuideViewModel : ViewModel() {
 
     val guideData: LiveData<GuideData?> get() = _guideData
     val loading: LiveData<Boolean> get() = _loading
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
+
+    private var isOpened = false
 
     fun getGuideData(sectorType: Int?, search: String?) {
         _loading.value = true
@@ -30,8 +34,15 @@ class GuideViewModel : ViewModel() {
         }
     }
 
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
+    }
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()
     }
+
+
 }

@@ -13,7 +13,7 @@ interface IMagazine {
     @GET("magazine/magazines")
     fun getAllMagazineListData(
         @Header("android") android: Boolean,
-        @Query("type") sectorType: String?,
+        @Query("section_id") sectionsId: String?,
         @Query("sort") sort: Long?,
         @Query("city_id") cityId: Long?,
         @Query("search") search: String?,

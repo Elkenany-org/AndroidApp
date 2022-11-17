@@ -10,11 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.LocalStockViewModel
@@ -51,6 +52,11 @@ class LocalStockFragment : Fragment() {
             search = it.toString()
             viewModel.getHomeStockData(sectorType, search)
         }
+
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
+
         logosAdapter = LocalStockLogosAdapter(ClickListener {
             navigateToBroswerIntent(it.link, requireActivity())
         })
@@ -70,11 +76,13 @@ class LocalStockFragment : Fragment() {
 
         subSection = LocalStockSubSectionsAdapter(ClickListener {
             requireView().findNavController()
-                .navigate(LocalStockFragmentDirections.actionLocalStockFragmentToLocalStockDetailsFragment(
-                    it.id!!,
-                    it.name,
-                    it.type
-                ))
+                .navigate(
+                    LocalStockFragmentDirections.actionLocalStockFragmentToLocalStockDetailsFragment(
+                        it.id!!,
+                        it.name,
+                        it.type
+                    )
+                )
         })
         binding.stockListRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 1)
@@ -120,6 +128,31 @@ class LocalStockFragment : Fragment() {
                     binding.errorMessage.visibility = View.GONE
                 }
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
+                val sectosList =
+                    it.sectors.map { sector ->
+                        Sector(
+                            sector!!.id,
+                            sector.name,
+                            sector.type,
+                            sector.selected
+                        )
+                    }.toList()
+                var defaultSector : Long? = null
+                binding.filtersBtn.setOnClickListener { view ->
+                    it.sectors.map { sector -> if (sector?.selected == 1L){
+                        defaultSector = sector.id
+                    } }
+                    GlobalUiFunctions.openFilterDialog(requireActivity(),
+                        inflater,
+                        defaultSector,
+                        sectosList,
+                        null,
+                        null,
+                        null,
+                        ClickListener { filterData ->
+                            viewModel.getHomeStockData(filterData.section!!.toLong(), search)
+                        })
+                }
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)
                 subSection.submitList(list)
@@ -129,6 +162,15 @@ class LocalStockFragment : Fragment() {
                     stockListRecyclerView.visibility = View.GONE
                 }
 
+            }
+        }
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
             }
         }
         viewModel.loading.observe(viewLifecycleOwner) {

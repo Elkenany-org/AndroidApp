@@ -11,14 +11,23 @@ import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
+import com.elkenany.ClickListener
+import com.elkenany.R
+import com.elkenany.databinding.GeneralFilterLayoutBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.entities.guide.City
+import com.elkenany.entities.guide.Country
+import com.elkenany.entities.guide.Sector
+import com.elkenany.entities.guide.Sort
 import com.elkenany.entities.stock_data.GeneralBannerData
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class GlobalUiFunctions {
     companion object {
@@ -153,19 +162,128 @@ class GlobalUiFunctions {
                 }
             }
         }
-        //        private fun openFilterDialog(
-        //            requireActivity: Activity,
-        //            inflater: LayoutInflater
-        //        ) {
-        //            val bottomSheetDialog = BottomSheetDialog(
-        //                requireActivity
-        //            )
-        //            val binding = BottomSheetFilterLayoutBinding.inflate(inflater)
-        //            binding.signInBtn.setOnClickListener {
-        //                bottomSheetDialog.cancel()
-        //            }
-        //            bottomSheetDialog.setContentView(binding.root)
-        //            bottomSheetDialog.show()
-        //        }
+
+        fun openFilterDialog(
+            requireActivity: Activity,
+            inflater: LayoutInflater,
+            defaultSection: Long?,
+            sectionsList: List<Sector?>?,
+            sortList: List<Sort?>?,
+            countriesList: List<Country?>?,
+            citiesList: List<City?>?,
+            clickListener: ClickListener<FiltersData>,
+        ) {
+            val bottomSheetDialog = BottomSheetDialog(requireActivity)
+            val binding = GeneralFilterLayoutBinding.inflate(inflater)
+            val sectionname = "القسم"
+            val sortname = "الترتيب"
+            val countryName = "البلد"
+            val cityName = "المدينة"
+            var section: String? = null
+            var sort: String? = null
+            var country: String? = null
+            var city: String? = null
+            binding.apply {
+                sectionsAutoCompelete.setText(sectionname)
+                sortAutoCompelete.setText(sortname)
+                countriesAutoCompelete.setText(countryName)
+                citiesAutoComplete.setText(cityName)
+                if (sectionsList.isNullOrEmpty()) {
+                    sectionsBtn.visibility = View.GONE
+                } else {
+                    sectionsBtn.visibility = View.VISIBLE
+                    val sections =
+                        sectionsList.map { newList -> newList!!.name }.toList()
+                    val adapter = ArrayAdapter<String?>(
+                        requireActivity.applicationContext,
+                        R.layout.array_adapter_item,
+                        sections
+                    )
+                    binding.sectionsAutoCompelete.setAdapter(adapter)
+                    binding.sectionsAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                        section = sectionsList[position]!!.id.toString()
+                        binding.sectionsAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                            .toString()
+                    }
+                }
+                if (sortList.isNullOrEmpty()) {
+                    sortBtn.visibility = View.GONE
+                } else {
+                    sortBtn.visibility = View.VISIBLE
+                    val sorts =
+                        sortList.map { newList -> newList!!.name }.toList()
+                    val adapter = ArrayAdapter<String?>(
+                        requireActivity.applicationContext,
+                        R.layout.array_adapter_item,
+                        sorts
+                    )
+                    binding.sortAutoCompelete.setAdapter(adapter)
+                    binding.sortAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                        sort = sortList[position]!!.id.toString()
+                        binding.sortAutoCompelete.hint = adapterView.getItemAtPosition(position)
+                            .toString()
+                    }
+                }
+                if (countriesList.isNullOrEmpty()) {
+                    countriesBtn.visibility = View.GONE
+                } else {
+                    countriesBtn.visibility = View.VISIBLE
+                    val countries =
+                        countriesList.map { newList -> newList!!.name }.toList()
+                    val adapter = ArrayAdapter<String?>(
+                        requireActivity.applicationContext,
+                        R.layout.array_adapter_item,
+                        countries
+                    )
+                    binding.countriesAutoCompelete.setAdapter(adapter)
+                    binding.countriesAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
+                        country = countriesList[position]!!.id.toString()
+                        binding.countriesAutoCompelete.hint =
+                            adapterView.getItemAtPosition(position)
+                                .toString()
+                    }
+                }
+                if (citiesList.isNullOrEmpty()) {
+                    citiesBtn.visibility = View.GONE
+                } else {
+                    citiesBtn.visibility = View.VISIBLE
+                    val cities =
+                        citiesList.map { newList -> newList!!.name }.toList()
+                    val adapter = ArrayAdapter<String?>(
+                        requireActivity.applicationContext,
+                        R.layout.array_adapter_item,
+                        cities
+                    )
+                    binding.citiesAutoComplete.setAdapter(adapter)
+                    binding.citiesAutoComplete.setOnItemClickListener { adapterView, _, position, _ ->
+                        city = citiesList[position]!!.id.toString()
+                        binding.citiesAutoComplete.hint =
+                            adapterView.getItemAtPosition(position)
+                                .toString()
+                    }
+                }
+                activateBtn.setOnClickListener {
+                    if (section.isNullOrEmpty()) {
+                        section = defaultSection.toString()
+                    }
+                    clickListener.onClick(FiltersData(section, sort, country, city))
+                    bottomSheetDialog.cancel()
+                }
+                clearText.setOnClickListener {
+                    sectionsAutoCompelete.setText(sectionname)
+                    section = null
+                    sortAutoCompelete.setText(sortname)
+                    sort = null
+                    countriesAutoCompelete.setText(countryName)
+                    country = null
+                    citiesAutoComplete.setText(cityName)
+                    city = null
+                    bottomSheetDialog.cancel()
+                }
+            }
+            bottomSheetDialog.setContentView(binding.root)
+            bottomSheetDialog.show()
+        }
     }
 }
+

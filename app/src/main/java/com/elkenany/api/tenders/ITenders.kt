@@ -13,7 +13,10 @@ import retrofit2.http.Query
 interface ITenders {
 
     @GET("tenders/tenders-sections")
-    fun getAllTendersSectionsData(@Header("android") isAndroid: Boolean?): Call<GenericEntity<TendersSectionsListData?>>
+    fun getAllTendersSectionsData(
+        @Header("android") isAndroid: Boolean?,
+        @Query("search") search: String?,
+    ): Call<GenericEntity<TendersSectionsListData?>>
 
 
     @GET("tenders/tenders")

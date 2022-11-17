@@ -15,6 +15,7 @@ class TenderSubSectionsViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _responseData = MutableLiveData<TendersListData?>()
+    private val _openCloseSearch = MutableLiveData(false)
     private val _exception = MutableLiveData<Int?>()
     private val _loading = MutableLiveData(false)
     private val api = ITendersImplementation()
@@ -23,12 +24,14 @@ class TenderSubSectionsViewModel : ViewModel() {
     val responseData: LiveData<TendersListData?> get() = _responseData
     val loading: LiveData<Boolean> get() = _loading
     val exception: LiveData<Int?> get() = _exception
+    val openCloseSearch: LiveData<Boolean> get() = _openCloseSearch
 
+    private var isOpened = false
 
     fun getAllTendersData(
         sectorId: Long?,
         sort: Long?,
-        search: String?
+        search: String?,
     ) {
         _loading.value = true
         uiScope.launch {
@@ -36,6 +39,11 @@ class TenderSubSectionsViewModel : ViewModel() {
             exceptionChecker(response)
             _loading.value = false
         }
+    }
+
+    fun openCloseSearchBar() {
+        isOpened = !isOpened
+        _openCloseSearch.value = isOpened
     }
 
 

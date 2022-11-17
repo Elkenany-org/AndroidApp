@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,8 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentTendersSubSectionsBinding
+import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.viewmodels.TenderSubSectionsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.tenders.adapters.TendersListAdapter
@@ -48,6 +51,30 @@ class TendersSubSectionsFragment : Fragment() {
 
         binding.searchBar.addTextChangedListener {
             search = it.toString()
+            viewModel.getAllTendersData(sectionId, sort, search)
+        }
+        binding.searchBtn.setOnClickListener {
+            viewModel.openCloseSearchBar()
+        }
+        binding.mostCommonBtn.setOnClickListener {
+            sort = 1
+            binding.mostCommonBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.newestBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.alphabetBtn.setTextColor(requireContext().getColor(R.color.green))
+            viewModel.getAllTendersData(sectionId, sort, search)
+        }
+        binding.alphabetBtn.setOnClickListener {
+            sort = 0
+            binding.alphabetBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.newestBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.mostCommonBtn.setTextColor(requireContext().getColor(R.color.green))
+            viewModel.getAllTendersData(sectionId, sort, search)
+        }
+        binding.newestBtn.setOnClickListener {
+            sort = 2
+            binding.newestBtn.setTextColor(requireContext().getColor(R.color.orange))
+            binding.mostCommonBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.newestBtn.setTextColor(requireContext().getColor(R.color.green))
             viewModel.getAllTendersData(sectionId, sort, search)
         }
         sectionId = args.sectionId
@@ -105,9 +132,49 @@ class TendersSubSectionsFragment : Fragment() {
                 }
             }
         }
+        viewModel.openCloseSearch.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.searchBarCard.layoutAnimation =
+                    AnimationUtils.loadLayoutAnimation(requireContext(), R.anim.layout_animation)
+                binding.searchBarCard.visibility = View.VISIBLE
+            } else {
+                binding.searchBarCard.visibility = View.GONE
+            }
+        }
         viewModel.responseData.observe(viewLifecycleOwner) { tendersData ->
             if (tendersData != null) {
                 tenderSubsectionAdapter.submitList(tendersData.data)
+                val sectosList =
+                    tendersData.sections.map { sector ->
+                        Sector(
+                            sector!!.id,
+                            sector.name,
+                            sector.type,
+                            sector.selected
+                        )
+                    }.toList()
+                var defaultSector: Long? = null
+                binding.filtersBtn.setOnClickListener { view ->
+                    tendersData.sections.map { sector ->
+                        if (sector?.selected == 1L) {
+                            defaultSector = sector.id
+                        }
+                    }
+                    GlobalUiFunctions.openFilterDialog(requireActivity(),
+                        inflater,
+                        defaultSector,
+                        sectosList,
+                        null,
+                        null,
+                        null,
+                        ClickListener { filterData ->
+                            viewModel.getAllTendersData(
+                                filterData.section!!.toLong(),
+                                sort,
+                                search
+                            )
+                        })
+                }
             }
         }
 

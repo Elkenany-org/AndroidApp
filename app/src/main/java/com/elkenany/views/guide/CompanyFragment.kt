@@ -154,8 +154,8 @@ class CompanyFragment : Fragment() {
                 binding.apply {
                     rateUsers = "( ${it.countRate.toString()} )"
                     data = it
-                    latid = it.latitude!!
-                    longtid = it.longitude!!
+                    latid = it.latitude.toString()
+                    longtid = it.latitude.toString()
                 }
             } else {
                 binding.adsLayout.visibility = View.GONE

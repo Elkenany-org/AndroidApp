@@ -8,9 +8,9 @@ import com.elkenany.entities.tenders.TendersSectionsListData
 
 class ITendersImplementation {
 
-    suspend fun getAllTendersMainSectionsData(): GenericEntity<TendersSectionsListData?> {
+    suspend fun getAllTendersMainSectionsData(search: String?): GenericEntity<TendersSectionsListData?> {
         return onHandelingResponseStates("getAllTendersMainSectionsData") {
-            ITendersHandler.singleton.getAllTendersSectionsData(true)
+            ITendersHandler.singleton.getAllTendersSectionsData(true,search)
         }
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ class TendersFragment : Fragment() {
     private lateinit var viewModel: TendersViewModel
     private lateinit var tenderAdapter: TendersSubSectionsAdapter
 
+    private var search: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -30,6 +32,7 @@ class TendersFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tenders, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[TendersViewModel::class.java]
+        viewModel.getAllTendersData(search)
         tenderAdapter = TendersSubSectionsAdapter(ClickListener {
             requireView().findNavController()
                 .navigate(
@@ -38,12 +41,17 @@ class TendersFragment : Fragment() {
                     )
                 )
         })
+        binding.searchBar.addTextChangedListener {
+            search = it.toString()
+            viewModel.getAllTendersData(search)
+        }
         binding.tendersSectionsRecyclerView.adapter = tenderAdapter
 
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.apply {
                     loadingProgressbar.visibility = View.VISIBLE
+                    tendersSectionsRecyclerView.visibility = View.GONE
                     errorMessage.visibility = View.GONE
                 }
             } else {
@@ -85,6 +93,7 @@ class TendersFragment : Fragment() {
         }
         viewModel.responseData.observe(viewLifecycleOwner) { tendersData ->
             if (tendersData != null) {
+                binding.tendersSectionsRecyclerView.visibility = View.VISIBLE
                 tenderAdapter.submitList(tendersData.sections)
             }
         }
