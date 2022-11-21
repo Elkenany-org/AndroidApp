@@ -83,11 +83,14 @@ class AuthImplementation {
 
     //Login function using only email and password to deliver them to Api
     suspend fun loginWithEmailAndPassword(
+        fcmToken: String?,
         email: String,
         password: String,
     ): Int {
         return try {
-            val response = AuthHandler.singleton.loginWithEmailAndPassword(email, password).await()
+            val response =
+                AuthHandler.singleton.loginWithEmailAndPassword(true, fcmToken, email, password)
+                    .await()
             Log.i("login response", "Login response is : $response")
             userApiToken = response.data!!.apiToken
             val t = getAllUserData(userApiToken)

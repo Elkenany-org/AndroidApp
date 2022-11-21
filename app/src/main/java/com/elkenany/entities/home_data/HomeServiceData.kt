@@ -13,7 +13,7 @@ data class HomeServiceData(
     @Json(name = "type")
     val type: String?,
     @Json(name = "recomandtion")
-    val serviceRecommendation: List<ServiceRecomandtion>?,
+    val serviceRecommendation: List<ServiceRecomandtion?>?,
     @Json(name = "show")
     val serviceShows: List<ServiceShow>?,
     @Json(name = "magazine")

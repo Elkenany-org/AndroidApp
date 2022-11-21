@@ -51,18 +51,18 @@ class MainMenuFragment : Fragment() {
             basicAlert(requireContext())
 
         }
-        binding.dailyStockBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.localStockFragment)
-        }
-        binding.guideBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.guideFragment)
-        }
-        binding.storeBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.storeFragment)
-        }
-        binding.newsBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.newsFragment)
-        }
+//        binding.dailyStockBtn.setOnClickListener {
+//            requireView().findNavController().navigate(R.id.localStockFragment)
+//        }
+//        binding.guideBtn.setOnClickListener {
+//            requireView().findNavController().navigate(R.id.guideFragment)
+//        }
+//        binding.storeBtn.setOnClickListener {
+//            requireView().findNavController().navigate(R.id.storeFragment)
+//        }
+//        binding.newsBtn.setOnClickListener {
+//            requireView().findNavController().navigate(R.id.newsFragment)
+//        }
 
         binding.contactUsBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.aboutFragment)
@@ -71,7 +71,6 @@ class MainMenuFragment : Fragment() {
             onsharingdata(shareLink, requireActivity())
         }
         binding.rateBtn.setOnClickListener {
-            // ToDo -> implement rateFunction here
             navigateToGooglePlay("com.elkenany", requireActivity())
         }
 

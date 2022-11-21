@@ -56,7 +56,7 @@ class LoginViewModel : ViewModel() {
     fun signInWithEmailAndPassword(email: String, password: String) {
         uiScope.launch {
             _loading.value = true
-            _login.value = when (api.loginWithEmailAndPassword(email, password)) {
+            _login.value = when (api.loginWithEmailAndPassword(getFCMToken(), email, password)) {
                 200 -> {
                     _exception.value = 200
                     true

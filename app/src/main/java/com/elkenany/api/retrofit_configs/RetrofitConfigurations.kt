@@ -16,11 +16,11 @@ import retrofit2.await
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.net.SocketTimeoutException
 
-////this base url for published server
-//const val BASE_URL = "https://admin.elkenany.com/api/"
+//this base url for published server
+const val BASE_URL = "https://admin.elkenany.com/api/"
 
-//this base url for testing server
-const val BASE_URL = "https://test.elkenany.com/api/"
+////this base url for testing server
+//const val BASE_URL = "https://test.elkenany.com/api/"
 
 private val moshi by lazy {
     Moshi.Builder()
@@ -36,7 +36,7 @@ private val intercepter by lazy {
 
 val retrofit: Retrofit by lazy {
     Retrofit.Builder()
-        .client(intercepter)//Make sure to comment this section before publshing any versions
+//        .client(intercepter)//Make sure to comment this section before publshing any versions
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
