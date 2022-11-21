@@ -74,7 +74,7 @@ class TendersSubSectionsFragment : Fragment() {
             sort = 2
             binding.newestBtn.setTextColor(requireContext().getColor(R.color.orange))
             binding.mostCommonBtn.setTextColor(requireContext().getColor(R.color.green))
-            binding.newestBtn.setTextColor(requireContext().getColor(R.color.green))
+            binding.alphabetBtn.setTextColor(requireContext().getColor(R.color.green))
             viewModel.getAllTendersData(sectionId, sort, search)
         }
         sectionId = args.sectionId

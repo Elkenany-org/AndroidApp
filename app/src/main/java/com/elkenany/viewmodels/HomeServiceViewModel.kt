@@ -3,6 +3,7 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.callback.IHomeImplementation
 import com.elkenany.entities.home_data.HomeServiceData
 import kotlinx.coroutines.CoroutineScope
@@ -29,7 +30,12 @@ class HomeServiceViewModel : ViewModel() {
     private fun getHomeData() {
         _loading.value = true
         uiScope.launch {
-            _homeServiceData.value = api.getHomeServiceData()
+            val apiToken = if (AuthImplementation.userApiToken == null) {
+                null
+            } else {
+                "Bearer ${AuthImplementation.userApiToken}"
+            }
+            _homeServiceData.value = api.getHomeServiceData(apiToken)
             _loading.value = false
         }
     }

@@ -118,7 +118,7 @@ class LocalStockFragment : Fragment() {
                 binding.apply {
                     searchBar.visibility = View.VISIBLE
                 }
-                val list = it.subSections
+                val list = it.fodSections?.plus(it.subSections!!)
                 if (list!!.isEmpty()) {
                     binding.stockListRecyclerView.visibility = View.GONE
                     binding.errorMessage.visibility = View.VISIBLE
@@ -137,11 +137,13 @@ class LocalStockFragment : Fragment() {
                             sector.selected
                         )
                     }.toList()
-                var defaultSector : Long? = null
+                var defaultSector: Long? = null
                 binding.filtersBtn.setOnClickListener { view ->
-                    it.sectors.map { sector -> if (sector?.selected == 1L){
-                        defaultSector = sector.id
-                    } }
+                    it.sectors.map { sector ->
+                        if (sector?.selected == 1L) {
+                            defaultSector = sector.id
+                        }
+                    }
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
                         defaultSector,

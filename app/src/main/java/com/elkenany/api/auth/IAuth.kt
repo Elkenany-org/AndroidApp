@@ -14,6 +14,8 @@ interface IAuth {
     @FormUrlEncoded
     @POST("login")
     fun loginWithEmailAndPassword(
+        @Header("android") isAndoird: Boolean,
+        @Field("device_token") fcmToken: String?,
         @Field("email") email: String,
         @Field("password") password: String,
     ): Call<GenericEntity<AuthData?>>

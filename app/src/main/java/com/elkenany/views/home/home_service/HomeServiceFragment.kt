@@ -159,6 +159,11 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
+                if (it.serviceRecommendation.isNullOrEmpty()) {
+                    binding.recommendationTextView.visibility = View.GONE
+                } else {
+                    binding.recommendationTextView.visibility = View.VISIBLE
+                }
                 if (!it.banners.isNullOrEmpty()) {
                     enableImageSlider(
                         it.banners,

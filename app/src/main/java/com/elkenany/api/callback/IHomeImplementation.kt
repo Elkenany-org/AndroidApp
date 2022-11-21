@@ -28,9 +28,9 @@ class IHomeImplementation {
         }
     }
 
-    suspend fun getHomeServiceData(): HomeServiceData? {
+    suspend fun getHomeServiceData(apiToken: String?): HomeServiceData? {
         return try {
-            val response = IHomeHandler.singleton.getServicesData(true).await()
+            val response = IHomeHandler.singleton.getServicesData(true,apiToken).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getHomeServiceData", e.message.toString())
