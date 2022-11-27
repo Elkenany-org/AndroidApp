@@ -26,16 +26,24 @@
 			android:layout_centerInParent="true"
 			/>
 		
-		<androidx.appcompat.widget.AppCompatButton
+		<TextView
 			android:id="@+id/skip_btn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:background="@color/transparent_color"
+			android:layout_marginStart="5dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginEnd="5dp"
+			android:layout_marginBottom="5dp"
+			android:background="@drawable/skip_ad_btn_shape"
 			android:clickable="@{clickable}"
+			android:gravity="center"
+			android:paddingHorizontal="20sp"
+			android:paddingVertical="5dp"
 			android:text="@string/skip_title"
 			android:textAllCaps="false"
-			android:textColor="@color/white"
-			tools:ignore="SpeakableTextPresentCheck,TextContrastCheck"
+			android:textColor="@color/black"
+			android:textSize="13sp"
+			tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,TouchTargetSizeCheck"
 			/>
 	</RelativeLayout>
 </layout>

@@ -183,6 +183,7 @@
         <entry key="..\:/projects/app/src/main/res/drawable/search_icon_selector.xml" value="0.2905" />
         <entry key="..\:/projects/app/src/main/res/drawable/secondary_btn_shape.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/secondry_btn_shape_orange.xml" value="0.2885" />
+        <entry key="..\:/projects/app/src/main/res/drawable/skip_ad_btn_shape.xml" value="0.264" />
         <entry key="..\:/projects/app/src/main/res/drawable/stroke_calender.xml" value="0.199" />
         <entry key="..\:/projects/app/src/main/res/layout/activity_main.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/applicants_card_item.xml" value="0.2911500641299701" />
@@ -224,7 +225,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_notification.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_pop_up_ad.xml" value="0.29200513039760584" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_pop_up_ad.xml" value="1.191111111111111" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_profile.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_register.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_search.xml" value="0.26507054296707994" />
