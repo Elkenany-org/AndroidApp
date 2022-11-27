@@ -1,10 +1,9 @@
 package com.elkenany.api.callback
 
 import android.util.Log
-import com.elkenany.entities.home_data.ContactUsData
-import com.elkenany.entities.home_data.HomeSectorsData
-import com.elkenany.entities.home_data.HomeServiceData
-import com.elkenany.entities.home_data.NotificationsData
+import com.elkenany.api.retrofit_configs.onHandelingResponseStates
+import com.elkenany.entities.GenericEntity
+import com.elkenany.entities.home_data.*
 import retrofit2.HttpException
 import retrofit2.await
 import java.net.SocketTimeoutException
@@ -30,7 +29,7 @@ class IHomeImplementation {
 
     suspend fun getHomeServiceData(apiToken: String?): HomeServiceData? {
         return try {
-            val response = IHomeHandler.singleton.getServicesData(true,apiToken).await()
+            val response = IHomeHandler.singleton.getServicesData(true, apiToken).await()
             response.data
         } catch (e: HttpException) {
             Log.i("getHomeServiceData", e.message.toString())
@@ -76,13 +75,9 @@ class IHomeImplementation {
         }
     }
 
-//    suspend fun getAboutUsData(): AboutUsData? {
-//        return try {
-//            val response = IHomeHandler.singleton.getAboutUsData().await()
-//            response.data
-//        } catch (e: Throwable) {
-//            Log.i("getAboutUsData", e.message.toString())
-//            null
-//        }
-//    }
+    suspend fun getPopUpAdData(): GenericEntity<PopUpData?> {
+        return onHandelingResponseStates("getPopUpAdData"){
+            IHomeHandler.singleton.getPopUpData()
+        }
+    }
 }

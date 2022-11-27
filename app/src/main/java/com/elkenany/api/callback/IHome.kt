@@ -32,6 +32,9 @@ interface IHome {
 
     @GET("contuct-us-office")
     fun getContactUsData(): Call<GenericEntity<ContactUsData?>>
+
+    @GET("poup-up")
+    fun getPopUpData(): Call<GenericEntity<PopUpData?>>
 }
 
 object IHomeHandler {

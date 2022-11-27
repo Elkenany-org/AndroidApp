@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.elkenany.api.auth.AuthImplementation
 import com.elkenany.api.callback.IHomeImplementation
 import com.elkenany.entities.home_data.HomeServiceData
+import com.elkenany.entities.home_data.PopUpData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -15,11 +16,13 @@ class HomeServiceViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _homeServiceData = MutableLiveData<HomeServiceData>()
+    private val _popUpData = MutableLiveData<PopUpData?>()
     private val _loading = MutableLiveData(false)
     private val api = IHomeImplementation()
 
 
     val homeServiceData: LiveData<HomeServiceData> get() = _homeServiceData
+    val popUpData: LiveData<PopUpData?> get() = _popUpData
     val loading: LiveData<Boolean> get() = _loading
 
 
@@ -36,6 +39,7 @@ class HomeServiceViewModel : ViewModel() {
                 "Bearer ${AuthImplementation.userApiToken}"
             }
             _homeServiceData.value = api.getHomeServiceData(apiToken)
+            _popUpData.value = api.getPopUpAdData().data
             _loading.value = false
         }
     }

@@ -11,6 +11,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel() as T
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> RegisterViewModel() as T
+            modelClass.isAssignableFrom(PopUpAdViewModel::class.java) -> PopUpAdViewModel() as T
             modelClass.isAssignableFrom(HomeSectorViewModel::class.java) -> HomeSectorViewModel() as T
             modelClass.isAssignableFrom(HomeServiceViewModel::class.java) -> HomeServiceViewModel() as T
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel() as T

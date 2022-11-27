@@ -49,6 +49,10 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_popUpAdFragment"
+            app:destination="@id/popUpAdFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -60,6 +64,21 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/forgotPasswordFragment"
             app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/popUpAdFragment"
+        android:name="com.elkenany.views.popup.PopUpAdFragment"
+        android:label="PopUpAdFragment"
+        tools:layout="@layout/fragment_pop_up_ad"
+        >
+        <action
+            android:id="@+id/action_popUpAdFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            />
+        <argument
+            android:name="link"
+            app:argType="string"
             />
     </fragment>
 </navigation>

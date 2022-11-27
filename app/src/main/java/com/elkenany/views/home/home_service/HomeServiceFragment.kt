@@ -13,12 +13,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
+import com.elkenany.views.home.HomeFragmentDirections
 import com.elkenany.views.home.home_service.adapter.*
 
 
@@ -31,7 +33,7 @@ class HomeServiceFragment : Fragment() {
     private lateinit var recommendationAdapter: ServiceRecommendationAdapter
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
-
+    private var rndm = (0..20).random()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -150,7 +152,20 @@ class HomeServiceFragment : Fragment() {
 
             }
         }
-
+        viewModel.popUpData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                if (it.popup != null && !it.popup.link.isNullOrEmpty()) {
+                    Log.i("rndm", rndm.toString())
+                    if (rndm == 3) {
+                        requireParentFragment().requireParentFragment().findNavController()
+                            .navigate(HomeFragmentDirections.actionHomeFragmentToPopUpAdFragment(
+                                it.popup.link
+                            ))
+                        rndm = 0
+                    }
+                }
+            }
+        }
         //submitting all the recyclerAdapter lists to it value
         viewModel.homeServiceData.observe(viewLifecycleOwner) {
             if (it != null) {
