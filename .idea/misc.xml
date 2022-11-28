@@ -173,7 +173,8 @@
         <entry key="..\:/projects/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_book_mark_fill.xml" value="0.2885" />
         <entry key="..\:/projects/app/src/main/res/drawable/ic_group_3362.xml" value="0.2115" />
-        <entry key="..\:/projects/app/src/main/res/drawable/ic_more_logo.xml" value="0.2115" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_more_logo.xml" value="0.1515" />
+        <entry key="..\:/projects/app/src/main/res/drawable/ic_more_stroke.xml" value="0.1515" />
         <entry key="..\:/projects/app/src/main/res/drawable/menu_icon_selector.xml" value="0.291" />
         <entry key="..\:/projects/app/src/main/res/drawable/notification_icon.xml" value="0.291" />
         <entry key="..\:/projects/app/src/main/res/drawable/notification_icon_selector.xml" value="0.291" />
@@ -225,7 +226,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_news_details.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_notification.xml" value="0.26507054296707994" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_pop_up_ad.xml" value="1.191111111111111" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_pop_up_ad.xml" value="0.2085603112840467" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_profile.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_register.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_search.xml" value="0.26507054296707994" />
