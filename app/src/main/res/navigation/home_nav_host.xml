@@ -103,6 +103,26 @@
 			android:id="@+id/action_homeServiceFragment_to_tendersFragment"
 			app:destination="@id/tendersFragment"
 			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_guideCompaniesFragment"
+			app:destination="@id/guideCompaniesFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_localStockDetailsFragment"
+			app:destination="@id/localStockDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_newsDetailsFragment"
+			app:destination="@id/newsDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_homeServiceFragment_to_adDetailsFragment"
+			app:destination="@id/adDetailsFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/profileFragment"
@@ -177,6 +197,10 @@
 			android:id="@+id/action_localStockFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_localStockFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
+			/>
 	
 	</fragment>
 	<fragment
@@ -203,6 +227,10 @@
 			android:id="@+id/action_newsFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_newsFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/storeFragment"
@@ -218,6 +246,10 @@
 		<action
 			android:id="@+id/action_storeFragment_to_createAdFragment"
 			app:destination="@id/createAdFragment"
+			/>
+		<action
+			android:id="@+id/action_storeFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
 			/>
 	</fragment>
 	<fragment
@@ -240,6 +272,10 @@
 		<action
 			android:id="@+id/action_guideFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
+			/>
+		<action
+			android:id="@+id/action_guideFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
 			/>
 	</fragment>
 	<fragment
@@ -518,6 +554,10 @@
 			android:id="@+id/action_showsFragment_to_showsDetailsFragment"
 			app:destination="@id/showsDetailsFragment"
 			/>
+		<action
+			android:id="@+id/action_showsFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/guideMagazineFragment"
@@ -528,6 +568,10 @@
 		<action
 			android:id="@+id/action_guideMagazineFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			/>
+		<action
+			android:id="@+id/action_guideMagazineFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
 			/>
 	</fragment>
 	<fragment
@@ -753,6 +797,10 @@
 			android:id="@+id/action_tendersFragment_to_tendersSubSectionsFragment"
 			app:destination="@id/tendersSubSectionsFragment"
 			/>
+		<action
+			android:id="@+id/action_tendersFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
+			/>
 	</fragment>
 	<fragment
 		android:id="@+id/tendersSubSectionsFragment"
@@ -766,6 +814,10 @@
 		<argument
 			android:name="sectionId"
 			app:argType="long"
+			/>
+		<action
+			android:id="@+id/action_tendersSubSectionsFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
 			/>
 	</fragment>
 	<fragment

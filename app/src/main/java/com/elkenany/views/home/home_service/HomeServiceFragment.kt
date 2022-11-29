@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
+import com.elkenany.entities.home_data.ServiceRecomandtion
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
@@ -34,6 +35,7 @@ class HomeServiceFragment : Fragment() {
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
     private var rndm = (0..20).random()
+    private var sectionId = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -103,22 +105,7 @@ class HomeServiceFragment : Fragment() {
                 )
         })
         recommendationAdapter = ServiceRecommendationAdapter(ClickListener {
-            when (it.type) {
-                "show" -> requireView().findNavController()
-                    .navigate(
-                        HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
-                            it.id!!,
-                            it.name!!
-                        )
-                    )
-
-                "magazines" -> requireView().findNavController()
-                    .navigate(
-                        HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
-                            it.id!!
-                        )
-                    )
-            }
+            onSectorRecommendationNavigation(it)
         })
         guideAndMagazineAdapter = ServiceGuideAndMagazineAdapter(ClickListener {
             requireView().findNavController()
@@ -174,6 +161,7 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
+//                sectionId = it.type!!.toInt()
                 if (it.serviceRecommendation.isNullOrEmpty()) {
                     binding.recommendationTextView.visibility = View.GONE
                 } else {
@@ -195,8 +183,49 @@ class HomeServiceFragment : Fragment() {
                 Log.i("list", "Have no data to load + $it")
             }
         }
-
         return binding.root
+    }
+
+    private fun onSectorRecommendationNavigation(recommendation: ServiceRecomandtion) {
+        when (recommendation.type) {
+            "guide" -> requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideCompaniesFragment(
+                    sectionId.toLong(),
+                    recommendation.id!!,
+                    recommendation.name,
+                    ""))
+            "local" -> requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToLocalStockDetailsFragment(
+                    recommendation.id!!.toLong(),
+                    recommendation.name,
+                    recommendation.type))
+            "fodder" -> requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToLocalStockDetailsFragment(
+                    recommendation.id!!.toLong(),
+                    recommendation.name,
+                    recommendation.type))
+            "news" -> requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToNewsDetailsFragment(
+                    recommendation.id!!.toInt()))
+            "store" -> requireView().findNavController()
+                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToAdDetailsFragment(
+                    recommendation.id!!.toLong()))
+            "show" -> requireView().findNavController()
+                .navigate(
+                    HomeServiceFragmentDirections.actionHomeServiceFragmentToShowsDetailsFragment(
+                        recommendation.id!!,
+                        recommendation.name!!
+                    )
+                )
+            "magazines" -> requireView().findNavController()
+                .navigate(
+                    HomeServiceFragmentDirections.actionHomeServiceFragmentToGuideMagazineDetailsFragment(
+                        recommendation.id!!
+                    )
+                )
+            else -> Toast.makeText(requireContext(), "لم يتم تفعيل الخدمة بعد", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun navigateToBroswerIntent(url: String?) {
