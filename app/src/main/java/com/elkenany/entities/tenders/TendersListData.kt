@@ -1,13 +1,12 @@
 package com.elkenany.entities.tenders
 
-import com.elkenany.entities.stock_data.GeneralBannerData
-import com.elkenany.entities.stock_data.GeneralLogoData
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class TendersListData(
     val sections: List<TendersSectionsDaum?>,
-    val banners: List<GeneralBannerData?>,
-    val logos: List<GeneralLogoData?>,
+    val banners: List<LogosAndBannersData?>,
+    val logos: List<LogosAndBannersData?>,
     val data: List<TendersDaum?>,
     @Json(name = "current_page")
     val currentPage: Long?,

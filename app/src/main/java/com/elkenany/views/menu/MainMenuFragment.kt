@@ -29,7 +29,7 @@ class MainMenuFragment : Fragment() {
     private lateinit var viewModel: MainMenuViewModel
     private lateinit var parentNavController: NavController
     private val shareLink =
-        "\"تطبيق الكناني أول تطبيق خدمي في المجال البيطري والزراعي\"https://play.google.com/store/apps/details?id=com.elkenany"
+        "n\"أول وأكبر منصة متعددة الخدمات في مصر والشرق الأوسط\"https://play.google.com/store/apps/details?id=com.elkenany"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,10 +60,13 @@ class MainMenuFragment : Fragment() {
 //        binding.storeBtn.setOnClickListener {
 //            requireView().findNavController().navigate(R.id.storeFragment)
 //        }
-//        binding.newsBtn.setOnClickListener {
-//            requireView().findNavController().navigate(R.id.newsFragment)
-//        }
+        binding.aboutBtn.setOnClickListener {
+            requireView().findNavController().navigate(R.id.newsFragment)
+        }
 
+        binding.partnersBtn.setOnClickListener {
+            requireView().findNavController().navigate(R.id.sponsersFragment)
+        }
         binding.contactUsBtn.setOnClickListener {
             requireView().findNavController().navigate(R.id.aboutFragment)
         }

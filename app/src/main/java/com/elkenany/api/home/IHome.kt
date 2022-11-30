@@ -1,4 +1,4 @@
-package com.elkenany.api.callback
+package com.elkenany.api.home
 
 import com.elkenany.api.retrofit_configs.retrofit
 import com.elkenany.entities.GenericEntity
@@ -35,6 +35,10 @@ interface IHome {
 
     @GET("poup-up")
     fun getPopUpData(): Call<GenericEntity<PopUpData?>>
+
+    @GET("sponsers")
+    fun getAllSponsersData(): Call<GenericEntity<SponsersListData?>>
+
 }
 
 object IHomeHandler {

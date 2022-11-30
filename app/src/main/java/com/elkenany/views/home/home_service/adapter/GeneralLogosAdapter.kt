@@ -6,50 +6,56 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
-import com.elkenany.databinding.SmallRecyclerItemBinding
-import com.elkenany.entities.home_data.ServiceLogo
+import com.elkenany.databinding.LogoCardViewItemBinding
+import com.elkenany.entities.common.LogosAndBannersData
 
-class ServicePartnerAdapter (private val partnerClickListener: ClickListener<ServiceLogo>) :
-    ListAdapter<ServiceLogo, ServicePartnerViewHolder>(
-        ServicePartnerDiffUtil()
+class GeneralLogosAdapter(private val clickListener: ClickListener<LogosAndBannersData>) :
+    ListAdapter<LogosAndBannersData, ServicePartnerViewHolder>(
+        GeneralLogosDiffUtil()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicePartnerViewHolder {
         return ServicePartnerViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ServicePartnerViewHolder, position: Int) {
-        holder.bind(getItem(position)!!, partnerClickListener)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
 }
 
-class ServicePartnerViewHolder private constructor(private val binding: SmallRecyclerItemBinding) :
+class ServicePartnerViewHolder private constructor(private val binding: LogoCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(logo: ServiceLogo, partnerClickListener: ClickListener<ServiceLogo>) {
+    fun bind(logo: LogosAndBannersData, clickListener: ClickListener<LogosAndBannersData>) {
         binding.data = logo
         binding.name = ""
         binding.image = logo.image
-        binding.clickListener = partnerClickListener
+        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
 
     companion object {
         fun from(parent: ViewGroup): ServicePartnerViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = SmallRecyclerItemBinding.inflate(layoutInflater, parent, false)
+            val binding = LogoCardViewItemBinding.inflate(layoutInflater, parent, false)
             return ServicePartnerViewHolder(binding)
         }
     }
 }
 
 
-class ServicePartnerDiffUtil : DiffUtil.ItemCallback<ServiceLogo>() {
-    override fun areItemsTheSame(oldItem: ServiceLogo, newItem: ServiceLogo): Boolean {
+class GeneralLogosDiffUtil : DiffUtil.ItemCallback<LogosAndBannersData>() {
+    override fun areItemsTheSame(
+        oldItem: LogosAndBannersData,
+        newItem: LogosAndBannersData,
+    ): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: ServiceLogo, newItem: ServiceLogo): Boolean {
+    override fun areContentsTheSame(
+        oldItem: LogosAndBannersData,
+        newItem: LogosAndBannersData,
+    ): Boolean {
         return oldItem == newItem
     }
 }

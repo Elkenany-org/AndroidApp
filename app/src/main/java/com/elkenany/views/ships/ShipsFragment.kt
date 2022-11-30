@@ -18,7 +18,7 @@ import com.elkenany.R
 import com.elkenany.databinding.FragmentShipsBinding
 import com.elkenany.viewmodels.ShipsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 import com.elkenany.views.ships.adapter.ShipsAdapter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,7 +28,7 @@ class ShipsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ShipsViewModel
     private lateinit var shipsAdapter: ShipsAdapter
-    private lateinit var logoAdapter: LocalStockLogosAdapter
+    private lateinit var logoAdapter: GeneralLogosAdapter
     private val myCalendar: Calendar = Calendar.getInstance()
     private var date: String? = null
 
@@ -48,7 +48,15 @@ class ShipsFragment : Fragment() {
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ShipsViewModel::class.java]
         viewModel.getAllSearchData(date)
-        logoAdapter = LocalStockLogosAdapter(ClickListener { })
+        logoAdapter = GeneralLogosAdapter(ClickListener {
+//            when (it.type) {
+//                "internal" -> requireView().findNavController()
+//                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToCompanyFragment(
+//                        it.companyId!!.toLong(),
+//                        it.companyName!!))
+//                else -> GlobalUiFunctions.navigateToBroswerIntent(it.link, requireActivity())
+//            }
+        })
         binding.logosRecyclerView.adapter = logoAdapter
         shipsAdapter = ShipsAdapter(ClickListener { })
         binding.shipsDataRecyclerView.adapter = shipsAdapter

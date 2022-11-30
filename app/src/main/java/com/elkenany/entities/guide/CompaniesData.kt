@@ -1,13 +1,12 @@
 package com.elkenany.entities.guide
 
-import com.elkenany.entities.stock_data.GeneralBannerData
-import com.elkenany.entities.stock_data.GeneralLogoData
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class CompaniesData(
     val sectors: List<Sector?>,
-    val banners: List<GeneralBannerData?>,
-    val logos: List<GeneralLogoData?>,
+    val banners: List<LogosAndBannersData?>,
+    val logos: List<LogosAndBannersData?>,
     val compsort: List<CompaniesDaum?>,
     val data: List<CompaniesDaum?>,
     @Json(name = "current_page")
@@ -36,5 +35,5 @@ data class CompaniesDaum(
     val image: String?,
     val desc: String?,
     val address: String?,
-    val sponser : Int?
+    val sponser: Int?,
 )

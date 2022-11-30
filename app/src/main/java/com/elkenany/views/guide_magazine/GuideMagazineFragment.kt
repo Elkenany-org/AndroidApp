@@ -16,11 +16,11 @@ import com.elkenany.databinding.FragmentGuideMagazineBinding
 import com.elkenany.entities.guide.Sector
 import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
-import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.GuideMagazineViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide_magazine.adapter.GuideMagazineAdapter
-import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import com.elkenany.views.home.home_service.HomeServiceFragmentDirections
+import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 
 
@@ -29,7 +29,7 @@ class GuideMagazineFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: GuideMagazineViewModel
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
-    private lateinit var logosAdapter: LocalStockLogosAdapter
+    private lateinit var logosAdapter: GeneralLogosAdapter
     private lateinit var magazineAdapter: GuideMagazineAdapter
     private var sectorType: String? = null
     private var sort: Long? = 2
@@ -57,8 +57,14 @@ class GuideMagazineFragment : Fragment() {
         binding.searchBtn.setOnClickListener {
             viewModel.openCloseSearchBar()
         }
-        logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link, requireActivity())
+        logosAdapter = GeneralLogosAdapter(ClickListener {
+            when (it.type) {
+                "internal" -> requireView().findNavController()
+                    .navigate(GuideMagazineFragmentDirections.actionGuideMagazineFragmentToCompanyFragment(
+                        it.companyId!!.toLong(),
+                        it.companyName!!))
+                else -> GlobalUiFunctions.navigateToBroswerIntent(it.link, requireActivity())
+            }
         })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter
@@ -102,7 +108,7 @@ class GuideMagazineFragment : Fragment() {
                     magazineAdapter.submitList(it.data)
                     magazineListRecyclerView.smoothScrollToPosition(0)
                     enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
-                    binding.filtersBtn.setOnClickListener { view ->
+                    binding.filtersBtn.setOnClickListener { _ ->
                         val sectosList =
                             it.sectors.map { sector ->
                                 Sector(
@@ -113,7 +119,7 @@ class GuideMagazineFragment : Fragment() {
                                 )
                             }.toList()
                         var defaultSector: Long? = null
-                        binding.filtersBtn.setOnClickListener { view ->
+                        binding.filtersBtn.setOnClickListener { _ ->
                             it.sectors.map { sector ->
                                 if (sector?.selected == 1L) {
                                     defaultSector = sector.id

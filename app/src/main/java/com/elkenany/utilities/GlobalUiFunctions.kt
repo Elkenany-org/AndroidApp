@@ -22,11 +22,11 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.GeneralFilterLayoutBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.entities.common.LogosAndBannersData
 import com.elkenany.entities.guide.City
 import com.elkenany.entities.guide.Country
 import com.elkenany.entities.guide.Sector
 import com.elkenany.entities.guide.Sort
-import com.elkenany.entities.stock_data.GeneralBannerData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class GlobalUiFunctions {
@@ -48,7 +48,7 @@ class GlobalUiFunctions {
 
         // enable image slider to work on all screens
         fun enableImageSlider(
-            list: List<GeneralBannerData?>, imageSlider: ImageSlider, activity: Activity,
+            list: List<LogosAndBannersData?>, imageSlider: ImageSlider, activity: Activity,
         ) {
             if (list.isEmpty()) {
                 imageSlider.visibility = View.GONE

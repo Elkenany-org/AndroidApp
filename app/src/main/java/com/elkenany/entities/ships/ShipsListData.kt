@@ -1,12 +1,12 @@
 package com.elkenany.entities.ships
 
-import com.elkenany.entities.stock_data.GeneralBannerData
-import com.elkenany.entities.stock_data.GeneralLogoData
+
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class ShipsListData(
-    val banners: List<GeneralBannerData?>,
-    val logos: List<GeneralLogoData?>,
+    val banners: List<LogosAndBannersData?>,
+    val logos: List<LogosAndBannersData?>,
     val ships: List<Ship?>,
 )
 

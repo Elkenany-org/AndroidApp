@@ -1,13 +1,14 @@
 package com.elkenany.entities.stock_data
 
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class LocalStockDetailsData(
     val message: String?,
     val status: String?,
     val columns: ColumnsData?,
-    val banners: List<GeneralBannerData?>,
-    val logos: List<GeneralLogoData?>,
+    val banners: List<LogosAndBannersData?>,
+    val logos: List<LogosAndBannersData?>,
     val members: List<ColumnsData?>,
 )
 

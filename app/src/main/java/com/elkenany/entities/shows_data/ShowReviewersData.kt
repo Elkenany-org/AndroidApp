@@ -1,12 +1,12 @@
 package com.elkenany.entities.shows_data
 
-import com.elkenany.entities.stock_data.GeneralBannerData
-import com.elkenany.entities.stock_data.GeneralLogoData
+
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class ShowReviewersData(
-    val banners: List<GeneralBannerData?>,
-    val logos: List<GeneralLogoData?>,
+    val banners: List<LogosAndBannersData?>,
+    val logos: List<LogosAndBannersData?>,
     val review: List<Review?>,
     val rate: Double?,
 )

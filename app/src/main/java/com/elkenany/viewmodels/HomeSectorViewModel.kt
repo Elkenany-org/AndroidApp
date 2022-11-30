@@ -3,7 +3,7 @@ package com.elkenany.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.elkenany.api.callback.IHomeImplementation
+import com.elkenany.api.home.IHomeImplementation
 import com.elkenany.entities.home_data.HomeSectorsData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -19,7 +19,7 @@ import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.viewmodels.ShowsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
-import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 import com.elkenany.views.shows.adapter.ShowsAdapter
 
@@ -27,7 +27,7 @@ class ShowsFragment : Fragment() {
     private lateinit var binding: FragmentShowsBinding
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ShowsViewModel
-    private lateinit var logosAdapter: LocalStockLogosAdapter
+    private lateinit var logosAdapter: GeneralLogosAdapter
     private lateinit var sectorsAdapter: LocalStockSectorsAdapter
     private lateinit var showsAdapter: ShowsAdapter
 
@@ -53,7 +53,15 @@ class ShowsFragment : Fragment() {
         binding.searchBtn.setOnClickListener {
             viewModel.openCloseSearchBar()
         }
-        logosAdapter = LocalStockLogosAdapter(ClickListener { })
+        logosAdapter = GeneralLogosAdapter(ClickListener {
+            when (it.type) {
+                "internal" -> requireView().findNavController()
+                    .navigate(ShowsFragmentDirections.actionShowsFragmentToCompanyFragment(
+                        it.companyId!!.toLong(),
+                        it.companyName!!))
+                else -> GlobalUiFunctions.navigateToBroswerIntent(it.link, requireActivity())
+            }
+        })
         binding.logosRecyclerView.adapter = logosAdapter
 
         sectorsAdapter = LocalStockSectorsAdapter(ClickListener {
@@ -116,11 +124,13 @@ class ShowsFragment : Fragment() {
                             sector.selected
                         )
                     }.toList()
-                var defaultSector : Long? = null
-                binding.filtersBtn.setOnClickListener { view ->
-                    it.sectors.map { sector -> if (sector?.selected == 1L){
-                        defaultSector = sector.id
-                    } }
+                var defaultSector: Long? = null
+                binding.filtersBtn.setOnClickListener { _ ->
+                    it.sectors.map { sector ->
+                        if (sector?.selected == 1L) {
+                            defaultSector = sector.id
+                        }
+                    }
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
                         defaultSector,

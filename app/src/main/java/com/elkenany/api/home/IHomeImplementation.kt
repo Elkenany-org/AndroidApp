@@ -1,4 +1,4 @@
-package com.elkenany.api.callback
+package com.elkenany.api.home
 
 import android.util.Log
 import com.elkenany.api.retrofit_configs.onHandelingResponseStates
@@ -76,8 +76,14 @@ class IHomeImplementation {
     }
 
     suspend fun getPopUpAdData(): GenericEntity<PopUpData?> {
-        return onHandelingResponseStates("getPopUpAdData"){
+        return onHandelingResponseStates("getPopUpAdData") {
             IHomeHandler.singleton.getPopUpData()
+        }
+    }
+
+    suspend fun getAllSponsersData(): GenericEntity<SponsersListData?> {
+        return onHandelingResponseStates("getAllSponsersData") {
+            IHomeHandler.singleton.getAllSponsersData()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.elkenany.views.local_stock.adapter
+package com.elkenany.views.home.home_service.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.elkenany.ClickListener
 import com.elkenany.databinding.BannersCardViewItemBinding
-import com.elkenany.entities.stock_data.GeneralBannerData
+import com.elkenany.entities.common.LogosAndBannersData
 
-class GeneralBannersAdapter(private val sectorClickListener: ClickListener<GeneralBannerData>) :
-    ListAdapter<GeneralBannerData, LocalStockBannerViewHolder>(
+class GeneralBannersAdapter(private val clickListener: ClickListener<LogosAndBannersData>) :
+    ListAdapter<LogosAndBannersData, LocalStockBannerViewHolder>(
         LocalStockBannerAdapterDiffUtil()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocalStockBannerViewHolder {
@@ -21,7 +21,7 @@ class GeneralBannersAdapter(private val sectorClickListener: ClickListener<Gener
 //        holder.itemView
 //            .startAnimation(AnimationUtils.loadAnimation(holder.itemView.context,
 //                com.facebook.login.R.anim.abc_fade_in))
-        holder.bind(getItem(position)!!, sectorClickListener)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
 }
@@ -29,10 +29,10 @@ class GeneralBannersAdapter(private val sectorClickListener: ClickListener<Gener
 class LocalStockBannerViewHolder private constructor(private val binding: BannersCardViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(banner: GeneralBannerData, sectorClickListener: ClickListener<GeneralBannerData>) {
+    fun bind(banner: LogosAndBannersData, clickListener: ClickListener<LogosAndBannersData>) {
         binding.data = banner
         binding.url = banner.image
-        binding.clickListener = sectorClickListener
+        binding.clickListener = clickListener
         binding.executePendingBindings()
     }
 
@@ -46,12 +46,18 @@ class LocalStockBannerViewHolder private constructor(private val binding: Banner
 }
 
 
-class LocalStockBannerAdapterDiffUtil : DiffUtil.ItemCallback<GeneralBannerData>() {
-    override fun areItemsTheSame(oldItem: GeneralBannerData, newItem: GeneralBannerData): Boolean {
+class LocalStockBannerAdapterDiffUtil : DiffUtil.ItemCallback<LogosAndBannersData>() {
+    override fun areItemsTheSame(
+        oldItem: LogosAndBannersData,
+        newItem: LogosAndBannersData,
+    ): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: GeneralBannerData, newItem: GeneralBannerData): Boolean {
+    override fun areContentsTheSame(
+        oldItem: LogosAndBannersData,
+        newItem: LogosAndBannersData,
+    ): Boolean {
         return oldItem == newItem
     }
 }

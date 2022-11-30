@@ -23,8 +23,8 @@ import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.LocalStockDetailsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
+import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockDetailsAdapter
-import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,7 +34,7 @@ class LocalStockDetailsFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: LocalStockDetailsViewModel
     private val args: LocalStockDetailsFragmentArgs by navArgs()
-    private lateinit var logosAdapter: LocalStockLogosAdapter
+    private lateinit var logosAdapter: GeneralLogosAdapter
     private lateinit var localStockDetailsAdapter: LocalStockDetailsAdapter
     private var companyId: String? = null
     private var feedId: String? = null
@@ -105,8 +105,14 @@ class LocalStockDetailsFragment : Fragment() {
                     )
                 )
         }
-        logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link, requireActivity())
+        logosAdapter = GeneralLogosAdapter(ClickListener {
+            when (it.type) {
+                "internal" -> requireView().findNavController()
+                    .navigate(LocalStockDetailsFragmentDirections.actionLocalStockDetailsFragmentToCompanyFragment(
+                        it.companyId!!.toLong(),
+                        it.companyName!!))
+                else -> navigateToBroswerIntent(it.link, requireActivity())
+            }
         })
         binding.logosRecyclerView.apply {
             adapter = logosAdapter

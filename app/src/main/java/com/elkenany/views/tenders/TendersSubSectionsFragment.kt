@@ -154,7 +154,7 @@ class TendersSubSectionsFragment : Fragment() {
                         )
                     }.toList()
                 var defaultSector: Long? = null
-                binding.filtersBtn.setOnClickListener { view ->
+                binding.filtersBtn.setOnClickListener { _ ->
                     tendersData.sections.map { sector ->
                         if (sector?.selected == 1L) {
                             defaultSector = sector.id

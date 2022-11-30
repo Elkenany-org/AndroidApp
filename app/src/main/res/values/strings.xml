@@ -30,7 +30,7 @@
 	<string name="recommendation_title">مقترح لك</string>
 	<string name="partner_title">شركاء النجاح</string>
 	<string name="stock_title">البورصات</string>
-	<string name="guide_title">دليل الكناني</string>
+	<string name="guide_title">دليل الشركات</string>
 	<string name="news_title">الأخبار</string>
 	<string name="store_title">سوق الكناني</string>
 	<string name="shows_title">المعارض</string>
@@ -69,11 +69,7 @@
 	<string name="change_password_title">تغيير كلمة المرور</string>
 	<string name="password_recovery_guide_message">برجاء ادخال الإيميل الخاص بك حتي نتمكن من أرسال رمز التأكيد اليكم</string>
 	<string name="confirm_title">تأكيد</string>
-	<string name="about_company_data">"في 2018 قامت مجموعة الكناني بإطلاق أول وأكبر تطبيق وموقع\n"
-"خدمي في المجال البيطري والزراعي لخدمة جميع العاملين في\n"
-"القطاع ( الداجني والحيواني والزراعي والسمكي والخيول العربية الأصيلة )\n"
-"في مصر والوطن العربي"
-</string>
+	<string name="about_company_data">"في 2018 قامت مجموعة الكناني بإطلاق أول وأكبر تطبيق وموقع\n""خدمي في المجال البيطري والزراعي لخدمة جميع العاملين في\n""القطاع ( الداجني والحيواني والزراعي والسمكي والخيول العربية الأصيلة )\n""في مصر والوطن العربي"</string>
 	<string name="enter_verification_code_message">برجاء ادخال الكود المرسل اليك علي البريد الالكتروني</string>
 	<string name="enter_code_title">ادخل الكود</string>
 	<string name="change_passcode_title">تغيير كلمة المرور</string>

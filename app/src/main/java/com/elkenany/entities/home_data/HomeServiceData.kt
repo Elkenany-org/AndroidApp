@@ -1,15 +1,15 @@
 package com.elkenany.entities.home_data
 
-import com.elkenany.entities.stock_data.GeneralBannerData
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class HomeServiceData(
     @Json(name = "services")
     val services: List<HomeServiceDaum>?,
     @Json(name = "banners")
-    val banners: List<GeneralBannerData?>?,
+    val banners: List<LogosAndBannersData?>?,
     @Json(name = "logos")
-    val serviceLogos: List<ServiceLogo>?,
+    val serviceLogos: List<LogosAndBannersData>?,
     @Json(name = "type")
     val type: String?,
     @Json(name = "recomandtion")
@@ -25,14 +25,6 @@ data class HomeServiceDaum(
     val name: String?,
     val type: String?,
     val image: String?,
-)
-
-data class ServiceLogo(
-    val id: Long?,
-    val link: String?,
-    val image: String?,
-    @Json(name = "image_url")
-    val imageUrl: String?,
 )
 
 data class ServiceRecomandtion(

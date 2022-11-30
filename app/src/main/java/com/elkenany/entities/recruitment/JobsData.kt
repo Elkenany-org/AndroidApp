@@ -1,12 +1,18 @@
 package com.elkenany.entities.recruitment
 
-import com.elkenany.entities.stock_data.GeneralBannerData
+import com.elkenany.entities.common.LogosAndBannersData
 import com.squareup.moshi.Json
 
 data class JobsData(
-    val banners: List<GeneralBannerData?>,
-    val jobs: List<JobDaum?>,
+    val banners: List<LogosAndBannersData?>,
     val categories: List<Category?>,
+    val jobs: List<JobDaum?>,
+)
+
+data class Category(
+    val id: Long?,
+    val selected: Long?,
+    val name: String?,
 )
 
 data class JobDaum(
@@ -30,11 +36,4 @@ data class JobDaum(
     val createdAt: String?,
     val type: String?,
     val favorite: Long?,
-)
-
-
-data class Category(
-    val id: Long?,
-    val selected: Long?,
-    val name: String?,
 )

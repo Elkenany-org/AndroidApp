@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation
+<navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -832,6 +832,17 @@
 		<action
 			android:id="@+id/action_tenderDetailsFragment_self"
 			app:destination="@id/tenderDetailsFragment"
+			/>
+	</fragment>
+	<fragment
+		android:id="@+id/sponsersFragment"
+		android:name="com.elkenany.views.about.SponsersFragment"
+		android:label="SponsersFragment"
+		tools:layout="@layout/fragment_sponsers"
+		>
+		<action
+			android:id="@+id/action_sponsersFragment_to_companyFragment"
+			app:destination="@id/companyFragment"
 			/>
 	</fragment>
 

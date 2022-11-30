@@ -1,8 +1,6 @@
 package com.elkenany.views.home.home_service
 
 //import android.util.Log
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +17,7 @@ import com.elkenany.R
 import com.elkenany.databinding.FragmentHomeServiceBinding
 import com.elkenany.entities.home_data.ServiceRecomandtion
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.HomeServiceViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.HomeFragmentDirections
@@ -30,7 +29,7 @@ class HomeServiceFragment : Fragment() {
     private lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: HomeServiceViewModel
     private lateinit var homeServiceAdapter: HomeServiceAdapter
-    private lateinit var partnerAdapter: ServicePartnerAdapter
+    private lateinit var partnerAdapter: GeneralLogosAdapter
     private lateinit var recommendationAdapter: ServiceRecommendationAdapter
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
@@ -92,8 +91,14 @@ class HomeServiceFragment : Fragment() {
             }
         })
         binding.serviceRecyclerView.adapter = homeServiceAdapter
-        partnerAdapter = ServicePartnerAdapter(ClickListener {
-            navigateToBroswerIntent(it.link)
+        partnerAdapter = GeneralLogosAdapter(ClickListener {
+            when (it.type) {
+                "internal" -> requireView().findNavController()
+                    .navigate(HomeServiceFragmentDirections.actionHomeServiceFragmentToCompanyFragment(
+                        it.companyId!!.toLong(),
+                        it.companyName!!))
+                else -> navigateToBroswerIntent(it.link, requireActivity())
+            }
         })
         showsAdapter = ServiceShowsAdapter(ClickListener {
             requireView().findNavController()
@@ -226,11 +231,5 @@ class HomeServiceFragment : Fragment() {
             else -> Toast.makeText(requireContext(), "لم يتم تفعيل الخدمة بعد", Toast.LENGTH_SHORT)
                 .show()
         }
-    }
-
-    private fun navigateToBroswerIntent(url: String?) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
     }
 }

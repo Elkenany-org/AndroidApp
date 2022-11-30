@@ -22,7 +22,8 @@ import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerInten
 import com.elkenany.viewmodels.GuideCompaniesViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.CompaniesAdapter
-import com.elkenany.views.local_stock.adapter.LocalStockLogosAdapter
+import com.elkenany.views.home.home_service.HomeServiceFragmentDirections
+import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 
 
 class GuideCompaniesFragment : Fragment() {
@@ -35,7 +36,7 @@ class GuideCompaniesFragment : Fragment() {
     private var country: String? = "الدوله"
     private var city: String? = "المدينه"
     private var guideFilters: GuideFiltersData? = null
-    private lateinit var logosAdapter: LocalStockLogosAdapter
+    private lateinit var logosAdapter: GeneralLogosAdapter
     private lateinit var companiesAdapter: CompaniesAdapter
     private val args: GuideCompaniesFragmentArgs by navArgs()
     override fun onResume() {
@@ -65,8 +66,14 @@ class GuideCompaniesFragment : Fragment() {
         binding.searchBtn.setOnClickListener {
             viewModel.openCloseSearchBar()
         }
-        logosAdapter = LocalStockLogosAdapter(ClickListener {
-            navigateToBroswerIntent(it.link, requireActivity())
+        logosAdapter = GeneralLogosAdapter(ClickListener {
+            when (it.type) {
+                "internal" -> requireView().findNavController()
+                    .navigate(GuideCompaniesFragmentDirections.actionGuideCompaniesFragmentToCompanyFragment(
+                        it.companyId!!.toLong(),
+                        it.companyName!!))
+                else -> navigateToBroswerIntent(it.link, requireActivity())
+            }
         })
         binding.logosRecyclerView.adapter = logosAdapter
         companiesAdapter = CompaniesAdapter(ClickListener {
@@ -108,11 +115,13 @@ class GuideCompaniesFragment : Fragment() {
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 companiesAdapter.submitList(it.compsort + it.data)
-                var defaultSector : Long? = null
-                binding.filtersBtn.setOnClickListener { view ->
-                    it.sectors.map { sector -> if (sector?.selected == 1L){
-                        defaultSector = sector.id
-                    } }
+                var defaultSector: Long? = null
+                binding.filtersBtn.setOnClickListener { _ ->
+                    it.sectors.map { sector ->
+                        if (sector?.selected == 1L) {
+                            defaultSector = sector.id
+                        }
+                    }
                     GlobalUiFunctions.openFilterDialog(requireActivity(),
                         inflater,
                         defaultSector,
