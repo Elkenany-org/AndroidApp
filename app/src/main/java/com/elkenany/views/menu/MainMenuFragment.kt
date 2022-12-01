@@ -61,7 +61,7 @@ class MainMenuFragment : Fragment() {
 //            requireView().findNavController().navigate(R.id.storeFragment)
 //        }
         binding.aboutBtn.setOnClickListener {
-            requireView().findNavController().navigate(R.id.newsFragment)
+            requireView().findNavController().navigate(R.id.aboutUsFragment)
         }
 
         binding.partnersBtn.setOnClickListener {

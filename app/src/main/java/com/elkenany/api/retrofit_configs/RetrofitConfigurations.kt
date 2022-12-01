@@ -36,8 +36,8 @@ private val intercepter by lazy {
 
 val retrofit: Retrofit by lazy {
     Retrofit.Builder()
-//         Make sure to comment this section before publshing any versions
-        .client(intercepter)
+////         Make sure to comment this section before publshing any versions
+//        .client(intercepter)
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())

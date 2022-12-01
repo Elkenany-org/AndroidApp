@@ -845,5 +845,10 @@
 			app:destination="@id/companyFragment"
 			/>
 	</fragment>
+	<fragment
+		android:id="@+id/aboutUsFragment"
+		android:name="com.elkenany.views.about.AboutUsFragment"
+		android:label="AboutUsFragment"
+		/>
 
 </navigation>
