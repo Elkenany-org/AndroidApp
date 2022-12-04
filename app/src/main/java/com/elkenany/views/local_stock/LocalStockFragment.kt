@@ -15,9 +15,11 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.LocalStockViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
@@ -34,6 +36,27 @@ class LocalStockFragment : Fragment() {
     private lateinit var subSection: LocalStockSubSectionsAdapter
     private var sectorType: Long? = null
     private var search: String? = null
+    override fun onResume() {
+        super.onResume()
+        val pref = GlobalLogicFunctions.retrieveSavedSharedPrefrences(
+            requireActivity(),
+            SharedPrefrencesType.local_stock
+        )
+        sectorType = if (pref.isNullOrEmpty() || pref == "null") {
+            null
+        } else {
+            pref.toLong()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(
+            requireActivity(),
+            SharedPrefrencesType.local_stock,
+            sectorType.toString()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,9 +83,12 @@ class LocalStockFragment : Fragment() {
         logosAdapter = GeneralLogosAdapter(ClickListener {
             when (it.type) {
                 "internal" -> requireView().findNavController()
-                    .navigate(LocalStockFragmentDirections.actionLocalStockFragmentToCompanyFragment(
-                        it.companyId!!.toLong(),
-                        it.companyName!!))
+                    .navigate(
+                        LocalStockFragmentDirections.actionLocalStockFragmentToCompanyFragment(
+                            it.companyId!!.toLong(),
+                            it.companyName!!
+                        )
+                    )
                 else -> navigateToBroswerIntent(it.link, requireActivity())
             }
         })
@@ -158,7 +184,8 @@ class LocalStockFragment : Fragment() {
                         null,
                         null,
                         ClickListener { filterData ->
-                            viewModel.getHomeStockData(filterData.section!!.toLong(), search)
+                            sectorType = filterData.section!!.toLong()
+                            viewModel.getHomeStockData(sectorType, search)
                         })
                 }
                 logosAdapter.submitList(it.logos)
