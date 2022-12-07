@@ -59,6 +59,7 @@ class GlobalUiFunctions {
                 }.toList()
                 imageSlider.apply {
                     visibility = View.VISIBLE
+                    this.layoutDirection = View.LAYOUT_DIRECTION_LTR
                     startSliding(3000)
                     setImageList(arrayList, ScaleTypes.FIT)
                     setItemClickListener(object : ItemClickListener {

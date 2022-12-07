@@ -1,198 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-    </data>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="30dp"
-            tools:context=".views.auth.LoginFragment">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/skip_btn"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_gravity="end"
-                android:background="@drawable/primary_btn_shape"
-                android:fontFamily="@font/cairo_bold"
-                android:text="@string/skip_title"
-                android:textColor="@color/green"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/cairo_bold"
-                android:text="@string/sign_in_title"
-                android:textSize="17sp" />
-
-            <ImageView
-                android:id="@+id/app_image"
-                android:layout_width="225dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/login_logo"
-                tools:ignore="ContentDescription" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                app:cardCornerRadius="7dp">
-
-                <EditText
-                    android:id="@+id/email_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/primary_edit_text_shape"
-                    android:fontFamily="@font/cairo_bold"
-                    android:hint="@string/email_phone_title"
-                    android:inputType="textLongMessage"
-                    android:maxLines="1"
-                    android:padding="10dp"
-                    android:textAlignment="textEnd"
-                    android:textDirection="ltr"
-                    android:textSize="14sp"
-                    tools:ignore="Autofill,TextFields,TextContrastCheck" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="10dp"
-                app:cardCornerRadius="7dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-<!--                    <ImageButton-->
-<!--                        android:id="@+id/password_visibilty_btn"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:background="@color/white"-->
-<!--                        android:padding="7dp"-->
-<!--                        android:src="@drawable/ic_baseline_remove_red_eye_24"-->
-<!--                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
-                    <EditText
-                        android:id="@+id/password_input"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@drawable/primary_edit_text_shape"
-                        android:fontFamily="@font/cairo_bold"
-                        android:hint="@string/password_title"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:textAlignment="textEnd"
-                        android:textSize="14sp"
-                        tools:ignore="Autofill,TextFields,TextContrastCheck" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/forgot_password_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/cairo_bold"
-                android:text="@string/did_you_forgot_password_title"
-
-                android:textColor="@color/green" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/sign_in_btn"
-                android:layout_width="195dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/primary_btn_shape"
-                android:fontFamily="@font/cairo_black"
-                android:text="@string/sign_in_title"
-                android:textColor="@color/green"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
-
-            <ProgressBar
-                android:id="@+id/loading_progressbar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:indeterminateDrawable="@drawable/custom_progress_bar"
-                android:visibility="gone" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/cairo_black"
-                android:text="@string/sign_in_with_title"
-                android:textColor="@color/orange"
-                android:textSize="13sp"
-                tools:ignore="TextContrastCheck" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/google_signin_btn"
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/google_btn_shape"
-                    android:foreground="@drawable/g_logo"
-                    android:foregroundGravity="center"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/facebook_signin_btn"
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/facebook_btn_shape"
-                    android:foreground="@drawable/f_logo"
-                    android:foregroundGravity="center"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/create_account_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/cairo_bold"
-                android:text="@string/dont_have_account_title"
-                android:textColor="@color/green"
-                android:textSize="12sp"
-                tools:ignore="SmallSp" />
-        </LinearLayout>
-    </ScrollView>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	>
+	
+	<data>
+	
+	</data>
+	
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="30dp"
+			tools:context=".views.auth.LoginFragment"
+			>
+			
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/skip_btn"
+				android:layout_width="100dp"
+				android:layout_height="40dp"
+				android:layout_gravity="end"
+				android:background="@drawable/primary_btn_shape"
+				android:fontFamily="@font/cairo_bold"
+				android:text="@string/skip_title"
+				android:textColor="@color/green"
+				tools:ignore="TouchTargetSizeCheck"
+				/>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:fontFamily="@font/cairo_bold"
+				android:text="@string/sign_in_title"
+				android:textSize="17sp"
+				/>
+			
+			<ImageView
+				android:id="@+id/app_image"
+				android:layout_width="225dp"
+				android:layout_height="150dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="15dp"
+				android:src="@drawable/login_logo"
+				tools:ignore="ContentDescription"
+				/>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="15dp"
+				android:layout_marginEnd="10dp"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<EditText
+					android:id="@+id/email_input"
+					android:layout_width="match_parent"
+					android:layout_height="50dp"
+					android:background="@drawable/primary_edit_text_shape"
+					android:fontFamily="@font/cairo_bold"
+					android:hint="@string/email_phone_title"
+					android:inputType="textLongMessage"
+					android:maxLines="1"
+					android:padding="10dp"
+					android:textAlignment="textEnd"
+					android:textDirection="ltr"
+					android:textSize="14sp"
+					tools:ignore="Autofill,TextFields,TextContrastCheck"
+					/>
+			</androidx.cardview.widget.CardView>
+			
+			<androidx.cardview.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="22dp"
+				android:layout_marginEnd="10dp"
+				app:cardCornerRadius="7dp"
+				>
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center_vertical"
+					android:orientation="horizontal"
+					>
+					
+					<!--                    <ImageButton-->
+					<!--                        android:id="@+id/password_visibilty_btn"-->
+					<!--                        android:layout_width="wrap_content"-->
+					<!--                        android:layout_height="wrap_content"-->
+					<!--                        android:background="@color/white"-->
+					<!--                        android:padding="7dp"-->
+					<!--                        android:src="@drawable/ic_baseline_remove_red_eye_24"-->
+					<!--                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />-->
+					<EditText
+						android:id="@+id/password_input"
+						android:layout_width="match_parent"
+						android:layout_height="50dp"
+						android:background="@drawable/primary_edit_text_shape"
+						android:fontFamily="@font/cairo_bold"
+						android:hint="@string/password_title"
+						android:inputType="textPassword"
+						android:padding="10dp"
+						android:textAlignment="textEnd"
+						android:textSize="14sp"
+						tools:ignore="Autofill,TextFields,TextContrastCheck"
+						/>
+				
+				
+				</LinearLayout>
+			
+			</androidx.cardview.widget.CardView>
+			
+			<TextView
+				android:id="@+id/forgot_password_btn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="20dp"
+				android:fontFamily="@font/cairo_bold"
+				android:text="@string/did_you_forgot_password_title"
+				
+				android:textColor="@color/green"
+				/>
+			
+			<androidx.appcompat.widget.AppCompatButton
+				android:id="@+id/sign_in_btn"
+				android:layout_width="195dp"
+				android:layout_height="45dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:background="@drawable/primary_btn_shape"
+				android:fontFamily="@font/cairo_black"
+				android:text="@string/sign_in_title"
+				android:textColor="@color/green"
+				tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
+				/>
+			
+			<ProgressBar
+				android:id="@+id/loading_progressbar"
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="10dp"
+				android:indeterminateDrawable="@drawable/custom_progress_bar"
+				android:visibility="gone"
+				/>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:fontFamily="@font/cairo_black"
+				android:text="@string/sign_in_with_title"
+				android:textColor="@color/orange"
+				android:textSize="13sp"
+				tools:ignore="TextContrastCheck"
+				/>
+			
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="15dp"
+				>
+				
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/google_signin_btn"
+					android:layout_width="75dp"
+					android:layout_height="35dp"
+					android:layout_marginEnd="5dp"
+					android:background="@drawable/google_btn_shape"
+					android:foreground="@drawable/g_logo"
+					android:foregroundGravity="center"
+					tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+					/>
+				
+				<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/facebook_signin_btn"
+					android:layout_width="75dp"
+					android:layout_height="35dp"
+					android:layout_marginStart="5dp"
+					android:background="@drawable/facebook_btn_shape"
+					android:foreground="@drawable/f_logo"
+					android:foregroundGravity="center"
+					tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+					/>
+			</LinearLayout>
+			
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="40dp"
+				>
+				
+				<TextView
+					android:id="@+id/create_account_btn"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:text="@string/register_now_title"
+					android:textColor="@color/orange"
+					android:textSize="12sp"
+					tools:ignore="SmallSp,TextContrastCheck"
+					/>
+				
+				<View
+					android:layout_width="5dp"
+					android:layout_height="0dp"
+					/>
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:fontFamily="@font/cairo_bold"
+					android:gravity="center"
+					android:text="@string/dont_have_account_title"
+					android:textColor="@color/green"
+					android:textSize="12sp"
+					tools:ignore="SmallSp"
+					/>
+			
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
 </layout>

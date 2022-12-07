@@ -14,12 +14,12 @@
 	<string name="password_title">كلمة المرور</string>
 	<string name="did_you_forgot_password_title">هل نسيت كلمة المرور؟</string>
 	<string name="sign_in_with_title">أو سجل عبر</string>
-	<string name="dont_have_account_title">ليس لديك حساب؟ سجل الأن</string>
+	<string name="dont_have_account_title">ليس لديك حساب؟</string>
 	<string name="create_account_title">انشاء حساب جديد</string>
 	<string name="name_title">الأسم</string>
 	<string name="email_title">الأيميل</string>
 	<string name="phone_title">رقم الهاتف</string>
-	<string name="have_account_title">لديك حساب؟ سجل دخول</string>
+	<string name="have_account_title">لديك حساب؟</string>
 	<string name="homeBtn">الرئيسية</string>
 	<string name="homeSearch">البحث</string>
 	<string name="homeNotification">الإشعارات</string>
@@ -145,4 +145,6 @@
 	<string name="filter_title">التصنيف</string>
 	<string name="clear_all_title">مسح الكل</string>
 	<string name="activate_title">تطبيق</string>
+	<string name="register_now_title">سجل الأن</string>
+	<string name="login_now_title">سجل دخول</string>
 </resources>
