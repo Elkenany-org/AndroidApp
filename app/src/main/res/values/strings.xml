@@ -25,14 +25,14 @@
 	<string name="homeNotification">الإشعارات</string>
 	<string name="homeProfile">الملف الشخصي</string>
 	<string name="homeMore">المزيد</string>
-	<string name="sectors_title">القطاعات</string>
+	<string name="sectors_title">الأقسام</string>
 	<string name="services_title">الخدمات</string>
 	<string name="recommendation_title">مقترح لك</string>
 	<string name="partner_title">شركاء النجاح</string>
 	<string name="stock_title">البورصات</string>
 	<string name="guide_title">دليل الشركات</string>
 	<string name="news_title">الأخبار</string>
-	<string name="store_title">سوق الكناني</string>
+	<string name="store_title">السوق</string>
 	<string name="shows_title">المعارض</string>
 	<string name="guide_and_magazine_title">الدلائل والمجلات</string>
 	<string name="stockBtn">البورصة</string>
@@ -45,7 +45,7 @@
 	<string name="about_title">عن الكناني</string>
 	<string name="share_title">شارك التطبيق</string>
 	<string name="rating_title">قيم التطبيق</string>
-	<string name="short_cuts_title">قائمة الأختصارات</string>
+	<string name="short_cuts_title">الأختصارات</string>
 	<string name="read_more_title">أقرا ايضا :</string>
 	<string name="no_more_news_title">لا توجد اخبار اخري</string>
 	<string name="know_more_title">أعرف أكثر</string>
@@ -147,6 +147,6 @@
 	<string name="activate_title">تطبيق</string>
 	<string name="register_now_title">سجل الأن</string>
 	<string name="login_now_title">سجل دخول</string>
-	<string name="rate_title">قييم</string>
+	<string name="rate_title">تقييم</string>
 	<string name="about_magazine_title">عن المجلة</string>
 </resources>
