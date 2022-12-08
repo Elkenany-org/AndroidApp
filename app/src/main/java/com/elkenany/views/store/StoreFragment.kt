@@ -15,7 +15,9 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentStoreBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.StoreViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
@@ -31,9 +33,21 @@ class StoreFragment : Fragment() {
     private lateinit var adsStoreAdapter: AdsStoreAdapter
     private var sectorType: Long? = null
     private var search: String? = null
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.store,
+            sectorType.toString())
+    }
 
     override fun onResume() {
         super.onResume()
+//        sectorType = try {
+//            GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+//                SharedPrefrencesType.store)?.toLong()
+//        } catch (e: Exception) {
+//            null
+//        }
         viewModel.getAllAdsStoreData(sectorType, search)
     }
 
@@ -71,6 +85,10 @@ class StoreFragment : Fragment() {
         binding.storeRecyclerView.apply {
             adapter = adsStoreAdapter
         }
+        binding.addNewAdBtn.setOnClickListener {
+            requireView().findNavController()
+                .navigate(StoreFragmentDirections.actionStoreFragmentToCreateAdFragment(null))
+        }
 
         viewModel.adsStoreData.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -90,11 +108,13 @@ class StoreFragment : Fragment() {
                                 sector.selected
                             )
                         }.toList()
-                    var defaultSector : Long? = null
+                    var defaultSector: Long? = null
                     binding.filtersBtn.setOnClickListener { _ ->
-                        it.sectors.map { sector -> if (sector?.selected == 1L){
-                            defaultSector = sector.id
-                        } }
+                        it.sectors.map { sector ->
+                            if (sector?.selected == 1L) {
+                                defaultSector = sector.id
+                            }
+                        }
                         GlobalUiFunctions.openFilterDialog(requireActivity(),
                             inflater,
                             defaultSector,
@@ -103,7 +123,8 @@ class StoreFragment : Fragment() {
                             null,
                             null,
                             ClickListener { filterData ->
-                                viewModel.getAllAdsStoreData(filterData.section!!.toLong(), search)
+                                sectorType = filterData.section?.toLong()
+                                viewModel.getAllAdsStoreData(sectorType, search)
                             })
                     }
 

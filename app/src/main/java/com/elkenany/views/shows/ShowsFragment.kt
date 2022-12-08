@@ -15,8 +15,10 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentShowsBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.ShowsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
@@ -37,6 +39,20 @@ class ShowsFragment : Fragment() {
     private var cityId: Long? = null
     private var countryId: Long? = null
 
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.shows,
+            sectorType)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.shows)
+        viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -45,7 +61,6 @@ class ShowsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shows, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[ShowsViewModel::class.java]
-        viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
         binding.searchBar.addTextChangedListener {
             search = it.toString()
             viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
@@ -139,8 +154,9 @@ class ShowsFragment : Fragment() {
                         null,
                         null,
                         ClickListener { filterData ->
+                            sectorType = filterData.section
                             viewModel.getAllAdsStoreData(
-                                filterData.section!!,
+                                sectorType,
                                 search,
                                 filterData.sort?.toLong(),
                                 filterData.city?.toLong(),

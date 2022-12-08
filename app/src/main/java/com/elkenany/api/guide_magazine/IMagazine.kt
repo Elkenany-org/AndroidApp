@@ -5,9 +5,7 @@ import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.guide_magazine.MagazineData
 import com.elkenany.entities.guide_magazine.MagazineDetailsData
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface IMagazine {
     @GET("magazine/magazines")
@@ -24,6 +22,14 @@ interface IMagazine {
     fun getMagazineItemData(
         @Query("id") magazineId: Long?,
     ): Call<GenericEntity<MagazineDetailsData>>
+
+    @FormUrlEncoded
+    @POST("magazine/rating-magazine")
+    fun rateThisMagazine(
+        @Header("Authorization") apiToken: String?,
+        @Field("maga_id") magazineId: Long?,
+        @Field("reat") rate: Long?,
+    ): Call<GenericEntity<Any?>>
 }
 
 object IMagazineHandler {

@@ -14,12 +14,13 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideMagazineBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.GuideMagazineViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide_magazine.adapter.GuideMagazineAdapter
-import com.elkenany.views.home.home_service.HomeServiceFragmentDirections
 import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 import com.elkenany.views.local_stock.adapter.LocalStockSectorsAdapter
 
@@ -35,6 +36,20 @@ class GuideMagazineFragment : Fragment() {
     private var sort: Long? = 2
     private var cityId: Long? = null
     private var search: String? = null
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.magazine,
+            sectorType)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.magazine)
+        viewModel.getGuideData(sectorType, sort, cityId, search)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -45,7 +60,6 @@ class GuideMagazineFragment : Fragment() {
 
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[GuideMagazineViewModel::class.java]
-        viewModel.getGuideData(sectorType, sort, cityId, search)
         binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }
@@ -133,8 +147,9 @@ class GuideMagazineFragment : Fragment() {
                                 null,
                                 null,
                                 ClickListener { filterData ->
+                                    sectorType = filterData.section
                                     viewModel.getGuideData(
-                                        filterData.section,
+                                        sectorType,
                                         filterData.sort?.toLong(),
                                         filterData.city?.toLong(),
                                         search

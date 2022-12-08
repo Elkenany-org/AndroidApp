@@ -38,15 +38,15 @@ class LocalStockFragment : Fragment() {
     private var search: String? = null
     override fun onResume() {
         super.onResume()
-        val pref = GlobalLogicFunctions.retrieveSavedSharedPrefrences(
-            requireActivity(),
-            SharedPrefrencesType.local_stock
-        )
-        sectorType = if (pref.isNullOrEmpty() || pref == "null") {
+        sectorType = try {
+            GlobalLogicFunctions.retrieveSavedSharedPrefrences(
+                requireActivity(),
+                SharedPrefrencesType.local_stock)?.toLong()
+        } catch (e: Exception) {
             null
-        } else {
-            pref.toLong()
         }
+        viewModel.getHomeStockData(sectorType, search)
+
     }
 
     override fun onPause() {
@@ -66,7 +66,6 @@ class LocalStockFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_local_stock, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[LocalStockViewModel::class.java]
-        viewModel.getHomeStockData(sectorType, search)
         binding.bannersImageSlider.apply {
             layoutAnimation = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
         }

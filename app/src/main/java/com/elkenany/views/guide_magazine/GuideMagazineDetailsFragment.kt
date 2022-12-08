@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideMagazineDetailsBinding
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
 import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
@@ -68,7 +71,16 @@ class GuideMagazineDetailsFragment : Fragment() {
         binding.socialWebsite.setOnClickListener {
             navigateToBroswerIntent(binding.socialWebsite.text.toString(), requireActivity())
         }
-
+        binding.rateBtn.setOnClickListener {
+            GlobalUiFunctions.openRatingDialog(requireActivity(),
+                inflater,
+                viewLifecycleOwner,
+                ClickListener {
+                    viewModel.rateThisCompany(it, args.id)
+                    viewModel.onDoneRating()
+                },
+                viewModel.processing)
+        }
         //viewModel observers
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
@@ -79,13 +91,27 @@ class GuideMagazineDetailsFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
+        viewModel.exception.observe(viewLifecycleOwner) {
+            when (it) {
+                null -> {}
+                200 -> Toast.makeText(requireContext(), "تم التقييم بنجاح", Toast.LENGTH_SHORT)
+                    .show()
+                401 -> Toast.makeText(requireContext(),
+                    "برجاء تسجيل الدخول أولا حتي تتمكن من تقييم المجلة",
+                    Toast.LENGTH_SHORT).show()
+
+                else -> Toast.makeText(requireContext(),
+                    "تعذر تقييم المجلة",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
         viewModel.magazineData.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.apply {
                     errorMessage.visibility = View.GONE
                     adsLayout.visibility = View.VISIBLE
                     data = it
-                    rate = it.rate.toFloat()
+                    ratingBar.rating = it.rate.toFloat()
                     rateUsers = "تقييم من ${it.countRate} عميل"
                     if (it.phones.isEmpty() && it.emails.isEmpty() && it.mobiles.isEmpty() && it.faxs.isEmpty() && it.social.isEmpty() && it.addresses.isNullOrEmpty()) {
                         socialMediaCard.visibility = View.GONE

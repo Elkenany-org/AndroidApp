@@ -43,6 +43,7 @@ class AdsStoreDaumViewHolder private constructor(private val binding: StoreCardV
         binding.location = ads.address
         binding.url = ads.image
         binding.price = ads.salary.toString()
+        binding.locale = " LE"
         binding.clickListener = sectorClickListener
         binding.executePendingBindings()
     }

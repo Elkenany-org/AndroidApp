@@ -147,4 +147,6 @@
 	<string name="activate_title">تطبيق</string>
 	<string name="register_now_title">سجل الأن</string>
 	<string name="login_now_title">سجل دخول</string>
+	<string name="rate_title">قييم</string>
+	<string name="about_magazine_title">عن المجلة</string>
 </resources>

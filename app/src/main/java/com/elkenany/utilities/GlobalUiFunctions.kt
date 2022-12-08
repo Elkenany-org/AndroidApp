@@ -14,6 +14,9 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -22,6 +25,7 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.GeneralFilterLayoutBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.databinding.RatingCardPopUpBinding
 import com.elkenany.entities.common.LogosAndBannersData
 import com.elkenany.entities.guide.City
 import com.elkenany.entities.guide.Country
@@ -285,6 +289,39 @@ class GlobalUiFunctions {
             bottomSheetDialog.setContentView(binding.root)
             bottomSheetDialog.show()
         }
+
+        fun openRatingDialog(
+            activity: Activity?,
+            layoutInflater: LayoutInflater,
+            lifecycle: LifecycleOwner,
+            clickListener: ClickListener<Long?>,
+            processing: LiveData<Boolean?>,
+        ) {
+            if (activity != null) {
+                val dialogBinding = RatingCardPopUpBinding.inflate(layoutInflater)
+                val dialog = Dialog(activity)
+                dialogBinding.ratingBar.setOnRatingBarChangeListener { rating, _, _ ->
+                    clickListener.onClick(rating.rating.toLong())
+                }
+                processing.observe(lifecycle) {
+                    when (it) {
+                        null -> {}
+                        true -> {
+                            dialogBinding.loadingProgressbar.visibility = View.VISIBLE
+                            dialogBinding.ratingBar.visibility = View.GONE
+                        }
+                        false -> {
+                            dialogBinding.loadingProgressbar.visibility = View.GONE
+                            dialog.cancel()
+                        }
+                    }
+                }
+                dialog.setCancelable(true)
+                dialog.setContentView(dialogBinding.root)
+                dialog.show()
+            }
+        }
     }
 }
+
 

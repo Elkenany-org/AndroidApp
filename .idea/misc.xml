@@ -206,7 +206,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/fragment_apply_to_job.xml" value="0.22" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_chats.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_company.xml" value="0.33" />
-        <entry key="..\:/projects/app/src/main/res/layout/fragment_create_ad.xml" value="0.26507054296707994" />
+        <entry key="..\:/projects/app/src/main/res/layout/fragment_create_ad.xml" value="0.5516014234875445" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_forgot_password.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide.xml" value="0.320578231292517" />
         <entry key="..\:/projects/app/src/main/res/layout/fragment_guide_companies.xml" value="0.26507054296707994" />
@@ -254,6 +254,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/new_recommendation_card_item.xml" value="0.14450619923044036" />
         <entry key="..\:/projects/app/src/main/res/layout/new_services_card_item.xml" value="0.1453612654980761" />
         <entry key="..\:/projects/app/src/main/res/layout/news_card_view_item.xml" value="0.11842667806755024" />
+        <entry key="..\:/projects/app/src/main/res/layout/rating_card_pop_up.xml" value="0.29200513039760584" />
         <entry key="..\:/projects/app/src/main/res/layout/search_result_item.xml" value="0.11842667806755024" />
         <entry key="..\:/projects/app/src/main/res/layout/sector_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/service_item_card.xml" value="0.26421547669944423" />
@@ -263,6 +264,7 @@
         <entry key="..\:/projects/app/src/main/res/layout/shows_card_item.xml" value="0.75" />
         <entry key="..\:/projects/app/src/main/res/layout/small_recycler_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/layout/statistics_row_item.xml" value="0.11842667806755024" />
+        <entry key="..\:/projects/app/src/main/res/layout/store_card_view_item.xml" value="0.28830730265934995" />
         <entry key="..\:/projects/app/src/main/res/layout/table_row_item.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.26507054296707994" />
         <entry key="..\:/projects/app/src/main/res/menu/job_sort_menu.xml" value="0.26421547669944423" />

@@ -16,14 +16,16 @@ class CompanyViewModel : ViewModel() {
     private val job = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _companyData = MutableLiveData<CompanyDetailsData?>()
-    private val _exception = MutableLiveData<Int>()
+    private val _exception = MutableLiveData<Int?>()
+    private val _processing = MutableLiveData<Boolean?>()
     private val _loading = MutableLiveData(false)
     private val api = IGuideImplementation()
 
 
     val companyData: LiveData<CompanyDetailsData?> get() = _companyData
-    val exception: LiveData<Int> get() = _exception
+    val exception: LiveData<Int?> get() = _exception
     val loading: LiveData<Boolean> get() = _loading
+    val processing: LiveData<Boolean?> get() = _processing
 
     fun getCompaniesGuideData(id: Long) {
         _loading.value = true
@@ -43,6 +45,7 @@ class CompanyViewModel : ViewModel() {
         if (userApiToken == null) {
             _exception.value = 401
         } else {
+            _processing.value = true
             uiScope.launch {
                 val response = api.rateThisCompany("Bearer $userApiToken", companyId, rating)
                 if (response != null) {
@@ -51,8 +54,13 @@ class CompanyViewModel : ViewModel() {
                     _exception.value = 400
                 }
                 Log.i("rateThisCompany", response.toString())
+                _processing.value = false
             }
         }
 
+    }
+
+    fun onDoneRating() {
+        _exception.value = null
     }
 }

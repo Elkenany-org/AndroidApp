@@ -16,7 +16,9 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentTendersSubSectionsBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.TenderSubSectionsViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.tenders.adapters.TendersListAdapter
@@ -33,6 +35,19 @@ class TendersSubSectionsFragment : Fragment() {
     private var sectionId: Long? = null
     private var sort: Long? = null
     private var search: String? = null
+
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.tenders,
+            sectionId.toString())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sectionId = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.tenders)?.toLong()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -168,8 +183,9 @@ class TendersSubSectionsFragment : Fragment() {
                         null,
                         null,
                         ClickListener { filterData ->
+                            sectionId = filterData.section?.toLong()
                             viewModel.getAllTendersData(
-                                filterData.section!!.toLong(),
+                                sectionId,
                                 sort,
                                 search
                             )

@@ -14,7 +14,9 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentNewsBinding
 import com.elkenany.entities.guide.Sector
+import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
+import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.NewViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.news.adapter.NewsDaumAdapter
@@ -30,8 +32,17 @@ class NewsFragment : Fragment() {
     private var search: String? = null
     private var sectorType: Long? = null
     private var sort: String? = "1"
+    override fun onPause() {
+        super.onPause()
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.news,
+            sectorType.toString())
+    }
+
     override fun onResume() {
         super.onResume()
+        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.news)?.toLong()
         viewModel.getAllNewsData(sectorType, search, sort)
     }
 
@@ -112,11 +123,13 @@ class NewsFragment : Fragment() {
                                 sector.selected
                             )
                         }.toList()
-                    var defaultSector : Long? = null
+                    var defaultSector: Long? = null
                     binding.filtersBtn.setOnClickListener { _ ->
-                        it.sections.map { sector -> if (sector?.selected == 1L){
-                            defaultSector = sector.id
-                        } }
+                        it.sections.map { sector ->
+                            if (sector?.selected == 1L) {
+                                defaultSector = sector.id
+                            }
+                        }
                         GlobalUiFunctions.openFilterDialog(requireActivity(),
                             inflater,
                             defaultSector,
@@ -125,8 +138,9 @@ class NewsFragment : Fragment() {
                             null,
                             null,
                             ClickListener { filterData ->
+                                sectorType = filterData.section?.toLong()
                                 viewModel.getAllNewsData(
-                                    filterData.section!!.toLong(),
+                                    sectorType,
                                     search,
                                     sort
                                 )

@@ -1,6 +1,8 @@
 package com.elkenany.api.guide_magazine
 
 import android.util.Log
+import com.elkenany.api.retrofit_configs.onHandelingResponseStates
+import com.elkenany.entities.GenericEntity
 import com.elkenany.entities.guide_magazine.MagazineData
 import com.elkenany.entities.guide_magazine.MagazineDetailsData
 import retrofit2.HttpException
@@ -32,6 +34,16 @@ class IMagazineImplementation {
         } catch (e: Exception) {
             Log.i("getAllMagazineData", e.message.toString())
             null
+        }
+    }
+
+    suspend fun rateThisMagazine(
+        apiToken: String?,
+        magazineId: Long?,
+        rate: Long?,
+    ): GenericEntity<Any?> {
+        return onHandelingResponseStates("rateThisMagazine") {
+            IMagazineHandler.singleton.rateThisMagazine(apiToken, magazineId, rate)
         }
     }
 

@@ -72,6 +72,7 @@
 							app:boxCornerRadiusTopEnd="7dp"
 							app:boxCornerRadiusTopStart="7dp"
 							app:boxStrokeWidth="0dp"
+							app:endIconTint="@color/green"
 							app:boxStrokeWidthFocused="0dp"
 							>
 							
@@ -114,6 +115,7 @@
 							app:boxCornerRadiusTopEnd="7dp"
 							app:boxCornerRadiusTopStart="7dp"
 							app:boxStrokeWidth="0dp"
+							app:endIconTint="@color/green"
 							app:boxStrokeWidthFocused="0dp"
 							>
 							
@@ -216,6 +218,7 @@
 							app:boxCornerRadiusTopStart="7dp"
 							app:boxStrokeWidth="0dp"
 							app:boxStrokeWidthFocused="0dp"
+							app:endIconTint="@color/green"
 							>
 							
 							<AutoCompleteTextView

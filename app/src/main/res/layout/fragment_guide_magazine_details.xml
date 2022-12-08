@@ -148,7 +148,19 @@
 									android:layout_height="0dp"
 									android:layout_weight="1"
 									/>
-							
+								
+								<androidx.appcompat.widget.AppCompatButton
+									android:id="@+id/rate_btn"
+									android:layout_width="70dp"
+									android:layout_height="25sp"
+									android:layout_gravity="center_vertical"
+									android:background="@drawable/primary_btn_shape"
+									android:fontFamily="@font/cairo_bold"
+									android:text="@string/rate_title"
+									android:textColor="@color/green"
+									android:textSize="8sp"
+									tools:ignore="SmallSp,TooDeepLayout,TouchTargetSizeCheck,TextContrastCheck"
+									/>
 							</LinearLayout>
 							
 							
@@ -193,7 +205,7 @@
 								
 								<View
 									android:layout_width="0dp"
-									android:layout_height="1dp"
+									android:layout_height="0dp"
 									android:layout_weight="1"
 									/>
 								
@@ -202,74 +214,22 @@
 									style="@style/Widget.AppCompat.RatingBar.Small"
 									android:layout_width="wrap_content"
 									android:layout_height="wrap_content"
-									android:layout_margin="5dp"
+									android:layout_gravity="center_vertical"
+									android:layout_marginEnd="7dp"
 									android:layoutDirection="ltr"
-									android:progressBackgroundTint="@color/gray"
+									android:numStars="5"
 									android:progressTint="@color/orange"
-									android:rating="@{rate}"
+									android:stepSize="1"
+									android:textColor="@color/green"
+									tools:ignore="SpeakableTextPresentCheck"
 									/>
+							
 							</LinearLayout>
 						</RelativeLayout>
 					</LinearLayout>
 				
 				</androidx.cardview.widget.CardView>
 				
-				<!--				<androidx.cardview.widget.CardView-->
-				<!--					android:id="@+id/card_view4"-->
-				<!--					android:layout_width="match_parent"-->
-				<!--					android:layout_height="wrap_content"-->
-				<!--					android:layout_gravity="center_horizontal"-->
-				<!--					android:layout_marginStart="5dp"-->
-				<!--					android:layout_marginTop="5dp"-->
-				<!--					android:layout_marginEnd="5dp"-->
-				<!--					android:layout_marginBottom="10sp"-->
-				<!--					app:cardCornerRadius="7dp"-->
-				<!--					app:cardElevation="7sp"-->
-				<!--					>-->
-				<!--					-->
-				<!--					<LinearLayout-->
-				<!--						android:layout_width="match_parent"-->
-				<!--						android:layout_height="match_parent"-->
-				<!--						android:orientation="vertical"-->
-				<!--						android:padding="15dp"-->
-				<!--						>-->
-				<!--						-->
-				<!--						<TextView-->
-				<!--							android:id="@+id/stocks_tv"-->
-				<!--							android:layout_width="match_parent"-->
-				<!--							android:layout_height="wrap_content"-->
-				<!--							android:layout_margin="10dp"-->
-				<!--							android:drawablePadding="5dp"-->
-				<!--							android:fontFamily="@font/cairo_bold"-->
-				<!--							android:gravity="center_vertical"-->
-				<!--							android:text="@string/stock_title"-->
-				<!--							android:textColor="@color/orange"-->
-				<!--							android:textSize="14sp"-->
-				<!--							tools:ignore="TextContrastCheck"-->
-				<!--							/>-->
-				<!--						-->
-				<!--						<androidx.recyclerview.widget.RecyclerView-->
-				<!--							android:id="@+id/company_local_stocks_recyclerview"-->
-				<!--							android:layout_width="match_parent"-->
-				<!--							android:layout_height="wrap_content"-->
-				<!--							android:orientation="horizontal"-->
-				<!--							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-				<!--							app:reverseLayout="true"-->
-				<!--							tools:listitem="@layout/small_recycler_item"-->
-				<!--							/>-->
-				<!--						-->
-				<!--						<androidx.recyclerview.widget.RecyclerView-->
-				<!--							android:id="@+id/company_fodder_stocks_recyclerview"-->
-				<!--							android:layout_width="match_parent"-->
-				<!--							android:layout_height="wrap_content"-->
-				<!--							android:orientation="horizontal"-->
-				<!--							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-				<!--							app:reverseLayout="true"-->
-				<!--							tools:listitem="@layout/small_recycler_item"-->
-				<!--							/>-->
-				<!--					-->
-				<!--					</LinearLayout>-->
-				<!--				</androidx.cardview.widget.CardView>-->
 				<androidx.cardview.widget.CardView
 					android:id="@+id/card_view2"
 					android:layout_width="match_parent"
@@ -298,7 +258,7 @@
 							android:drawablePadding="5dp"
 							android:fontFamily="@font/cairo_bold"
 							android:gravity="center_vertical"
-							android:text="@string/about_company_title"
+							android:text="@string/about_magazine_title"
 							android:textColor="@color/orange"
 							android:textSize="14sp"
 							tools:ignore="TextContrastCheck"

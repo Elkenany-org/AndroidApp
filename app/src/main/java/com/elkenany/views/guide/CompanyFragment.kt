@@ -1,7 +1,6 @@
 package com.elkenany.views.guide
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentCompanyBinding
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.callThisNumber
 import com.elkenany.utilities.GlobalUiFunctions.Companion.emailThisEmail
 import com.elkenany.utilities.GlobalUiFunctions.Companion.locateThisLocation
@@ -103,9 +103,15 @@ class CompanyFragment : Fragment() {
                 binding.loadingProgressbar.visibility = View.GONE
             }
         }
-        binding.ratingBar.setOnRatingBarChangeListener { rating, _, _ ->
-            viewmodel.rateThisCompany(rating.rating.toLong(), args.companyId)
-            Log.i("rating", rating.rating.toString() + args.companyId.toString())
+        binding.rateBtn.setOnClickListener {
+            GlobalUiFunctions.openRatingDialog(requireActivity(),
+                inflater,
+                viewLifecycleOwner,
+                ClickListener {
+                    viewmodel.rateThisCompany(it, args.companyId)
+                    viewmodel.onDoneRating()
+                },
+                viewmodel.processing)
         }
         galleryAdapter = GalleryAdapter(ClickListener {
             openPopUpImage(it.image, requireActivity(), layoutInflater)
@@ -113,6 +119,7 @@ class CompanyFragment : Fragment() {
         binding.companyGallerysRecyclerview.adapter = galleryAdapter
         viewmodel.exception.observe(viewLifecycleOwner) {
             when (it) {
+                null -> {}
                 200 -> Toast.makeText(requireContext(), "تم التقييم بنجاح", Toast.LENGTH_SHORT)
                     .show()
                 401 -> Toast.makeText(requireContext(),
@@ -152,6 +159,7 @@ class CompanyFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
                 binding.adsLayout.visibility = View.VISIBLE
                 binding.apply {
+                    ratingBar.progress = it.rate!!.toInt()
                     rateUsers = "( ${it.countRate.toString()} )"
                     data = it
                     latid = it.latitude.toString()

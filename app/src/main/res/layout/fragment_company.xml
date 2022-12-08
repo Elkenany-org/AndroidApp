@@ -132,8 +132,28 @@
 							android:layout_height="wrap_content"
 							>
 							
+							<androidx.appcompat.widget.AppCompatButton
+								android:id="@+id/rate_btn"
+								android:layout_width="70dp"
+								android:layout_height="25sp"
+								android:layout_gravity="center_vertical"
+								android:background="@drawable/primary_btn_shape"
+								android:fontFamily="@font/cairo_bold"
+								android:text="@string/rate_title"
+								android:textColor="@color/green"
+								android:textSize="8dp"
+								tools:ignore="TouchTargetSizeCheck"
+								/>
+							
+							<View
+								android:layout_width="0dp"
+								android:layout_height="0dp"
+								android:layout_weight="1"
+								/>
+							
 							<RatingBar
 								android:id="@+id/rating_bar"
+								style="@style/Widget.AppCompat.RatingBar.Small"
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
 								android:layout_gravity="center_vertical"
@@ -159,19 +179,7 @@
 								android:textSize="12sp"
 								tools:ignore="HardcodedText,SmallSp"
 								/>
-							
-							<!--                            <TextView-->
-							<!--                                android:id="@+id/rating_num"-->
-							<!--                                itemText="@{rateUsers}"-->
-							<!--                                android:layout_width="wrap_content"-->
-							<!--                                android:layout_height="wrap_content"-->
-							<!--                                android:layout_gravity="center_vertical"-->
-							<!--                                android:layout_margin="5dp"-->
-							<!--                                android:fontFamily="@font/cairo_bold"-->
-							<!--                                android:gravity="center"-->
-							<!--                                android:textColor="@color/green"-->
-							<!--                                android:textSize="12sp"-->
-							<!--                                tools:ignore="HardcodedText,SmallSp" />-->
+						
 						</LinearLayout>
 					</LinearLayout>
 				</androidx.cardview.widget.CardView>
