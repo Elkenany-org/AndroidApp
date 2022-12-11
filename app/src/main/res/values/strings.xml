@@ -4,9 +4,9 @@
 	
 	<string name="facebook_app_id">1504415433364556</string>
 	<string name="fb_login_protocol_scheme">fb1504415433364556</string>
-	<string name="facebook_client_token">cc276f411e34741ad80d2fe6ebaf9433</string>
+	<string name="facebook_client_token">ce3d8215a400b17798d48c62a53b4d50</string>
 	
-	
+	<!--	ce3d8215a400b17798d48c62a53b4d50-->
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="sign_in_title">تسجيل الدخول</string>
 	<string name="skip_title">تخطي</string>
