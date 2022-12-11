@@ -47,6 +47,7 @@ class TendersSubSectionsFragment : Fragment() {
         super.onResume()
         sectionId = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
             SharedPrefrencesType.tenders)?.toLong()
+        viewModel.getAllTendersData(sectionId, sort, search)
     }
 
     override fun onCreateView(
