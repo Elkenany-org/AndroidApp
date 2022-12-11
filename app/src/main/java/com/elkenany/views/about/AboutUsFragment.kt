@@ -28,14 +28,6 @@ class AboutUsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_about_us, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[AboutUsViewModel::class.java]
-        binding.webView.settings.apply {
-            javaScriptEnabled = true
-            javaScriptCanOpenWindowsAutomatically = true
-        }
-
-        binding.webView.loadData("<html dir=\"rtl\"><style>body{font-size: 14pt;color:green;} p{align-items: center; justify-content: center;}</style><body>${desc}</body></html>",
-            "text/html",
-            "UTF-8")
         return binding.root
     }
 
