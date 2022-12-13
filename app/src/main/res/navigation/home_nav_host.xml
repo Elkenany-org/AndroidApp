@@ -62,66 +62,130 @@
 		<action
 			android:id="@+id/action_homeServiceFragment_to_showsFragment"
 			app:destination="@id/showsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideMagazineFragment"
 			app:destination="@id/guideMagazineFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_showsDetailsFragment"
 			app:destination="@id/showsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_shipsFragment"
 			app:destination="@id/shipsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_jobsFragment"
 			app:destination="@id/jobsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_localStockFragment"
 			app:destination="@id/localStockFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_storeFragment"
 			app:destination="@id/storeFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideFragment"
 			app:destination="@id/guideFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_newsFragment"
 			app:destination="@id/newsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_tendersFragment"
 			app:destination="@id/tendersFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_homeServiceFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -133,6 +197,10 @@
 		<action
 			android:id="@+id/action_profileFragment_to_myAdsListFragment"
 			app:destination="@id/myAdsListFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<!--	<fragment-->
@@ -196,10 +264,18 @@
 		<action
 			android:id="@+id/action_localStockFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_localStockFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	
 	</fragment>
@@ -226,10 +302,18 @@
 		<action
 			android:id="@+id/action_newsFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_newsFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -242,14 +326,26 @@
 		<action
 			android:id="@+id/action_storeFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_storeFragment_to_createAdFragment"
 			app:destination="@id/createAdFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_storeFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -272,10 +368,18 @@
 		<action
 			android:id="@+id/action_guideFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_guideFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -287,30 +391,58 @@
 		<action
 			android:id="@+id/action_searchFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_guideCompaniesFragment"
 			app:destination="@id/guideCompaniesFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_searchFragment_to_showsDetailsFragment"
 			app:destination="@id/showsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -322,14 +454,26 @@
 		<action
 			android:id="@+id/action_mainMenuFragment_to_notificationFragment2"
 			app:destination="@id/notificationFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_mainMenuFragment_to_guideMagazineFragment"
 			app:destination="@id/guideMagazineFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_mainMenuFragment_to_showsFragment"
 			app:destination="@id/showsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -345,6 +489,10 @@
 		<action
 			android:id="@+id/action_newsDetailsFragment_self"
 			app:destination="@id/newsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -370,10 +518,18 @@
 		<action
 			android:id="@+id/action_localStockDetailsFragment_to_statisticsFragment"
 			app:destination="@id/statisticsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_localStockDetailsFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -403,6 +559,10 @@
 		<action
 			android:id="@+id/action_guideCompaniesFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -414,18 +574,34 @@
 		<action
 			android:id="@+id/action_notificationFragment_to_newsDetailsFragment"
 			app:destination="@id/newsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_notificationFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_notificationFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_notificationFragment_to_showsDetailsFragment"
 			app:destination="@id/showsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -441,7 +617,11 @@
 		<action
 			android:id="@+id/action_adDetailsFragment_to_messagesFragment"
 			app:destination="@id/messagesFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
 			app:launchSingleTop="true"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			app:popUpTo="@id/messagesFragment"
 			app:popUpToInclusive="true"
 			/>
@@ -463,6 +643,10 @@
 		<action
 			android:id="@+id/action_companyFragment_to_localStockDetailsFragment"
 			app:destination="@id/localStockDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -496,7 +680,11 @@
 		<action
 			android:id="@+id/action_chatsFragment_to_messagesFragment"
 			app:destination="@id/messagesFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
 			app:launchSingleTop="true"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			app:popUpTo="@id/messagesFragment"
 			app:popUpToInclusive="true"
 			/>
@@ -538,10 +726,18 @@
 		<action
 			android:id="@+id/action_myAdsListFragment_to_adDetailsFragment"
 			app:destination="@id/adDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_myAdsListFragment_to_createAdFragment"
 			app:destination="@id/createAdFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -553,10 +749,18 @@
 		<action
 			android:id="@+id/action_showsFragment_to_showsDetailsFragment"
 			app:destination="@id/showsDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_showsFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -568,10 +772,18 @@
 		<action
 			android:id="@+id/action_guideMagazineFragment_to_guideMagazineDetailsFragment"
 			app:destination="@id/guideMagazineDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_guideMagazineFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -602,6 +814,10 @@
 		<action
 			android:id="@+id/action_showsDetailsFragment_to_showReviewFragment"
 			app:destination="@id/showReviewFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -624,6 +840,10 @@
 		<action
 			android:id="@+id/action_shipsFragment_to_shipsStatisticsFragment"
 			app:destination="@id/shipsStatisticsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -641,14 +861,26 @@
 		<action
 			android:id="@+id/action_jobsFragment_to_jobDetailsFragment"
 			app:destination="@id/jobDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_jobsFragment_to_myFavoriteJobsFragment"
 			app:destination="@id/myFavoriteJobsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_jobsFragment_to_myAppliedJobsFragment"
 			app:destination="@id/myAppliedJobsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -664,6 +896,10 @@
 		<action
 			android:id="@+id/action_jobDetailsFragment_to_applyToJobFragment"
 			app:destination="@id/applyToJobFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -675,14 +911,26 @@
 		<action
 			android:id="@+id/action_myAppliedJobsFragment_to_addNewJobFragment"
 			app:destination="@id/addNewJobFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_myAppliedJobsFragment_to_applicantsFragment"
 			app:destination="@id/applicantsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_myAppliedJobsFragment_to_jobDetailsFragment"
 			app:destination="@id/jobDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -694,6 +942,10 @@
 		<action
 			android:id="@+id/action_myFavoriteJobsFragment_to_jobDetailsFragment"
 			app:destination="@id/jobDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -739,6 +991,10 @@
 		<action
 			android:id="@+id/action_applyToJobFragment_to_applySuccessfullyFragment"
 			app:destination="@id/applySuccessfullyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			app:popUpTo="@id/jobDetailsFragment"
 			app:popUpToInclusive="true"
 			/>
@@ -752,6 +1008,10 @@
 		<action
 			android:id="@+id/action_applySuccessfullyFragment_to_jobsFragment"
 			app:destination="@id/jobsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			app:popUpTo="@id/applySuccessfullyFragment"
 			app:popUpToInclusive="true"
 			/>
@@ -775,6 +1035,10 @@
 		<action
 			android:id="@+id/action_applicantsFragment_to_applicantDetailsFragment"
 			app:destination="@id/applicantDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -796,10 +1060,18 @@
 		<action
 			android:id="@+id/action_tendersFragment_to_tendersSubSectionsFragment"
 			app:destination="@id/tendersSubSectionsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<action
 			android:id="@+id/action_tendersFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -810,6 +1082,10 @@
 		<action
 			android:id="@+id/action_tendersSubSectionsFragment_to_tenderDetailsFragment"
 			app:destination="@id/tenderDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 		<argument
 			android:name="sectionId"
@@ -818,6 +1094,10 @@
 		<action
 			android:id="@+id/action_tendersSubSectionsFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -832,6 +1112,10 @@
 		<action
 			android:id="@+id/action_tenderDetailsFragment_self"
 			app:destination="@id/tenderDetailsFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment
@@ -843,6 +1127,10 @@
 		<action
 			android:id="@+id/action_sponsersFragment_to_companyFragment"
 			app:destination="@id/companyFragment"
+			app:enterAnim="@anim/custom_enter_animation"
+			app:exitAnim="@anim/custom_exit_animation"
+			app:popEnterAnim="@anim/custom_pop_enter_animation"
+			app:popExitAnim="@anim/custom_pop_exit_animation"
 			/>
 	</fragment>
 	<fragment

@@ -39,10 +39,6 @@
             android:id="@+id/card_view"
             android:layout_width="wrap_content"
             android:layout_height="210dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
             card_view:cardCornerRadius="5dp"
             card_view:cardElevation="5dp"
             card_view:cardUseCompatPadding="true">
@@ -101,12 +97,13 @@
                     android:textSize="10sp"
                     card_view:drawableEndCompat="@drawable/location_icon"
                     tools:ignore="SmallSp" />
-
+    
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/company_location">
-
+                    android:layout_below="@+id/company_location"
+                    >
+        
                     <RatingBar
                         android:id="@+id/company_rate"
                         style="?android:attr/ratingBarStyleSmall"
@@ -122,8 +119,9 @@
                         android:layoutDirection="ltr"
                         android:numStars="5"
                         android:progressTint="@color/orange"
-                        android:textColor="@color/green" />
-
+                        android:textColor="@color/green"
+                        />
+        
                     <TextView
                         android:id="@+id/more_title"
                         android:layout_width="wrap_content"
@@ -145,8 +143,9 @@
                         android:text="@string/know_more_title"
                         android:textColor="@color/green"
                         android:textSize="9sp"
-                        tools:ignore="RelativeOverlap,SmallSp,TextContrastCheck" />
-
+                        tools:ignore="RelativeOverlap,SmallSp,TextContrastCheck"
+                        />
+    
                 </RelativeLayout>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

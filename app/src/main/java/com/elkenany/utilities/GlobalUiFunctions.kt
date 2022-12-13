@@ -7,6 +7,8 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +16,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.denzcoskun.imageslider.ImageSlider
@@ -317,6 +318,7 @@ class GlobalUiFunctions {
                     }
                 }
                 dialog.setCancelable(true)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.setContentView(dialogBinding.root)
                 dialog.show()
             }

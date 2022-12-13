@@ -49,6 +49,7 @@
 				android:drawableEnd="@drawable/ic_search_logo"
 				android:drawablePadding="10dp"
 				android:fontFamily="@font/cairo_bold"
+				android:layout_marginHorizontal="15dp"
 				android:hint="@string/homeSearch"
 				android:inputType="textLongMessage"
 				android:maxLines="1"

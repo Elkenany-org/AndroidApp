@@ -84,6 +84,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_centerHorizontal="true"
+				android:layout_marginHorizontal="15dp"
 				android:layout_gravity="center_horizontal"
 				android:background="@color/white"
 				android:drawableEnd="@drawable/ic_search_logo"
@@ -111,7 +112,7 @@
 			android:textSize="18sp"
 			android:visibility="gone"
 			/>
-
+		
 		<com.denzcoskun.imageslider.ImageSlider
 			android:id="@+id/banners_image_slider"
 			android:layout_width="match_parent"
@@ -122,10 +123,12 @@
 			android:layoutDirection="rtl"
 			android:visibility="gone"
 			app:iss_auto_cycle="true"
+			android:paddingHorizontal="5dp"
 			app:iss_corner_radius="20"
 			app:iss_selected_dot="@color/transparent_color"
 			app:iss_unselected_dot="@color/transparent_color"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			/>
 		
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/logos_recycler_view"

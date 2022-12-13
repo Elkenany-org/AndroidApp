@@ -64,7 +64,7 @@ class SponsersFragment : Fragment() {
                 401 -> {
                     Toast.makeText(
                         requireContext(),
-                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة تفاصيل المناقصات",
+                        "برجاء تسجيل الدخول أولا حتي تتمكن من معرفة شركاء النجاح",
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -76,7 +76,7 @@ class SponsersFragment : Fragment() {
                 }
                 404 -> {
                     binding.errorMessage.text =
-                        "لا توجد أعلانات مناقصات بعد"
+                        "لا يوجد بيانات بعد"
                     binding.errorMessage.visibility = View.VISIBLE
                 }
                 else -> {

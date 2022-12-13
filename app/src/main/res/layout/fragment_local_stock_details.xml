@@ -45,6 +45,7 @@
 				android:visibility="gone"
 				app:iss_auto_cycle="true"
 				app:iss_corner_radius="20"
+				android:layout_marginHorizontal="5dp"
 				app:iss_selected_dot="@color/transparent_color"
 				app:iss_unselected_dot="@color/transparent_color"
 				tools:visibility="visible"

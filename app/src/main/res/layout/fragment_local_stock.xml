@@ -85,6 +85,7 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/cairo_bold"
                 android:hint="@string/homeSearch"
+                android:layout_marginHorizontal="15dp"
                 android:inputType="textLongMessage"
                 android:maxLines="1"
                 android:padding="5dp"
@@ -105,8 +106,8 @@
             tools:ignore="UselessParent">
 
             <!-- TODO: Update blank fragment layout -->
-
-
+    
+    
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/banners_image_slider"
                 android:layout_width="match_parent"
@@ -116,10 +117,12 @@
                 android:visibility="gone"
                 app:iss_auto_cycle="true"
                 app:iss_corner_radius="20"
+                android:paddingHorizontal="5dp"
                 app:iss_selected_dot="@color/transparent_color"
                 app:iss_unselected_dot="@color/transparent_color"
-                tools:visibility="visible" />
-
+                tools:visibility="visible"
+                />
+    
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/logos_recycler_view"
                 android:layout_width="match_parent"
@@ -129,7 +132,8 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:ignore="SpeakableTextPresentCheck"
-                tools:listitem="@layout/logo_card_view_item" />
+                tools:listitem="@layout/logo_card_view_item"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sectors_recycler_view"
