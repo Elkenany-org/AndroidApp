@@ -25,7 +25,6 @@
 	<string name="homeNotification">الإشعارات</string>
 	<string name="homeProfile">الملف الشخصي</string>
 	<string name="homeMore">المزيد</string>
-	<string name="sectors_title">الأقسام</string>
 	<string name="services_title">الخدمات</string>
 	<string name="recommendation_title">مقترح لك</string>
 	<string name="partner_title">شركاء النجاح</string>
@@ -35,7 +34,6 @@
 	<string name="store_title">السوق</string>
 	<string name="shows_title">المعارض</string>
 	<string name="guide_and_magazine_title">الدلائل والمجلات</string>
-	<string name="stockBtn">البورصة</string>
 	<string name="logout_title">تسجيل الخروج</string>
 	<string name="my_ads_title">اعلاناتي</string>
 	<string name="daily_stock_title">البورصة اليومية</string>
@@ -83,7 +81,6 @@
 	<string name="create_ad_title">إنشاء إعلان</string>
 	<string name="done_upload_image_title">تم إضافة صورة</string>
 	<string name="delete_ad_title">حذف الإعلان</string>
-	<string name="coming_soon_title">سوف يتم توفير هذة الخدمة قريبا</string>
 	<string name="alphapetical_title">أبجدي</string>
 	<string name="gallery_title">الصور</string>
 	<string name="select_company_title">أختر الشركة</string>
@@ -92,9 +89,7 @@
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="intrested_title">مهتم</string>
 	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
 	<string name="guide_data_title">بيانات الدليل</string>
-	<string name="about_company_title">عن الشركة</string>
 	<string name="show_details_title">تفاصيل المعرض</string>
 	<string name="about_show_title">عن المعرض</string>
 	<string name="reviewes_title">المراجعات</string>
@@ -130,10 +125,8 @@
 	<string name="continue_searching_title">اكمل البحث عن وظائف مماثلة</string>
 	<string name="my_jobs_title">وظائفي</string>
 	<string name="add_job_title">أضف وظيفة جديدة</string>
-	<string name="department_title">القسم</string>
 	<string name="job_naming_title">المسمي الوظيفي</string>
 	<string name="place_title">المكان</string>
-	<string name="working_hours_title">دوام العمل</string>
 	<string name="salary_title">الراتب</string>
 	<string name="applicants_title">المتقدمون</string>
 	<string name="accepted_title">مؤهل</string>
