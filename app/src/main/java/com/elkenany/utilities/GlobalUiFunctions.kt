@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -26,6 +27,7 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.GeneralFilterLayoutBinding
 import com.elkenany.databinding.ImageDialogItemBinding
+import com.elkenany.databinding.LocalStockBottomSheetBinding
 import com.elkenany.databinding.RatingCardPopUpBinding
 import com.elkenany.entities.common.LogosAndBannersData
 import com.elkenany.entities.guide.City
@@ -316,6 +318,55 @@ class GlobalUiFunctions {
                         }
                     }
                 }
+                dialog.setCancelable(true)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.setContentView(dialogBinding.root)
+                dialog.show()
+            }
+        }
+
+        fun openLocalStockBottomSheet(
+            activity: Activity?,
+            layoutInflater: LayoutInflater,
+            title: String?,
+            adapter1: RecyclerView.Adapter<*>?,
+            adapter2: RecyclerView.Adapter<*>?,
+        ) {
+            if (activity != null) {
+                val dialogBinding = LocalStockBottomSheetBinding.inflate(layoutInflater)
+                val dialog = BottomSheetDialog(activity)
+
+                dialogBinding.appbartitle = title
+                try {
+                    if (adapter1 != null) {
+                        dialogBinding.mainFiltersRecyclerView.adapter = adapter1
+                    } else {
+                        dialogBinding.mainFiltersRecyclerView.visibility = View.GONE
+                    }
+
+                    if (adapter2 != null) {
+                        dialogBinding.subFiltersRecyclerView.adapter = adapter2
+                    } else {
+                        dialogBinding.subFiltersRecyclerView.visibility = View.GONE
+                    }
+                } catch (e: Exception) {
+
+                }
+//                processing.observe(lifecycle) {
+//                    when (it) {
+//                        null -> {}
+//                        true -> {
+//                            dialogBinding.loadingProgressbar.visibility = View.VISIBLE
+//                            dialogBinding.subFiltersRecyclerView.visibility = View.GONE
+//                        }
+//                        false -> {
+//                            dialogBinding.loadingProgressbar.visibility = View.GONE
+//                            dialogBinding.subFiltersRecyclerView.visibility = View.VISIBLE
+//
+//                            dialog.cancel()
+//                        }
+//                    }
+//                }
                 dialog.setCancelable(true)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.setContentView(dialogBinding.root)

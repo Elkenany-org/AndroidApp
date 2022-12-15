@@ -19,6 +19,7 @@ import androidx.navigation.fragment.navArgs
 import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentLocalStockDetailsBinding
+import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
 import com.elkenany.viewmodels.LocalStockDetailsViewModel
@@ -243,6 +244,13 @@ class LocalStockDetailsFragment : Fragment() {
                 binding.foundDataLayout.visibility = View.VISIBLE
                 binding.stockDataRecyclerView.visibility = View.VISIBLE
                 logosAdapter.submitList(it.logos)
+                binding.appBarTitle.setOnClickListener {
+                    GlobalUiFunctions.openLocalStockBottomSheet(requireActivity(),
+                        layoutInflater,
+                        "الأصناف",
+                        localStockDetailsAdapter,
+                        logosAdapter)
+                }
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 localStockDetailsAdapter.submitList(listOf(it.columns) + it.members)
                 if (args.sectorType == "fodder") {
