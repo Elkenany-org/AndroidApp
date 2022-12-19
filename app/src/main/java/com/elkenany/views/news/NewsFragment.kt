@@ -34,15 +34,15 @@ class NewsFragment : Fragment() {
     private var sort: String? = "1"
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.news,
-            sectorType.toString())
+//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.news,
+//            sectorType.toString())
     }
 
     override fun onResume() {
         super.onResume()
-        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.news)?.toLong()
+//        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.news)?.toLong()
         viewModel.getAllNewsData(sectorType, search, sort)
     }
 

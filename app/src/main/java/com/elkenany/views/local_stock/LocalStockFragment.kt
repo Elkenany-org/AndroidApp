@@ -38,24 +38,24 @@ class LocalStockFragment : Fragment() {
     private var search: String? = null
     override fun onResume() {
         super.onResume()
-        sectorType = try {
-            GlobalLogicFunctions.retrieveSavedSharedPrefrences(
-                requireActivity(),
-                SharedPrefrencesType.local_stock)?.toLong()
-        } catch (e: Exception) {
-            null
-        }
+//        sectorType = try {
+//            GlobalLogicFunctions.retrieveSavedSharedPrefrences(
+//                requireActivity(),
+//                SharedPrefrencesType.local_stock)?.toLong()
+//        } catch (e: Exception) {
+//            null
+//        }
         viewModel.getHomeStockData(sectorType, search)
 
     }
 
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(
-            requireActivity(),
-            SharedPrefrencesType.local_stock,
-            sectorType.toString()
-        )
+//        GlobalLogicFunctions.saveSharedPrefrences(
+//            requireActivity(),
+//            SharedPrefrencesType.local_stock,
+//            sectorType.toString()
+//        )
     }
 
     override fun onCreateView(

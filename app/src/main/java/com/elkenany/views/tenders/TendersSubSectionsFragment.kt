@@ -38,15 +38,15 @@ class TendersSubSectionsFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.tenders,
-            sectionId.toString())
+//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.tenders,
+//            sectionId.toString())
     }
 
     override fun onResume() {
         super.onResume()
-        sectionId = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.tenders)?.toLong()
+//        sectionId = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.tenders)?.toLong()
         viewModel.getAllTendersData(sectionId, sort, search)
     }
 

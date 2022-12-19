@@ -141,7 +141,6 @@ class HomeServiceFragment : Fragment() {
                 binding.errorMessage.visibility = View.GONE
             } else {
                 binding.loadingProgressbar.visibility = View.INVISIBLE
-
             }
         }
         viewModel.popUpData.observe(viewLifecycleOwner) {

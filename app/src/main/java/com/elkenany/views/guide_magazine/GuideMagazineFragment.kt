@@ -38,15 +38,15 @@ class GuideMagazineFragment : Fragment() {
     private var search: String? = null
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.magazine,
-            sectorType)
+//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.magazine,
+//            sectorType)
     }
 
     override fun onResume() {
         super.onResume()
-        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.magazine)
+//        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.magazine)
         viewModel.getGuideData(sectorType, sort, cityId, search)
     }
 

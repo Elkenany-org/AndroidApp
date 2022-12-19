@@ -37,16 +37,22 @@ class GuideFragment : Fragment() {
     private var search: String? = null
     override fun onResume() {
         super.onResume()
-        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.guide)?.toInt()
+//        sectorType =
+//            try {
+//                GlobalLogicFunctions.retrieveSavedSharedPrefrences(
+//                    requireActivity(),
+//                    SharedPrefrencesType.guide)?.toInt()
+//            } catch (e: Exception) {
+//                null
+//            }
         viewModel.getGuideData(sectorType, search)
     }
 
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.guide,
-            sectorType.toString())
+//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.guide,
+//            sectorType.toString())
     }
 
     override fun onCreateView(

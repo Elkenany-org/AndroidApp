@@ -35,9 +35,9 @@ class StoreFragment : Fragment() {
     private var search: String? = null
     override fun onPause() {
         super.onPause()
-        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-            SharedPrefrencesType.store,
-            sectorType.toString())
+//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+//            SharedPrefrencesType.store,
+//            sectorType.toString())
     }
 
     override fun onResume() {
