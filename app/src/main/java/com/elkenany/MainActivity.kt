@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 const val SHARED_PREFRENCES = "user_credentials"
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var logger: AppEventsLogger
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        logger = AppEventsLogger.newLogger(this)
         FacebookSdk.apply {
             fullyInitialize()
             setAutoInitEnabled(true)
@@ -40,11 +41,10 @@ class MainActivity : AppCompatActivity() {
             setIsDebugEnabled(true)
             addLoggingBehavior(LoggingBehavior.APP_EVENTS)
         }
-        val logger = AppEventsLogger.newLogger(this)
 
         val params = Bundle()
-        params.putString(EVENT_PARAM_CURRENCY, "USD")
-        params.putString(EVENT_PARAM_CONTENT_TYPE, "product")
+        params.putString(EVENT_PARAM_CURRENCY, "EGP")
+        params.putString(EVENT_PARAM_CONTENT_TYPE, "fb_mobile_launch_source")
         params.putString(EVENT_PARAM_CONTENT_ID, "HDFU-8452")
         logger.logEvent(EVENT_NAME_ADDED_TO_CART,
             54.23,
@@ -53,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             getFCMToken()
         }
+        logSentFriendRequestEvent()
+
+    }
+
+    private fun logSentFriendRequestEvent() {
+        logger.logEvent("appInstall")
     }
 
 }
