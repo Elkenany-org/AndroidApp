@@ -14,11 +14,9 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentGuideBinding
 import com.elkenany.entities.guide.Sector
-import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
 import com.elkenany.utilities.GlobalUiFunctions.Companion.enableImageSlider
 import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerIntent
-import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.GuideViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.GuideSubSectionAdapter
