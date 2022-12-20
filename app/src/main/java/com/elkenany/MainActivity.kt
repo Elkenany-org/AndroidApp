@@ -10,10 +10,6 @@ import com.elkenany.databinding.ActivityMainBinding
 import com.elkenany.utilities.GlobalLogicFunctions.Companion.getFCMToken
 import com.facebook.FacebookSdk
 import com.facebook.LoggingBehavior
-import com.facebook.appevents.AppEventsConstants.EVENT_NAME_ADDED_TO_CART
-import com.facebook.appevents.AppEventsConstants.EVENT_PARAM_CONTENT_ID
-import com.facebook.appevents.AppEventsConstants.EVENT_PARAM_CONTENT_TYPE
-import com.facebook.appevents.AppEventsConstants.EVENT_PARAM_CURRENCY
 import com.facebook.appevents.AppEventsLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,22 +39,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         val params = Bundle()
-        params.putString(EVENT_PARAM_CURRENCY, "EGP")
-        params.putString(EVENT_PARAM_CONTENT_TYPE, "fb_mobile_launch_source")
-        params.putString(EVENT_PARAM_CONTENT_ID, "HDFU-8452")
-        logger.logEvent(EVENT_NAME_ADDED_TO_CART,
-            54.23,
+//        params.putString(EVENT_PARAM_CURRENCY, "EGP")
+        params.putString("Launch the app", "Launch the app")
+//        params.putString(EVENT_PARAM_CONTENT_ID, "HDFU-8452")
+        logger.logEvent("Launch the app",
+//            54.23,
             params)
         AppEventsLogger.activateApp(this.application)
         CoroutineScope(Dispatchers.IO).launch {
             getFCMToken()
         }
-        logSentFriendRequestEvent()
+//        logSentFriendRequestEvent()
 
     }
 
-    private fun logSentFriendRequestEvent() {
-        logger.logEvent("appInstall")
-    }
+//    private fun logSentFriendRequestEvent() {
+//        logger.logEvent("appInstall")
+//    }
 
 }
