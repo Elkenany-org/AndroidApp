@@ -41,15 +41,19 @@ class ShowsFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-//            SharedPrefrencesType.shows,
-//            sectorType)
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.shows,
+            sectorType)
     }
 
     override fun onResume() {
         super.onResume()
-//        sectorType = GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-//            SharedPrefrencesType.shows)
+        sectorType = try {
+            GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+                SharedPrefrencesType.shows)
+        } catch (e: Exception) {
+            null
+        }
         viewModel.getAllAdsStoreData(sectorType, search, sort, cityId, countryId)
     }
 

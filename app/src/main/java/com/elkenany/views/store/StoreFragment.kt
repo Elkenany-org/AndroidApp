@@ -35,19 +35,19 @@ class StoreFragment : Fragment() {
     private var search: String? = null
     override fun onPause() {
         super.onPause()
-//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-//            SharedPrefrencesType.store,
-//            sectorType.toString())
+        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+            SharedPrefrencesType.store,
+            sectorType.toString())
     }
 
     override fun onResume() {
         super.onResume()
-//        sectorType = try {
-//            GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
-//                SharedPrefrencesType.store)?.toLong()
-//        } catch (e: Exception) {
-//            null
-//        }
+        sectorType = try {
+            GlobalLogicFunctions.retrieveSavedSharedPrefrences(requireActivity(),
+                SharedPrefrencesType.store)?.toLong()
+        } catch (e: Exception) {
+            null
+        }
         viewModel.getAllAdsStoreData(sectorType, search)
     }
 
