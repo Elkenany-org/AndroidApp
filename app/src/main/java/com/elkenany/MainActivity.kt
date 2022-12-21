@@ -39,12 +39,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val params = Bundle()
-//        params.putString(EVENT_PARAM_CURRENCY, "EGP")
         params.putString("Launch the app", "Launch the app")
-//        params.putString(EVENT_PARAM_CONTENT_ID, "HDFU-8452")
-        logger.logEvent("Launch the app",
-//            54.23,
-            params)
+        logger.logEvent("Launch the app", params)
         AppEventsLogger.activateApp(this.application)
         CoroutineScope(Dispatchers.IO).launch {
             getFCMToken()
