@@ -59,12 +59,4 @@ class MyFireBaseService : FirebaseMessagingService() {
         notificationManager.notify(0, builder)
     }
 
-//    @SuppressLint("RemoteViewLayout")
-//    private fun getRemoteView(title: String, message: String, time: Long?): RemoteViews {
-//        val remoteView = RemoteViews(channelName, R.layout.push_notification_card)
-//        remoteView.setTextViewText(R.id.push_notification_title, title)
-//        remoteView.setTextViewText(R.id.push_notification_description, message)
-//        remoteView.setTextViewText(R.id.push_sent_at, time.toString())
-//        return remoteView
-//    }
 }

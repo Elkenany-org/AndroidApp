@@ -2,7 +2,6 @@ package com.elkenany.utilities
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.tasks.await
 
@@ -20,7 +19,6 @@ enum class SharedPrefrencesType {
 }
 
 class GlobalLogicFunctions {
-
 
     companion object {
         // get Firebase cloud messaging token
