@@ -84,7 +84,6 @@ class MyAdsListFragment : Fragment() {
         binding.adsListRecyclerView.adapter = myAdsAdapter
 
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exception", it.toString())
             when (it) {
                 404 -> {
                     binding.apply {

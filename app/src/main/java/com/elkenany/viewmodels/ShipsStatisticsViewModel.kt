@@ -30,7 +30,6 @@ class ShipsStatisticsViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             val response = api.getShipsStatisticsData(type, from, to, country)
             if (response != null) {
                 _shipsData.value = response

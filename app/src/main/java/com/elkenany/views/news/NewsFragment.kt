@@ -14,9 +14,7 @@ import com.elkenany.ClickListener
 import com.elkenany.R
 import com.elkenany.databinding.FragmentNewsBinding
 import com.elkenany.entities.guide.Sector
-import com.elkenany.utilities.GlobalLogicFunctions
 import com.elkenany.utilities.GlobalUiFunctions
-import com.elkenany.utilities.SharedPrefrencesType
 import com.elkenany.viewmodels.NewViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.news.adapter.NewsDaumAdapter
@@ -32,12 +30,12 @@ class NewsFragment : Fragment() {
     private var search: String? = null
     private var sectorType: Long? = null
     private var sort: String? = "1"
-    override fun onPause() {
-        super.onPause()
-//        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
-//            SharedPrefrencesType.news,
-//            sectorType.toString())
-    }
+//    override fun onPause() {
+//        super.onPause()
+////        GlobalLogicFunctions.saveSharedPrefrences(requireActivity(),
+////            SharedPrefrencesType.news,
+////            sectorType.toString())
+//    }
 
     override fun onResume() {
         super.onResume()

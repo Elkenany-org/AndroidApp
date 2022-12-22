@@ -80,8 +80,6 @@ class RegisterViewModel : ViewModel() {
                     account.email,
                     getFCMToken(),
                     account.id)
-                Log.i("account",
-                    account.id + account.givenName + account.familyName + account.email)
                 _exception.value = 200
             }
         } catch (e: ApiException) {
@@ -101,7 +99,6 @@ class RegisterViewModel : ViewModel() {
             object : FacebookCallback<LoginResult> {
                 override fun onSuccess(result: LoginResult) {
                     val accessToken = result.accessToken
-                    Log.i("LoginInformation", "success $accessToken")
                     val request = GraphRequest.newMeRequest(
                         accessToken
                     ) { obj, _ ->
@@ -110,7 +107,7 @@ class RegisterViewModel : ViewModel() {
                                 obj.getString("email"),
                                 obj.getString("id"))
                         } catch (e: JSONException) {
-                            Log.i("LoginInformation", "failed : ${e.message.toString()}")
+                            Log.i("FacebookJSONException", "failed : ${e.message.toString()}")
                             _exception.value = 400
                         }
 
@@ -123,12 +120,12 @@ class RegisterViewModel : ViewModel() {
                 }
 
                 override fun onCancel() {
-                    Log.i("LoginInformation", "cancel")
+                    Log.i("FacebookCancel", "cancel")
                     _exception.value = 400
                 }
 
                 override fun onError(error: FacebookException) {
-                    Log.i("LoginInformation", "failure")
+                    Log.i("FacebookException", "failed : ${error.message}")
                     _exception.value = 400
                 }
             })

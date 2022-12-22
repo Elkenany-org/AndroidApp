@@ -26,7 +26,6 @@ class GlobalLogicFunctions {
         // get Firebase cloud messaging token
         suspend fun getFCMToken(): String {
             val token: String? = FirebaseMessaging.getInstance().token.await()
-            Log.i("token", token.toString())
             return token.toString()
         }
 
@@ -41,7 +40,6 @@ class GlobalLogicFunctions {
                 putString("$pref", sectionId)
                 apply()
             }
-            Log.i("pref", sectionId.toString())
         }
 
         fun retrieveSavedSharedPrefrences(
@@ -50,7 +48,6 @@ class GlobalLogicFunctions {
         ): String? {
             val sharedPrefrences =
                 activity!!.getSharedPreferences(pref.toString(), Context.MODE_PRIVATE)
-            Log.i("pref", sharedPrefrences.getString(pref.toString(), null).toString())
             return sharedPrefrences.getString("$pref", null)
         }
     }

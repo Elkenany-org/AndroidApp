@@ -1,7 +1,6 @@
 package com.elkenany.views.shows
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,11 +125,9 @@ class ShowsFragment : Fragment() {
         viewModel.showsStoreData.observe(viewLifecycleOwner) {
 
             if (it != null) {
-                Log.i("showsListData", it.data.toString())
                 binding.apply {
                     showsListRecyclerView.visibility = View.VISIBLE
                 }
-//                bannersAdapter.submitList(it.banners)
                 enableImageSlider(it.banners, binding.bannersImageSlider, requireActivity())
                 logosAdapter.submitList(it.logos)
                 sectorsAdapter.submitList(it.sectors)

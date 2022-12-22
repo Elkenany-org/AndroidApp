@@ -1,7 +1,6 @@
 package com.elkenany.views.recruitment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,7 +83,6 @@ class ApplicantDetailsFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exceptionValue", it.toString())
             when (it) {
                 null -> {
 
@@ -106,9 +104,6 @@ class ApplicantDetailsFragment : Fragment() {
 
                 }
                 402 -> {
-//                    binding.errorMessage.text =
-//                        "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر"
-//                    binding.errorMessage.visibility = View.VISIBLE
                     Toast.makeText(
                         requireContext(),
                         "برجاء التحويل الي الباقة المدفوعة لمعرفة تفاصيل أكثر", Toast.LENGTH_SHORT
@@ -121,15 +116,10 @@ class ApplicantDetailsFragment : Fragment() {
                         requireContext(),
                         "لا توجد متقدمين للتوظيف بعد", Toast.LENGTH_SHORT
                     ).show()
-//                    binding.errorMessage.text =
-//                        "لا توجد متقدمين للتوظيف بعد"
-//                    binding.errorMessage.visibility = View.VISIBLE
+
 
                 }
                 else -> {
-//                    binding.errorMessage.text =
-//                        "تعذر الحصول علي المعلومات"
-//                    binding.errorMessage.visibility = View.VISIBLE
                     Toast.makeText(
                         requireContext(),
                         "تعذر تحديد أختيارك", Toast.LENGTH_SHORT

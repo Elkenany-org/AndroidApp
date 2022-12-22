@@ -23,7 +23,6 @@ class ILocalStockImplementation {
         feedId: String?,
         companyId: String?,
     ): GenericEntity<LocalStockDetailsData?> {
-        Log.i("sectionType", type)
         return if (type == "local") {
             onHandelingResponseStates("getLocalStockDetailsByIdAndType") {
                 ILocalStockHandler.singleton.getLocalStockDetailsByIdAndTypeLocal(

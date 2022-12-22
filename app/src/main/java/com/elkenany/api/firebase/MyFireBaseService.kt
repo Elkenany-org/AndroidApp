@@ -7,7 +7,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.elkenany.MainActivity
@@ -32,7 +31,6 @@ class MyFireBaseService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.i("token", token)
     }
 
     @RequiresApi(Build.VERSION_CODES.S)

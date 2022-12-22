@@ -32,7 +32,6 @@ class GuideMagazineDetailsViewModel : ViewModel() {
     ) {
         _loading.value = true
         uiScope.launch {
-            Log.i("Magazine id", id.toString())
             _magazineData.value = api.getMagazineDetailsData(id)
             _loading.value = false
         }
@@ -52,7 +51,6 @@ class GuideMagazineDetailsViewModel : ViewModel() {
                 } else {
                     _exception.value = 400
                 }
-                Log.i("rateThisCompany", response.toString())
                 _processing.value = false
             }
         }

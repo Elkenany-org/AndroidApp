@@ -31,7 +31,6 @@ class CompanyViewModel : ViewModel() {
         _loading.value = true
         uiScope.launch {
             _companyData.value = api.getCompanyData(id)
-            Log.i("companyData", _companyData.value.toString())
             _loading.value = false
         }
     }
@@ -53,7 +52,6 @@ class CompanyViewModel : ViewModel() {
                 } else {
                     _exception.value = 400
                 }
-                Log.i("rateThisCompany", response.toString())
                 _processing.value = false
             }
         }

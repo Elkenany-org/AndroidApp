@@ -145,7 +145,6 @@ class JobsFragment : Fragment() {
         val menu = PopupMenu(context, binding.sortBtn)
         menu.menuInflater.inflate(R.menu.job_sort_menu, menu.menu)
         menu.setOnMenuItemClickListener {
-            Log.i("menuId", it.toString())
             when (it.toString()) {
                 "الأحدث" -> {
                     sort = null

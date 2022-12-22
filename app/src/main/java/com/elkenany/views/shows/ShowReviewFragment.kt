@@ -1,7 +1,6 @@
 package com.elkenany.views.shows
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +48,6 @@ class ShowReviewFragment : Fragment() {
         }
 
         viewmodel.reviewerDetails.observe(viewLifecycleOwner) {
-            Log.i("ShowsDetailsData", args.showId.toString() + it.toString())
             if (it != null) {
                 binding.apply {
                     reviewrsListRecyclerView.visibility = View.VISIBLE

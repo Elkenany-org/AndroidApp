@@ -32,7 +32,6 @@ class PopUpAdFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pop_up_ad, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[PopUpAdViewModel::class.java]
@@ -52,7 +51,6 @@ class PopUpAdFragment : Fragment() {
 
         viewModel.counter.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.i("observer", it.toString())
                 binding.skipBtn.text = "تخطي $it"
                 if (it == 0) {
                     binding.skipBtn.text = "تخطي"

@@ -177,7 +177,7 @@ class LoginFragment : Fragment() {
         try {
             facebookCallbackManager.onActivityResult(requestCode, resultCode, data)
         } catch (e: Exception) {
-            Log.i("LoginInformation", "cancel")
+            Log.i("LoginInformation", "cancel : ${e.message.toString()}")
         }
         if (requestCode == 1000) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)

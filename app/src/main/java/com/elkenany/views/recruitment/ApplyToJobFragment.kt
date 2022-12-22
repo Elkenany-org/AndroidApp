@@ -71,7 +71,6 @@ class ApplyToJobFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exceptionValue", it.toString())
             when (it) {
                 200 -> {
                     requireView().findNavController()
@@ -211,7 +210,6 @@ class ApplyToJobFragment : Fragment() {
                     }
                 }
                 val file = requireActivity().contentResolver.openInputStream(uri)
-                Log.i("filePdf", file.toString())
                 val fileBytes = file!!.readBytes()
                 val requestBody: RequestBody =
                     RequestBody.create(MediaType.parse("application/pdf"), fileBytes)

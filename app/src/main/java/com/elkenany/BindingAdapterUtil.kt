@@ -16,7 +16,6 @@ fun ImageView.loadImage(url: String?) {
         this.visibility = View.VISIBLE
         Glide.with(this)
             .load(url)
-//            .optionalCenterCrop()
             .into(this)
     }
 }
@@ -31,25 +30,8 @@ fun TextView.writeText(text: String?) {
     }
 }
 
-//Generic ClickListener
 class ClickListener<T>(private val clickListener: (type: T) -> Unit) {
     fun onClick(type: T) {
         clickListener(type)
     }
 }
-
-//fun RecyclerView.smoothScrollToCenteredPosition(position: Int) {
-//    val smoothScroller = object : LinearSmoothScroller(context) {
-//
-//        override fun calculateDxToMakeVisible(view: View?,
-//                                              snapPref: Int): Int {
-//            val dxToStart = super.calculateDxToMakeVisible(view, SNAP_TO_START)
-//            val dxToEnd = super.calculateDxToMakeVisible(view, SNAP_TO_END)
-//
-//            return (dxToStart + dxToEnd) / 2
-//        }
-//    }
-//
-//    smoothScroller.targetPosition = position
-//    layoutManager?.startSmoothScroll(smoothScroller)
-//}

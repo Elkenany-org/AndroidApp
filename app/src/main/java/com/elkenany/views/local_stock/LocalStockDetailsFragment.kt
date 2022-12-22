@@ -51,7 +51,6 @@ class LocalStockDetailsFragment : Fragment() {
         } else {
             binding.calenderBtn.setText(R.string.today_title)
         }
-        Log.i("args.id", args.id.toString())
         viewModel.getLocalStockDetailsData(
             args.id,
             dateFormat,
@@ -140,7 +139,6 @@ class LocalStockDetailsFragment : Fragment() {
         viewModel.feedsItem.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.productBtn.visibility = View.VISIBLE
-                Log.i("feedList", it.fodderList.toString())
                 val feedList =
                     it.fodderList.map { newList -> newList!!.name }.toList()
                 feedAdapter = ArrayAdapter<String?>(

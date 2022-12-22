@@ -299,7 +299,6 @@ class CreateAdFragment : Fragment() {
                     myArrayUri.add("\"data:image/*;base64,$encodedImage\"")
                     i++
                 }
-                Log.i("arrayList", myArrayUri.toString())
             } else {
                 // show this if no image is selected
                 Toast.makeText(requireContext(), "You haven't picked Image", Toast.LENGTH_LONG)

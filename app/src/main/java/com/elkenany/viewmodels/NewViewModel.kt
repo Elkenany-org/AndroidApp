@@ -27,7 +27,6 @@ class NewViewModel : ViewModel() {
     fun getAllNewsData(sectorType: Long?, search: String?, sort: String?) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             _newsData.value = api.getAllNewsData(sectorType, search, sort)
             _loading.value = false
         }

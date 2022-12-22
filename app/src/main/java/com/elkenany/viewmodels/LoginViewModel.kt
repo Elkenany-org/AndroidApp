@@ -43,7 +43,6 @@ class LoginViewModel : ViewModel() {
     val login: LiveData<Boolean?> get() = _login
     val exception: LiveData<Int?> get() = _exception
 
-    //this function fires to check if there is login instance already from google account
     fun initViewModel(context: Context) {
         uiScope.launch {
             val account = GoogleSignIn.getLastSignedInAccount(context)
@@ -82,7 +81,6 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    //this function fires when the user wants to sign in with google account
     fun signInGoogle(name: String?, email: String?, google_id: String?) {
         _loading.value = true
         uiScope.launch {
@@ -130,11 +128,6 @@ class LoginViewModel : ViewModel() {
         _login.value = true
         api.loginWithNoCredentials()
     }
-
-//    fun didForgetPassword() {
-//        // ToDo --> implement password recovery function
-//    }
-
 
     override fun onCleared() {
         super.onCleared()
@@ -188,7 +181,6 @@ class LoginViewModel : ViewModel() {
 
     }
 
-    //this function handles the signin with google results
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)

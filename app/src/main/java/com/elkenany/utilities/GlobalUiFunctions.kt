@@ -44,7 +44,6 @@ class GlobalUiFunctions {
                     dialogBinding.image = image
                     val dialog = Dialog(activity)
                     dialog.setCancelable(true)
-                    Log.i("imageUrl", dialogBinding.image.toString())
                     dialog.setContentView(dialogBinding.root)
                     dialog.show()
                 }

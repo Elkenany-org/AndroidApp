@@ -1,7 +1,6 @@
 package com.elkenany.views.guide
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import com.elkenany.utilities.GlobalUiFunctions.Companion.navigateToBroswerInten
 import com.elkenany.viewmodels.GuideCompaniesViewModel
 import com.elkenany.viewmodels.ViewModelFactory
 import com.elkenany.views.guide.adapter.CompaniesAdapter
-import com.elkenany.views.home.home_service.HomeServiceFragmentDirections
 import com.elkenany.views.home.home_service.adapter.GeneralLogosAdapter
 
 
@@ -130,7 +128,6 @@ class GuideCompaniesFragment : Fragment() {
                         guideFilters?.countries,
                         guideFilters?.cities,
                         ClickListener { filterData ->
-                            Log.i("filterData", filterData.toString())
                             viewModel.getCompaniesGuideData(
                                 args.sectionId,
                                 filterData.section!!.toLong(),

@@ -94,7 +94,6 @@ class ShowsDetailsFragment : Fragment() {
                     .toString()
                 viewmodel.postGoingState(args.id, id!!)
             }
-            Log.i("ShowsDetailsData", args.id.toString() + it.toString())
             if (it != null) {
                 binding.apply {
                     scrollView.visibility = View.VISIBLE

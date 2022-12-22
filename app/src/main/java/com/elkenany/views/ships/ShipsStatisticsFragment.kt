@@ -3,7 +3,6 @@ package com.elkenany.views.ships
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -146,7 +145,6 @@ class ShipsStatisticsFragment : Fragment() {
                 myCalendar.set(Calendar.DAY_OF_MONTH, day)
                 val myFormat = "YYYY-MM-d"
                 val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-                Log.i("dataFormant", dateFormat.format(myCalendar.time))
                 when (view.id) {
                     R.id.date_from_tv -> {
                         from = dateFormat.format(myCalendar.time)
@@ -158,7 +156,7 @@ class ShipsStatisticsFragment : Fragment() {
                         binding.dateToTv.text = to
                         viewModel.getAllStatisticsData(type, from, to, country)
                     }
-                    else -> Log.i("nocomment", "no comment")
+                    else -> {}
                 }
 
             }

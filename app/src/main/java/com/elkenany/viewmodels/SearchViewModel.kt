@@ -25,7 +25,6 @@ class SearchViewModel : ViewModel() {
     fun getAllSearchData(search: String?) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             _searchData.value = api.getAllSearchData(search)
             _loading.value = false
         }

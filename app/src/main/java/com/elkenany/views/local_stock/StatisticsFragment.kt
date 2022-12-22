@@ -3,7 +3,6 @@ package com.elkenany.views.local_stock
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +61,6 @@ class StatisticsFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[StatisticsViewModel::class.java]
         myFormat = "YYYY-MM-d"
         dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        Log.i("statistics args", args.toString())
         binding.dateFromTv.setOnClickListener {
             updateLabel(it)
         }
@@ -133,7 +131,6 @@ class StatisticsFragment : Fragment() {
                     productList)
                 binding.companyAutoCompelete.setAdapter(adapter)
                 binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-                    Log.i("statisticsData", it.listMembers[position]!!.id.toString())
                     itemId = it.listMembers[position]!!.id
                     binding.companyAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
@@ -167,7 +164,6 @@ class StatisticsFragment : Fragment() {
                     companiesList)
                 binding.companyAutoCompelete.setAdapter(adapter)
                 binding.companyAutoCompelete.setOnItemClickListener { adapterView, _, position, _ ->
-                    Log.i("statisticsData", it.listMembers[position]!!.id.toString())
                     companyId = it.listMembers[position]!!.id
                     binding.companyAutoCompelete.hint = adapterView.getItemAtPosition(position)
                         .toString()
@@ -192,7 +188,6 @@ class StatisticsFragment : Fragment() {
                 myCalendar.set(Calendar.YEAR, year)
                 myCalendar.set(Calendar.MONTH, month)
                 myCalendar.set(Calendar.DAY_OF_MONTH, day)
-                Log.i("dataFormant", dateFormat.format(myCalendar.time))
                 when (view.id) {
                     R.id.date_from_tv -> {
                         dataFrom = dateFormat.format(myCalendar.time)
@@ -231,7 +226,7 @@ class StatisticsFragment : Fragment() {
                             }
                         }
                     }
-                    else -> Log.i("nocomment", "no comment")
+                    else -> {}
                 }
             }
         DatePickerDialog(this.requireActivity(),

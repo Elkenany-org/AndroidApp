@@ -28,7 +28,6 @@ class GuideViewModel : ViewModel() {
     fun getGuideData(sectorType: Int?, search: String?) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             _guideData.value = api.getAllGuideData(sectorType, search)
             _loading.value = false
         }

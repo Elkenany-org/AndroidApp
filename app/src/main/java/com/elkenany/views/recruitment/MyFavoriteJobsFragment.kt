@@ -60,7 +60,6 @@ class MyFavoriteJobsFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exceptionValue", it.toString())
             when (it) {
                 200 -> {
                     binding.errorMessage.visibility = View.GONE

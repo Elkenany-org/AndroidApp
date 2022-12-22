@@ -16,22 +16,15 @@ class LockableScrollView @JvmOverloads constructor(
         mScrollable = enabled
     }
 
-//    fun isScrollable(): Boolean {
-//        return mScrollable
-//    }
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         return when (ev.action) {
-            MotionEvent.ACTION_DOWN ->                 // if we can scroll pass the event to the superclass
-                mScrollable && super.onTouchEvent(ev)
+            MotionEvent.ACTION_DOWN -> mScrollable && super.onTouchEvent(ev)
             else -> super.onTouchEvent(ev)
         }
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        // Don't do anything with intercepted touch events if
-        // we are not scrollable
         return mScrollable && super.onInterceptTouchEvent(ev)
     }
 }

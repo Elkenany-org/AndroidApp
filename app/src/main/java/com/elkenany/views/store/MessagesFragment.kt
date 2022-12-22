@@ -56,10 +56,8 @@ class MessagesFragment : Fragment() {
         }
         viewModel.messageList.observe(viewLifecycleOwner) {
             if (it!!.massages.isEmpty()) {
-                Log.i("massages", "data not found")
                 binding.messagesRecyclerView.visibility = View.GONE
             } else {
-                Log.i("massages", "data found")
                 binding.messagesRecyclerView.visibility = View.VISIBLE
                 binding.messagesRecyclerView.scrollToPosition(it.massages.size - 1)
                 messagesAdapter.submitList(it.massages)

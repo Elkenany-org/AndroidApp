@@ -33,19 +33,16 @@ class HomeServiceFragment : Fragment() {
     private lateinit var recommendationAdapter: ServiceRecommendationAdapter
     private lateinit var showsAdapter: ServiceShowsAdapter
     private lateinit var guideAndMagazineAdapter: ServiceGuideAndMagazineAdapter
-    private var rndm = (0..20).random()
     private var sectionId = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home_service, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeServiceViewModel::class.java]
-
-        //Adapters initialization
+        var rndm = (0..20).random()
         homeServiceAdapter = HomeServiceAdapter(ClickListener {
             when (it.id) {
                 1L -> {
@@ -121,19 +118,8 @@ class HomeServiceFragment : Fragment() {
                 )
         })
 
-        //assign each adapter to its own recyclerView
         binding.recommendationRecyclerView.adapter = recommendationAdapter
-//        binding.partnersRecyclerView.adapter = partnerAdapter
-//        binding.showsRecyclerView.adapter = showsAdapter
-//        binding.guidesRecyclerView.adapter = guideAndMagazineAdapter
 
-//        //navigate to sectorsFragment
-//        binding.sectorsBtn.setOnClickListener {
-//            requireView().findNavController()
-//                .navigate(HomeServiceFragmentDirections.actionHomeServiceFragment2ToHomeSectorFragment2())
-//        }
-//
-        // Loading progressbar
         viewModel.loading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.loadingProgressbar.visibility = View.VISIBLE
@@ -146,7 +132,6 @@ class HomeServiceFragment : Fragment() {
         viewModel.popUpData.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it.popup != null && !it.popup.link.isNullOrEmpty()) {
-                    Log.i("rndm", rndm.toString())
                     if (rndm == 3) {
                         requireParentFragment().requireParentFragment().findNavController()
                             .navigate(HomeFragmentDirections.actionHomeFragmentToPopUpAdFragment(
@@ -157,7 +142,6 @@ class HomeServiceFragment : Fragment() {
                 }
             }
         }
-        //submitting all the recyclerAdapter lists to it value
         viewModel.homeServiceData.observe(viewLifecycleOwner) {
             if (it != null) {
                 homeServiceAdapter.submitList(it.services)
@@ -165,7 +149,6 @@ class HomeServiceFragment : Fragment() {
                 showsAdapter.submitList(it.serviceShows)
                 guideAndMagazineAdapter.submitList(it.serviceMagazine)
                 recommendationAdapter.submitList(it.serviceRecommendation)
-//                sectionId = it.type!!.toInt()
                 if (it.serviceRecommendation.isNullOrEmpty()) {
                     binding.recommendationTextView.visibility = View.GONE
                 } else {

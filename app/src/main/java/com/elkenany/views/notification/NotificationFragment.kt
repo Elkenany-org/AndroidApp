@@ -36,12 +36,10 @@ class NotificationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_notification, container, false)
         viewModelFactory = ViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory)[NotificationViewModel::class.java]
-//        viewModel.onGettingNotificationData()
         notificationAdapter = NotificationListAdapter(ClickListener {
             onNotificationClickedToNavigate(it, it.title!!)
         })

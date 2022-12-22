@@ -71,7 +71,6 @@ class NewsDetailsFragment : Fragment() {
                 binding.newsDate = it.createdAt.toString()
                 binding.mainTitle = it.title.toString()
                 binding.newsImage = it.image
-                Log.i("html_tag", it.desc.toString())
                 binding.webView.loadData("<html dir=\"rtl\"><style>body{font-size: 14pt;color:green;} p{text-align: justify;}</style><body><div>${it.desc!!}</div></body></html>",
                     "text/html",
                     "UTF-8")

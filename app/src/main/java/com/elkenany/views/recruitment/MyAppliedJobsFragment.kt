@@ -71,7 +71,6 @@ class MyAppliedJobsFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exceptionValue", it.toString())
             when (it) {
                 null -> {
 

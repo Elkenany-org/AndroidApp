@@ -9,8 +9,6 @@ import retrofit2.await
 import java.net.SocketTimeoutException
 
 class IHomeImplementation {
-    // ToDo --> implement all the required function to receive data from the backend
-    //getting home sectors data from database through api calling
     suspend fun getHomeSectorsData(): HomeSectorsData? {
         return try {
             val response = IHomeHandler.singleton.getSectorsData(true).await()

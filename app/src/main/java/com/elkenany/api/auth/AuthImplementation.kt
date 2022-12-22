@@ -37,7 +37,6 @@ class AuthImplementation {
                 email,
                 device_token, google_id
             ).await()
-            Log.i("login response", "Login ${response.data}")
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
@@ -65,7 +64,6 @@ class AuthImplementation {
                 email,
                 device_token, facebook_id
             ).await()
-            Log.i("login response", "Login ${response.data}")
             userApiToken = response.data!!.apiToken
             getAllUserData(response.data.apiToken)
             response.data
@@ -91,7 +89,6 @@ class AuthImplementation {
             val response =
                 AuthHandler.singleton.loginWithEmailAndPassword(true, fcmToken, email, password)
                     .await()
-            Log.i("login response", "Login response is : $response")
             userApiToken = response.data!!.apiToken
             val t = getAllUserData(userApiToken)
             if (t != null) {
@@ -146,7 +143,6 @@ class AuthImplementation {
     private suspend fun getAllUserData(api_token: String?): UserAuthData? {
         return try {
             val response = AuthHandler.singleton.getUserProfile("Bearer $api_token").await()
-            Log.i("user_data", response.data.toString())
             auth = response.data
             auth
         } catch (e: HttpException) {

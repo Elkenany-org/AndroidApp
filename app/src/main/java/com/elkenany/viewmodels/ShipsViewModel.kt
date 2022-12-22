@@ -25,7 +25,6 @@ class ShipsViewModel : ViewModel() {
     fun getAllSearchData(date: String?) {
         _loading.value = true
         uiScope.launch {
-            // ToDo --> implementing getHomeStockData(sectorType) function here
             val response = api.getAllShipsData(date)
             if (response.error == null) {
                 _shipsData.value = response.data

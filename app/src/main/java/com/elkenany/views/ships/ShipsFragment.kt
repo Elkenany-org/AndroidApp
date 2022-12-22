@@ -125,7 +125,6 @@ class ShipsFragment : Fragment() {
                     errorMessage.visibility = View.GONE
                     logoAdapter.submitList(it.logos)
                     shipsAdapter.submitList(it.ships)
-                    Log.i("shipsData", it.ships.toString())
                 }
             } else {
                 binding.apply {

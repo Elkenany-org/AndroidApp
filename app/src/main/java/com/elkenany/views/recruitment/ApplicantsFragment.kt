@@ -1,7 +1,6 @@
 package com.elkenany.views.recruitment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +57,6 @@ class ApplicantsFragment : Fragment() {
             }
         }
         viewModel.exception.observe(viewLifecycleOwner) {
-            Log.i("exceptionValue", it.toString())
             when (it) {
                 null -> {
 
